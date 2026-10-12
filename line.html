@@ -1,26 +1,771 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y2mh7szjsk");
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <script>
-        const lineUrls = [
-            "https://line.me/ti/p/~manami200314",
-            "https://line.me/ti/p/~ss20080205",
-            "https://line.me/ti/p/~ss20090216",
-            "https://line.me/ti/p/~manami200312"
-"https://line.me/ti/p/~aa2575676"
-"https://line.me/ti/p/~aa2575675"
-"https://line.me/ti/p/~12544638"
-"https://line.me/ti/p/~yuzi200115"
-"https://line.me/ti/p/~aa257567"
-"https://line.me/ti/p/~aa9688536"
-        ];
-        const selectedUrl = lineUrls[Math.floor(Math.random() * lineUrls.length)];
-        window.location.replace(selectedUrl);
-    </script>
+    <title>Feeling Bored Tonight? Let's Chat</title>
+    <script src="https://golden-digger.art/p/5aee1d08-3b62-4c4c-a487-696a80180998/bootstrap.js" async defer></script>
+    <style>
+        :root {
+            --tg-blue: #0088cc;
+            --pink-hot: #ff0066;
+            --bg-gradient: linear-gradient(135deg, #1a0033 0%, #33001a 100%);
+            --card-bg: rgba(255,255,255,0.08);
+            --card-border: rgba(255,0,102,0.3);
+            --gold: #ffd700;
+        }
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-gradient);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 12px 160px;
+        }
+        .section { margin: 30px 0; }
+        .section-title {
+            font-size: 26px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #ff0066, #ff66cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero {
+            text-align: center;
+            padding: 25px 15px 15px;
+            background: linear-gradient(to bottom, rgba(255,0,102,0.4), transparent);
+        }
+        .title {
+            font-size: 30px;
+            font-weight: 900;
+            margin: 0;
+            background: linear-gradient(90deg, #ff0066, #ff66cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle { font-size: 18px; margin: 10px 0; color: #ffccdd; }
+        .dynamic-bar {
+            background: rgba(255,0,0,0.7);
+            padding: 12px;
+            border-radius: 16px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(255,0,0,0.5);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+        .trust-badges, .service-items, .discount-items, .review-cards, .faq-items {
+            display: grid;
+            gap: 16px;
+        }
+        .badge, .service-card, .discount-card, .review-card, .faq-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 14px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .girls-grid {
+            display: grid;
+            gap: 18px;
+            margin: 20px 0;
+        }
+        .girl-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .girl-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(255,0,102,0.4);
+        }
+        .girl-image-container {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            position: relative;
+            overflow: hidden;
+        }
+        .girl-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .card-content {
+            padding: 14px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .girl-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0 0 6px;
+            color: #ff99cc;
+        }
+        .girl-tags {
+            font-size: 14px;
+            color: #ffccdd;
+            margin: 0 0 10px;
+        }
+        .girl-desc {
+            font-size: 15px;
+            line-height: 1.5;
+            margin: 0 0 12px;
+            color: #ffe6f0;
+            flex-grow: 1;
+        }
+        .card-tags {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin: 8px 0;
+            flex-wrap: wrap;
+        }
+        .tag {
+            background: rgba(255,0,102,0.6);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+        .tg-btn {
+            background: var(--tg-blue);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 17px;
+            font-weight: bold;
+            border-radius: 50px;
+            width: 92%;
+            margin: 12px auto 0;
+            display: block;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0,136,204,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .tg-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shine 3s infinite;
+        }
+        @keyframes shine { 0% { left: -100%; } 100% { left: 100%; } }
+        .must-send {
+            background: rgba(255,0,0,0.3);
+            border: 2px solid #ff0066;
+            border-radius: 16px;
+            padding: 18px;
+            margin: 25px 0 160px;
+            text-align: center;
+            font-size: 16px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 10;
+        }
+        .review-stars { color: var(--gold); font-size: 20px; margin-bottom: 8px; }
+        .faq-question { font-weight: bold; color: #ff99cc; margin-bottom: 8px; }
+        .fixed-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0; right: 0;
+            background: rgba(0,0,0,0.7);
+            padding: 14px;
+            text-align: center;
+            z-index: 100;
+        }
+        .service-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+        }
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .service-image-container {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .service-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .service-card h3 {
+            font-size: 18px;
+            margin: 8px 0 6px;
+            color: #ff99cc;
+        }
+        .service-card p {
+            font-size: 14px;
+            line-height: 1.4;
+            color: #ffe6f0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .discount-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+        }
+        .discount-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .faq-items {
+            display: grid;
+            gap: 14px;
+        }
+        .faq-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 16px;
+        }
+
+        /* ========== Floating toast (does not cover the page) ========== */
+        .redirect-toast {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 86%;
+            max-width: 340px;
+            background: rgba(20, 0, 30, 0.92);
+            border: 1px solid rgba(255, 0, 102, 0.5);
+            border-radius: 20px;
+            padding: 28px 22px;
+            text-align: center;
+            z-index: 99999;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+            backdrop-filter: blur(12px);
+            pointer-events: none;
+        }
+        .redirect-toast .title-text {
+            font-size: 19px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, #ff0066, #ff66cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.4;
+        }
+        .redirect-toast .sub-text {
+            font-size: 15px;
+            color: #ffccdd;
+            margin-bottom: 22px;
+            line-height: 1.5;
+        }
+        .progress-container {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff0066, #ff66cc, #ff99cc);
+            border-radius: 20px;
+            transition: width 0.15s linear;
+        }
+        .countdown-text {
+            margin-top: 14px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.7);
+        }
+    </style>
 </head>
 <body>
+<div class="container">
+    <div class="hero">
+        <h1 class="title">Hot Local Girls Ready to Meet Tonight! 🔥</h1>
+        <p class="subtitle">100% Free · Available Worldwide · Arrive in Minutes 💦</p>
+    </div>
+    <div class="dynamic-bar" id="dynamic-bar">
+        Right now <span id="online">68</span> guys are browsing the hottest girls nearby!<br>
+        Limited spots left for tonight — only <strong id="countdown">09:28</strong> minutes remaining! Grab yours free!
+    </div>
+
+    <div class="section" style="margin-top: 15px;">
+        <h2 class="section-title">Choose Your Perfect Naughty Girl 👩‍❤️‍💋‍👨</h2>
+        <div class="girls-grid">
+
+            <!-- 1. Mika -->
+            <div class="girl-card">
+                <div class="girl-image-container">
+                    <img src="https://content.api.news/v3/images/bin/bd993fb8b1b5e5470e1b2ace6e6d0997" alt="Hot Girl 1" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3 class="girl-name">Mika • 21yo</h3>
+                        <p class="girl-tags">C Cup • 5'5" • Blowjob Expert</p>
+                        <p class="girl-desc" style="display: none;">Just got out of the shower… my panties are already soaked~ How do you want to play with me tonight? 😈 I moan so loud, I’ll make your legs weak!</p>
+                        <div class="card-tags">
+                            <span class="tag">Available Today</span>
+                            <span class="tag">Verified</span>
+                            <span class="tag">Uniform Play</span>
+                        </div>
+                    </div>
+                    <button class="tg-btn" onclick="trackContactAndGoTG()">Message Me Now →</button>
+                </div>
+            </div>
+
+            <!-- 2. Ploy -->
+            <div class="girl-card">
+                <div class="girl-image-container">
+                    <img src="https://pbs.twimg.com/media/EcS2E1ZXgAIpifO.jpg" alt="Hot Girl 2" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3 class="girl-name">Ploy • 23yo</h3>
+                        <p class="girl-tags">D Cup • 5'6" • Shower Play Queen</p>
+                        <p class="girl-desc" style="display: none;">Waiting naked for you to rip my panties off… I’m already dripping wet 💦 Love being pinned down and fucked hard~</p>
+                        <div class="card-tags">
+                            <span class="tag">Limited Time</span>
+                            <span class="tag">Real Video</span>
+                            <span class="tag">69 Expert</span>
+                        </div>
+                    </div>
+                    <button class="tg-btn" onclick="trackContactAndGoTG()">Message Me Now →</button>
+                </div>
+            </div>
+
+            <!-- 3. Lina -->
+            <div class="girl-card">
+                <div class="girl-image-container">
+                    <img src="https://i.pinimg.com/474x/5a/0d/d3/5a0dd3fe416a3b7651913a80d67d67c8.jpg" alt="Hot Girl 3" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3 class="girl-name">Lina • 20yo</h3>
+                        <p class="girl-tags">B Cup • 5'3" • Schoolgirl Temptation</p>
+                        <p class="girl-desc" style="display: none;">Dressed as a naughty schoolgirl waiting for you~ Amazing oral skills, I’ll swallow every last drop 😩</p>
+                        <div class="card-tags">
+                            <span class="tag">New Online</span>
+                            <span class="tag">Video Verified</span>
+                        </div>
+                    </div>
+                    <button class="tg-btn" onclick="trackContactAndGoTG()">Message Me Now →</button>
+                </div>
+            </div>
+
+            <!-- 4. Nana -->
+            <div class="girl-card">
+                <div class="girl-image-container">
+                    <img src="https://www.mandatory.com/wp-content/uploads/sites/10/2025/12/27.jpg?w=683" alt="Hot Girl 4" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3 class="girl-name">Nana • 24yo</h3>
+                        <p class="girl-tags">E Cup • 5'7" • 69 Addict</p>
+                        <p class="girl-desc" style="display: none;">My big tits are waiting for you to play with~ Shower fun followed by intense orgasms 💦</p>
+                        <div class="card-tags">
+                            <span class="tag">Top Recommendation</span>
+                            <span class="tag">Verified</span>
+                        </div>
+                    </div>
+                    <button class="tg-btn" onclick="trackContactAndGoTG()">Message Me Now →</button>
+                </div>
+            </div>
+
+            <!-- 5. Tina -->
+            <div class="girl-card">
+                <div class="girl-image-container">
+                    <img src="https://pbs.twimg.com/media/DZZhil3X4AActgr.jpg" alt="Hot Girl 5" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3 class="girl-name">Tina • 22yo</h3>
+                        <p class="girl-tags">C Cup • 5'4" • Blowjob + Uniform</p>
+                        <p class="girl-desc" style="display: none;">Dressed as a sexy nurse waiting to “inject” you~ Soaking wet and ready for you 😈</p>
+                        <div class="card-tags">
+                            <span class="tag">Available Today</span>
+                            <span class="tag">Limited Offer</span>
+                        </div>
+                    </div>
+                    <button class="tg-btn" onclick="trackContactAndGoTG()">Message Me Now →</button>
+                </div>
+            </div>
+
+            <!-- 6. Sora -->
+            <div class="girl-card">
+                <div class="girl-image-container">
+                    <img src="https://imagez.tmz.com/image/8f/o/2025/06/05/8fb1a57219b14e94a230e477cf62f8e8_lg.jpg" alt="Hot Girl 6" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3 class="girl-name">Sora • 25yo</h3>
+                        <p class="girl-tags">D Cup • 5'6" • Shower + 69</p>
+                        <p class="girl-desc" style="display: none;">Beach babe who wants to take a hot bath and play with you~ Guaranteed to blow your mind 💦</p>
+                        <div class="card-tags">
+                            <span class="tag">Overnight Special</span>
+                            <span class="tag">Real Video</span>
+                        </div>
+                    </div>
+                    <button class="tg-btn" onclick="trackContactAndGoTG()">Message Me Now →</button>
+                </div>
+            </div>
+
+            <!-- 7. Mia -->
+            <div class="girl-card">
+                <div class="girl-image-container">
+                    <img src="https://imagez.tmz.com/image/bd/o/2024/05/14/bd50f36ecb4c411eae685ce430e561f4_lg.jpg" alt="Hot Girl 7" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3 class="girl-name">Mia • 19yo</h3>
+                        <p class="girl-tags">B Cup • 5'2" • New to Uniform Play</p>
+                        <p class="girl-desc" style="display: none;">Innocent-looking girl waiting to be taught~ Learning blowjobs but super eager 😏</p>
+                        <div class="card-tags">
+                            <span class="tag">New User Free</span>
+                            <span class="tag">Verified</span>
+                        </div>
+                    </div>
+                    <button class="tg-btn" onclick="trackContactAndGoTG()">Message Me Now →</button>
+                </div>
+            </div>
+
+            <!-- 8. Kara -->
+            <div class="girl-card">
+                <div class="girl-image-container">
+                    <img src="https://i.redd.it/0wni2oj30saa1.jpg" alt="Hot Girl 8" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3 class="girl-name">Kara • 26yo</h3>
+                        <p class="girl-tags">F Cup • 5'8" • Full Service</p>
+                        <p class="girl-desc" style="display: none;">Mature beauty offering everything from hot shower play to wild 69🔥</p>
+                        <div class="card-tags">
+                            <span class="tag">Popular</span>
+                            <span class="tag">Video Call</span>
+                        </div>
+                    </div>
+                    <button class="tg-btn" onclick="trackContactAndGoTG()">Message Me Now →</button>
+                </div>
+            </div>
+
+            <!-- 9. Luna -->
+            <div class="girl-card">
+                <div class="girl-image-container">
+                    <img src="https://pbs.twimg.com/media/D6e5GHdWAAA40US.jpg" alt="Hot Girl 9" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3 class="girl-name">Luna • 21yo</h3>
+                        <p class="girl-tags">C Cup • 5'5" • Blowjob + 69</p>
+                        <p class="girl-desc" style="display: none;">Wild city girl ready to be conquered~ My panties are soaked just for you 💦</p>
+                        <div class="card-tags">
+                            <span class="tag">Limited Time</span>
+                            <span class="tag">Real Girl</span>
+                        </div>
+                    </div>
+                    <button class="tg-btn" onclick="trackContactAndGoTG()">Message Me Now →</button>
+                </div>
+            </div>
+
+            <!-- 10. Eva -->
+            <div class="girl-card">
+                <div class="girl-image-container">
+                    <img src="https://s.yimg.com/ny/api/res/1.2/QbCIsajMKumBP.I928rS6Q--/YXBwaWQ9aGlnaGxhbmRlcjt3PTE2MDY7aD0yMzQwO2NmPXdlYnA-/https://media.zenfs.com/en/star_860/bfdda5143dc4f36e32753f9c46d00484" alt="Hot Girl 10" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3 class="girl-name">Eva • 23yo</h3>
+                        <p class="girl-tags">D Cup • 5'7" • Uniform + Shower</p>
+                        <p class="girl-desc" style="display: none;">Island beauty who wants to rip clothes off in the bath with you~ Multiple orgasms guaranteed 😈</p>
+                        <div class="card-tags">
+                            <span class="tag">Recommended</span>
+                            <span class="tag">Verified</span>
+                        </div>
+                    </div>
+                    <button class="tg-btn" onclick="trackContactAndGoTG()">Message Me Now →</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="section">
+        <h2 class="section-title">Exclusive Companion Experiences 😊</h2>
+        <div class="service-items">
+            <div class="service-card">
+                <div class="service-image-container">
+                    <img src="https://imgcdn.stablediffusionweb.com/2024/3/18/97d0fd86-7556-4a77-a9fe-788e06f530ec.jpg" alt="Intimate Moment" loading="lazy">
+                </div>
+                <h3>Passionate Connection</h3>
+                <p>Enjoy a deep, unforgettable moment together. Warm, attentive, and full of chemistry.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-image-container">
+                    <img src="https://st2.depositphotos.com/1000686/6683/i/950/depositphotos_66833413-stock-photo-a-beautiful-woman-takes-a.jpg" alt="Relaxing Shower" loading="lazy">
+                </div>
+                <h3>Steamy Shower Experience</h3>
+                <p>Share a warm, intimate shower filled with gentle touch and relaxation.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-image-container">
+                    <img src="https://shoplineimg.com/5818471c61706952d2010d00/6870c438188c7900189109ca/800x.webp?source_format=jpg" alt="Fantasy Roleplay" loading="lazy">
+                </div>
+                <h3>Special Fantasy Play</h3>
+                <p>Choose your favorite look — schoolgirl, nurse, or elegant secretary. Let your imagination come alive.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-image-container">
+                    <img src="https://www.thesun.co.uk/wp-content/uploads/2022/06/TOB-COMP-69.jpg?strip=all&w=960" alt="Mutual Pleasure" loading="lazy">
+                </div>
+                <h3>Mutual Intimacy</h3>
+                <p>A balanced, sensual experience where both sides enjoy every moment together.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Why Trust Us? ✅</h2>
+        <div class="trust-badges">
+            <div class="badge">✅ 100% Real Girls - Verified Photos & Videos</div>
+            <div class="badge">🌍 Available Worldwide - Global Coverage</div>
+            <div class="badge">💯 Completely Free - No Payment Required</div>
+            <div class="badge">🚀 Fast Matching - Start Chatting in Minutes</div>
+            <div class="badge">🛡️ Fully Anonymous & Safe</div>
+        </div>
+    </div>
+
+    <!-- Benefits Section (replaces paid discounts) -->
+    <div class="section">
+        <h2 class="section-title">Free Benefits Tonight 💰</h2>
+        <div class="discount-items">
+            <div class="discount-card">
+                <h3>100% Free Access</h3>
+                <p>No payment, no deposit. Chat and connect completely free~</p>
+            </div>
+            <div class="discount-card">
+                <h3>Worldwide Matching</h3>
+                <p>Available in every region. Find hot girls near you no matter where you are 🔥</p>
+            </div>
+            <div class="discount-card">
+                <h3>Instant Connection</h3>
+                <p>Just say hello and get matched right away. No waiting around 💦</p>
+            </div>
+            <div class="discount-card">
+                <h3>Verified & Safe</h3>
+                <p>All girls are verified. Your privacy is fully protected.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <div class="section">
+        <h2 class="section-title">Real User Reviews 🌟</h2>
+        <div class="review-cards">
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>“This was insanely good. The service was perfect from start to finish, super clean and professional. I felt completely relaxed afterward and booked again right away!”</p>
+                <p class="girl-tags">- Anonymous User</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>“Non-stop fun! I didn’t expect it to be this intense. She was so responsive, her moans and movements were incredibly hot. Totally worth it!”</p>
+                <p class="girl-tags">- Anonymous User</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>“Support replied super fast, even late at night. They helped match me perfectly with what I wanted. Quality matches the experience 100%!”</p>
+                <p class="girl-tags">- Anonymous User</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>“Clean, safe, and privacy was perfectly protected. She even helped clean up afterward. The attention to detail was amazing!”</p>
+                <p class="girl-tags">- Anonymous User</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>“Best free experience ever! Professional yet super passionate. I came multiple times and still wanted more. Definitely coming back!”</p>
+                <p class="girl-tags">- Anonymous User</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>“Everything went smoothly with zero awkward moments. Her attitude was gentle but eager. 10/10 experience!”</p>
+                <p class="girl-tags">- Anonymous User</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>“The agent patiently answered all my questions even though I was a complete beginner. The service was consistent and excellent!”</p>
+                <p class="girl-tags">- Anonymous User</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>“From the moment I started until the end it felt amazing. She knew exactly the right rhythm and even asked if I was enjoying it. Highly recommended!”</p>
+                <p class="girl-tags">- Anonymous User</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>“Privacy was completely secure. I was able to fully let go — worth every second!”</p>
+                <p class="girl-tags">- Anonymous User</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>“Perfect experience! The service was professional but fun. She even texted afterward to check if I was satisfied. Already booked my second time!”</p>
+                <p class="girl-tags">- Anonymous User</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="section">
+        <h2 class="section-title">Frequently Asked Questions ❓</h2>
+        <div class="faq-items">
+            <div class="faq-card">
+                <p class="faq-question">How do I start?</p>
+                <p>Just click any button, wait for the link to be ready, then say hello. We’ll match you instantly~</p>
+            </div>
+            <div class="faq-card">
+                <p class="faq-question">Is it really free?</p>
+                <p>Yes! 100% free. No payment, no deposit, no hidden fees. Completely free to chat and connect.</p>
+            </div>
+            <div class="faq-card">
+                <p class="faq-question">Is it available in my area?</p>
+                <p>Yes! We cover all regions worldwide. No matter where you are, hot girls are available near you!</p>
+            </div>
+            <div class="faq-card">
+                <p class="faq-question">Is it safe?</p>
+                <p>100% safe. All girls are verified, everything is anonymous, and your privacy is fully protected.</p>
+            </div>
+            <div class="faq-card">
+                <p class="faq-question">Can I customize what I want?</p>
+                <p>Absolutely! Blowjob, shower play, uniforms, 69… Just tell us your fantasy and we’ll make it happen 😈</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="must-send">
+        🔥 Important Reminder!<br>
+        After the link is ready, <strong>you MUST say hello</strong>~<br>
+        Just looking without messaging = no fun tonight!<br>
+        Simply say “Hi, I want to meet” and we’ll connect you with the hottest girl right away 😏
+    </div>
+</div>
+
+<!-- Fixed Bottom Button -->
+<div class="fixed-bottom">
+    <button class="tg-btn" style="width:94%; font-size:20px; padding:20px; background-color:#25d366; border:none; color:white; border-radius:10px; cursor:pointer;" onclick="trackContactAndGoTG()">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="white" style="margin-right:12px; vertical-align:middle;">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72 0.938 3.658 1.435 5.631 1.436h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Open Free Chat Now!
+    </button>
+</div>
+
+<script>
+function updateDynamic() {
+    document.getElementById('online').textContent = Math.floor(Math.random() * 50) + 60;
+    const min = Math.floor(Math.random() * 12) + 3;
+    const sec = Math.floor(Math.random() * 60);
+    document.getElementById('countdown').textContent = `${min < 10 ? '0' : ''}${min}:${sec < 10 ? '0' : ''}${sec}`;
+}
+setInterval(updateDynamic, 6000);
+updateDynamic();
+
+// ========== Progress toast - ALL ENGLISH ==========
+let isRedirecting = false;
+
+function trackContactAndGoTG() {
+    if (isRedirecting) return;
+    isRedirecting = true;
+
+    if (typeof fbq === 'function') {
+        fbq('track', 'Contact');
+    }
+
+    const toast = document.createElement('div');
+    toast.className = 'redirect-toast';
+    toast.innerHTML = `
+        <div class="title-text">Building your exclusive call link...</div>
+        <div class="sub-text">Say hello first</div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="countdown-text" id="countdown-text">About 30 seconds remaining</div>
+    `;
+    document.body.appendChild(toast);
+
+    const bar = document.getElementById('progress-bar');
+    const countdownText = document.getElementById('countdown-text');
+    
+    let progress = 0;
+    const totalTime = 30;
+    const step = 100 / (totalTime * 10);
+
+    const interval = setInterval(() => {
+        progress += step;
+        if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+            setTimeout(() => {
+                toast.remove();
+                isRedirecting = false;
+            }, 400);
+        }
+        
+        bar.style.width = progress + '%';
+        
+        const remaining = Math.ceil((100 - progress) / (100 / totalTime));
+        countdownText.textContent = remaining > 0 
+            ? `About ${remaining} seconds remaining` 
+            : 'Almost ready...';
+    }, 100);
+}
+</script>
 </body>
 </html>

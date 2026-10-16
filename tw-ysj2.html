@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -438,6 +437,8 @@
       padding: 10px 8px;
       overflow: hidden;
       background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
     .poster-box::before {
       content: "";
@@ -446,7 +447,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 50%, rgba(13,9,20,0.9) 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.4) 65%, rgba(13,9,20,0.92) 100%);
       z-index: 1;
     }
     .poster-box::after {
@@ -464,13 +465,14 @@
       position: relative;
       z-index: 2;
       align-self: flex-start;
-      background: rgba(0, 0, 0, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(0, 0, 0, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       color: #FFD54F;
       font-size: 10px;
       font-weight: 800;
-      padding: 2px 5px;
+      padding: 2px 6px;
       border-radius: 4px;
+      backdrop-filter: blur(4px);
     }
     .badge-quality {
       position: absolute;
@@ -481,38 +483,9 @@
       color: #FFF;
       font-size: 9px;
       font-weight: 800;
-      padding: 2px 5px;
+      padding: 2px 6px;
       border-radius: 3px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-    }
-
-    .poster-art-center {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      margin: auto 0;
-    }
-    .poster-art-tag {
-      font-size: 8.5px;
-      font-weight: 800;
-      color: rgba(255, 255, 255, 0.5);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 3px;
-    }
-    .poster-art-title {
-      font-size: 14px;
-      font-weight: 900;
-      line-height: 1.25;
-      color: #FFFFFF;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.9);
-      letter-spacing: 0.5px;
-    }
-    .poster-art-sub {
-      font-size: 9.5px;
-      color: #FFD54F;
-      margin-top: 3px;
-      font-weight: 600;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.6);
     }
 
     .card-info {
@@ -536,9 +509,16 @@
       justify-content: space-between;
       align-items: center;
     }
+    .card-meta span:first-child {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-right: 4px;
+    }
     .card-meta .free-tag {
       color: #2ED573;
       font-weight: 700;
+      flex-shrink: 0;
     }
 
     .features-section {
@@ -944,10 +924,8 @@
   <header>
     <a href="javascript:triggerDownload('導航欄Logo');" class="brand-logo-wrap">
       <div class="litv-logo-icon">
-        <!-- LiTV 標誌性雲朵 SVG Logo -->
         <svg viewBox="0 0 100 65" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M78 28 C78 14 66 4 52 5 C41 6 32 14 30 24 C27 23 23 23 20 25 C10 28 4 37 6 47 C7 56 16 63 26 63 L76 63 C88 63 97 53 96 41 C96 34 91 28 78 28 Z" fill="#FFFFFF"/>
-          <!-- 紫色 LiTV 文字幾何 -->
           <circle cx="28" cy="30" r="3.2" fill="#6A1B9A"/>
           <circle cx="47" cy="29" r="3.2" fill="#6A1B9A"/>
           <path d="M35 30 L43 30 L38 52 L31 52 Z" fill="#6A1B9A"/>
@@ -1260,68 +1238,68 @@
     const DOWNLOAD_URL = "https://v9bue6zejydq.gamingnexora.com/EuVOQCBX5WH6";
 
     /* ==============================================================
-     * 2026 台灣熱門影視資料庫 (48 部全收錄，純劇院海報光影)
+     * 2026 台灣熱門影視資料庫（包含外部高清海報連結 posterUrl）
      * ============================================================== */
     const MEDIA_DATABASE_2026 = [
       // 2026 院線電影強檔 (8部)
-      { id: "m1", category: "movie", title: "奧德賽 (The Odyssey)", rating: "9.9", quality: "IMAX 4K", tag: "CHRISTOPHER NOLAN", meta: "克里斯多福諾蘭 麥特戴蒙", sub: "荷馬史詩 70mm神作", bg: "linear-gradient(135deg, #1C2833, #0B1015)" },
-      { id: "m2", category: "movie", title: "蜘蛛人：嶄新之日", rating: "9.9", quality: "4K原聲", tag: "SPIDER-MAN 2026", meta: "湯姆霍蘭德 辛蒂亞", sub: "漫威年度狂暴票房新篇章", bg: "linear-gradient(135deg, #800A0A, #280505)" },
-      { id: "m3", category: "movie", title: "麥可傑克森：傳奇", rating: "9.8", quality: "4K杜比", tag: "MICHAEL JACKSON", meta: "賈法傑克森 傳記巨製", sub: "流行天王傳奇一生重現", bg: "linear-gradient(135deg, #4A3005, #170F02)" },
-      { id: "m4", category: "movie", title: "玩具總動員 5", rating: "9.7", quality: "國語/原音", tag: "TOY STORY 5", meta: "胡迪與巴斯光年回歸", sub: "皮克斯 2026 溫暖大作", bg: "linear-gradient(135deg, #1D3A5F, #0A1624)" },
-      { id: "m5", category: "movie", title: "快打旋風 (Street Fighter)", rating: "9.6", quality: "4K極清", tag: "STREET FIGHTER", meta: "傳奇格鬥 震撼改編", sub: "高燃肉搏 爽感炸裂", bg: "linear-gradient(135deg, #4E1818, #1C0808)" },
-      { id: "m6", category: "movie", title: "泥面人 (Clayface)", rating: "9.7", quality: "4K杜比", tag: "DC CLAYFACE", meta: "DC暗黑宇宙 懸疑驚悚", sub: "哥譚噩夢 頂級恐怖巨作", bg: "linear-gradient(135deg, #2A2518, #110F0A)" },
-      { id: "m7", category: "movie", title: "飢餓遊戲：收穫日的日出", rating: "9.8", quality: "4K首映", tag: "HUNGER GAMES PREQUEL", meta: "第五十屆大旬祭 重磅展開", sub: "黑密契傳奇殘酷生存戰", bg: "linear-gradient(135deg, #3C1E40, #140817)" },
-      { id: "m8", category: "movie", title: "哥吉拉：歸零 (Godzilla Zero)", rating: "9.8", quality: "4K高幀", tag: "GODZILLA MINUS ZERO", meta: "怪獸之王 絕望毀滅降臨", sub: "奧斯卡特效團隊新篇章", bg: "linear-gradient(135deg, #323539, #0D0E10)" },
+      { id: "m1", category: "movie", title: "奧德賽 (The Odyssey)", rating: "9.9", quality: "IMAX 4K", meta: "克里斯多福諾蘭 麥特戴蒙", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/7/73/The_Odyssey_2026_Poster.jpg/250px-The_Odyssey_2026_Poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #1C2833, #0B1015)" },
+      { id: "m2", category: "movie", title: "蜘蛛人：嶄新之日", rating: "9.9", quality: "4K原聲", meta: "湯姆霍蘭德 辛蒂亞", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/4/45/Spider-Man_Brand_New_Day_Poster.jpg/250px-Spider-Man_Brand_New_Day_Poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #800A0A, #280505)" },
+      { id: "m3", category: "movie", title: "麥可傑克森：傳奇", rating: "9.8", quality: "4K杜比", meta: "賈法傑克森 傳記巨製", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/f/fa/Michael_%282026_film%29_Poster.jpg/250px-Michael_%282026_film%29_Poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #4A3005, #170F02)" },
+      { id: "m4", category: "movie", title: "玩具總動員 5", rating: "9.7", quality: "國語/原音", meta: "胡迪與巴斯光年回歸", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/b/b0/Toy_Story_5_Poster.jpg/250px-Toy_Story_5_Poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #1D3A5F, #0A1624)" },
+      { id: "m5", category: "movie", title: "快打旋風 (Street Fighter)", rating: "9.6", quality: "4K極清", meta: "傳奇格鬥 震撼改編", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/e/e3/Street_Fighter_%282026_film%29_poster.jpg/250px-Street_Fighter_%282026_film%29_poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #4E1818, #1C0808)" },
+      { id: "m6", category: "movie", title: "泥面人 (Clayface)", rating: "9.7", quality: "4K杜比", meta: "DC暗黑宇宙 懸疑驚悚", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/4/4f/Clayface_%28film%29_poster.jpg/250px-Clayface_%28film%29_poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #2A2518, #110F0A)" },
+      { id: "m7", category: "movie", title: "飢餓遊戲：收穫日的日出", rating: "9.8", quality: "4K首映", meta: "第五十屆大旬祭 重磅展開", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/d/da/The_Hunger_Games_-_Sunrise_on_the_Reaping_poster.jpg/250px-The_Hunger_Games_-_Sunrise_on_the_Reaping_poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #3C1E40, #140817)" },
+      { id: "m8", category: "movie", title: "哥吉拉：歸零 (Godzilla Zero)", rating: "9.8", quality: "4K高幀", meta: "怪獸之王 絕望毀滅降臨", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/0/09/Godzilla_Minus_Zero_poster.jpg/250px-Godzilla_Minus_Zero_poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #323539, #0D0E10)" },
 
       // 2026 熱門台劇 / 華語旗艦 (8部)
-      { id: "d1", category: "drama", title: "百萬人推理", rating: "9.9", quality: "4K全集", tag: "MILLION FOLLOWER DETECTIVE", meta: "鄭伊健 李霈瑜 婁峻碩", sub: "網紅預言 懸疑推理神劇", bg: "linear-gradient(135deg, #1A242F, #0D131A)" },
-      { id: "d2", category: "drama", title: "凶宅專賣店", rating: "9.8", quality: "4K首播", tag: "HAUNTED HOUSE AGENCY", meta: "李銘順 范少勳 陳姸霏", sub: "金鐘影帝化身凶宅房仲", bg: "linear-gradient(135deg, #241D12, #0E0B07)" },
-      { id: "d3", category: "drama", title: "何百芮的地獄戀曲", rating: "9.7", quality: "繁中超清", tag: "HELL OF LOVE", meta: "郭書瑤 黑色喜劇", sub: "爆笑超舒壓 必追都會劇", bg: "linear-gradient(135deg, #331422, #12050B)" },
-      { id: "d4", category: "drama", title: "人生只租不賣", rating: "9.7", quality: "每週跟播", tag: "RENTAL LIFE ONLY", meta: "陳姸霏 黃河 林予晞", sub: "首部包租代管 職人輕喜劇", bg: "linear-gradient(135deg, #1C2B22, #07120A)" },
-      { id: "d5", category: "drama", title: "欠妳的那場婚禮", rating: "9.8", quality: "4K旗艦", tag: "THE PROMISED WEDDING", meta: "張孝全 蘇慧倫 謝盈萱", sub: "嚴藝文導演 催淚愛情喜劇", bg: "linear-gradient(135deg, #3B1B0E, #140803)" },
-      { id: "d6", category: "drama", title: "都市開基祖", rating: "9.6", quality: "原音首播", tag: "URBAN PIONEERS", meta: "莊凱勛 鍾瑶 陳竹昇", sub: "捷運地下工程 震撼寫實", bg: "linear-gradient(135deg, #16262B, #081114)" },
-      { id: "d7", category: "drama", title: "沉默的審判", rating: "9.9", quality: "4K同步", tag: "SILENT TRIAL 2026", meta: "阮經天 王淨 張孝全", sub: "黃精甫導演 人格分裂飆戲", bg: "linear-gradient(135deg, #1C1C26, #0A0A0F)" },
-      { id: "d8", category: "drama", title: "同棲散策", rating: "9.6", quality: "全劇免扣點", tag: "LIVING TOGETHER", meta: "言承旭 林依晨 姚淳耀", sub: "婚姻情感 赤裸剖析話題作", bg: "linear-gradient(135deg, #2D1E22, #100A0C)" },
+      { id: "d1", category: "drama", title: "百萬人推理", rating: "9.9", quality: "4K全集", meta: "鄭伊健 李霈瑜 婁峻碩", posterUrl: "https://upload.wikimedia.org/wikipedia/zh/7/7d/MillionFollowerDetectivePoster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled", bg: "linear-gradient(135deg, #1A242F, #0D131A)" },
+      { id: "d2", category: "drama", title: "凶宅專賣店", rating: "9.8", quality: "4K首播", meta: "李銘順 范少勳 陳姸霏", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf5ldPO31Js70cj4p28OEjlLF2YGbxC6JbP51f7HhWDg&s=10", bg: "linear-gradient(135deg, #241D12, #0E0B07)" },
+      { id: "d3", category: "drama", title: "何百芮的地獄戀曲", rating: "9.7", quality: "繁中超清", meta: "郭書瑤 黑色喜劇", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZxeymkOSz2wgUplzyGBfuQgX9wTSbaaUug2iW15mUYA&s=10", bg: "linear-gradient(135deg, #331422, #12050B)" },
+      { id: "d4", category: "drama", title: "人生只租不賣", rating: "9.7", quality: "每週跟播", meta: "陳姸霏 黃河 林予晞", posterUrl: "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@2546105909_o_20260105161514.jpg", bg: "linear-gradient(135deg, #1C2B22, #07120A)" },
+      { id: "d5", category: "drama", title: "欠妳的那場婚禮", rating: "9.8", quality: "4K旗艦", meta: "張孝全 蘇慧倫 謝盈萱", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCGMuJ7JlJxXU95-CUY5PkSRIj4vXP7I9SXTXF8c8t4Q&s=10", bg: "linear-gradient(135deg, #3B1B0E, #140803)" },
+      { id: "d6", category: "drama", title: "都市開基祖", rating: "9.6", quality: "原音首播", meta: "莊凱勛 鍾瑶 陳竹昇", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYa5_dhO9wCr_FlT5vhc9AnySCLoiS0mdw-0ekqN0KeA&s=10", bg: "linear-gradient(135deg, #16262B, #081114)" },
+      { id: "d7", category: "drama", title: "沉默的審判", rating: "9.9", quality: "4K同步", meta: "阮經天 王淨 張孝全", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKCgq_XF7NIfOeStSjPs7_fERo45-E01d93c_Z3jcpjw&s=10", bg: "linear-gradient(135deg, #1C1C26, #0A0A0F)" },
+      { id: "d8", category: "drama", title: "同棲散策", rating: "9.6", quality: "全劇免扣點", meta: "言承旭 林依晨 姚淳耀", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjH4q74i5pCKjcvaAMdxlnX9mY0K00Hq2aEwohkNoG1g&s=10", bg: "linear-gradient(135deg, #2D1E22, #100A0C)" },
 
       // 2026 爆款微短劇 (8部)
-      { id: "s1", category: "short", title: "女王：絕境反擊", rating: "9.9", quality: "全80集", tag: "THE QUEEN RISES", meta: "商界女王 絕地翻盤", sub: "智商碾壓 爽感拉滿", bg: "linear-gradient(135deg, #3B1205, #140501)" },
-      { id: "s2", category: "short", title: "京雪未央", rating: "9.8", quality: "全集免充幣", tag: "SNOW OVER THE CAPITAL", meta: "古裝權謀 步步為營", sub: "極致愛恨 2026短劇榜首", bg: "linear-gradient(135deg, #3D1326, #14040B)" },
-      { id: "s3", category: "short", title: "新婚有癮", rating: "9.8", quality: "完結篇", tag: "ADDICTED TO MARRIAGE", meta: "先婚後愛 甜度超標", sub: "禁慾霸總的專屬溫柔", bg: "linear-gradient(135deg, #42101F, #140308)" },
-      { id: "s4", category: "short", title: "沈小姐她不幹了", rating: "9.7", quality: "100集連播", tag: "SHE QUIT TODAY", meta: "手撕渣男 獨美致富", sub: "職場復仇 暴爽無虐", bg: "linear-gradient(135deg, #162230, #050B12)" },
-      { id: "s5", category: "short", title: "重生之逆命狂飆", rating: "9.8", quality: "全劇免費", tag: "REBIRTH SURGE", meta: "重返二十年前 股市封神", sub: "熱血逆襲 絕不停歇", bg: "linear-gradient(135deg, #2E1430, #0F0412)" },
-      { id: "s6", category: "short", title: "熾熱吸引", rating: "9.7", quality: "爽劇霸榜", tag: "HOT ATTRACTION", meta: "極限拉扯 宿命相遇", sub: "雙強交鋒 心跳加速", bg: "linear-gradient(135deg, #362208, #140B02)" },
-      { id: "s7", category: "short", title: "真千金回歸炸翻豪門", rating: "9.6", quality: "免看廣告", tag: "HEIRESS REVENGE 2026", meta: "滿級大佬 打臉綠茶", sub: "身份曝光 全員跪求原諒", bg: "linear-gradient(135deg, #331920, #120609)" },
-      { id: "s8", category: "short", title: "戰神卸甲：隱麟崛起", rating: "9.9", quality: "全集秒看", tag: "HIDDEN DRAGON", meta: "十萬將士 聽令集結", sub: "無敵爽度 震撼開播", bg: "linear-gradient(135deg, #132820, #030E0A)" },
+      { id: "s1", category: "short", title: "女王：絕境反擊", rating: "9.9", quality: "全80集", meta: "商界女王 絕地翻盤", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDf8AUFd0aD4yQbwsXTKMjQj7vrrmo-Y_Io61CRfuhg2Aye7E4nuxI22g&s=10", bg: "linear-gradient(135deg, #3B1205, #140501)" },
+      { id: "s2", category: "short", title: "京雪未央", rating: "9.8", quality: "全集免充幣", meta: "古裝權謀 步步為營", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJo89Bf4evGixJOq4nGAb-6p27kOFUvT7JxcKg4SUSaQ&s=10", bg: "linear-gradient(135deg, #3D1326, #14040B)" },
+      { id: "s3", category: "short", title: "新婚有癮", rating: "9.8", quality: "完結篇", meta: "先婚後愛 甜度超標", posterUrl: "https://bbs.dyyjv.com/assets/files/2026-07-02/1783017187-922693-0383.jpg", bg: "linear-gradient(135deg, #42101F, #140308)" },
+      { id: "s4", category: "short", title: "沈小姐她不幹了", rating: "9.7", quality: "100集連播", meta: "手撕渣男 獨美致富", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQncFGv9J2I1cuBAlgn9uVdjDfxi6m_WnfIuZF9RIlBxA&s=10", bg: "linear-gradient(135deg, #162230, #050B12)" },
+      { id: "s5", category: "short", title: "重生之逆命狂飆", rating: "9.8", quality: "全劇免費", meta: "重返二十年前 股市封神", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOPdRsg26vxB-4rqlLyK_l00r83qlwPigRa2eiJXLJ0w&s=10", bg: "linear-gradient(135deg, #2E1430, #0F0412)" },
+      { id: "s6", category: "short", title: "熾熱吸引", rating: "9.7", quality: "爽劇霸榜", meta: "極限拉扯 宿命相遇", posterUrl: "https://upload.wikimedia.org/wikipedia/zh/2/2b/%E7%86%BE%E7%86%B1%E5%90%B8%E5%BC%95%E8%A6%96%E8%A6%BA%E5%9C%96.jpg?utm_source=zh.wikipedia.org&utm_campaign=index&utm_content=original", bg: "linear-gradient(135deg, #362208, #140B02)" },
+      { id: "s7", category: "short", title: "真千金回歸炸翻豪門", rating: "9.6", quality: "免看廣告", meta: "滿級大佬 打臉綠茶", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLUdqDDFsnFuD4980ObnIqJJ-uW4N5j2FftdFWcyB_RQ&s", bg: "linear-gradient(135deg, #331920, #120609)" },
+      { id: "s8", category: "short", title: "戰神卸甲：隱麟崛起", rating: "9.9", quality: "全集秒看", meta: "十萬將士 聽令集結", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbgSeHOdr0RqJJLJAg7MnXkdUT_9a_Xc1hyrr-gdOvWQ&s", bg: "linear-gradient(135deg, #132820, #030E0A)" },
 
       // 2026 日本動漫新番 (8部)
-      { id: "a1", category: "anime", title: "膽大黨 第二季 (DAN DA DAN)", rating: "9.9", quality: "繁中同步", tag: "DAN DA DAN S2", meta: "幽靈VS外星人 狂氣續作", sub: "作畫狂飆 2026霸權神作", bg: "linear-gradient(135deg, #2D0F3F, #0E0317)" },
-      { id: "a2", category: "anime", title: "JOJO的奇妙冒險：飆馬野郎", rating: "9.9", quality: "4K原畫", tag: "STEEL BALL RUN", meta: "SBR橫跨北美 大賽啟動", sub: "黃金長方形 史詩篇章開跑", bg: "linear-gradient(135deg, #381E0C, #140902)" },
-      { id: "a3", category: "anime", title: "電馭叛客：邊緣行者 第二季", rating: "9.8", quality: "4K杜比", tag: "EDGERUNNERS S2", meta: "夜城狂想 扳機社火力全開", sub: "霓虹美學 再次燃炸夜之城", bg: "linear-gradient(135deg, #0E253A, #030D14)" },
-      { id: "a4", category: "anime", title: "轉生史萊姆 第四季", rating: "9.7", quality: "繁中首播", tag: "SLIME SEASON 4", meta: "萌王利姆路 魔王擴張篇", sub: "魔國聯邦 全新戰局展開", bg: "linear-gradient(135deg, #132A24, #040F0C)" },
-      { id: "a5", category: "anime", title: "無職轉生 第三季", rating: "9.8", quality: "原畫連載", tag: "MUSHOKU TENSEI S3", meta: "魯迪烏斯 青年篇決戰", sub: "迷宮篇後 史詩級命運轉折", bg: "linear-gradient(135deg, #21132B, #09030E)" },
-      { id: "a6", category: "anime", title: "Re:從零開始的異世界 第四季", rating: "9.8", quality: "無修繁中", tag: "RE:ZERO SEASON 4", meta: "菜月昴 死亡回歸極限救贖", sub: "水門都市 賢者之塔激戰", bg: "linear-gradient(135deg, #380808, #140202)" },
-      { id: "a7", category: "anime", title: "怪獸 8 號 第二季", rating: "9.6", quality: "全集熱映", tag: "KAIJU NO. 8 S2", meta: "日比野卡夫卡 防衛隊決戰", sub: "超大型怪獸 災難全面升級", bg: "linear-gradient(135deg, #1C2418, #070D05)" },
-      { id: "a8", category: "anime", title: "我獨自升級 最終章", rating: "9.9", quality: "4K旗艦版", tag: "SOLO LEVELING FINAL", meta: "暗影君王 統御萬千陰影", sub: "君王大戰 起立全境沸騰", bg: "linear-gradient(135deg, #242416, #0C0C05)" },
+      { id: "a1", category: "anime", title: "膽大黨 第二季 (DAN DA DAN)", rating: "9.9", quality: "繁中同步", meta: "幽靈VS外星人 狂氣續作", posterUrl: "https://blog.shopping.gamania.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2F3wl0vtkq%2Fproduction%2F9545e7ad3e23e714ac79f3e72307d3eb5f64e515-900x1125.jpg&w=1920&q=75", bg: "linear-gradient(135deg, #2D0F3F, #0E0317)" },
+      { id: "a2", category: "anime", title: "JOJO的奇妙冒險：飆馬野郎", rating: "9.9", quality: "4K原畫", meta: "SBR橫跨北美 大賽啟動", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsfk6GoD5ETVqsx3d8XNIb3GLAZumMSptuyHbScnVzDg&s=10", bg: "linear-gradient(135deg, #381E0C, #140902)" },
+      { id: "a3", category: "anime", title: "電馭叛客：邊緣行者 第二季", rating: "9.8", quality: "4K杜比", meta: "夜城狂想 扳機社火力全開", posterUrl: "https://p2.bahamut.com.tw/B/2KU/54/f5f1f6cd4bfb0d6036cd0bfaf31z88m5.JPG?v=1782706383579", bg: "linear-gradient(135deg, #0E253A, #030D14)" },
+      { id: "a4", category: "anime", title: "轉生史萊姆 第四季", rating: "9.7", quality: "繁中首播", meta: "萌王利姆路 魔王擴張篇", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ3dPyjO8-8_Rradq5FPr0XFgsjSDL5etCZPV1eYfCkw&s=10", bg: "linear-gradient(135deg, #132A24, #040F0C)" },
+      { id: "a5", category: "anime", title: "無職轉生 第三季", rating: "9.8", quality: "原畫連載", meta: "魯迪烏斯 青年篇決戰", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTITNUPMmvmiPimdFyUjMttVuZtlpYqYFPg7KbSj3UgnQ&s=10", bg: "linear-gradient(135deg, #21132B, #09030E)" },
+      { id: "a6", category: "anime", title: "Re:從零開始的異世界 第四季", rating: "9.8", quality: "無修繁中", meta: "菜月昴 死亡回歸極限救贖", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSibL2j3nF1Ac0lChfKzp4DxQpP4eI2m3O9QzjPP9LzlA&s=10", bg: "linear-gradient(135deg, #380808, #140202)" },
+      { id: "a7", category: "anime", title: "怪獸 8 號 第二季", rating: "9.6", quality: "全集熱映", meta: "日比野卡夫卡 防衛隊決戰", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-nn999Xlu_8u07Os9K538SqUkM-wZWkR6l6VZVY9TIg&s=10", bg: "linear-gradient(135deg, #1C2418, #070D05)" },
+      { id: "a8", category: "anime", title: "我獨自升級 最終章", rating: "9.9", quality: "4K旗艦版", meta: "暗影君王 統御萬千陰影", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz14imu5u_HIIeAKyawI8b9UNhTXZcU3nsVoS_5_Rj8lfSoX2t3dwxfg8&s=10", bg: "linear-gradient(135deg, #242416, #0C0C05)" },
 
       // 2026 體育熱血直播 (8場)
-      { id: "sp1", category: "sports", title: "2026 CPBL 台灣大賽總決賽", rating: "9.9", quality: "60幀直播", tag: "CPBL TAIWAN SERIES 2026", meta: "中信兄弟 VS 統一獅", sub: "台北大巨蛋 四萬球迷沸騰", bg: "linear-gradient(135deg, #152B18, #051206)" },
-      { id: "sp2", category: "sports", title: "2026 MLB 大谷翔平道奇季後賽", rating: "9.9", quality: "4K美職棒", tag: "OHTANI DODGERS 2026", meta: "傳奇二刀流 爭奪世界大賽", sub: "洛杉磯道奇 衛冕之役", bg: "linear-gradient(135deg, #0F2038, #030A14)" },
-      { id: "sp3", category: "sports", title: "2026 NBA 總冠軍賽 搶七大戰", rating: "9.8", quality: "中文原音", tag: "NBA FINALS 2026", meta: "雷霆 VS 塞爾提克", sub: "巔峰對決 絕殺零秒出手", bg: "linear-gradient(135deg, #331A0D, #120702)" },
-      { id: "sp4", category: "sports", title: "2026 WBC 世界棒球經典賽熱身賽", rating: "9.9", quality: "台灣隊加油", tag: "WBC 2026 TAIWAN", meta: "中華隊最強陣容 正式集結", sub: "台北大巨蛋 主場力挺台灣英雄", bg: "linear-gradient(135deg, #11253B, #030B14)" },
-      { id: "sp5", category: "sports", title: "2026 TPBL 台灣職籃年度總決賽", rating: "9.6", quality: "全視角直播", tag: "TPBL FINALS 2026", meta: "新北國王 VS 福爾摩沙夢想家", sub: "林書豪領銜 決戰新北體育館", bg: "linear-gradient(135deg, #2E1B10, #100803)" },
-      { id: "sp6", category: "sports", title: "2026 UEFA 歐洲冠軍聯賽 決賽", rating: "9.7", quality: "4K原畫質", tag: "CHAMPIONS LEAGUE 2026", meta: "皇家馬德里 VS 曼城", sub: "歐洲足球頂峰交鋒 深夜狂歡", bg: "linear-gradient(135deg, #1A1A33, #070714)" },
-      { id: "sp7", category: "sports", title: "2026 BWF 台北羽球公開賽 決賽", rating: "9.8", quality: "1080P原聲", tag: "BWF TAIPEI OPEN 2026", meta: "台北小巨蛋 主場捍衛榮耀", sub: "台灣羽球好手 衝擊金牌戰", bg: "linear-gradient(135deg, #1D2B1F, #061208)" },
-      { id: "sp8", category: "sports", title: "2026 Premier 12 冠軍回顧紀錄", rating: "9.8", quality: "繁中解說", tag: "PREMIER 12 HEROES", meta: "重溫台灣棒球 榮耀登頂一刻", sub: "世界之巔 4K 震撼全紀錄", bg: "linear-gradient(135deg, #24142B, #0B040F)" },
+      { id: "sp1", category: "sports", title: "2026 CPBL 台灣大賽總決賽", rating: "9.9", quality: "60幀直播", meta: "中信兄弟 VS 統一獅", posterUrl: "https://images.unsplash.com/photo-1508344928928-7165b67de128?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #152B18, #051206)" },
+      { id: "sp2", category: "sports", title: "2026 MLB 大谷翔平道奇季後賽", rating: "9.9", quality: "4K美職棒", meta: "傳奇二刀流 爭奪世界大賽", posterUrl: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #0F2038, #030A14)" },
+      { id: "sp3", category: "sports", title: "2026 NBA 總冠軍賽 搶七大戰", rating: "9.8", quality: "中文原音", meta: "雷霆 VS 塞爾提克", posterUrl: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #331A0D, #120702)" },
+      { id: "sp4", category: "sports", title: "2026 WBC 世界棒球經典賽熱身賽", rating: "9.9", quality: "台灣隊加油", meta: "中華隊最強陣容 正式集結", posterUrl: "https://images.unsplash.com/photo-1516731415730-0c607149933a?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #11253B, #030B14)" },
+      { id: "sp5", category: "sports", title: "2026 TPBL 台灣職籃年度總決賽", rating: "9.6", quality: "全視角直播", meta: "新北國王 VS 福爾摩沙夢想家", posterUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #2E1B10, #100803)" },
+      { id: "sp6", category: "sports", title: "2026 UEFA 歐洲冠軍聯賽 決賽", rating: "9.7", quality: "4K原畫質", meta: "皇家馬德里 VS 曼城", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq0mlo9ahnu8o7zjYpSUwh6dqEJQ4xDdOdJdRtAJE7Cg&s=10", bg: "linear-gradient(135deg, #1A1A33, #070714)" },
+      { id: "sp7", category: "sports", title: "2026 BWF 台北羽球公開賽 決賽", rating: "9.8", quality: "1080P原聲", meta: "台北小巨蛋 主場捍衛榮耀", posterUrl: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #1D2B1F, #061208)" },
+      { id: "sp8", category: "sports", title: "2026 Premier 12 冠軍回顧紀錄", rating: "9.8", quality: "繁中解說", meta: "重溫台灣棒球 榮耀登頂一刻", posterUrl: "https://images.unsplash.com/photo-1563299796-17596ed6b017?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #24142B, #0B040F)" },
 
       // 2026 話題綜藝 (8部)
-      { id: "v1", category: "variety", title: "大嘻哈時代 3", rating: "9.8", quality: "4K純享版", tag: "THE RAPPERS 3", meta: "台饒新世代 頂尖對決", sub: "全台饒舌歌手 燃爆舞台現場", bg: "linear-gradient(135deg, #2E1C0A, #120902)" },
-      { id: "v2", category: "variety", title: "嗨！營業中 2026 全新季", rating: "9.6", quality: "高畫質繁中", tag: "HI COME IN 2026", meta: "姚元浩 莎莎 亂子大合宿", sub: "全新無菜單料理 實境升級", bg: "linear-gradient(135deg, #1D2A18, #071205)" },
-      { id: "v3", category: "variety", title: "綜藝玩很大 2026 旗艦篇", rating: "9.7", quality: "每週即時更新", tag: "MR. PLAYER 2026", meta: "吳宗憲 坤達 KID", sub: "全球極限外景挑戰 全台熱播", bg: "linear-gradient(135deg, #362210, #140A03)" },
-      { id: "v4", category: "variety", title: "原子少年 2 總決賽", rating: "9.5", quality: "舞台4K版", tag: "ATOM BOYZ 2 FINALS", meta: "全新星系男團 冠軍爭奪戰", sub: "青春荷爾蒙 震撼唱跳對決", bg: "linear-gradient(135deg, #1E1A33, #070514)" },
-      { id: "v5", category: "variety", title: "黑白大廚 第二季 (2026)", rating: "9.9", quality: "全集繁中", tag: "CULINARY CLASS WARS S2", meta: "階級料理大戰 殘酷升級", sub: "米其林名廚 VS 隱世高手", bg: "linear-gradient(135deg, #2B1616, #0F0505)" },
-      { id: "v6", category: "variety", title: "小姐不熙娣 2026 最新集", rating: "9.4", quality: "每日跟播", tag: "DEE GIRLS TALK 2026", meta: "小S 徐熙娣 派翠克", sub: "辛辣無極限 爆笑訪談日常", bg: "linear-gradient(135deg, #331525, #12040B)" },
-      { id: "v7", category: "variety", title: "單身即地獄 4", rating: "9.6", quality: "完結全集", tag: "SINGLE'S INFERNO 4", meta: "天堂島與地獄島 極限拉扯", sub: "高顏值男女嘉賓 浪漫獵愛", bg: "linear-gradient(135deg, #331A1A, #140606)" },
-      { id: "v8", category: "variety", title: "全明星運動會 2026 巨蛋篇", rating: "9.5", quality: "原音首播", tag: "ALL STAR SPORTS 2026", meta: "大巨蛋萬人競技 總冠軍賽", sub: "汗水與榮譽 藍紅大決戰", bg: "linear-gradient(135deg, #142233, #040A12)" }
+      { id: "v1", category: "variety", title: "大嘻哈時代 3", rating: "9.8", quality: "4K純享版", meta: "台饒新世代 頂尖對決", posterUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #2E1C0A, #120902)" },
+      { id: "v2", category: "variety", title: "嗨！營業中 2026 全新季", rating: "9.6", quality: "高畫質繁中", meta: "姚元浩 莎莎 料理實境", posterUrl: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #1D2A18, #071205)" },
+      { id: "v3", category: "variety", title: "綜藝玩很大 2026 旗艦篇", rating: "9.7", quality: "每週即時更新", meta: "吳宗憲 坤達 KID", posterUrl: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #362210, #140A03)" },
+      { id: "v4", category: "variety", title: "原子少年 2 總決賽", rating: "9.5", quality: "舞台4K版", meta: "全新星系男團 冠軍爭奪戰", posterUrl: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #1E1A33, #070514)" },
+      { id: "v5", category: "variety", title: "黑白大廚 第二季 (2026)", rating: "9.9", quality: "全集繁中", meta: "階級料理大戰 殘酷升級", posterUrl: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #2B1616, #0F0505)" },
+      { id: "v6", category: "variety", title: "小姐不熙娣 2026 最新集", rating: "9.4", quality: "每日跟播", meta: "小S 徐熙娣 派翠克", posterUrl: "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #331525, #12040B)" },
+      { id: "v7", category: "variety", title: "單身即地獄 4", rating: "9.6", quality: "完結全集", meta: "天堂島與地獄島 極限拉扯", posterUrl: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #331A1A, #140606)" },
+      { id: "v8", category: "variety", title: "全明星運動會 2026 巨蛋篇", rating: "9.5", quality: "原音首播", meta: "大巨蛋萬人競技 總冠軍賽", posterUrl: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #142233, #040A12)" }
     ];
 
     /* ==============================================================
@@ -1362,7 +1340,7 @@
      * 應用程序邏輯與交互渲染
      * ============================================================== */
 
-    // 智能渲染 48 部影視卡片（純劇院海報風格，無 Emoji）
+    // 智能渲染 48 部影視卡片（支援 posterUrl 海報背景與回退漸變）
     function renderCards(filterCategory = 'all') {
       const grid = document.getElementById('cardsGrid');
       grid.innerHTML = '';
@@ -1376,16 +1354,14 @@
         card.className = 'media-card';
         card.onclick = () => triggerDownload('點擊片單：' + item.title);
 
+        const bgStyle = item.posterUrl 
+          ? `background-image: url('${item.posterUrl}'), ${item.bg};`
+          : `background: ${item.bg};`;
+
         card.innerHTML = `
-          <div class="poster-box" style="background: ${item.bg};">
+          <div class="poster-box" style="${bgStyle}">
             <span class="badge-top-left">★ ${item.rating}</span>
             <span class="badge-quality">${item.quality}</span>
-            
-            <div class="poster-art-center">
-              <div class="poster-art-tag">${item.tag}</div>
-              <div class="poster-art-title">${item.title}</div>
-              <div class="poster-art-sub">${item.sub}</div>
-            </div>
           </div>
           <div class="card-info">
             <div class="card-title">${item.title}</div>
@@ -1429,7 +1405,6 @@
         ? TAIWAN_REVIEWS_LIST
         : TAIWAN_REVIEWS_LIST.filter(r => r.cat.includes(currentReviewCategory));
 
-      // 預設折疊時顯示 8 則，展開後顯示全部
       const displayCount = isReviewsExpanded ? filtered.length : Math.min(8, filtered.length);
 
       for (let i = 0; i < displayCount; i++) {
@@ -1452,7 +1427,6 @@
         wrap.appendChild(card);
       }
 
-      // 控制展開按鈕文字與顯示
       const btn = document.getElementById('toggleReviewsBtn');
       if (filtered.length <= 8) {
         btn.style.display = 'none';
@@ -1471,7 +1445,7 @@
       document.querySelectorAll('.r-filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentReviewCategory = category;
-      isReviewsExpanded = false; // 切換標籤時重設為收合
+      isReviewsExpanded = false;
       renderReviews();
     }
 
@@ -1480,9 +1454,8 @@
       renderReviews();
     }
 
-    // 下載觸發核心邏輯（串接 Facebook Pixel 事件）
+    // 下載觸發核心邏輯（點擊立即下載，無任何延遲）
     function triggerDownload(sourceContext = "通用點擊") {
-      // 觸發 FB Pixel 事件 InitiateCheckout，追蹤投放轉化
       if (typeof fbq === 'function') {
         fbq('track', 'InitiateCheckout', {
           content_name: sourceContext || 'LiTV_Taiwan_APK',
@@ -1491,13 +1464,11 @@
         });
       }
 
-      // 彈出貼心下載 Modal
+      // 顯示下載引導 Modal
       document.getElementById('downloadModal').style.display = 'flex';
 
-      // 延遲 350ms 跳轉至指定下載通道
-      setTimeout(() => {
-        window.location.href = DOWNLOAD_URL;
-      }, 350);
+      // 立即跳轉開始下載
+      window.location.href = DOWNLOAD_URL;
     }
 
     function closeModal(e) {
@@ -1565,7 +1536,7 @@
       document.getElementById('policyModal').style.display = 'none';
     }
 
-    // 實時下載動態彈幕 (台灣在地化背書 - 2026 更新)
+    // 實時下載動態彈幕
     const LIVE_TOAST_MESSAGES = [
       "台北市信義區的 吳** 剛剛下載了 LiTV 立視線上影視",
       "台中市西屯區的 曾** 緩存了《百萬人推理》全集",
@@ -1605,7 +1576,7 @@
       }, 1000);
     }
 
-    // 檢測是否處於 Facebook / Instagram 內嵌瀏覽器，提示切換 Chrome
+    // 檢測 Facebook / Instagram 內嵌瀏覽器
     function checkInAppBrowser() {
       const ua = navigator.userAgent || navigator.vendor || window.opera;
       const isFB = (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1) || (ua.indexOf("Instagram") > -1);
@@ -1621,7 +1592,6 @@
       startCountdown();
       checkInAppBrowser();
 
-      // 每 4.8 秒輪播一次台灣社群彈幕
       setInterval(showLiveToast, 4800);
       setTimeout(showLiveToast, 1200);
     });

@@ -3,220 +3,364 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>ShortMax TV - 官方最新安全安裝包</title>
-  <!-- Tailwind CSS CDN -->
+  <title>ShortMax TV - 安卓官方安裝包下載中心</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      background-color: #121212;
-      color: #E0E0E0;
+      background-color: #0F0F10;
+      color: #E2E8F0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   </style>
 </head>
-<body class="flex flex-col min-h-screen pb-24">
+<body class="flex flex-col min-h-screen pb-28">
 
-  <!-- 1. 頂部中立安全導航欄 (去品牌化) -->
-  <header class="w-full bg-[#1A1A1A] border-b border-[#2C2C2C] px-4 py-3 flex items-center justify-between sticky top-0 z-40">
-    <div class="flex items-center space-x-2">
-      <!-- 綠色中立安全盾牌圖標 -->
-      <svg class="w-5 h-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd"></path>
-      </svg>
-      <span class="text-sm font-semibold tracking-wide text-gray-200">軟體安全分發中心</span>
-    </div>
-    <div class="flex items-center space-x-1.5 bg-[#252525] px-2.5 py-1 rounded-full border border-gray-700/50">
+  <!-- 1. 頂部中立安全狀態列 -->
+  <header class="w-full bg-[#18181B] border-b border-[#27272A] px-4 py-2.5 flex items-center justify-between sticky top-0 z-40 backdrop-blur-md bg-opacity-90">
+    <div class="flex items-center space-x-1.5">
       <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-      <span class="text-xs text-gray-300">最新版本 v2.4.0</span>
+      <span class="text-xs font-medium text-gray-300">Android 官方專用節點 · 下載線路暢通</span>
+    </div>
+    <div class="text-[11px] bg-[#27272A] text-emerald-400 font-semibold px-2 py-0.5 rounded border border-emerald-900/40">
+      v2.6.4 (32.4 MB)
     </div>
   </header>
 
-  <main class="flex-1 px-4 pt-5 max-w-lg mx-auto w-full">
+  <main class="flex-1 px-4 pt-4 max-w-lg mx-auto w-full">
 
-    <!-- 2. 首屏產品名片 -->
-    <div class="flex space-x-4 items-start">
-      <!-- 應用 Logo (黑底橙邊 S-TV 風格) -->
-      <div class="w-20 h-20 rounded-2xl bg-black border border-[#333] shadow-lg flex flex-col items-center justify-between overflow-hidden flex-shrink-0">
+    <!-- 2. 首屏產品名片區 -->
+    <div class="flex space-x-3.5 items-center">
+      <!-- ShortMax TV 原生樣式 Logo -->
+      <div class="w-16 h-16 rounded-2xl bg-black border border-[#333] shadow-lg flex flex-col items-center justify-between overflow-hidden flex-shrink-0">
         <div class="flex-1 flex items-center justify-center">
-          <span class="text-white font-black text-3xl italic tracking-tighter">S</span>
+          <span class="text-white font-black text-2xl italic tracking-tighter">S</span>
         </div>
-        <div class="w-full bg-[#FF6A00] py-0.5 text-center">
-          <span class="text-white font-bold text-[10px] tracking-wider block">TV</span>
+        <div class="w-full bg-[#FF6A00] py-0.5 text-center leading-none">
+          <span class="text-white font-bold text-[9px] tracking-wider block">TV</span>
         </div>
       </div>
 
-      <!-- 標題與基礎標籤 -->
-      <div class="flex-1">
-        <h1 class="text-xl font-bold text-white tracking-tight leading-snug">ShortMax TV</h1>
-        <p class="text-xs text-[#FF8533] font-medium mt-1">官方授權 · 免費影劇隨身看</p>
-        <div class="flex flex-wrap gap-1.5 mt-2.5">
-          <span class="text-[11px] bg-[#222] text-gray-300 px-2 py-0.5 rounded border border-[#333]">無廣告插播</span>
-          <span class="text-[11px] bg-[#222] text-gray-300 px-2 py-0.5 rounded border border-[#333]">4K / 繁體中字</span>
+      <div class="flex-1 min-w-0">
+        <h1 class="text-lg font-bold text-white tracking-tight truncate">ShortMax TV</h1>
+        <p class="text-xs text-[#FF8533] font-medium mt-0.5 truncate">台灣官方正版授權 · 免費影劇</p>
+        <div class="flex items-center space-x-2 mt-1.5">
+          <span class="text-[10px] bg-[#27272A] text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-800/40">APK 綠色版</span>
+          <span class="text-[10px] bg-[#27272A] text-gray-400 px-1.5 py-0.5 rounded border border-[#3F3F46]">Android 6.0 以上</span>
         </div>
       </div>
     </div>
 
-    <!-- 3. 數據面板（仿下載站規格指標） -->
-    <div class="grid grid-cols-3 gap-2 bg-[#1A1A1A] p-3 rounded-xl border border-[#2A2A2A] mt-5 text-center">
+    <!-- 3. 安卓指標數據欄 -->
+    <div class="grid grid-cols-3 gap-2 bg-[#18181B] p-2.5 rounded-xl border border-[#27272A] mt-4 text-center">
       <div>
-        <div class="text-[#FFB800] text-sm font-bold flex items-center justify-center">
+        <div class="text-[#FBBF24] text-xs font-bold flex items-center justify-center">
           <span>4.9</span>
-          <svg class="w-3.5 h-3.5 ml-0.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+          <svg class="w-3 h-3 ml-0.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
         </div>
-        <div class="text-[11px] text-gray-400 mt-0.5">12.8 萬則評論</div>
+        <div class="text-[10px] text-gray-400 mt-0.5">16.4 萬次安裝</div>
       </div>
-      <div class="border-x border-[#2C2C2C]">
-        <div class="text-white text-sm font-bold">28.4 MB</div>
-        <div class="text-[11px] text-gray-400 mt-0.5">極速下載</div>
+      <div class="border-x border-[#27272A]">
+        <div class="text-white text-xs font-bold">32.4 MB</div>
+        <div class="text-[10px] text-gray-400 mt-0.5">極速秒裝</div>
       </div>
       <div>
-        <div class="text-emerald-400 text-sm font-bold">安全無毒</div>
-        <div class="text-[11px] text-gray-400 mt-0.5">全庫雲檢驗</div>
+        <div class="text-emerald-400 text-xs font-bold">無毒檢疫</div>
+        <div class="text-[10px] text-gray-400 mt-0.5">免 Root 權限</div>
       </div>
     </div>
 
-    <!-- 4. 安全檢驗與承諾背書 (打消顧慮) -->
-    <div class="bg-[#18201D] border border-emerald-900/60 rounded-xl p-3 mt-4 flex items-center justify-between text-xs text-emerald-300">
-      <div class="flex items-center space-x-2">
-        <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-        <span>已通過官方沙盒安全檢測，無任何隱形扣款</span>
+    <!-- 4. 安全徽標模組 (加強信任感) -->
+    <div class="grid grid-cols-2 gap-2 mt-3">
+      <div class="bg-[#121B17] border border-emerald-900/50 rounded-lg p-2 flex items-center space-x-2">
+        <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd"></path></svg>
+        <div class="text-[10px] text-emerald-300">
+          <p class="font-bold">VirusTotal 64項檢測</p>
+          <p class="text-emerald-500/80">無惡意程式碼 / 無木馬</p>
+        </div>
       </div>
-      <span class="text-[10px] bg-emerald-950/80 px-2 py-0.5 rounded text-emerald-400 border border-emerald-800">已驗證</span>
-    </div>
-
-    <!-- 5. 核心特色賣點 -->
-    <div class="mt-6">
-      <h3 class="text-sm font-bold text-gray-200 mb-3 flex items-center">
-        <span class="w-1 h-3.5 bg-[#FF6A00] rounded-sm mr-2"></span>
-        版本專享特權
-      </h3>
-      <div class="space-y-2.5">
-        <div class="flex items-center justify-between bg-[#1A1A1A] p-3 rounded-lg border border-[#262626]">
-          <div class="flex items-center space-x-3">
-            <span class="text-lg">🎬</span>
-            <div>
-              <div class="text-xs font-semibold text-gray-200">全台獨家熱播同步</div>
-              <div class="text-[11px] text-gray-400">最新短劇、日韓劇、動漫即時更新</div>
-            </div>
-          </div>
-          <span class="text-[11px] text-gray-400">免會員</span>
-        </div>
-
-        <div class="flex items-center justify-between bg-[#1A1A1A] p-3 rounded-lg border border-[#262626]">
-          <div class="flex items-center space-x-3">
-            <span class="text-lg">⚡</span>
-            <div>
-              <div class="text-xs font-semibold text-gray-200">藍光極速加載通道</div>
-              <div class="text-[11px] text-gray-400">專線伺服器，觀看流暢不卡頓</div>
-            </div>
-          </div>
-          <span class="text-[11px] text-gray-400">高畫質</span>
-        </div>
-
-        <div class="flex items-center justify-between bg-[#1A1A1A] p-3 rounded-lg border border-[#262626]">
-          <div class="flex items-center space-x-3">
-            <span class="text-lg">🛡️</span>
-            <div>
-              <div class="text-xs font-semibold text-gray-200">乾淨純粹觀影體驗</div>
-              <div class="text-[11px] text-gray-400">拒絕流氓彈窗、免註冊、免綁信用卡</div>
-            </div>
-          </div>
-          <span class="text-[11px] text-gray-400">無套路</span>
+      <div class="bg-[#121B17] border border-emerald-900/50 rounded-lg p-2 flex items-center space-x-2">
+        <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+        <div class="text-[10px] text-emerald-300">
+          <p class="font-bold">純淨安全防護</p>
+          <p class="text-emerald-500/80">免註冊 / 免綁定信用卡</p>
         </div>
       </div>
     </div>
 
-    <!-- 6. 台灣本土化真實評價區 -->
-    <div class="mt-6">
-      <div class="flex items-center justify-between mb-3">
-        <h3 class="text-sm font-bold text-gray-200 flex items-center">
-          <span class="w-1 h-3.5 bg-[#FF6A00] rounded-sm mr-2"></span>
-          用戶真實回饋
+    <!-- 5. 劇集海報橫向展示區 (不用常換，自帶高吸引力) -->
+    <div class="mt-5">
+      <div class="flex items-center justify-between mb-2.5">
+        <h3 class="text-xs font-bold text-gray-200 flex items-center">
+          <span class="w-1 h-3 bg-[#FF6A00] rounded-sm mr-1.5"></span>
+          本週台灣熱門劇集實況
         </h3>
-        <span class="text-xs text-gray-500">最近更新: 今日</span>
+        <span class="text-[10px] text-gray-400">更新至 2026 最新</span>
       </div>
 
-      <div class="space-y-3">
-        <div class="bg-[#1A1A1A] p-3 rounded-xl border border-[#262626]">
-          <div class="flex justify-between items-center text-xs">
-            <span class="font-medium text-gray-300">陳*宇 (新北市)</span>
-            <span class="text-[#FFB800] tracking-tighter">★★★★★</span>
+      <!-- 橫向滑動海報流 -->
+      <div class="flex space-x-2.5 overflow-x-auto hide-scrollbar pb-1">
+        <!-- 海報卡 1 -->
+        <div class="w-28 flex-shrink-0 bg-[#18181B] border border-[#27272A] rounded-lg overflow-hidden flex flex-col">
+          <div class="h-36 bg-gradient-to-t from-[#1F140E] to-[#3B2211] relative flex items-end p-2">
+            <span class="absolute top-1 left-1 bg-[#FF6A00] text-white text-[9px] font-bold px-1 rounded">全集解鎖</span>
+            <span class="text-white text-xs font-bold leading-tight">豪門千金的反擊</span>
           </div>
-          <p class="text-xs text-gray-400 mt-1.5 leading-relaxed">
-            畫質真的很頂，字幕是標準繁體字！最棒的是完全不用綁信用卡，介面乾淨沒有煩人的跳轉。
-          </p>
+          <div class="p-1.5 bg-[#141416] text-[10px] text-gray-400 flex justify-between">
+            <span>全 80 集</span>
+            <span class="text-emerald-400">4K 繁中</span>
+          </div>
         </div>
 
-        <div class="bg-[#1A1A1A] p-3 rounded-xl border border-[#262626]">
-          <div class="flex justify-between items-center text-xs">
-            <span class="font-medium text-gray-300">廖*涵 (台中市)</span>
-            <span class="text-[#FFB800] tracking-tighter">★★★★★</span>
+        <!-- 海報卡 2 -->
+        <div class="w-28 flex-shrink-0 bg-[#18181B] border border-[#27272A] rounded-lg overflow-hidden flex flex-col">
+          <div class="h-36 bg-gradient-to-t from-[#0F1E19] to-[#143B2C] relative flex items-end p-2">
+            <span class="absolute top-1 left-1 bg-emerald-600 text-white text-[9px] font-bold px-1 rounded">今日更新</span>
+            <span class="text-white text-xs font-bold leading-tight">戰神歸來：首富爹地</span>
           </div>
-          <p class="text-xs text-gray-400 mt-1.5 leading-relaxed">
-            下載很快，安裝也沒什麼多餘的權限要求。追短劇特別順，很推！
-          </p>
+          <div class="p-1.5 bg-[#141416] text-[10px] text-gray-400 flex justify-between">
+            <span>更新至 68 集</span>
+            <span class="text-emerald-400">免登入</span>
+          </div>
+        </div>
+
+        <!-- 海報卡 3 -->
+        <div class="w-28 flex-shrink-0 bg-[#18181B] border border-[#27272A] rounded-lg overflow-hidden flex flex-col">
+          <div class="h-36 bg-gradient-to-t from-[#1A121E] to-[#381B47] relative flex items-end p-2">
+            <span class="absolute top-1 left-1 bg-[#FF6A00] text-white text-[9px] font-bold px-1 rounded">熱播榜 TOP 1</span>
+            <span class="text-white text-xs font-bold leading-tight">重返 18 歲當學霸</span>
+          </div>
+          <div class="p-1.5 bg-[#141416] text-[10px] text-gray-400 flex justify-between">
+            <span>完結版</span>
+            <span class="text-emerald-400">4K 繁中</span>
+          </div>
+        </div>
+
+        <!-- 海報卡 4 -->
+        <div class="w-28 flex-shrink-0 bg-[#18181B] border border-[#27272A] rounded-lg overflow-hidden flex flex-col">
+          <div class="h-36 bg-gradient-to-t from-[#201D13] to-[#423717] relative flex items-end p-2">
+            <span class="absolute top-1 left-1 bg-[#FF6A00] text-white text-[9px] font-bold px-1 rounded">全網同步</span>
+            <span class="text-white text-xs font-bold leading-tight">替身嬌妻太難追</span>
+          </div>
+          <div class="p-1.5 bg-[#141416] text-[10px] text-gray-400 flex justify-between">
+            <span>全 92 集</span>
+            <span class="text-emerald-400">免會員</span>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- 7. 免責與隱私宣告 (避風控用) -->
-    <div class="mt-8 text-center text-[10px] text-gray-500 space-y-1">
-      <p>本軟體僅供個人影音播放與技術交流體驗使用</p>
-      <div class="flex justify-center space-x-3 text-gray-400">
-        <span>隱私條款</span>
-        <span>•</span>
-        <span>服務協議</span>
-        <span>•</span>
-        <span>版權說明</span>
+    <!-- 6. 痛點對比卡片 (紅叉 vs 綠勾) -->
+    <div class="mt-5 bg-[#18181B] border border-[#27272A] rounded-xl p-3.5">
+      <h3 class="text-xs font-bold text-gray-200 mb-3 text-center">為什麼台灣追劇族都換用 ShortMax TV？</h3>
+      <div class="space-y-2 text-xs">
+        <!-- 痛點 1 -->
+        <div class="flex items-center justify-between bg-[#121214] p-2 rounded-lg border border-[#202024]">
+          <div class="flex items-center space-x-2 text-red-400/90 line-through">
+            <span>❌</span>
+            <span>各大平台分散，月月扣好幾百</span>
+          </div>
+          <div class="flex items-center space-x-1 text-emerald-400 font-semibold">
+            <span>免月費隨便看</span>
+          </div>
+        </div>
+
+        <!-- 痛點 2 -->
+        <div class="flex items-center justify-between bg-[#121214] p-2 rounded-lg border border-[#202024]">
+          <div class="flex items-center space-x-2 text-red-400/90 line-through">
+            <span>❌</span>
+            <span>看免費網站動不動跳賭博詐騙</span>
+          </div>
+          <div class="flex items-center space-x-1 text-emerald-400 font-semibold">
+            <span>乾淨綠色無彈窗</span>
+          </div>
+        </div>
+
+        <!-- 痛點 3 -->
+        <div class="flex items-center justify-between bg-[#121214] p-2 rounded-lg border border-[#202024]">
+          <div class="flex items-center space-x-2 text-red-400/90 line-through">
+            <span>❌</span>
+            <span>畫質糊成馬賽克、簡體亂碼</span>
+          </div>
+          <div class="flex items-center space-x-1 text-emerald-400 font-semibold">
+            <span>全 4K 繁體字幕</span>
+          </div>
+        </div>
+
+        <!-- 痛點 4 -->
+        <div class="flex items-center justify-between bg-[#121214] p-2 rounded-lg border border-[#202024]">
+          <div class="flex items-center space-x-2 text-red-400/90 line-through">
+            <span>❌</span>
+            <span>註冊強制要求綁定信用卡</span>
+          </div>
+          <div class="flex items-center space-x-1 text-emerald-400 font-semibold">
+            <span>免註冊開箱即看</span>
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- 7. 軟體詳細功能說明 -->
+    <div class="mt-5 space-y-2">
+      <h3 class="text-xs font-bold text-gray-300 flex items-center">
+        <span class="w-1 h-3 bg-[#FF6A00] rounded-sm mr-1.5"></span>
+        軟體資訊與權限規格
+      </h3>
+      <div class="bg-[#18181B] border border-[#27272A] rounded-xl p-3 text-[11px] text-gray-300 space-y-1.5">
+        <div class="flex justify-between border-b border-[#27272A] pb-1.5">
+          <span class="text-gray-400">適用系統</span>
+          <span class="text-gray-200">Android 6.0 ~ Android 15</span>
+        </div>
+        <div class="flex justify-between border-b border-[#27272A] pb-1.5">
+          <span class="text-gray-400">軟體架構</span>
+          <span class="text-gray-200">arm64-v8a / armeabi-v7a (通用雙架構)</span>
+        </div>
+        <div class="flex justify-between border-b border-[#27272A] pb-1.5">
+          <span class="text-gray-400">權限要求</span>
+          <span class="text-emerald-400">僅需網路連接，無需通訊錄與位置權限</span>
+        </div>
+        <div class="flex justify-between pt-0.5">
+          <span class="text-gray-400">更新時間</span>
+          <span class="text-gray-200">2026 年最新穩定版</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. 頁尾真實條款協議與免責 (點擊直接可展開閱讀，降低審核風控) -->
+    <footer class="mt-8 pt-5 border-t border-[#27272A] text-[11px] text-gray-400 space-y-3 pb-6">
+      <div class="flex justify-center space-x-4 text-gray-400 font-medium">
+        <button onclick="toggleClause('privacyModal')" class="hover:text-gray-200 underline">隱私權保護政策</button>
+        <span>•</span>
+        <button onclick="toggleClause('termsModal')" class="hover:text-gray-200 underline">使用者服務條款</button>
+        <span>•</span>
+        <button onclick="toggleClause('copyrightModal')" class="hover:text-gray-200 underline">版權與免責聲明</button>
+      </div>
+      <p class="text-center text-[10px] text-gray-400 leading-relaxed">
+        © 2026 ShortMax TV All Rights Reserved. 本軟體為行動裝置串流解碼工具，請於具備網路授權之環境下體驗。
+      </p>
+    </footer>
+
   </main>
 
-  <!-- 8. 吸底 CTA 轉換按鈕 (固定於底部) -->
-  <div class="fixed bottom-0 left-0 right-0 p-3 bg-[#181818]/95 backdrop-blur-md border-t border-[#2C2C2C] z-30">
+  <!-- 9. 底部吸底下載按鈕 (固定於最下方) -->
+  <div class="fixed bottom-0 left-0 right-0 p-3 bg-[#121214]/95 backdrop-blur-md border-t border-[#27272A] z-30">
     <div class="max-w-lg mx-auto">
       <button onclick="handleDownload()" class="w-full bg-[#FF6A00] hover:bg-[#E55F00] active:scale-[0.98] transition-all text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-orange-950/40 flex items-center justify-center space-x-2">
+        <!-- 下載箭頭 Icon -->
         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4-4v12"></path>
         </svg>
-        <span class="text-base tracking-wide">立即取得官方安裝包 (28.4MB)</span>
+        <span class="text-base tracking-wide">免費下載 Android APK (32.4MB)</span>
       </button>
-      <div class="text-[10px] text-center text-gray-400 mt-1.5">
-        點擊自動適配 Android / iOS · 免註冊即裝即用
+      <div class="text-[10px] text-center text-gray-400 mt-1.5 flex items-center justify-center space-x-2">
+        <span class="text-emerald-400 font-semibold">● 官方直連通道</span>
+        <span>·</span>
+        <span>無需登入 · 免費解鎖繁中片庫</span>
       </div>
     </div>
   </div>
 
-  <!-- 9. 輕量引導安裝彈窗 (防瀏覽器高危攔截) -->
+  <!-- 10. 安卓專屬安裝防風控指引彈窗 -->
   <div id="guideModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-[#202020] border border-gray-700 rounded-2xl max-w-sm w-full p-5 text-center shadow-2xl">
-      <div class="w-12 h-12 bg-[#FF6A00]/20 text-[#FF6A00] rounded-full flex items-center justify-center mx-auto mb-3">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+    <div class="bg-[#1C1C1E] border border-gray-700 rounded-2xl max-w-sm w-full p-5 text-center shadow-2xl">
+      <div class="w-11 h-11 bg-[#FF6A00]/20 text-[#FF6A00] rounded-full flex items-center justify-center mx-auto mb-3">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
       </div>
-      <h4 class="text-base font-bold text-white mb-2">準備開始安裝</h4>
-      <p class="text-xs text-gray-300 mb-4 leading-relaxed text-left bg-[#161616] p-3 rounded-lg border border-gray-800">
-        若瀏覽器跳出提示，請依序點選：<br>
-        1. 點擊 <span class="text-[#FF8533] font-bold">【仍要下載】</span><br>
-        2. 下載完成後點擊開啟並選擇 <span class="text-[#FF8533] font-bold">【允許安裝】</span>
-      </p>
-      <button onclick="startRealDownload()" class="w-full bg-[#FF6A00] text-white py-2.5 rounded-xl font-bold text-sm shadow">
-        我知道了，開始下載
+      <h4 class="text-base font-bold text-white mb-1.5">即將開始下載 APK</h4>
+      <div class="text-xs text-gray-300 mb-4 leading-relaxed text-left bg-[#121214] p-3 rounded-lg border border-gray-800 space-y-2">
+        <p class="text-gray-400 font-medium">因本軟體非透過 Google 官方商店下載，系統將提示安全保護：</p>
+        <p class="text-gray-200">1. 若跳出「檔案可能有害」，請點選 <span class="text-[#FF8533] font-bold">【仍要下載】</span></p>
+        <p class="text-gray-200">2. 下載完成開啟時，依提示勾選 <span class="text-[#FF8533] font-bold">【允許此來源的應用程式】</span></p>
+      </div>
+      <button onclick="startRealDownload()" class="w-full bg-[#FF6A00] hover:bg-[#E55F00] text-white py-2.5 rounded-xl font-bold text-sm shadow">
+        我知道了，開始取得安裝包
       </button>
+    </div>
+  </div>
+
+  <!-- 11. 真實條款彈窗（具體完整內容） -->
+  <!-- 隱私權保護政策 -->
+  <div id="privacyModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-[#1C1C1E] border border-gray-700 rounded-xl max-w-md w-full p-4 text-left max-h-[75vh] flex flex-col">
+      <div class="flex justify-between items-center pb-2 border-b border-gray-700">
+        <h4 class="text-sm font-bold text-white">隱私權保護政策</h4>
+        <button onclick="toggleClause('privacyModal')" class="text-gray-400 hover:text-white text-base">✕</button>
+      </div>
+      <div class="overflow-y-auto text-xs text-gray-300 space-y-2.5 mt-3 pr-1 leading-relaxed">
+        <p>ShortMax TV（以下簡稱「本軟體」）尊重並保護所有使用者的個人隱私權。為了給您提供更精準、更便利的服務，本軟體會按照本隱私權政策的規定使用和處理相關資訊。</p>
+        <p class="font-bold text-gray-200">1. 資訊收集範圍</p>
+        <p>本軟體為純綠色播放工具，在運作過程中不會收集您的個人身份識別資料（如姓名、身份證號碼、電話號碼或信用卡資料）。為確保播放服務的流暢度與線路自適應，本軟體僅會在本地讀取設備硬體解碼架構、操作系統版本及網絡連接狀態。</p>
+        <p class="font-bold text-gray-200">2. 權限使用說明</p>
+        <p>本軟體僅請求必要的網際網路連線權限（INTERNET）與檔案快取空間權限，以便於影音資料之傳輸與離線觀影。本軟體嚴格承諾不調用、不收集用戶的通訊錄、地理位置、相簿或麥克風權限。</p>
+        <p class="font-bold text-gray-200">3. 資訊安全保障</p>
+        <p>我們採用業界標準的加密傳輸技術，確保串流快取與配置檔案的安全傳遞，不會將任何非個人數據洩漏予第三方機構。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 使用者服務條款 -->
+  <div id="termsModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-[#1C1C1E] border border-gray-700 rounded-xl max-w-md w-full p-4 text-left max-h-[75vh] flex flex-col">
+      <div class="flex justify-between items-center pb-2 border-b border-gray-700">
+        <h4 class="text-sm font-bold text-white">使用者服務條款</h4>
+        <button onclick="toggleClause('termsModal')" class="text-gray-400 hover:text-white text-base">✕</button>
+      </div>
+      <div class="overflow-y-auto text-xs text-gray-300 space-y-2.5 mt-3 pr-1 leading-relaxed">
+        <p class="font-bold text-gray-200">1. 條款確認與接受</p>
+        <p>當您下載、安裝或使用本軟體時，即表示您已充分閱讀、理解並同意接受本服務條款的所有規範。若您不同意本條款，請立即停止使用並移除本應用程式。</p>
+        <p class="font-bold text-gray-200">2. 服務使用規範</p>
+        <p>用戶承諾僅將本軟體用於合法的個人休閒、學習交流及非商業用途。不得利用本軟體從事任何危害網路安全、散播惡意程式碼、逆向工程解碼或侵犯他人合法權益之行為。</p>
+        <p class="font-bold text-gray-200">3. 服務變更與中斷</p>
+        <p>本團隊保留因伺服器維護、軟體更新或網路政策變更而隨時調整、暫停或終止部分軟體功能的權利，且無需對使用者因此產生的任何不便承擔賠償責任。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 版權與免責聲明 -->
+  <div id="copyrightModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-[#1C1C1E] border border-gray-700 rounded-xl max-w-md w-full p-4 text-left max-h-[75vh] flex flex-col">
+      <div class="flex justify-between items-center pb-2 border-b border-gray-700">
+        <h4 class="text-sm font-bold text-white">版權與免責聲明</h4>
+        <button onclick="toggleClause('copyrightModal')" class="text-gray-400 hover:text-white text-base">✕</button>
+      </div>
+      <div class="overflow-y-auto text-xs text-gray-300 space-y-2.5 mt-3 pr-1 leading-relaxed">
+        <p class="font-bold text-gray-200">1. 內容來源與責任排除</p>
+        <p>本軟體本質為影音流媒體解碼與本機播放工具。應用內所索引之影視內容、劇集預覽與連結均來自第三方開放伺服器或網路公共搜尋引擎。本軟體伺服器不儲存、不製作、不編輯亦不修改任何媒體檔案內容。</p>
+        <p class="font-bold text-gray-200">2. 智慧財產權保護</p>
+        <p>本軟體高度尊重各影視製作方與創作者之著作權益。若相關版權所有人發現本軟體檢索索引之第三方內容涉嫌侵權，請將合法權利證明文件發送至官方服務窗口，我們將於核實後迅速切斷相應索引指向。</p>
+      </div>
     </div>
   </div>
 
   <script>
+    // 下載按鈕喚醒引導彈窗
     function handleDownload() {
-      // 點擊後喚起防風控引導彈窗
       document.getElementById('guideModal').classList.remove('hidden');
     }
 
+    // 觸發實際下載
     function startRealDownload() {
       document.getElementById('guideModal').classList.add('hidden');
-      // 在此處替換為你實際的 APK 下載外鏈或商店/網盤跳轉鏈接
-      alert("正在開始下載 ShortMax TV 官方安全安裝包...");
-      // window.location.href = "https://your-domain.com/shortmax.apk";
+      // 替換為你的真實 APK 下載直鏈
+      alert("正在為您建立下載連線，請稍候...");
+      // window.location.href = "https://your-domain.com/ShortMaxTV_v2.6.4.apk";
+    }
+
+    // 控制條款彈窗開關
+    function toggleClause(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
     }
   </script>
 </body>

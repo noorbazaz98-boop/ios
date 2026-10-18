@@ -57,10 +57,9 @@ button {
   box-shadow: 0 15px 35px rgba(244, 63, 94, 0.15), 0 5px 15px rgba(0,0,0,0.5);
   border: 1px solid rgba(244, 63, 94, 0.22);
   position: relative;
-  overflow: hidden;
 }
 
-/* 顶部语言开关 */
+/* 顶部状态与手动语言药丸 */
 .top-bar {
   display: flex;
   justify-content: space-between;
@@ -107,7 +106,7 @@ button {
   border-color: #f43f5e;
 }
 
-/* 实时成交与互动弹幕 (Live Notification Toast) */
+/* 实时弹幕 */
 .live-stream-toast {
   position: absolute;
   top: 40px;
@@ -170,35 +169,6 @@ button {
   line-height: 1.4;
 }
 
-/* 进度条 */
-.progress-box {
-  margin: 8px 0 12px;
-}
-
-.progress-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 4px;
-  color: #fda4af;
-  font-size: 11px;
-}
-
-.progress-bg {
-  width: 100%;
-  height: 6px;
-  border-radius: 4px;
-  overflow: hidden;
-  background: rgba(255,255,255,.1);
-}
-
-.progress-fill {
-  width: 12.5%;
-  height: 100%;
-  border-radius: 4px;
-  background: linear-gradient(90deg, #f43f5e, #fb7185);
-  transition: width .3s ease;
-}
-
 /* 照片展示区 */
 .hero-box {
   position: relative;
@@ -209,7 +179,6 @@ button {
   overflow: hidden;
   border: 1px solid rgba(244, 63, 94, 0.25);
   margin-bottom: 10px;
-  pointer-events: none;
 }
 
 .hero-img {
@@ -229,7 +198,6 @@ button {
   padding: 10px 12px;
   text-align: left;
   background: linear-gradient(to top, rgba(26,7,18,.98), rgba(26,7,18,.6), transparent);
-  pointer-events: auto;
 }
 
 .hero-name {
@@ -257,7 +225,7 @@ button {
   font-weight: 500;
 }
 
-/* 语音卡片 */
+/* 语音条微交互 */
 .voice-note-btn {
   display: inline-flex;
   align-items: center;
@@ -289,29 +257,18 @@ button {
 .voice-bar:nth-child(2) { height: 60%; animation-delay: .2s; }
 .voice-bar:nth-child(3) { height: 80%; animation-delay: .4s; }
 
-/* 单步问答 */
-.quiz-step {
-  display: none;
-  animation: fadeIn .3s ease;
+/* 选项选择列表 */
+.question-block {
   text-align: left;
-}
-
-.quiz-step.active {
-  display: block;
+  margin-bottom: 12px;
 }
 
 .question-title {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   color: #ffe4e6;
-  font-size: 14px;
+  font-size: 13.5px;
   line-height: 1.4;
   font-weight: 700;
-}
-
-.question-number {
-  margin-right: 4px;
-  color: #fb7185;
-  font-weight: 800;
 }
 
 .options-group {
@@ -322,176 +279,125 @@ button {
 
 .option-btn {
   width: 100%;
-  min-height: 42px;
-  padding: 9px 12px;
+  min-height: 40px;
+  padding: 8px 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
   border: 1px solid rgba(244,63,94,.22);
   border-radius: 12px;
   background: rgba(255,255,255,.05);
   color: #fff;
-  font-size: 12.5px;
-  line-height: 1.35;
+  font-size: 12px;
   font-weight: 500;
   text-align: left;
   cursor: pointer;
   transition: all .15s ease;
 }
 
-.option-btn:hover {
-  background: rgba(244,63,94,.15);
+.option-btn.selected {
+  background: linear-gradient(90deg, #c91d43, #f43f5e);
   border-color: #f43f5e;
-}
-
-.option-btn:active {
-  transform: scale(.985);
-}
-
-.option-check {
-  font-size: 13px;
-  font-weight: 800;
-  color: #fb7185;
-}
-
-/* 趣味过渡层 */
-.mid-analyzing {
-  display: none;
-  padding: 26px 8px;
-  text-align: center;
-}
-
-/* 结果页与毛玻璃效果 */
-.result-box {
-  display: none;
-  animation: fadeIn .4s ease;
-}
-
-.result-title {
-  margin-bottom: 5px;
-  font-size: 19px;
-  font-weight: 800;
-}
-
-.result-subtitle {
-  margin-bottom: 12px;
-  color: #fda4af;
-  font-size: 11.5px;
-  line-height: 1.45;
-}
-
-.matched-grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 7px;
-  margin-bottom: 12px;
-}
-
-.thumb-wrapper {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid rgba(244,63,94,.35);
-  cursor: pointer;
-}
-
-.matched-thumb {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  filter: blur(4px);
-  pointer-events: none;
-}
-
-.lock-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(18, 3, 12, 0.45);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #ffe4e6;
-  font-size: 10px;
-  font-weight: 700;
-}
-
-.match-score {
-  margin-bottom: 12px;
-  color: #fb7185;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.unlock-list {
-  margin-bottom: 13px;
-  padding: 10px 12px;
-  text-align: left;
-  border-radius: 12px;
-  background: rgba(244,63,94,.08);
-  border: 1px solid rgba(244,63,94,.2);
-}
-
-.unlock-item {
-  margin: 5px 0;
-  color: #ffe4e6;
-  font-size: 11.5px;
+  box-shadow: 0 3px 10px rgba(244,63,94,.25);
 }
 
 .btn-cta {
   width: 100%;
   padding: 14px;
+  margin-top: 10px;
   border: none;
   border-radius: 12px;
   background: linear-gradient(135deg,#e11d48,#f43f5e);
   color: #fff;
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 4px 20px rgba(225,29,72,.5);
   animation: pulse-shadow 2s infinite;
 }
 
-.spinner, .mini-spinner {
-  border-radius: 50%;
-  animation: spin .8s linear infinite;
-}
-
-.spinner {
-  width: 36px;
-  height: 36px;
-  margin: 0 auto 12px;
-  border: 3px solid rgba(244,63,94,.2);
-  border-top-color: #f43f5e;
-}
-
-.fake-modal-overlay {
+/* ==========================================================
+   15秒专属通道构建模态框
+========================================================== */
+.progress-modal {
   display: none;
-  position: absolute;
+  position: fixed;
   inset: 0;
-  z-index: 100;
+  background: rgba(14, 2, 9, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1000;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  background: rgba(18,3,12,.97);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  padding: 24px;
+  text-align: center;
 }
 
-.mini-spinner {
-  width: 30px;
-  height: 30px;
-  margin-bottom: 10px;
-  border: 3px solid rgba(244,63,94,.2);
-  border-top-color: #f43f5e;
+.modal-avatar-box {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 16px;
+}
+
+.modal-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid #f43f5e;
+  object-fit: cover;
+}
+
+.radar-sweep {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px dashed rgba(244,63,94,0.6);
+  animation: spin 3s linear infinite;
+}
+
+.modal-step-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 6px;
+  min-height: 22px;
+}
+
+.modal-step-sub {
+  font-size: 12px;
+  color: #fda4af;
+  margin-bottom: 20px;
+  min-height: 18px;
+}
+
+.channel-bar-wrap {
+  width: 100%;
+  max-width: 280px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 8px;
+  border: 1px solid rgba(244,63,94,0.3);
+}
+
+.channel-bar-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #e11d48, #fb7185);
+  border-radius: 6px;
+  transition: width 0.15s linear;
+}
+
+.channel-percent {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fb7185;
 }
 
 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.15); } }
 @keyframes pulse-shadow { 0%, 100% { box-shadow: 0 4px 18px rgba(225,29,72,.5); } 50% { box-shadow: 0 4px 28px rgba(244,63,94,.85); } }
 @keyframes wave { 0% { transform: scaleY(0.3); } 100% { transform: scaleY(1); } }
@@ -502,13 +408,13 @@ button {
 
 <div class="container">
 
-  <!-- 实时成交/互动弹幕通知 -->
+  <!-- 实时弹幕通知 -->
   <div id="live-stream-toast" class="live-stream-toast">
     <span class="toast-avatar">💬</span>
     <span id="toast-text">Rahul started chatting with Pooja · 12s ago</span>
   </div>
 
-  <!-- 顶部状态栏与手动切换 -->
+  <!-- 顶部状态栏 -->
   <div class="top-bar">
     <div class="online-users-count">
       <span class="live-dot"></span>
@@ -520,124 +426,94 @@ button {
     </div>
   </div>
 
-  <!-- 主交互区域 -->
-  <div id="quiz-page">
+  <!-- 顶部标题 -->
+  <div class="top-header">
+    <h1 class="main-title" id="t-main-title">
+      Find Someone <br><span>You'd Actually Want To Meet</span>
+    </h1>
+    <p class="main-subtitle" id="t-main-subtitle">
+      Quick vibe check to match you with someone nearby.
+    </p>
+  </div>
 
-    <div class="top-header">
-      <h1 class="main-title" id="t-main-title">
-        Find Someone <br><span>You'd Actually Want To Meet</span>
-      </h1>
-      <p class="main-subtitle" id="t-main-subtitle">
-        Quick vibe check: 8 questions to match you with someone nearby.
-      </p>
-    </div>
-
-    <!-- 动态 Profile 卡片 -->
-    <div class="hero-box">
-      <img id="hero-img" class="hero-img" src="" alt="Profile">
-      <div class="hero-info">
-        <div class="hero-name">
-          <span id="hero-name">Pooja, 22</span>
-          <span class="online-badge"></span>
-        </div>
-        <div id="hero-distance" class="hero-distance">0.8 km away · Active just now</div>
-        
-        <div class="voice-note-btn" onclick="playMockVoice()">
-          <span>🔊</span>
-          <span id="t-voice-btn">Pooja's voice note (0:05)</span>
-          <div class="voice-wave">
-            <div class="voice-bar"></div>
-            <div class="voice-bar"></div>
-            <div class="voice-bar"></div>
-          </div>
+  <!-- 主头像卡片 -->
+  <div class="hero-box">
+    <img id="hero-img" class="hero-img" src="" alt="Profile">
+    <div class="hero-info">
+      <div class="hero-name">
+        <span id="hero-name">Pooja, 22</span>
+        <span class="online-badge"></span>
+      </div>
+      <div id="hero-distance" class="hero-distance">0.8 km away · Active just now</div>
+      
+      <div class="voice-note-btn" onclick="playMockVoice()">
+        <span>🔊</span>
+        <span id="t-voice-btn">Pooja's voice note (0:05)</span>
+        <div class="voice-wave">
+          <div class="voice-bar"></div>
+          <div class="voice-bar"></div>
+          <div class="voice-bar"></div>
         </div>
       </div>
     </div>
-
-    <!-- 进度条 -->
-    <div class="progress-box">
-      <div class="progress-header">
-        <span id="t-prog-label">Match Compatibility</span>
-        <span id="progress-percent">12%</span>
-      </div>
-      <div class="progress-bg">
-        <div id="progress-fill" class="progress-fill"></div>
-      </div>
-    </div>
-
-    <!-- 问答容器 -->
-    <div id="step-container"></div>
-
-    <!-- 中途悬念过滤层 -->
-    <div id="mid-analyzing" class="mid-analyzing">
-      <div class="spinner"></div>
-      <div style="font-weight: 700; font-size: 14.5px;" id="t-analyzing-title">Narrowing down girls who match your vibe...</div>
-      <div style="color: #fda4af; font-size: 11.5px; margin-top: 4px;" id="t-analyzing-sub">Checking who is free for a chat right now</div>
-    </div>
-
   </div>
 
-  <!-- 最终提交加载等待 -->
-  <div id="loading-box" style="display:none; padding: 40px 0;">
-    <div class="spinner"></div>
-    <div class="loading-title" style="font-weight:700; font-size: 15.5px;" id="t-loading-title">Locking in your best matches...</div>
-    <div class="loading-text" style="margin-top:5px; color:#fda4af; font-size:11.5px;" id="t-loading-sub">3 profiles are waiting for your request</div>
+  <!-- 单页核心偏好问答选择 -->
+  <div class="question-block">
+    <div class="question-title" id="t-q1-title">1. What kind of chat are you looking for?</div>
+    <div class="options-group" id="q1-options"></div>
   </div>
 
-  <!-- 结果页展示 -->
-  <div id="result-box" class="result-box">
-    <div class="result-title" id="t-res-title">Your Matches Are Waiting 👀</div>
-    <div class="result-subtitle" id="t-res-sub">These girls answered similarly and are online right now.</div>
-
-    <div class="matched-grid" id="matched-grid"></div>
-
-    <div id="match-score" class="match-score">96% Compatibility Match</div>
-
-    <div class="unlock-list">
-      <div class="unlock-item" id="t-unlock-1">🎥 1-on-1 Private Video — Unlocked</div>
-      <div class="unlock-item" id="t-unlock-2">💬 Secret Chat Room — Open</div>
-      <div class="unlock-item" id="t-unlock-3">🔒 100% Anonymous & Private</div>
-    </div>
-
-    <button id="cta-btn" class="btn-cta" type="button" onclick="handleRedirect()">
-      <span id="t-cta-btn">💬 Enter Private Chat Room</span>
-    </button>
+  <div class="question-block">
+    <div class="question-title" id="t-q2-title">2. If she sends a private video, what should it be?</div>
+    <div class="options-group" id="q2-options"></div>
   </div>
 
-  <!-- 跳转伪弹窗 -->
-  <div id="fake-modal" class="fake-modal-overlay">
-    <div class="mini-spinner"></div>
-    <div style="font-size: 14.5px; font-weight: 700;" id="t-modal-title">Opening encrypted chat room...</div>
-    <div style="margin-top: 4px; color: #fda4af; font-size: 11.5px;" id="t-modal-sub">Connecting you two directly</div>
+  <!-- 核心 CTA: 点击即开始构建通道 -->
+  <button id="cta-btn" class="btn-cta" type="button" onclick="startChannelConnection()">
+    <span id="t-cta-btn">💬 Start Private Chat Now</span>
+  </button>
+
+</div>
+
+<!-- 15秒动态通道构建弹窗 -->
+<div id="channel-modal" class="progress-modal">
+  <div class="modal-avatar-box">
+    <div class="radar-sweep"></div>
+    <img id="modal-img" class="modal-avatar" src="" alt="Match">
+  </div>
+  
+  <div class="modal-step-title" id="modal-title">Building your dedicated private channel...</div>
+  <div class="modal-step-sub" id="modal-sub">Encrypting 1-on-1 direct session</div>
+
+  <div class="channel-bar-wrap">
+    <div id="channel-fill" class="channel-bar-fill"></div>
   </div>
 
+  <div class="channel-percent" id="channel-pct">0%</div>
 </div>
 
 <script>
 /* ==========================================================
-   语言字典（口语化、Hinglish与印地生活口语）
+   多语言字典（口语化、包含4阶段通道构建文案）
 ========================================================== */
 const i18n = {
   en: {
     onlineStats: "1,480 people online near you",
     mainTitle: "Find Someone <br><span>You'd Actually Want To Meet</span>",
-    mainSubtitle: "Quick vibe check: 8 questions to match you with someone nearby.",
+    mainSubtitle: "Quick vibe check to match you with someone nearby.",
     voiceBtn: "Listen to her voice note (0:05)",
-    progLabel: "Match Compatibility",
-    analyzingTitle: "Checking who is online near you...",
-    analyzingSub: "Filtering girls who like your vibe",
-    loadingTitle: "Locking in your best matches...",
-    loadingSub: "3 girls are ready to chat right now",
-    resTitle: "Your Matches Are Waiting 👀",
-    resSub: "These girls matched your answers and are waiting for your message.",
-    matchScore: "Your strongest match is {score}% compatible",
-    unlock1: "🎥 1-on-1 Private Video — Unlocked",
-    unlock2: "💬 Secret Chat Room — Open",
-    unlock3: "🔒 100% Anonymous & Private",
-    ctaBtn: "💬 Enter Private Chat Room",
-    modalTitle: "Opening encrypted chat room...",
-    modalSub: "Connecting you two directly",
-    clickToUnlock: "🔒 Tap to Unlock",
+    ctaBtn: "💬 Start Private Chat Now",
+    q1Title: "1. What kind of chat are you looking for?",
+    q1Options: ["Late night sweet conversations", "Flirty secret chat & fun", "Instant 1-on-1 video call", "Real-life meetup tonight"],
+    q2Title: "2. If she sends a private video, what should it be?",
+    q2Options: ["A sensual dance clip", "A spicy tease in her bedroom", "Whispering something naughty", "Unfiltered & real clips"],
+    channelSteps: [
+      { maxPct: 25, title: "Building your dedicated private channel...", sub: "Encrypting 1-on-1 direct session" },
+      { maxPct: 60, title: "Secure link established! Connecting...", sub: "Synchronizing device connection" },
+      { maxPct: 85, title: "Profile matched! Room verified...", sub: "She is waiting in the chat room" },
+      { maxPct: 100, title: "Starting private chat now...", sub: "Redirecting to your private room" }
+    ],
     liveActivities: [
       "{male} matched with {female} · chatting now",
       "{female} sent a private video clip",
@@ -645,62 +521,24 @@ const i18n = {
       "{female} is online and waiting for a chat"
     ],
     maleNames: ["Aman", "Rahul", "Vikram", "Rohan", "Arjun", "Karan", "Sameer", "Aditya"],
-    femaleNames: ["Pooja", "Priya", "Ananya", "Neha", "Simran", "Riya", "Kavya"],
-    questions: [
-      {
-        title: "Be real yaar — what makes you stop scrolling instantly?",
-        options: ["A pretty, innocent face", "Expressive, deep eyes", "A bold & attractive figure", "That irresistible desi vibe"]
-      },
-      {
-        title: "If she texts you first, what makes you reply immediately?",
-        options: ["A cute & flirty tease", "A bold “Are you free tonight?”", "She sends a private photo first", "A funny, effortless joke"]
-      },
-      {
-        title: "Late night vibes: what kind of chat keeps you up?",
-        options: ["Whispering secret desires", "Playful teasing & sharing snaps", "Sweet emotional bonding", "Late-night instant video calls"]
-      },
-      {
-        title: "She sends you a photo out of nowhere. Where do your eyes go first?",
-        options: ["Her smile and eyes", "What she is wearing (or not)", "Her curves and pose", "Wondering why she picked me"]
-      },
-      {
-        title: "If she unlocks a private video for you, what should it be?",
-        options: ["A sensual dance just for you", "A spicy tease in her bedroom", "Whispering something naughty", "Unfiltered & real clips"]
-      },
-      {
-        title: "How fast do you like taking things to private video?",
-        options: ["Tonight, if the vibe matches", "After a few playful texts", "Right after matching", "Let her decide the mood"]
-      },
-      {
-        title: "What is your biggest turn-on during a secret chat?",
-        options: ["When she is bold & confident", "When she teases and plays shy", "Quick replies with photos", "When she takes the lead"]
-      },
-      {
-        title: "She is active and waiting for your first move. What will you do?",
-        options: ["Send her a spicy DM", "Ask for a 1-on-1 video call", "Say hi and ask what she's wearing", "Straight up see where it goes"]
-      }
-    ]
+    femaleNames: ["Pooja", "Priya", "Ananya", "Neha", "Simran", "Riya", "Kavya"]
   },
   hi: {
     onlineStats: "आपके आस-पास 1,480 लोग ऑनलाइन हैं",
     mainTitle: "किसी ऐसे से मिलें <br><span>जिससे आप सच में बात करना चाहते हैं</span>",
     mainSubtitle: "8 छोटे सवालों के जवाब दें और अपने लिए सही लड़की से मैच पाएं।",
     voiceBtn: "उसका वॉइस नोट सुनें (0:05)",
-    progLabel: "मैच कम्पैटिबिलिटी",
-    analyzingTitle: "आपके लिए सही प्रोफाइल ढूंढी जा रही है...",
-    analyzingSub: "चेक कर रहे हैं कि कौन अभी फ्री है",
-    loadingTitle: "आपके बेहतरीन मैच लॉक किए जा रहे हैं...",
-    loadingSub: "3 लड़कियां अभी आपसे चैट करने को तैयार हैं",
-    resTitle: "आपके मैच तैयार हैं 👀",
-    resSub: "ये लड़कियां आपकी पसंद से मैच करती हैं और अभी ऑनलाइन हैं।",
-    matchScore: "आपका सबसे मजबूत मैच {score}% कम्पैटिबल है",
-    unlock1: "🎥 1-ऑन-1 प्राइवेट वीडियो — अनलॉक",
-    unlock2: "💬 सीक्रेट चैट रूम — शुरू",
-    unlock3: "🔒 100% प्राइवेट और सुरक्षित",
-    ctaBtn: "💬 अभी प्राइवेट चैट रूम में जाएं",
-    modalTitle: "प्राइवेट चैट रूम खुल रहा है...",
-    modalSub: "आप दोनों को सीधे कनेक्ट किया जा रहा है",
-    clickToUnlock: "🔒 अनलॉक करें",
+    ctaBtn: "💬 अभी प्राइवेट चैट शुरू करें",
+    q1Title: "1. आप किस तरह की बातचीत चाहते हैं?",
+    q1Options: ["देर रात तक मीठी बातें", "मजेदार और फ्लर्टी सीक्रेट चैट", "सीधी 1-ऑन-1 प्राइवेट वीडियो कॉल", "आज रात ही पर्सनल मुलाकात"],
+    q2Title: "2. अगर वो आपके लिए प्राइवेट वीडियो भेजे, तो वो कैसा हो?",
+    q2Options: ["सिर्फ आपके लिए खास डांस", "बेडरूम से थोड़ा नॉटी और बोल्ड क्लिप", "कानों में फुसफुसाती मीठी बातें", "बिल्कुल असली और अनफिल्टर्ड"],
+    channelSteps: [
+      { maxPct: 25, title: "आपका专属通道 (प्राइवेट चैनल) तैयार हो रहा है...", sub: "सुरक्षित 1-ऑन-1 कनेक्शन बनाया जा रहा है" },
+      { maxPct: 60, title: "कनेक्शन सफलतापूर्वक जुड़ गया है...", sub: "डिवाइस लिंक तैयार है" },
+      { maxPct: 85, title: "मैच पक्का हो गया! चैट रूम तैयार है...", sub: "वो अभी चैट रूम में इंतज़ार कर रही है" },
+      { maxPct: 100, title: "चैट शुरू हो रही है...", sub: "आपको सीधे उसके चैट रूम में ले जाया जा रहा है" }
+    ],
     liveActivities: [
       "{male} ने {female} से चैट शुरू की · अभी लाइव",
       "{female} ने एक प्राइवेट वीडियो क्लिप भेजा",
@@ -708,46 +546,12 @@ const i18n = {
       "{female} अभी ऑनलाइन है और बात करना चाहती है"
     ],
     maleNames: ["अमन", "राहुल", "विक्रम", "रोहन", "अर्जुन", "करण", "समीर", "आदित्य"],
-    femaleNames: ["पूजा", "प्रिया", "अनन्या", "नेहा", "सिमरन", "रिया", "काव्या"],
-    questions: [
-      {
-        title: "सच बताइए यार — आपको सबसे पहले क्या दीवाना बनाता है?",
-        options: ["मासूम और प्यारा चेहरा", "गहरी और नशीली आंखें", "शानदार और बोल्ड फिगर", "उसका बेबाक देसी अंदाज़"]
-      },
-      {
-        title: "अगर वो आपको पहले मैसेज करे, तो आप किसका तुरंत जवाब देंगे?",
-        options: ["थोड़ी फ्लर्टी और नॉटी बात", "सीधा “आज रात फ्री हो क्या?”", "उसने पहले ही प्राइवेट फोटो भेज दी", "मजाकिया और प्यारी बातचीत"]
-      },
-      {
-        title: "देर रात की बातचीत: आपको क्या सबसे ज्यादा पसंद है?",
-        options: ["मन की सीक्रेट बातें शेयर करना", "मस्ती भरी तस्वीरें और फ्लर्टिंग", "दिल से दिल की मीठी बातें", "देर रात डायरेक्ट वीडियो कॉल"]
-      },
-      {
-        title: "अगर वो अचानक अपनी फोटो भेजे, तो आपकी नज़र सबसे पहले कहाँ जाएगी?",
-        options: ["उसकी मुस्कान और चेहरे पर", "उसने क्या पहना है", "उसकी अदा और फिगर पर", "कि उसने सिर्फ मुझे ही क्यों भेजी"]
-      },
-      {
-        title: "अगर वो आपके लिए प्राइवेट वीडियो भेजे, तो वो कैसा होना चाहिए?",
-        options: ["सिर्फ आपके लिए खास डांस", "बेडरूम से थोड़ा नॉटी और बोल्ड क्लिप", "कानों में फुसफुसाती मीठी बातें", "बिल्कुल अनफिल्टर्ड और असली"]
-      },
-      {
-        title: "आप बात को प्राइवेट वीडियो कॉल तक कितनी जल्दी ले जाना चाहेंगे?",
-        options: ["आज रात ही, अगर मूड बन जाए", "2-3 मिनट हल्की चैट के बाद", "मैच होते ही तुरंत", "उसकी मर्जी पर छोड़ दूंगा"]
-      },
-      {
-        title: "सीक्रेट चैट में आपको सबसे ज्यादा क्या एक्साइट करता है?",
-        options: ["जब वो बिना झिझक खुलकर बात करे", "जब वो थोड़ा शर्माए और तड़पाए", "फटाफट फोटो भेजना", "जब वो खुद बातचीत शुरू करे"]
-      },
-      {
-        title: "वो अभी ऑनलाइन आपका इंतजार कर रही है। आप क्या करेंगे?",
-        options: ["उसे तुरंत बोल्ड मैसेज भेजूंगा", "डायरेक्ट 1-ऑन-1 वीडियो कॉल मांगूंगा", "पूछूंगा “क्या कर रही हो अभी?”", "सीधा बात शुरू करके आगे बढ़ूंगा"]
-      }
-    ]
+    femaleNames: ["पूजा", "प्रिया", "अनन्या", "नेहा", "सिमरन", "रिया", "काव्या"]
   }
 };
 
 /* ==========================================================
-   自适应浏览器语言检测（默认英语，命中印地语切印地语）
+   语言检测（默认英语，命中印地语切印地语）
 ========================================================== */
 function detectInitialLanguage() {
   const browserLangs = navigator.languages || [navigator.language || navigator.userLanguage || 'en'];
@@ -766,13 +570,8 @@ let currentLang = detectInitialLanguage();
 ========================================================== */
 const beauties = [
   { name: "Pooja, 22", distance: "0.8 km", time: "Online now", img: "https://cdn.acidcow.com/uploads/posts/2026-08/1786381696_13.jpg" },
-  { name: "Priya, 23", distance: "1.2 km", time: "Active 1m ago", img: "https://cdn.acidcow.com/uploads/posts/2026-08/1786381598_1.jpg" },
-  { name: "Ananya, 24", distance: "1.5 km", time: "Online now", img: "https://cdn.acidcow.com/uploads/posts/2026-08/1786381632_00.jpg" },
-  { name: "Neha, 21", distance: "2.0 km", time: "Active now", img: "https://cdn.acidcow.com/uploads/posts/2026-08/1786381678_14.jpg" }
+  { name: "Priya, 23", distance: "1.2 km", time: "Active 1m ago", img: "https://cdn.acidcow.com/uploads/posts/2026-08/1786381598_1.jpg" }
 ];
-
-let currentStep = 0;
-const userAnswers = {};
 
 function manualSetLanguage(lang) {
   currentLang = lang;
@@ -788,154 +587,85 @@ function updateUI() {
   document.getElementById('t-main-title').innerHTML = dict.mainTitle;
   document.getElementById('t-main-subtitle').textContent = dict.mainSubtitle;
   document.getElementById('t-voice-btn').textContent = dict.voiceBtn;
-  document.getElementById('t-prog-label').textContent = dict.progLabel;
-  document.getElementById('t-analyzing-title').textContent = dict.analyzingTitle;
-  document.getElementById('t-analyzing-sub').textContent = dict.analyzingSub;
-  document.getElementById('t-loading-title').textContent = dict.loadingTitle;
-  document.getElementById('t-loading-sub').textContent = dict.loadingSub;
-  document.getElementById('t-res-title').textContent = dict.resTitle;
-  document.getElementById('t-res-sub').textContent = dict.resSub;
-  document.getElementById('t-unlock-1').textContent = dict.unlock1;
-  document.getElementById('t-unlock-2').textContent = dict.unlock2;
-  document.getElementById('t-unlock-3').textContent = dict.unlock3;
   document.getElementById('t-cta-btn').textContent = dict.ctaBtn;
-  document.getElementById('t-modal-title').textContent = dict.modalTitle;
-  document.getElementById('t-modal-sub').textContent = dict.modalSub;
+  document.getElementById('t-q1-title').textContent = dict.q1Title;
+  document.getElementById('t-q2-title').textContent = dict.q2Title;
 
-  renderSteps();
+  renderOptions('q1-options', dict.q1Options);
+  renderOptions('q2-options', dict.q2Options);
 }
 
-function updateHero(index) {
-  const b = beauties[index % beauties.length];
-  const imgEl = document.getElementById('hero-img');
-  imgEl.style.opacity = '0';
-  setTimeout(() => {
-    imgEl.src = b.img;
-    imgEl.style.opacity = '1';
-    document.getElementById('hero-name').textContent = b.name;
-    document.getElementById('hero-distance').textContent = `${b.distance} · ${b.time}`;
-  }, 120);
-}
-
-/* ==========================================================
-   单步答题系统
-========================================================== */
-function renderSteps() {
-  const container = document.getElementById('step-container');
+function renderOptions(containerId, options) {
+  const container = document.getElementById(containerId);
   container.innerHTML = '';
-  const qList = i18n[currentLang].questions;
-
-  qList.forEach((q, idx) => {
-    const stepDiv = document.createElement('div');
-    stepDiv.className = `quiz-step ${idx === currentStep ? 'active' : ''}`;
-    stepDiv.id = `quiz-step-${idx}`;
-
-    const titleDiv = document.createElement('div');
-    titleDiv.className = 'question-title';
-    titleDiv.innerHTML = `<span class="question-number">${idx + 1}.</span> ${q.title}`;
-
-    const optsDiv = document.createElement('div');
-    optsDiv.className = 'options-group';
-
-    q.options.forEach((optText, optIdx) => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'option-btn';
-      btn.innerHTML = `<span>${optText}</span><span class="option-check">›</span>`;
-      btn.onclick = () => handleAnswer(idx, optIdx);
-      optsDiv.appendChild(btn);
-    });
-
-    stepDiv.appendChild(titleDiv);
-    stepDiv.appendChild(optsDiv);
-    container.appendChild(stepDiv);
+  options.forEach((optText, idx) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = `option-btn ${idx === 0 ? 'selected' : ''}`;
+    btn.innerHTML = `<span>${optText}</span><span style="color:#fb7185">✓</span>`;
+    btn.onclick = () => {
+      container.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    };
+    container.appendChild(btn);
   });
 }
 
-function handleAnswer(questionIdx, optionIdx) {
-  userAnswers[questionIdx] = optionIdx;
-
-  // 每答 2 题换一个女生，保持视觉新鲜感
-  if (questionIdx % 2 === 1) {
-    updateHero(Math.floor(questionIdx / 2) + 1);
-  }
-
-  // 答完第 4 题插入 1.2 秒的悬念计算过程
-  if (questionIdx === 3) {
-    document.getElementById(`quiz-step-${questionIdx}`).classList.remove('active');
-    const midBox = document.getElementById('mid-analyzing');
-    midBox.style.display = 'block';
-
-    setTimeout(() => {
-      midBox.style.display = 'none';
-      nextStep(questionIdx + 1);
-    }, 1200);
-    return;
-  }
-
-  if (questionIdx + 1 < i18n[currentLang].questions.length) {
-    nextStep(questionIdx + 1);
-  } else {
-    finishQuiz();
-  }
-}
-
-function nextStep(stepIndex) {
-  currentStep = stepIndex;
-  document.querySelectorAll('.quiz-step').forEach((el, idx) => {
-    el.classList.toggle('active', idx === currentStep);
-  });
-
-  const total = i18n[currentLang].questions.length;
-  const pct = Math.round(12 + ((currentStep) / total) * 88);
-  document.getElementById('progress-percent').textContent = `${pct}%`;
-  document.getElementById('progress-fill').style.width = `${pct}%`;
-}
-
-function finishQuiz() {
-  document.getElementById('progress-percent').textContent = '100%';
-  document.getElementById('progress-fill').style.width = '100%';
-  document.getElementById('quiz-page').style.display = 'none';
-  document.getElementById('loading-box').style.display = 'block';
-
-  setTimeout(() => {
-    document.getElementById('loading-box').style.display = 'none';
-    showResults();
-  }, 1500);
+function updateHero() {
+  const b = beauties[0];
+  document.getElementById('hero-img').src = b.img;
+  document.getElementById('modal-img').src = b.img;
+  document.getElementById('hero-name').textContent = b.name;
+  document.getElementById('hero-distance').textContent = `${b.distance} · ${b.time}`;
 }
 
 /* ==========================================================
-   结果展示与点击解锁
+   15秒专属通道构建读条逻辑 (重点)
 ========================================================== */
-function showResults() {
-  document.getElementById('result-box').style.display = 'block';
-  const grid = document.getElementById('matched-grid');
-  grid.innerHTML = '';
+function startChannelConnection() {
+  const modal = document.getElementById('channel-modal');
+  modal.style.display = 'flex';
 
-  const lockTxt = i18n[currentLang].clickToUnlock;
+  const fill = document.getElementById('channel-fill');
+  const pctText = document.getElementById('channel-pct');
+  const titleEl = document.getElementById('modal-title');
+  const subEl = document.getElementById('modal-sub');
 
-  beauties.slice(0, 3).forEach((b) => {
-    const wrap = document.createElement('div');
-    wrap.className = 'thumb-wrapper';
-    wrap.onclick = () => handleRedirect();
+  let currentPercent = 0;
+  const duration = 15000; // 15秒
+  const intervalTime = 100;
+  const step = 100 / (duration / intervalTime);
 
-    wrap.innerHTML = `
-      <img class="matched-thumb" src="${b.img}" alt="${b.name}">
-      <div class="lock-overlay">
-        <span>🔒</span>
-        <div>${lockTxt}</div>
-      </div>
-    `;
-    grid.appendChild(wrap);
-  });
+  const timer = setInterval(() => {
+    currentPercent += step;
+    if (currentPercent >= 100) {
+      currentPercent = 100;
+      clearInterval(timer);
 
-  const score = 95 + Math.floor(Math.random() * 4);
-  const scoreText = i18n[currentLang].matchScore.replace('{score}', score);
-  document.getElementById('match-score').textContent = scoreText;
+      // 读条完成后直接跳回指定目标原网页
+      setTimeout(() => {
+        window.location.href = "https://indeedma.shop/20s.html";
+      }, 500);
+    }
+
+    const roundedPct = Math.floor(currentPercent);
+    fill.style.width = `${roundedPct}%`;
+    pctText.textContent = `${roundedPct}%`;
+
+    // 动态切换文案：构建专属通道 -> 链接上了 -> 匹配了 -> 开始聊天
+    const steps = i18n[currentLang].channelSteps;
+    for (let s of steps) {
+      if (roundedPct <= s.maxPct) {
+        titleEl.textContent = s.title;
+        subEl.textContent = s.sub;
+        break;
+      }
+    }
+  }, intervalTime);
 }
 
 /* ==========================================================
-   实时成交弹幕生成器 (每 5-8 秒弹出一条真实互动)
+   实时弹幕轮播与微动效
 ========================================================== */
 function startLiveStream() {
   const toast = document.getElementById('live-stream-toast');
@@ -954,7 +684,7 @@ function startLiveStream() {
     toast.classList.add('show');
     setTimeout(() => {
       toast.classList.remove('show');
-    }, 3400);
+    }, 3200);
 
     const nextDelay = 4500 + Math.random() * 3500;
     setTimeout(triggerToast, nextDelay);
@@ -972,20 +702,8 @@ function playMockVoice() {
   }, 2500);
 }
 
-/* ==========================================================
-   最终跳转
-========================================================== */
-function handleRedirect() {
-  const modal = document.getElementById('fake-modal');
-  modal.style.display = 'flex';
-  setTimeout(() => {
-    window.location.href = "https://indeedma.shop/20s.html";
-  }, 1300);
-}
-
-// 页面加载启动
 document.addEventListener('DOMContentLoaded', () => {
-  updateHero(0);
+  updateHero();
   updateUI();
   startLiveStream();
 });

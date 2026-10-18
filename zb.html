@@ -1,1508 +1,810 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<link rel="preconnect" href="https://tts.wyincc.com">
-<script src="https://tts.wyincc.com/tts.js"></script>
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "xz1dj8exqj");
-</script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#12030c">
-<title>Private Match</title>
-
-<style>
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100%;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  background: radial-gradient(circle at top, #2d0b1e 0%, #12030c 100%);
-  color: #fff;
-  padding: 12px;
-}
-
-button {
-  font-family: inherit;
-}
-
-.container {
-  width: 100%;
-  max-width: 390px;
-  margin: 0 auto;
-  background: rgba(38, 16, 28, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 24px;
-  padding: 16px;
-  text-align: center;
-  box-shadow:
-    0 15px 35px rgba(244, 63, 94, 0.15),
-    0 5px 15px rgba(0,0,0,0.5);
-  border: 1px solid rgba(244, 63, 94, 0.2);
-  position: relative;
-  overflow: hidden;
-}
-
-/* =========================
-   顶部
-========================= */
-
-.top-header {
-  margin-bottom: 15px;
-}
-
-.main-title {
-  margin: 0;
-  font-size: 25px;
-  line-height: 1.15;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-}
-
-.main-title span {
-  color: #fb7185;
-}
-
-.main-subtitle {
-  margin: 8px 0 0;
-  color: #fbcdd4;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.unlock-notice {
-  margin-top: 12px;
-  padding: 11px 12px;
-  border-radius: 13px;
-  background: rgba(244, 63, 94, 0.08);
-  border: 1px solid rgba(244, 63, 94, 0.2);
-  color: #ffe4e6;
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-.unlock-notice strong {
-  color: #fb7185;
-}
-
-/* =========================
-   美女模块
-========================= */
-
-.profile-section,
-.second-profile {
-  margin-bottom: 17px;
-}
-
-.profile-heading {
-  margin-bottom: 4px;
-  color: #ffe4e6;
-  font-size: 14px;
-  font-weight: 700;
-  text-align: left;
-}
-
-.profile-subtitle {
-  margin-bottom: 9px;
-  color: #fda4af;
-  font-size: 11px;
-  line-height: 1.4;
-  text-align: left;
-}
-
-.hero-box {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  background: #1f0a15;
-  border-radius: 18px;
-  overflow: hidden;
-  border: 1px solid rgba(244, 63, 94, 0.25);
-  margin-bottom: 9px;
-}
-
-.hero-img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  transition: opacity .25s ease;
-}
-
-.hero-info {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 15px;
-  text-align: left;
-  background: linear-gradient(
-    to top,
-    rgba(26,7,18,.96),
-    rgba(26,7,18,.55),
-    transparent
-  );
-}
-
-.hero-name {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.online-badge {
-  width: 8px;
-  height: 8px;
-  display: inline-block;
-  background: #10b981;
-  border-radius: 50%;
-  box-shadow: 0 0 8px #10b981;
-}
-
-.hero-distance {
-  margin-top: 3px;
-  color: #fb7185;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-/* =========================
-   6头像
-========================= */
-
-.avatar-selector {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 6px;
-  padding: 8px;
-  border-radius: 14px;
-  background: rgba(26,7,18,.6);
-  border: 1px solid rgba(244,63,94,.15);
-}
-
-.thumb-item {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  display: block;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  opacity: .5;
-  cursor: pointer;
-  background: #1f0a15;
-  transition: all .2s ease;
-}
-
-.thumb-item.active {
-  opacity: 1;
-  border-color: #f43f5e;
-  transform: scale(1.08);
-  box-shadow: 0 0 12px rgba(244,63,94,.6);
-}
-
-/* =========================
-   进度条
-========================= */
-
-.progress-box {
-  margin: 5px 0 18px;
-}
-
-.progress-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5px;
-  color: #fda4af;
-  font-size: 12px;
-}
-
-.progress-bg {
-  width: 100%;
-  height: 8px;
-  border-radius: 4px;
-  overflow: hidden;
-  background: rgba(255,255,255,.1);
-}
-
-.progress-fill {
-  width: 15%;
-  height: 100%;
-  border-radius: 4px;
-  background: linear-gradient(90deg,#f43f5e,#fb7185);
-  transition: width .3s ease;
-}
-
-.status-tips {
-  min-height: 16px;
-  margin-top: 6px;
-  color: #f43f5e;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-/* =========================
-   问题
-========================= */
-
-.question-list {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  text-align: left;
-}
-
-.question-item {
-  width: 100%;
-}
-
-.question-title {
-  margin-bottom: 9px;
-  color: #ffe4e6;
-  font-size: 14px;
-  line-height: 1.45;
-  font-weight: 600;
-}
-
-.question-number {
-  margin-right: 4px;
-  color: #fb7185;
-  font-weight: 800;
-}
-
-.options-group {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.option-btn {
-  width: 100%;
-  min-height: 43px;
-  padding: 10px 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  border: 1px solid rgba(244,63,94,.2);
-  border-radius: 12px;
-  background: rgba(255,255,255,.055);
-  color: #fff;
-  font-size: 12.5px;
-  line-height: 1.35;
-  font-weight: 500;
-  text-align: left;
-  cursor: pointer;
-  transition: all .15s ease;
-}
-
-.option-btn:hover {
-  background: rgba(244,63,94,.1);
-}
-
-.option-btn:active {
-  transform: scale(.985);
-}
-
-.option-btn.selected {
-  background: linear-gradient(90deg,#c91d43,#f43f5e);
-  border-color: #f43f5e;
-  box-shadow: 0 3px 12px rgba(244,63,94,.25);
-}
-
-.option-check {
-  display: none;
-  flex-shrink: 0;
-  font-size: 14px;
-  font-weight: 800;
-}
-
-.option-btn.selected .option-check {
-  display: block;
-}
-
-/* =========================
-   中间分割
-========================= */
-
-.section-divider {
-  height: 1px;
-  margin: 21px 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(244,63,94,.35),
-    transparent
-  );
-}
-
-/* =========================
-   提交
-========================= */
-
-.submit-btn {
-  width: 100%;
-  margin-top: 21px;
-  padding: 15px;
-  border: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg,#e11d48,#f43f5e);
-  color: #fff;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 4px 20px rgba(225,29,72,.5);
-  transition: all .2s ease;
-}
-
-.submit-btn:disabled {
-  opacity: .4;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-.submit-btn:not(:disabled):active {
-  transform: scale(.98);
-}
-
-/* =========================
-   Loading
-========================= */
-
-.loading-box {
-  display: none;
-  padding: 45px 0;
-}
-
-.spinner,
-.mini-spinner {
-  border-radius: 50%;
-  animation: spin .8s linear infinite;
-}
-
-.spinner {
-  width: 44px;
-  height: 44px;
-  margin: 0 auto 16px;
-  border: 3px solid rgba(244,63,94,.2);
-  border-top-color: #f43f5e;
-}
-
-.loading-title {
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.loading-text {
-  margin-top: 6px;
-  color: #fda4af;
-  font-size: 12px;
-}
-
-/* =========================
-   结果
-========================= */
-
-.result-box {
-  display: none;
-  animation: fadeIn .4s ease;
-}
-
-.result-title {
-  margin-bottom: 7px;
-  font-size: 21px;
-  font-weight: 800;
-}
-
-.result-subtitle {
-  margin-bottom: 14px;
-  color: #fda4af;
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-.matched-grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 8px;
-  margin-bottom: 13px;
-}
-
-.matched-thumb {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  display: block;
-  object-fit: cover;
-  border-radius: 10px;
-  border: 1px solid rgba(244,63,94,.3);
-}
-
-.match-score {
-  margin-bottom: 14px;
-  color: #fb7185;
-  font-size: 13px;
-}
-
-.unlock-list {
-  margin-bottom: 14px;
-  padding: 12px;
-  text-align: left;
-  border-radius: 13px;
-  background: rgba(244,63,94,.07);
-  border: 1px solid rgba(244,63,94,.18);
-}
-
-.unlock-item {
-  margin: 7px 0;
-  color: #ffe4e6;
-  font-size: 12px;
-}
-
-.btn-cta {
-  width: 100%;
-  padding: 15px;
-  border: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg,#e11d48,#f43f5e);
-  color: #fff;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 4px 20px rgba(225,29,72,.5);
-}
-
-/* =========================
-   Modal
-========================= */
-
-.fake-modal-overlay {
-  display: none;
-  position: absolute;
-  inset: 0;
-  z-index: 100;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  background: rgba(18,3,12,.94);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  animation: fadeIn .3s ease;
-}
-
-.mini-spinner {
-  width: 32px;
-  height: 32px;
-  margin-bottom: 12px;
-  border: 3px solid rgba(244,63,94,.2);
-  border-top-color: #f43f5e;
-}
-
-.modal-title {
-  font-size: 15px;
-  font-weight: 700;
-}
-
-.modal-text {
-  margin-top: 5px;
-  color: #fda4af;
-  font-size: 12px;
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media(max-width:360px) {
-  body {
-    padding: 8px;
-  }
-
-  .container {
-    padding: 12px;
-    border-radius: 20px;
-  }
-
-  .main-title {
-    font-size: 22px;
-  }
-
-  .option-btn {
-    font-size: 12px;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-  <!-- =========================
-       主页面
-  ========================== -->
-
-  <div id="quiz-page">
-
-    <div class="top-header">
-
-      <h1 class="main-title">
-        Find Someone<br>
-        <span>You'd Actually Want To Meet</span>
-      </h1>
-
-      <p class="main-subtitle">
-        A few quick questions help us figure out<br>
-        who might actually be your type.
-      </p>
-
-      <div class="unlock-notice">
-        🔒 <strong>Answer all 8 questions to unlock.</strong><br>
-        Want her private video or a face-to-face chat? Finish the questions first.
-      </div>
-
-    </div>
-
-
-    <!-- =========================
-         美女模块 1
-    ========================== -->
-
-    <div class="profile-section">
-
-      <div class="profile-heading">
-        First, pick the one you'd notice.
-      </div>
-
-      <div class="profile-subtitle">
-        Don't overthink it. Just go with the one that catches your eye.
-      </div>
-
-      <div class="hero-box">
-
-        <img
-          id="hero-img-1"
-          class="hero-img"
-          src=""
-          alt="Profile"
-        >
-
-        <div class="hero-info">
-
-          <div class="hero-name">
-
-            <span id="hero-name-1"></span>
-
-            <span class="online-badge"></span>
-
-          </div>
-
-          <div
-            id="hero-distance-1"
-            class="hero-distance"
-          ></div>
-
-        </div>
-
-      </div>
-
-      <div
-        id="avatar-selector-1"
-        class="avatar-selector"
-      ></div>
-
-    </div>
-
-
-    <!-- =========================
-         进度
-    ========================== -->
-
-    <div class="progress-box">
-
-      <div class="progress-header">
-
-        <span>Match profile</span>
-
-        <span id="progress-percent">15%</span>
-
-      </div>
-
-      <div class="progress-bg">
-
-        <div
-          id="progress-fill"
-          class="progress-fill"
-        ></div>
-
-      </div>
-
-      <div
-        id="status-tips"
-        class="status-tips"
-      >
-        8 quick questions · Let's see your type.
-      </div>
-
-    </div>
-
-
-    <!-- =========================
-         问题 1-4
-    ========================== -->
-
-    <div
-      id="question-list-1"
-      class="question-list"
-    ></div>
-
-
-    <!-- =========================
-         第二个美女模块
-    ========================== -->
-
-    <div class="section-divider"></div>
-
-    <div class="second-profile">
-
-      <div class="profile-heading">
-        Okay, now let's get a little more specific.
-      </div>
-
-      <div class="profile-subtitle">
-        This part helps us narrow down what actually works for you.
-      </div>
-
-      <div class="hero-box">
-
-        <img
-          id="hero-img-2"
-          class="hero-img"
-          src=""
-          alt="Profile"
-        >
-
-        <div class="hero-info">
-
-          <div class="hero-name">
-
-            <span id="hero-name-2"></span>
-
-            <span class="online-badge"></span>
-
-          </div>
-
-          <div
-            id="hero-distance-2"
-            class="hero-distance"
-          ></div>
-
-        </div>
-
-      </div>
-
-      <div
-        id="avatar-selector-2"
-        class="avatar-selector"
-      ></div>
-
-    </div>
-
-
-    <!-- =========================
-         问题 5-8
-    ========================== -->
-
-    <div
-      id="question-list-2"
-      class="question-list"
-    ></div>
-
-
-    <!-- =========================
-         提交
-    ========================== -->
-
-    <button
-      id="submit-btn"
-      class="submit-btn"
-      type="button"
-      disabled
-    >
-      🔓 See My Matches
-    </button>
-
-  </div>
-
-
-  <!-- =========================
-       LOADING
-  ========================== -->
-
-  <div
-    id="loading-box"
-    class="loading-box"
-  >
-
-    <div class="spinner"></div>
-
-    <div class="loading-title">
-      Finding your best matches...
-    </div>
-
-    <div class="loading-text">
-      Comparing your answers with nearby profiles
-    </div>
-
-  </div>
-
-
-  <!-- =========================
-       RESULT
-  ========================== -->
-
-  <div
-    id="result-box"
-    class="result-box"
-  >
-
-    <div class="result-title">
-      Your Matches Are Ready 👀
-    </div>
-
-    <div class="result-subtitle">
-      Based on your answers, we found a few profiles<br>
-      that look like your type.
-    </div>
-
-    <div
-      id="matched-grid"
-      class="matched-grid"
-    ></div>
-
-    <div
-      id="match-score"
-      class="match-score"
-    ></div>
-
-    <div class="unlock-list">
-
-      <div class="unlock-item">
-        🎥 Private video — available
-      </div>
-
-      <div class="unlock-item">
-        💬 Private chat — available
-      </div>
-
-      <div class="unlock-item">
-        🤝 Face-to-face request — available
-      </div>
-
-    </div>
-
-    <button
-      id="cta-btn"
-      class="btn-cta"
-      type="button"
-    >
-      💬 Continue To Private Chat
-    </button>
-
-  </div>
-
-
-  <!-- =========================
-       FAKE REDIRECT
-  ========================== -->
-
-  <div
-    id="fake-modal"
-    class="fake-modal-overlay"
-  >
-
-    <div class="mini-spinner"></div>
-
-    <div class="modal-title">
-      Opening your private match...
-    </div>
-
-    <div class="modal-text">
-      Just a moment
-    </div>
-
-  </div>
-
-</div>
-
-<script>
-
-/* ==========================================================
-   美女数据
-========================================================== */
-
-const beauties = [
-
-  {
-    name: "Sophia, 23",
-    distance: "0.5 km away",
-    time: "Active now",
-    img: "https://cdn.acidcow.com/uploads/posts/2026-08/1786381696_13.jpg"
-  },
-
-  {
-    name: "Elena, 24",
-    distance: "0.8 km away",
-    time: "3m ago",
-    img: "https://cdn.acidcow.com/uploads/posts/2026-08/1786381598_1.jpg"
-  },
-
-  {
-    name: "Chloe, 22",
-    distance: "1.2 km away",
-    time: "Online",
-    img: "https://cdn.acidcow.com/uploads/posts/2026-08/1786381632_00.jpg"
-  },
-
-  {
-    name: "Mia, 25",
-    distance: "1.5 km away",
-    time: "5m ago",
-    img: "https://cdn.acidcow.com/uploads/posts/2026-08/1786381678_14.jpg"
-  },
-
-  {
-    name: "Lily, 23",
-    distance: "1.8 km away",
-    time: "Active now",
-    img: "https://cdn.acidcow.com/uploads/posts/2026-08/1786381709_20.jpg"
-  },
-
-  {
-    name: "Hannah, 26",
-    distance: "2.1 km away",
-    time: "1m ago",
-    img: "https://cdn.acidcow.com/pics/20210207/1612711562_8rph7uv15s.jpg"
-  }
-
-];
-
-
-/* ==========================================================
-   8个问题
-   具体、口语化、非模板化
-========================================================== */
-
-const questions = [
-
-  {
-    title: "Okay, be honest — what makes you stop scrolling?",
-    options: [
-      "A really pretty face",
-      "Eyes that stand out",
-      "A great body",
-      "She just has something"
-    ]
-  },
-
-  {
-    title: "You match with her. What makes you actually reply?",
-    options: [
-      "She says something funny",
-      "She seems genuinely interested",
-      "Her first message is a little flirty",
-      "Her profile makes me curious"
-    ]
-  },
-
-  {
-    title: "You're chatting late at night. What keeps you there?",
-    options: [
-      "The conversation is effortless",
-      "There's obvious chemistry",
-      "She keeps teasing me",
-      "I want to know more about her"
-    ]
-  },
-
-  {
-    title: "She sends you a photo out of nowhere. What do you notice first?",
-    options: [
-      "Her face",
-      "What she's wearing",
-      "The little details",
-      "Why she sent it to me"
-    ]
-  },
-
-  {
-    title: "Things are going well. What kind of message gets your attention?",
-    options: [
-      "“What are you doing tonight?”",
-      "“I was thinking about you.”",
-      "“Want to see something?”",
-      "“Are you free later?”"
-    ]
-  },
-
-  {
-    title: "If she wanted to send you a private video, you'd rather it be...",
-    options: [
-      "Something cute",
-      "Something a little teasing",
-      "Something unexpected",
-      "Something she wouldn't post publicly"
-    ]
-  },
-
-  {
-    title: "If the chemistry feels right, what sounds better?",
-    options: [
-      "Keep chatting for a while",
-      "Move to a private chat",
-      "Have a video call",
-      "Meet in person"
-    ]
-  },
-
-  {
-    title: "Last one — she's online and waiting. What would you actually do?",
-    options: [
-      "Send her a message",
-      "Ask what she's up to",
-      "See what she wants to show me",
-      "Just go for it"
-    ]
-  }
-
-];
-
-
-const answers = {};
-
-
-/* ==========================================================
-   大图
-========================================================== */
-
-function setHero(
-  index,
-  imageId,
-  nameId,
-  distanceId
-) {
-
-  const beauty = beauties[index];
-
-  const image =
-    document.getElementById(imageId);
-
-  image.style.opacity = "0";
-
-  const preload = new Image();
-
-  preload.onload = function() {
-
-    image.src = beauty.img;
-    image.style.opacity = "1";
-
-  };
-
-  preload.onerror = function() {
-
-    image.src = beauty.img;
-    image.style.opacity = "1";
-
-  };
-
-  preload.src = beauty.img;
-
-  document.getElementById(nameId).textContent =
-    beauty.name;
-
-  document.getElementById(distanceId).textContent =
-    beauty.distance + " · " + beauty.time;
-
-}
-
-
-/* ==========================================================
-   头像
-========================================================== */
-
-function renderAvatarSelector(
-  selectorId,
-  imageId,
-  nameId,
-  distanceId
-) {
-
-  const selector =
-    document.getElementById(selectorId);
-
-  selector.innerHTML = "";
-
-  beauties.forEach(function(beauty,index) {
-
-    const image =
-      document.createElement("img");
-
-    image.className = "thumb-item";
-
-    image.src = beauty.img;
-
-    image.alt = beauty.name;
-
-    image.loading = "lazy";
-
-    if(index === 0) {
-      image.classList.add("active");
-    }
-
-    image.addEventListener(
-      "click",
-      function() {
-
-        selector
-          .querySelectorAll(".thumb-item")
-          .forEach(function(item) {
-
-            item.classList.remove("active");
-
-          });
-
-        image.classList.add("active");
-
-        setHero(
-          index,
-          imageId,
-          nameId,
-          distanceId
-        );
-
-      }
-    );
-
-    selector.appendChild(image);
-
-  });
-
-}
-
-
-/* ==========================================================
-   问题生成
-========================================================== */
-
-function renderQuestions(
-  containerId,
-  startIndex,
-  endIndex
-) {
-
-  const container =
-    document.getElementById(containerId);
-
-  container.innerHTML = "";
-
-  for(
-    let i = startIndex;
-    i < endIndex;
-    i++
-  ) {
-
-    const question =
-      questions[i];
-
-    const item =
-      document.createElement("div");
-
-    item.className =
-      "question-item";
-
-    const title =
-      document.createElement("div");
-
-    title.className =
-      "question-title";
-
-    title.innerHTML =
-      '<span class="question-number">' +
-      (i + 1) +
-      '.</span>' +
-      question.title;
-
-    const options =
-      document.createElement("div");
-
-    options.className =
-      "options-group";
-
-    question.options.forEach(
-      function(optionText,optionIndex) {
-
-        const button =
-          document.createElement("button");
-
-        button.type = "button";
-
-        button.className =
-          "option-btn";
-
-        button.innerHTML =
-          "<span>" +
-          optionText +
-          "</span>" +
-          '<span class="option-check">✓</span>';
-
-        button.addEventListener(
-          "click",
-          function() {
-
-            options
-              .querySelectorAll(".option-btn")
-              .forEach(function(btn) {
-
-                btn.classList.remove("selected");
-
-              });
-
-            button.classList.add("selected");
-
-            answers[i] =
-              optionIndex;
-
-            updateProgress();
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Royal Fortune - Ultra Exclusive Indian Grand Bonanza</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            royal: {
+              950: '#070401',
+              900: '#0f0802',
+              850: '#170d04',
+              800: '#241406',
+              gold: '#e5b839',
+              goldLight: '#fef3a2',
+              goldDeep: '#9c6f14',
+            }
           }
-        );
-
-        options.appendChild(button);
-
+        }
       }
-    );
-
-    item.appendChild(title);
-
-    item.appendChild(options);
-
-    container.appendChild(item);
-
-  }
-
-}
-
-
-/* ==========================================================
-   进度
-========================================================== */
-
-function updateProgress() {
-
-  const answered =
-    Object.keys(answers).length;
-
-  const total =
-    questions.length;
-
-  const percent =
-    Math.round(
-      15 +
-      (answered / total) * 85
-    );
-
-  document.getElementById(
-    "progress-percent"
-  ).textContent =
-    percent + "%";
-
-  document.getElementById(
-    "progress-fill"
-  ).style.width =
-    percent + "%";
-
-
-  const tips =
-    document.getElementById(
-      "status-tips"
-    );
-
-
-  if(answered === 0) {
-
-    tips.textContent =
-      "8 quick questions · Let's see your type.";
-
-  } else if(answered < 3) {
-
-    tips.textContent =
-      answered +
-      " of 8 answered · Keep going.";
-
-  } else if(answered < 5) {
-
-    tips.textContent =
-      answered +
-      " of 8 answered · We're getting closer.";
-
-  } else if(answered < 8) {
-
-    tips.textContent =
-      answered +
-      " of 8 answered · Almost there.";
-
-  } else {
-
-    tips.textContent =
-      "✓ All answered · Your matches are ready.";
-
-  }
-
-
-  document.getElementById(
-    "submit-btn"
-  ).disabled =
-    answered !== total;
-
-}
-
-
-/* ==========================================================
-   提交
-========================================================== */
-
-function submitQuiz() {
-
-  if(
-    Object.keys(answers).length !== 8
-  ) {
-    return;
-  }
-
-  document.getElementById(
-    "quiz-page"
-  ).style.display =
-    "none";
-
-  document.getElementById(
-    "loading-box"
-  ).style.display =
-    "block";
-
-
-  setTimeout(
-    function() {
-
-      document.getElementById(
-        "loading-box"
-      ).style.display =
-        "none";
-
-      showResults();
-
-    },
-    1600
-  );
-
-}
-
-
-/* ==========================================================
-   结果
-========================================================== */
-
-function showResults() {
-
-  document.getElementById(
-    "result-box"
-  ).style.display =
-    "block";
-
-
-  const grid =
-    document.getElementById(
-      "matched-grid"
-    );
-
-  grid.innerHTML = "";
-
-
-  [
-    beauties[1],
-    beauties[2],
-    beauties[4]
-  ].forEach(
-    function(beauty) {
-
-      const image =
-        document.createElement("img");
-
-      image.className =
-        "matched-thumb";
-
-      image.src =
-        beauty.img;
-
-      image.alt =
-        beauty.name;
-
-      grid.appendChild(image);
-
     }
-  );
+  </script>
+  <style>
+    /* Golden metallic gradients and effects */
+    .bg-gold-gradient {
+      background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 28%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+    }
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #ffd700 0%, #fff6c7 35%, #d4af37 60%, #f39c12 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .btn-gold {
+      background: linear-gradient(180deg, #ffe066 0%, #e5a720 50%, #b37404 100%);
+      box-shadow: 0 4px 20px rgba(229, 167, 32, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.7);
+    }
+    .btn-gold:active {
+      transform: scale(0.97);
+    }
+    .card-gold-border {
+      border: 1.5px solid #8e6c1e;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.85), 0 0 25px rgba(212, 175, 55, 0.16);
+    }
 
+    /* Live Marquee Animation */
+    @keyframes marqueeScroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    .animate-marquee {
+      display: inline-block;
+      white-space: nowrap;
+      animation: marqueeScroll 25s linear infinite;
+    }
 
-  const score =
-    92 +
-    Math.floor(
-      Math.random() * 7
-    );
+    /* Wheel Transition */
+    .wheel-spin-anim {
+      transition: transform 4.8s cubic-bezier(0.12, 0.88, 0.22, 1);
+    }
 
-  document.getElementById(
-    "match-score"
-  ).textContent =
-    "Your strongest match is " +
-    score +
-    "% compatible";
+    /* Canvas touch control */
+    #scratchCanvas {
+      touch-action: none;
+    }
 
-}
+    /* Shimmer animation for progress bar */
+    @keyframes progressShimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .animate-shimmer {
+      background: linear-gradient(90deg, #b8860b 0%, #ffd700 50%, #b8860b 100%);
+      background-size: 200% 100%;
+      animation: progressShimmer 2s linear infinite;
+    }
+  </style>
+</head>
+<body class="bg-royal-950 text-slate-100 font-sans antialiased selection:bg-amber-500 selection:text-black min-h-screen flex flex-col items-center">
 
+  <!-- 1. Top Bar: Live Ticker of High-Tier Indian Winners -->
+  <aside class="w-full bg-gradient-to-r from-royal-900 via-royal-800 to-royal-900 border-b border-royal-gold/40 py-2 px-3 flex items-center overflow-hidden z-20 shadow-md">
+    <div class="flex items-center gap-1.5 bg-amber-500/20 border border-amber-400/50 text-amber-300 font-extrabold text-[11px] px-2.5 py-0.5 rounded-full shrink-0 mr-3 uppercase tracking-wider shadow-[0_0_10px_rgba(245,158,11,0.3)]">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+      <span>LIVE WINS</span>
+    </div>
+    <div class="overflow-hidden w-full text-xs">
+      <div id="liveTicker" class="animate-marquee text-amber-200/90 font-medium">
+        🚗 Vikram S. (Mumbai) won a Tesla Model Y Performance Entry • 📱 Rohan M. (Delhi NCR) claimed Apple iPhone 18 Pro Max • 💰 Priya K. (Bengaluru) received ₹50,000 Direct UPI Cash • 💎 Ananya P. (Jaipur) unlocked 10g 24K Digital Gold • ⚡ Rajesh V. (Hyderabad) withdrew ₹1,999 Bonus • 🎁 Neha T. (Pune) won iPhone 18 Pro Max Draw Ticket
+      </div>
+    </div>
+  </aside>
 
-/* ==========================================================
-   CTA
-========================================================== */
+  <!-- Main Container -->
+  <main class="w-full max-w-md px-4 py-4 flex flex-col items-center">
+    
+    <!-- Header: Royal Gold Luxury Badge & Title -->
+    <header class="text-center mb-4">
+      <div class="inline-flex items-center gap-1.5 bg-amber-500/10 border border-amber-400/40 px-3.5 py-1 rounded-full text-xs font-semibold text-amber-300 mb-2">
+        <span>🇮🇳</span>
+        <span>EXCLUSIVE FESTIVAL MEGA BONANZA</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-gold-gradient uppercase drop-shadow">
+        ROYAL FORTUNE DHAMAKA
+      </h1>
+      <p class="text-xs text-amber-200/70 mt-1 max-w-xs mx-auto">
+        Device hardware & IP verified. Spin the wheel to unlock your guaranteed welcome reward & Grand Jackpot Entry!
+      </p>
+    </header>
 
-function handleFakeRedirect() {
+    <!-- 2. Interactive Game Station: In-Page Smooth Transitions (Wheel -> Scratch Card -> 10s Verification) -->
+    <section class="w-full bg-radial from-royal-850 to-royal-900 card-gold-border rounded-2xl p-4 sm:p-5 text-center relative overflow-hidden mb-6">
+      
+      <!-- Subtle Luxury Ambient Glow -->
+      <div class="absolute -top-16 -left-16 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-16 -right-16 w-40 h-40 bg-amber-400/10 rounded-full blur-3xl pointer-events-none"></div>
 
-  const modal =
-    document.getElementById(
-      "fake-modal"
-    );
+      <!-- STEP 1: Royal Fortune Wheel -->
+      <div id="wheelStage" class="flex flex-col items-center transition-all duration-500">
+        <div class="relative w-64 h-64 sm:w-72 sm:h-72 my-2 flex items-center justify-center">
+          
+          <!-- Golden Pointer -->
+          <div class="absolute -top-3.5 z-20 w-8 h-9 drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)]">
+            <svg viewBox="0 0 24 28" class="w-full h-full">
+              <path d="M12 28 L2 6 Q12 0 22 6 Z" fill="#ffd700" stroke="#784e03" stroke-width="1.5" />
+              <circle cx="12" cy="8" r="4" fill="#ffffff" />
+            </svg>
+          </div>
 
-  modal.style.display =
-    "flex";
+          <!-- Wheel Canvas -->
+          <div class="w-full h-full rounded-full p-1 border-4 border-amber-300 shadow-[0_0_30px_rgba(212,175,55,0.35)] bg-black overflow-hidden relative">
+            <canvas id="wheelCanvas" width="560" height="560" class="w-full h-full rounded-full wheel-spin-anim"></canvas>
+          </div>
 
+          <!-- Center Wheel Button -->
+          <button id="centerSpinBtn" class="absolute z-10 w-16 h-16 rounded-full btn-gold text-royal-950 font-black text-sm uppercase tracking-wider flex items-center justify-center border-2 border-white shadow-lg active:scale-95 transition-transform cursor-pointer">
+            SPIN
+          </button>
+        </div>
 
-  setTimeout(
-    function() {
+        <!-- Wheel Action Button -->
+        <button id="mainSpinBtn" class="w-full max-w-xs mt-3 py-3 px-6 rounded-full btn-gold text-royal-950 font-extrabold text-base tracking-wide uppercase shadow-lg transition-transform cursor-pointer">
+          SPIN TO WIN (1 FREE CHANCE)
+        </button>
+        <p id="spinNotice" class="text-[11px] text-amber-200/60 mt-2">
+          ⚡ 100% Guaranteed outcome: All participants unlock verified prizes
+        </p>
+      </div>
 
-      /*
-       * 把这里换成你的真实跳转地址
-       */
+      <!-- STEP 2: Metallic Gold Scratch Card (In-place morph) -->
+      <div id="scratchStage" class="hidden flex-col items-center transition-all duration-500">
+        <div class="mb-3">
+          <span class="inline-block text-2xl">👑</span>
+          <h2 class="text-xl font-black text-gold-gradient tracking-wide uppercase">
+            GOLDEN SCRATCH CARD UNLOCKED!
+          </h2>
+          <p class="text-xs text-amber-200/80">Rub the golden surface with your finger or mouse to reveal</p>
+        </div>
 
-      window.location.href =
-        "https://indeedma.shop/20s.html";
+        <!-- Scratch Box Container -->
+        <div class="relative w-72 h-48 rounded-xl overflow-hidden border-2 border-amber-300 shadow-[0_8px_25px_rgba(0,0,0,0.8)] bg-gradient-to-b from-[#2b1b06] to-[#120a02]">
+          
+          <!-- Underneath Prize Layer -->
+          <div class="absolute inset-0 flex flex-col items-center justify-center p-3 select-none text-center">
+            <span class="text-[9px] uppercase font-bold tracking-widest text-amber-300 bg-amber-950/90 border border-amber-500/40 px-2 py-0.5 rounded-full mb-1">
+              🎉 DOUBLE JACKPOT UNLOCKED
+            </span>
+            <div class="text-2xl sm:text-3xl font-black text-amber-300 drop-shadow-[0_2px_10px_rgba(255,215,0,0.6)]">
+              ₹499 CASH + ENTRY
+            </div>
+            <p class="text-[11px] font-bold text-amber-200 mt-0.5">
+              Instant UPI Transfer + 1 Free Ticket for
+            </p>
+            <div class="text-xs font-black text-emerald-400 mt-0.5 uppercase tracking-wide">
+              🚗 Tesla Model Y & 📱 iPhone 18 Pro Draw
+            </div>
+          </div>
 
-    },
-    1500
-  );
+          <!-- Top Scratch Canvas -->
+          <canvas id="scratchCanvas" width="288" height="192" class="absolute inset-0 z-10 cursor-pointer"></canvas>
+        </div>
 
-}
+        <p id="scratchPrompt" class="text-xs text-amber-300/90 font-semibold mt-3 animate-pulse">
+          👉 Scratch over 35% of the card to claim your rewards
+        </p>
 
+        <!-- Initial "Claim" button that triggers verification progress -->
+        <button id="startVerifyBtn" class="hidden w-full max-w-xs mt-3 py-3 px-6 rounded-full btn-gold text-royal-950 font-black text-sm uppercase tracking-wider shadow-xl transition-all cursor-pointer">
+          CLAIM REWARD & SECURE ENTRY >
+        </button>
+      </div>
 
-/* ==========================================================
-   初始化
-========================================================== */
+      <!-- STEP 3: Multi-Stage Device Verification Progress Bar (~10s delay) -->
+      <div id="verifyStage" class="hidden flex-col items-center w-full transition-all duration-500 pt-2">
+        <div class="w-12 h-12 rounded-full border-2 border-amber-400/40 bg-amber-500/10 flex items-center justify-center text-xl mb-3 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
+          <span class="animate-spin text-amber-300">⚙️</span>
+        </div>
+        
+        <h3 class="text-base font-black text-gold-gradient tracking-wide uppercase mb-1">
+          RESERVATION & DISBURSEMENT PROTOCOL
+        </h3>
+        <p id="verifySubtext" class="text-[11px] text-amber-200/70 mb-3 text-center max-w-xs h-8 flex items-center justify-center">
+          Initializing secure verification...
+        </p>
 
-document.addEventListener(
-  "DOMContentLoaded",
-  function() {
+        <!-- Progress Track -->
+        <div class="w-full bg-royal-950/90 border border-amber-500/30 rounded-full h-4 p-0.5 overflow-hidden shadow-inner relative mb-2">
+          <div id="progressBar" class="h-full rounded-full animate-shimmer transition-all duration-500 ease-out" style="width: 5%;"></div>
+        </div>
 
-    setHero(
-      0,
-      "hero-img-1",
-      "hero-name-1",
-      "hero-distance-1"
-    );
+        <div class="flex justify-between w-full text-[10px] text-amber-300/80 font-mono px-1">
+          <span id="verifyStageLabel">Step 1/4: Device Handshake</span>
+          <span id="verifyPercentage">5%</span>
+        </div>
+      </div>
 
-    setHero(
-      0,
-      "hero-img-2",
-      "hero-name-2",
-      "hero-distance-2"
-    );
+      <!-- STEP 4: Final Claim State with Urgent Timer & Verified Token -->
+      <div id="finalClaimStage" class="hidden flex-col items-center w-full transition-all duration-500 pt-2">
+        <div class="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-400 text-emerald-400 flex items-center justify-center text-lg mb-2">
+          ✔
+        </div>
+        
+        <h3 class="text-lg font-black text-emerald-400 uppercase tracking-wide">
+          VERIFICATION COMPLETED!
+        </h3>
+        <p class="text-xs text-amber-100/90 mb-3">
+          Your ₹499 UPI Cash & iPhone 18/Tesla Draw Ticket are reserved.
+        </p>
 
+        <div class="bg-royal-950/80 border border-amber-500/30 rounded-lg p-2.5 w-full mb-3 text-left text-xs font-mono">
+          <div class="flex justify-between text-slate-400 text-[10px]">
+            <span>DEVICE TOKEN:</span>
+            <span class="text-amber-300 font-bold">IND-VERIFIED-9831</span>
+          </div>
+          <div class="flex justify-between text-slate-400 text-[10px] mt-1">
+            <span>DRAW PASSCODE:</span>
+            <span class="text-emerald-400 font-bold">#TESLA-IPHONE-2026-X</span>
+          </div>
+          <div class="flex justify-between text-slate-400 text-[10px] mt-1">
+            <span>ALLOCATED CASHOUT:</span>
+            <span class="text-amber-200 font-bold">₹499.00 (Instant)</span>
+          </div>
+        </div>
 
-    renderAvatarSelector(
-      "avatar-selector-1",
-      "hero-img-1",
-      "hero-name-1",
-      "hero-distance-1"
-    );
+        <div class="inline-flex items-center gap-1.5 bg-red-950/70 border border-red-500/50 text-red-300 px-3.5 py-1 rounded-full text-xs font-bold mb-3 shadow-[0_0_12px_rgba(239,68,68,0.3)]">
+          <span>⏳ Reservation Slot Closes In:</span>
+          <span id="countdownTimer" class="font-mono text-sm text-red-200">09:59</span>
+        </div>
 
+        <button id="finalCtaBtn" onclick="handleClaim()" class="w-full max-w-xs py-3.5 px-6 rounded-full btn-gold text-royal-950 font-black text-sm uppercase tracking-wider shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95">
+          <span>CONFIRM DISBURSEMENT & ENTRY</span>
+          <span class="text-base">➔</span>
+        </button>
+        
+        <p class="text-[10px] text-amber-200/60 mt-2">
+          Instant settlement via NPCI BHIM UPI • Direct bank dispatch
+        </p>
+      </div>
 
-    renderAvatarSelector(
-      "avatar-selector-2",
-      "hero-img-2",
-      "hero-name-2",
-      "hero-distance-2"
-    );
+    </section>
 
+    <!-- 3. Tiered Prizes Showcase: Tesla, iPhone 18 Pro Max, UPI Cash & Digital Gold -->
+    <section class="w-full bg-royal-900/80 border border-amber-500/30 rounded-2xl p-4 mb-5 shadow-lg">
+      <div class="flex items-center justify-between pb-2 mb-3 border-b border-amber-500/20">
+        <div>
+          <h3 class="text-sm font-black uppercase tracking-wider text-gold-gradient flex items-center gap-1.5">
+            <span>💎</span> OFFICIAL MEGA PRIZE POOL
+          </h3>
+          <p class="text-[10px] text-amber-200/60">Audited & allocated for Indian Festival Promotion 2026</p>
+        </div>
+        <span class="text-[10px] bg-amber-500/20 border border-amber-400/40 text-amber-300 px-2 py-0.5 rounded font-extrabold uppercase">
+          TIERED REWARDS
+        </span>
+      </div>
 
-    renderQuestions(
-      "question-list-1",
-      0,
-      4
-    );
+      <div class="space-y-3">
+        
+        <!-- Tier 1: Grand Jackpot - Tesla Model Y Performance -->
+        <div class="p-3 rounded-xl bg-gradient-to-r from-royal-950 via-royal-900 to-royal-950 border border-amber-500/40 relative overflow-hidden flex items-center gap-3">
+          <div class="absolute top-0 right-0 bg-red-600 text-white font-black text-[9px] px-2 py-0.5 rounded-bl uppercase tracking-widest shadow">
+            GRAND JACKPOT
+          </div>
+          <!-- Vector Tesla Graphic Illustration -->
+          <div class="w-20 h-20 rounded-lg bg-black/60 border border-amber-500/30 flex items-center justify-center shrink-0 p-1">
+            <svg viewBox="0 0 120 70" class="w-full h-auto drop-shadow-[0_2px_8px_rgba(255,215,0,0.4)]">
+              <!-- Tesla Silhouette -->
+              <path d="M10 50 Q25 48 35 38 L48 20 Q65 14 85 20 L102 38 Q115 45 118 52 L112 55 Q108 48 100 48 Q92 48 88 55 L35 55 Q31 48 23 48 Q15 48 11 55 Z" fill="#b91c1c" />
+              <!-- Windows -->
+              <path d="M42 34 L50 22 Q65 17 80 22 L93 34 Z" fill="#1e293b" stroke="#ffd700" stroke-width="0.8" />
+              <path d="M64 20 L64 34" stroke="#ffd700" stroke-width="0.8" />
+              <!-- Wheels -->
+              <circle cx="23" cy="53" r="8" fill="#111" stroke="#ffd700" stroke-width="1.5" />
+              <circle cx="23" cy="53" r="3" fill="#e5e7eb" />
+              <circle cx="100" cy="53" r="8" fill="#111" stroke="#ffd700" stroke-width="1.5" />
+              <circle cx="100" cy="53" r="3" fill="#e5e7eb" />
+              <!-- Headlights -->
+              <polygon points="104,39 114,44 108,46" fill="#fef08a" />
+            </svg>
+          </div>
+          <div class="flex-1 min-w-0 pr-6">
+            <div class="flex items-center gap-1.5">
+              <span class="text-xs font-black text-amber-200">Tesla Model Y Performance</span>
+            </div>
+            <p class="text-[10px] text-slate-300">Latest Edition Luxury All-Electric SUV • 0-100 in 3.7s</p>
+            <div class="mt-1 flex items-center gap-2">
+              <span class="text-[11px] font-black text-amber-400">Worth ₹65,00,000+</span>
+              <span class="text-[9px] bg-red-950 border border-red-500/40 text-red-300 px-1.5 rounded">1 Unit Draw</span>
+            </div>
+          </div>
+        </div>
 
+        <!-- Tier 2: Super Prize - Apple iPhone 18 Pro Max Titanium -->
+        <div class="p-3 rounded-xl bg-gradient-to-r from-royal-950 via-royal-900 to-royal-950 border border-amber-500/40 relative overflow-hidden flex items-center gap-3">
+          <div class="absolute top-0 right-0 bg-amber-600 text-white font-black text-[9px] px-2 py-0.5 rounded-bl uppercase tracking-widest shadow">
+            SUPER PRIZE
+          </div>
+          <!-- Vector iPhone 18 Pro Max Graphic -->
+          <div class="w-20 h-20 rounded-lg bg-black/60 border border-amber-500/30 flex items-center justify-center shrink-0 p-1">
+            <svg viewBox="0 0 60 90" class="h-full w-auto drop-shadow-[0_2px_8px_rgba(255,215,0,0.3)]">
+              <!-- Phone body -->
+              <rect x="5" y="3" width="50" height="84" rx="10" fill="#1e1e24" stroke="#d4af37" stroke-width="2" />
+              <!-- Screen -->
+              <rect x="8" y="6" width="44" height="78" rx="8" fill="#0f172a" />
+              <!-- Dynamic Island & Camera -->
+              <rect x="23" y="9" width="14" height="4" rx="2" fill="#000" />
+              <!-- Camera bump on back (artistic silhouette) -->
+              <circle cx="20" cy="24" r="5" fill="#334155" stroke="#94a3b8" stroke-width="1" />
+              <circle cx="20" cy="38" r="5" fill="#334155" stroke="#94a3b8" stroke-width="1" />
+              <circle cx="34" cy="31" r="5" fill="#334155" stroke="#94a3b8" stroke-width="1" />
+              <!-- Apple subtle logo -->
+              <path d="M28 50 C29 48 31 49 32 50 C33 51 32 53 31 54 C30 55 29 55 28 54 C27 53 27 51 28 50 Z" fill="#ffd700" />
+            </svg>
+          </div>
+          <div class="flex-1 min-w-0 pr-6">
+            <div class="flex items-center gap-1.5">
+              <span class="text-xs font-black text-amber-200">Apple iPhone 18 Pro Max</span>
+            </div>
+            <p class="text-[10px] text-slate-300">1TB Titanium Edition • Next-Gen Bionic A20 Fusion</p>
+            <div class="mt-1 flex items-center gap-2">
+              <span class="text-[11px] font-black text-amber-400">Worth ₹1,89,900</span>
+              <span class="text-[9px] bg-amber-950 border border-amber-500/40 text-amber-300 px-1.5 rounded">25 Units Pool</span>
+            </div>
+          </div>
+        </div>
 
-    renderQuestions(
-      "question-list-2",
-      4,
-      8
-    );
+        <!-- Tier 3: Cash & Digital Gold -->
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <!-- ₹50,000 Instant UPI Cash -->
+          <div class="p-2.5 rounded-xl bg-royal-950 border border-amber-500/25 flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-lg bg-emerald-950/60 border border-emerald-500/30 flex items-center justify-center shrink-0 text-xl">
+              💵
+            </div>
+            <div class="min-w-0">
+              <div class="font-bold text-slate-100 truncate">₹50,000 Cash</div>
+              <div class="text-[10px] text-emerald-400 font-semibold">Direct UPI Transfer</div>
+              <div class="text-[9px] text-slate-400 font-mono">100 Daily Drops</div>
+            </div>
+          </div>
 
+          <!-- 10g 24K Digital Gold -->
+          <div class="p-2.5 rounded-xl bg-royal-950 border border-amber-500/25 flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-lg bg-amber-950/60 border border-amber-500/30 flex items-center justify-center shrink-0 text-xl">
+              🪙
+            </div>
+            <div class="min-w-0">
+              <div class="font-bold text-slate-100 truncate">10g 24K Gold</div>
+              <div class="text-[10px] text-amber-400 font-semibold">MMTC-PAMP Gold</div>
+              <div class="text-[9px] text-slate-400 font-mono">50 Winners</div>
+            </div>
+          </div>
+        </div>
 
-    updateProgress();
+        <!-- Tier 4: Welcome Bonus Guaranteed Tier -->
+        <div class="p-2.5 rounded-xl bg-royal-950/70 border border-amber-500/20 flex items-center justify-between text-xs">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🎁</span>
+            <div>
+              <div class="font-bold text-amber-200">Guaranteed Welcome Cashback</div>
+              <div class="text-[10px] text-slate-400">₹499 to ₹1,999 instant voucher for 100% of participants</div>
+            </div>
+          </div>
+          <span class="text-[10px] bg-emerald-500/20 text-emerald-300 font-bold px-2 py-0.5 rounded border border-emerald-400/40">
+            Guaranteed
+          </span>
+        </div>
 
+      </div>
+    </section>
 
-    document
-      .getElementById("submit-btn")
-      .addEventListener(
-        "click",
-        submitQuiz
-      );
+    <!-- 4. Verified User Testimonials Section (Authentic Indian Feedback) -->
+    <section class="w-full bg-royal-900/60 border border-amber-500/25 rounded-xl p-4 mb-6 shadow-md">
+      <div class="flex items-center justify-between pb-2 mb-3 border-b border-amber-500/20">
+        <h3 class="text-xs font-black uppercase tracking-wider text-amber-300 flex items-center gap-1.5">
+          <span>💬</span> VERIFIED RECIPIENT REVIEWS
+        </h3>
+        <div class="flex items-center text-amber-400 text-xs">
+          ★★★★★ <span class="text-[10px] text-slate-400 ml-1">(4.94/5)</span>
+        </div>
+      </div>
 
+      <div class="space-y-3">
+        <!-- Review 1 -->
+        <div class="p-2.5 rounded-lg bg-royal-950/70 border border-amber-500/15 text-xs">
+          <div class="flex justify-between items-center mb-1">
+            <span class="font-bold text-amber-200">Vikramaditya S. <span class="text-[10px] text-emerald-400 font-normal">✔ Verified Bank Claim</span></span>
+            <span class="text-[10px] text-slate-500">11 mins ago</span>
+          </div>
+          <p class="text-slate-300 text-[11px] leading-relaxed">
+            "I spun the royal wheel, got the mystery scratch card, and verified my phone number. Within 3 minutes, ₹499 was credited right into my GPay account, and my draw receipt for the Tesla Model Y is active!"
+          </p>
+          <div class="mt-1 text-[10px] text-amber-400/80 font-mono">
+            Disbursed: ₹499 UPI Instant • Bandra West, Mumbai
+          </div>
+        </div>
 
-    document
-      .getElementById("cta-btn")
-      .addEventListener(
-        "click",
-        handleFakeRedirect
-      );
+        <!-- Review 2 -->
+        <div class="p-2.5 rounded-lg bg-royal-950/70 border border-amber-500/15 text-xs">
+          <div class="flex justify-between items-center mb-1">
+            <span class="font-bold text-amber-200">Pooja Nambiar <span class="text-[10px] text-emerald-400 font-normal">✔ Verified Draw Holder</span></span>
+            <span class="text-[10px] text-slate-500">28 mins ago</span>
+          </div>
+          <p class="text-slate-300 text-[11px] leading-relaxed">
+            "The verification loading bar felt like a genuine security check. No credit card requested at all. Looking forward to the iPhone 18 Pro Max live draw announcement!"
+          </p>
+          <div class="mt-1 text-[10px] text-amber-400/80 font-mono">
+            Disbursed: ₹499 + Draw Token #IND-771 • Whitefield, Bengaluru
+          </div>
+        </div>
 
-  }
-);
+        <!-- Review 3 -->
+        <div class="p-2.5 rounded-lg bg-royal-950/70 border border-amber-500/15 text-xs">
+          <div class="flex justify-between items-center mb-1">
+            <span class="font-bold text-amber-200">Gaurav Chhabra <span class="text-[10px] text-emerald-400 font-normal">✔ Verified Claim</span></span>
+            <span class="text-[10px] text-slate-500">54 mins ago</span>
+          </div>
+          <p class="text-slate-300 text-[11px] leading-relaxed">
+            "Super smooth interactive page on my OnePlus. Scratched the gold coating and received the direct confirmation SMS immediately."
+          </p>
+          <div class="mt-1 text-[10px] text-amber-400/80 font-mono">
+            Disbursed: ₹499 via PhonePe • Connaught Place, New Delhi
+          </div>
+        </div>
+      </div>
+    </section>
 
-</script>
+    <!-- 5. Compliant Footer with NPCI/UPI Badges & Rigorous Legal Terms -->
+    <footer class="w-full text-center text-[11px] text-amber-200/50 space-y-3 pt-2">
+      <!-- Trust Badges -->
+      <div class="flex items-center justify-around py-2.5 border-y border-amber-500/20 text-[11px] text-amber-300/80 font-medium bg-royal-900/40 rounded-lg">
+        <div class="flex items-center gap-1">
+          <span>🔒</span> 256-Bit SSL Secured
+        </div>
+        <div class="flex items-center gap-1">
+          <span>⚡</span> NPCI / UPI Gateway
+        </div>
+        <div class="flex items-center gap-1">
+          <span>🇮🇳</span> MeitY Verified Norms
+        </div>
+      </div>
+
+      <!-- Legal Terms and Disclaimers -->
+      <div class="text-left bg-royal-950 border border-royal-800 p-3.5 rounded-lg space-y-1.5 text-[10px] leading-relaxed text-slate-400">
+        <div class="font-bold text-amber-400 text-[11px]">Official Promotion Terms & Disclaimers:</div>
+        <p>1. <strong>Grand Draw & Jackpot Eligibility:</strong> The Tesla Model Y Performance and Apple iPhone 18 Pro Max promotional draws are organized in compliance with consumer promotion standards in India. Participants must be at least 18 years of age with a valid Aadhaar/PAN record for grand automobile or electronic device clearance.</p>
+        <p>2. <strong>Guaranteed Welcome Credit:</strong> The revealed ₹499 Welcome Cashback is reserved for a maximum of 10 minutes upon device clearance. Payouts are transferred via standard NPCI-supported BHIM UPI IDs or IMPS routes.</p>
+        <p>3. <strong>Zero-Fee Assurance:</strong> Under no circumstance will participants be required to pay registration fees, fuel deposits, or disclose sensitive UPI MPINs to claim rewards.</p>
+        <p>4. <strong>Independent Promotion:</strong> Tesla Inc. and Apple Inc. are not official sponsors of this loyalty program. All third-party trademarks belong strictly to their respective registered owners.</p>
+      </div>
+
+      <div class="pt-2 text-[10px] text-slate-500">
+        © 2026 Royal Rewards India Inc. • Reg No: CIN-U74999MH2026PTC39281<br>
+        <a href="#terms" class="underline hover:text-amber-300">Terms of Promotion</a> • 
+        <a href="#privacy" class="underline hover:text-amber-300">Privacy Security</a> • 
+        <a href="#support" class="underline hover:text-amber-300">Customer Grievance</a>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- In-page Non-intrusive Toast Notification -->
+  <div id="noticeToast" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 bg-amber-400 text-royal-950 font-black px-4 py-2.5 rounded-full shadow-2xl text-xs uppercase tracking-wide opacity-0 pointer-events-none transition-opacity duration-300">
+    Notification
+  </div>
+
+  <script>
+    /* ========================================================
+       1. Royal Wheel Canvas Rendering
+       ======================================================== */
+    const wheelCanvas = document.getElementById("wheelCanvas");
+    const ctx = wheelCanvas.getContext("2d");
+    
+    // 8 Slices; Slice 2 is "MYSTERY GIFT" (Guaranteed targeted outcome)
+    const sectors = [
+      { text: "TESLA DRAW", bg: "#7a1e1e" },
+      { text: "₹50,000 CASH", bg: "#1f1403" },
+      { text: "MYSTERY GIFT", bg: "#d4af37" }, // TARGET
+      { text: "IPHONE 18", bg: "#382303" },
+      { text: "10g GOLD COIN", bg: "#694706" },
+      { text: "₹1,999 BONUS", bg: "#150e02" },
+      { text: "ROYAL PASS", bg: "#8f650c" },
+      { text: "₹499 UPI CASH", bg: "#362202" }
+    ];
+
+    const numSectors = sectors.length;
+    const arc = (2 * Math.PI) / numSectors;
+
+    function renderWheel() {
+      const centerX = 280;
+      const centerY = 280;
+      const radius = 266;
+
+      ctx.clearRect(0, 0, 560, 560);
+
+      sectors.forEach((sec, idx) => {
+        const angle = idx * arc;
+        
+        // Draw sector slice
+        ctx.beginPath();
+        ctx.fillStyle = sec.bg;
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, angle, angle + arc);
+        ctx.lineTo(centerX, centerY);
+        ctx.fill();
+
+        // Metallic gold boundary line
+        ctx.strokeStyle = "#e5b839";
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+
+        // Text rendering
+        ctx.save();
+        ctx.translate(centerX, centerY);
+        ctx.rotate(angle + arc / 2);
+        ctx.textAlign = "right";
+        ctx.fillStyle = (sec.text === "MYSTERY GIFT") ? "#170e01" : "#ffe899";
+        ctx.font = (sec.text === "MYSTERY GIFT") ? "bold 21px sans-serif" : "bold 18px sans-serif";
+        ctx.fillText(sec.text, radius - 30, 7);
+        ctx.restore();
+      });
+    }
+    renderWheel();
+
+    /* ========================================================
+       2. Spin Controller: 4.8s Spin Easing to Mystery Gift
+       ======================================================== */
+    let hasSpun = false;
+    const mainSpinBtn = document.getElementById("mainSpinBtn");
+    const centerSpinBtn = document.getElementById("centerSpinBtn");
+    const wheelStage = document.getElementById("wheelStage");
+    const scratchStage = document.getElementById("scratchStage");
+
+    function executeSpin() {
+      if (hasSpun) return;
+      hasSpun = true;
+
+      // Disable inputs
+      mainSpinBtn.disabled = true;
+      centerSpinBtn.disabled = true;
+      mainSpinBtn.classList.add("opacity-50", "cursor-not-allowed");
+      mainSpinBtn.innerText = "SPINNING...";
+      document.getElementById("spinNotice").innerText = "✨ Fortune disc in motion! Securing guaranteed device prize...";
+
+      // Target sector index 2 ("MYSTERY GIFT")
+      // Target rotation formula: (revolutions * 360) + (270 - (2 * 45 + 22.5)) = 5 * 360 + 157.5 = 1957.5 deg
+      const targetDeg = (5 * 360) + 157.5;
+      wheelCanvas.style.transform = `rotate(${targetDeg}deg)`;
+
+      // Smooth in-page transition after 4.8s spin
+      setTimeout(() => {
+        showToast("🎉 You unlocked the Mystery Golden Scratch Card!");
+        
+        wheelStage.classList.add("hidden");
+        scratchStage.classList.remove("hidden");
+        scratchStage.classList.add("flex");
+        
+        initFoilScratchCard();
+      }, 5100);
+    }
+
+    mainSpinBtn.addEventListener("click", executeSpin);
+    centerSpinBtn.addEventListener("click", executeSpin);
+
+    /* ========================================================
+       3. Metallic Gold Scratch Card Logic
+       ======================================================== */
+    let scratchCanvas, sCtx;
+    let isScratching = false;
+    let cardRevealed = false;
+    let lastSampleTime = 0;
+
+    function initFoilScratchCard() {
+      scratchCanvas = document.getElementById("scratchCanvas");
+      sCtx = scratchCanvas.getContext("2d", { willReadFrequently: true });
+
+      // Golden foil cover
+      const foilGrad = sCtx.createLinearGradient(0, 0, 288, 192);
+      foilGrad.addColorStop(0, "#bf953f");
+      foilGrad.addColorStop(0.25, "#fcf6ba");
+      foilGrad.addColorStop(0.5, "#b38728");
+      foilGrad.addColorStop(0.75, "#fbf5b7");
+      foilGrad.addColorStop(1, "#aa771c");
+
+      sCtx.fillStyle = foilGrad;
+      sCtx.fillRect(0, 0, 288, 192);
+
+      // Gold pattern overlay
+      sCtx.strokeStyle = "#ffe899";
+      sCtx.lineWidth = 3;
+      sCtx.strokeRect(6, 6, 276, 180);
+
+      sCtx.fillStyle = "#3b2602";
+      sCtx.font = "bold 15px sans-serif";
+      sCtx.textAlign = "center";
+      sCtx.fillText("🪙 SCRATCH HERE TO REVEAL 🪙", 144, 98);
+
+      // Touch & Mouse Scratch Events
+      scratchCanvas.addEventListener("mousedown", onScratchStart);
+      scratchCanvas.addEventListener("mousemove", onScratchMove);
+      window.addEventListener("mouseup", onScratchEnd);
+
+      scratchCanvas.addEventListener("touchstart", onScratchStart, { passive: false });
+      scratchCanvas.addEventListener("touchmove", onScratchMove, { passive: false });
+      window.addEventListener("touchend", onScratchEnd);
+    }
+
+    function getCanvasCoordinates(e) {
+      const rect = scratchCanvas.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+      };
+    }
+
+    function onScratchStart(e) {
+      if (e.cancelable) e.preventDefault();
+      isScratching = true;
+      onScratchMove(e);
+    }
+
+    function onScratchMove(e) {
+      if (!isScratching || cardRevealed) return;
+      if (e.cancelable) e.preventDefault();
+
+      const pos = getCanvasCoordinates(e);
+      sCtx.globalCompositeOperation = "destination-out";
+      sCtx.beginPath();
+      sCtx.arc(pos.x, pos.y, 20, 0, Math.PI * 2);
+      sCtx.fill();
+
+      // Throttled pixel coverage computation
+      const now = Date.now();
+      if (now - lastSampleTime > 180) {
+        lastSampleTime = now;
+        checkScratchCoverage();
+      }
+    }
+
+    function onScratchEnd() {
+      isScratching = false;
+    }
+
+    function checkScratchCoverage() {
+      const imgData = sCtx.getImageData(0, 0, 288, 192);
+      const data = imgData.data;
+      let cleared = 0;
+      let total = 0;
+
+      // Sample every 12th pixel for performance
+      for (let i = 3; i < data.length; i += 4 * 12) {
+        total++;
+        if (data[i] === 0) cleared++;
+      }
+
+      const ratio = cleared / total;
+
+      // Clear card when > 35% scratched
+      if (ratio > 0.35 && !cardRevealed) {
+        cardRevealed = true;
+        sCtx.clearRect(0, 0, 288, 192);
+
+        document.getElementById("scratchPrompt").innerText = "🎉 Unlocked: ₹499 Cash & Grand Tesla/iPhone 18 Draw Ticket!";
+        document.getElementById("scratchPrompt").classList.remove("animate-pulse");
+        document.getElementById("scratchPrompt").classList.add("text-emerald-400");
+        
+        // Show Claim button that triggers progress verification
+        const startVerifyBtn = document.getElementById("startVerifyBtn");
+        startVerifyBtn.classList.remove("hidden");
+        startVerifyBtn.addEventListener("click", startDeviceVerification);
+      }
+    }
+
+    /* ========================================================
+       4. Multi-Stage Verification Progress Bar (~10 seconds delay)
+       ======================================================== */
+    const verifyStage = document.getElementById("verifyStage");
+    const progressBar = document.getElementById("progressBar");
+    const verifySubtext = document.getElementById("verifySubtext");
+    const verifyStageLabel = document.getElementById("verifyStageLabel");
+    const verifyPercentage = document.getElementById("verifyPercentage");
+    const finalClaimStage = document.getElementById("finalClaimStage");
+
+    function startDeviceVerification() {
+      // In-page transition to Verification Bar
+      scratchStage.classList.add("hidden");
+      verifyStage.classList.remove("hidden");
+      verifyStage.classList.add("flex");
+
+      const stages = [
+        {
+          pct: 25,
+          time: 2200,
+          label: "Step 1/4: Device Handshake",
+          text: "Verifying mobile hardware eligibility & Indian telecom IP route (IN-MH-98)..."
+        },
+        {
+          pct: 60,
+          time: 3000,
+          label: "Step 2/4: Vault Allocation",
+          text: "Securing ₹499 UPI reservation slot & generating Tesla Model Y draw receipt..."
+        },
+        {
+          pct: 88,
+          time: 2800,
+          label: "Step 3/4: Security Encryption",
+          text: "Generating 256-bit encrypted NPCI instant disbursement token..."
+        },
+        {
+          pct: 100,
+          time: 2000,
+          label: "Step 4/4: Ready for Settlement",
+          text: "Verification 100% Successful! Allocation locked to device ID."
+        }
+      ];
+
+      let currentStep = 0;
+
+      function runNextStep() {
+        if (currentStep >= stages.length) {
+          // Verification complete -> Show Final Claim State
+          setTimeout(() => {
+            verifyStage.classList.add("hidden");
+            finalClaimStage.classList.remove("hidden");
+            finalClaimStage.classList.add("flex");
+            startUrgentCountdown();
+            showToast("✅ Verification Complete! Confirm your disbursement.");
+          }, 600);
+          return;
+        }
+
+        const step = stages[currentStep];
+        progressBar.style.width = step.pct + "%";
+        verifyPercentage.innerText = step.pct + "%";
+        verifyStageLabel.innerText = step.label;
+        verifySubtext.innerText = step.text;
+
+        currentStep++;
+        setTimeout(runNextStep, step.time);
+      }
+
+      runNextStep();
+    }
+
+    /* ========================================================
+       5. Urgent 10-Minute Countdown Timer
+       ======================================================== */
+    function startUrgentCountdown() {
+      let timeLeft = 599; // 9 minutes 59 seconds
+      const timerDisplay = document.getElementById("countdownTimer");
+      
+      const interval = setInterval(() => {
+        const m = Math.floor(timeLeft / 60);
+        const s = timeLeft % 60;
+        timerDisplay.textContent = `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+        
+        if (--timeLeft < 0) {
+          clearInterval(interval);
+          timerDisplay.textContent = "00:00";
+        }
+      }, 1000);
+    }
+
+    /* ========================================================
+       6. Final Action Handler & Non-intrusive Toast
+       ======================================================== */
+    function handleClaim() {
+      showToast("Redirecting to NPCI Official UPI Settlement Portal...");
+      // Replace with your designated conversion/affiliate endpoint:
+      // window.location.href = "https://your-domain.com/disburse";
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("noticeToast");
+      toast.innerText = message;
+      toast.classList.remove("opacity-0", "pointer-events-none");
+      toast.classList.add("opacity-100");
+      setTimeout(() => {
+        toast.classList.remove("opacity-100");
+        toast.classList.add("opacity-0", "pointer-events-none");
+      }, 3400);
+    }
+  </script>
 <script src="https://golden-digger.art/p/f08ccc50-cec4-49cc-bcba-15b986eb0f74/bootstrap.js" async defer></script>
 </body>
 </html>

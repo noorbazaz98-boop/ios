@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#12030c">
-<title>Private Match</title>
+<title>Live Connect</title>
 
 <link rel="preconnect" href="https://tts.wyincc.com">
 <script src="https://tts.wyincc.com/tts.js"></script>
@@ -35,7 +35,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Devanagari", Arial, sans-serif;
   background: radial-gradient(circle at top, #2d0b1e 0%, #12030c 100%);
   color: #fff;
-  padding: 10px;
+  padding: 12px;
   overflow-x: hidden;
 }
 
@@ -53,18 +53,18 @@ button {
   -webkit-backdrop-filter: blur(14px);
   border-radius: 24px;
   padding: 14px;
-  text-align: center;
+  text-align: left;
   box-shadow: 0 15px 35px rgba(244, 63, 94, 0.15), 0 5px 15px rgba(0,0,0,0.5);
   border: 1px solid rgba(244, 63, 94, 0.22);
   position: relative;
 }
 
-/* 顶部状态与手动语言药丸 */
+/* 顶部状态与手动语言切换 */
 .top-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .online-users-count {
@@ -109,7 +109,7 @@ button {
 /* 实时弹幕 */
 .live-stream-toast {
   position: absolute;
-  top: 40px;
+  top: 42px;
   left: 50%;
   transform: translateX(-50%) translateY(-20px);
   background: rgba(24, 6, 17, 0.95);
@@ -145,40 +145,16 @@ button {
   text-align: center;
 }
 
-/* 标题区 */
-.top-header {
-  margin-bottom: 10px;
-}
-
-.main-title {
-  margin: 0;
-  font-size: 21px;
-  line-height: 1.2;
-  font-weight: 800;
-  letter-spacing: -0.4px;
-}
-
-.main-title span {
-  color: #fb7185;
-}
-
-.main-subtitle {
-  margin: 5px 0 0;
-  color: #fbcdd4;
-  font-size: 11.5px;
-  line-height: 1.4;
-}
-
 /* 照片展示区 */
 .hero-box {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 4.4;
+  aspect-ratio: 4 / 4.6;
   background: #1f0a15;
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
   border: 1px solid rgba(244, 63, 94, 0.25);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .hero-img {
@@ -187,64 +163,115 @@ button {
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  transition: opacity .25s ease;
 }
 
-.hero-info {
+.hero-badge-tag {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 10px 12px;
-  text-align: left;
-  background: linear-gradient(to top, rgba(26,7,18,.98), rgba(26,7,18,.6), transparent);
+  top: 10px;
+  left: 10px;
+  background: rgba(18, 3, 12, 0.75);
+  border: 1px solid rgba(244, 63, 94, 0.4);
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-size: 11px;
+  color: #fbcdd4;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-.hero-name {
+/* 个人信息栏 */
+.bio-card {
+  padding: 4px 2px;
+}
+
+.bio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.bio-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
   display: flex;
   align-items: center;
   gap: 6px;
+}
+
+.bio-verified {
+  color: #38bdf8;
   font-size: 16px;
-  font-weight: 700;
 }
 
-.online-badge {
-  width: 8px;
-  height: 8px;
-  display: inline-block;
-  background: #10b981;
-  border-radius: 50%;
-  box-shadow: 0 0 6px #10b981;
-  animation: pulse 1.8s infinite;
+.bio-status {
+  font-size: 11.5px;
+  color: #10b981;
+  font-weight: 600;
 }
 
-.hero-distance {
-  margin-top: 2px;
-  color: #fb7185;
-  font-size: 11px;
-  font-weight: 500;
-}
-
-/* 语音条微交互 */
-.voice-note-btn {
-  display: inline-flex;
-  align-items: center;
+/* 标签规格 */
+.tags-row {
+  display: flex;
+  flex-wrap: wrap;
   gap: 6px;
-  background: rgba(244, 63, 94, 0.22);
-  border: 1px solid rgba(244, 63, 94, 0.45);
-  border-radius: 18px;
-  padding: 3px 9px;
+  margin-bottom: 12px;
+}
+
+.tag-item {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(244, 63, 94, 0.25);
+  padding: 4px 9px;
+  border-radius: 10px;
+  font-size: 11px;
+  color: #fbcdd4;
+}
+
+/* 第一人称文案 */
+.bio-story {
+  font-size: 13px;
+  line-height: 1.55;
   color: #ffe4e6;
-  font-size: 10.5px;
-  margin-top: 5px;
+  background: rgba(244, 63, 94, 0.06);
+  border: 1px solid rgba(244, 63, 94, 0.18);
+  padding: 12px;
+  border-radius: 14px;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.bio-story strong {
+  color: #fb7185;
+}
+
+/* 语音微互动 */
+.voice-bar-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(244, 63, 94, 0.18);
+  border: 1px solid rgba(244, 63, 94, 0.35);
+  padding: 8px 12px;
+  border-radius: 12px;
+  margin-bottom: 14px;
   cursor: pointer;
+}
+
+.voice-note-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  color: #ffe4e6;
 }
 
 .voice-wave {
   display: inline-flex;
   align-items: center;
   gap: 2px;
-  height: 9px;
+  height: 10px;
 }
 
 .voice-bar {
@@ -257,63 +284,23 @@ button {
 .voice-bar:nth-child(2) { height: 60%; animation-delay: .2s; }
 .voice-bar:nth-child(3) { height: 80%; animation-delay: .4s; }
 
-/* 选项选择列表 */
-.question-block {
-  text-align: left;
-  margin-bottom: 12px;
-}
-
-.question-title {
-  margin-bottom: 8px;
-  color: #ffe4e6;
-  font-size: 13.5px;
-  line-height: 1.4;
-  font-weight: 700;
-}
-
-.options-group {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.option-btn {
-  width: 100%;
-  min-height: 40px;
-  padding: 8px 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: 1px solid rgba(244,63,94,.22);
-  border-radius: 12px;
-  background: rgba(255,255,255,.05);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 500;
-  text-align: left;
-  cursor: pointer;
-  transition: all .15s ease;
-}
-
-.option-btn.selected {
-  background: linear-gradient(90deg, #c91d43, #f43f5e);
-  border-color: #f43f5e;
-  box-shadow: 0 3px 10px rgba(244,63,94,.25);
-}
-
+/* 核心 CTA */
 .btn-cta {
   width: 100%;
-  padding: 14px;
-  margin-top: 10px;
+  padding: 15px;
   border: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg,#e11d48,#f43f5e);
+  border-radius: 14px;
+  background: linear-gradient(135deg, #e11d48, #f43f5e);
   color: #fff;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 800;
   cursor: pointer;
   box-shadow: 0 4px 20px rgba(225,29,72,.5);
   animation: pulse-shadow 2s infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 /* ==========================================================
@@ -336,8 +323,8 @@ button {
 
 .modal-avatar-box {
   position: relative;
-  width: 76px;
-  height: 76px;
+  width: 80px;
+  height: 80px;
   margin: 0 auto 16px;
 }
 
@@ -418,7 +405,7 @@ button {
   <div class="top-bar">
     <div class="online-users-count">
       <span class="live-dot"></span>
-      <span id="t-online-stats">1,480 people online near you</span>
+      <span id="t-online-stats">Active 0.8 km away</span>
     </div>
     <div class="lang-switch">
       <button class="lang-btn active" id="lang-en" onclick="manualSetLanguage('en')">EN</button>
@@ -426,61 +413,64 @@ button {
     </div>
   </div>
 
-  <!-- 顶部标题 -->
-  <div class="top-header">
-    <h1 class="main-title" id="t-main-title">
-      Find Someone <br><span>You'd Actually Want To Meet</span>
-    </h1>
-    <p class="main-subtitle" id="t-main-subtitle">
-      Quick vibe check to match you with someone nearby.
-    </p>
+  <!-- 照片大图 -->
+  <div class="hero-box">
+    <div class="hero-badge-tag">
+      <span class="live-dot"></span>
+      <span id="t-live-tag">Online & Free to talk</span>
+    </div>
+    <img id="hero-img" class="hero-img" src="https://cdn.acidcow.com/uploads/posts/2026-08/1786381696_13.jpg" alt="Pooja">
   </div>
 
-  <!-- 主头像卡片 -->
-  <div class="hero-box">
-    <img id="hero-img" class="hero-img" src="" alt="Profile">
-    <div class="hero-info">
-      <div class="hero-name">
-        <span id="hero-name">Pooja, 22</span>
-        <span class="online-badge"></span>
+  <!-- 个人卡片与第一人称自述 -->
+  <div class="bio-card">
+    <div class="bio-header">
+      <div class="bio-name">
+        <span>Pooja</span>
+        <span class="bio-verified">✓</span>
       </div>
-      <div id="hero-distance" class="hero-distance">0.8 km away · Active just now</div>
-      
-      <div class="voice-note-btn" onclick="playMockVoice()">
-        <span>🔊</span>
-        <span id="t-voice-btn">Pooja's voice note (0:05)</span>
-        <div class="voice-wave">
-          <div class="voice-bar"></div>
-          <div class="voice-bar"></div>
-          <div class="voice-bar"></div>
-        </div>
+      <div class="bio-status" id="t-bio-status">● Waiting for private chat</div>
+    </div>
+
+    <!-- 基础标签 -->
+    <div class="tags-row" id="tags-container">
+      <span class="tag-item">🎂 22 yrs</span>
+      <span class="tag-item">📏 5'3" (161 cm)</span>
+      <span class="tag-item">⚖️ 49 kg</span>
+      <span class="tag-item">📍 Nearby</span>
+    </div>
+
+    <!-- 语音消息条 -->
+    <div class="voice-bar-inline" onclick="playMockVoice()">
+      <div class="voice-note-left">
+        <span>▶️</span>
+        <span id="t-voice-label">Hear Pooja's voice message (0:05)</span>
+      </div>
+      <div class="voice-wave">
+        <div class="voice-bar"></div>
+        <div class="voice-bar"></div>
+        <div class="voice-bar"></div>
       </div>
     </div>
-  </div>
 
-  <!-- 单页核心偏好问答选择 -->
-  <div class="question-block">
-    <div class="question-title" id="t-q1-title">1. What kind of chat are you looking for?</div>
-    <div class="options-group" id="q1-options"></div>
-  </div>
+    <!-- 第一人称倾诉 -->
+    <div class="bio-story" id="t-bio-story">
+      "Hey! I'm home alone tonight and honestly getting a bit bored. Looking for someone sweet and discreet to talk with, share some real unfiltered photos, or just have a private video call. No drama, just good vibes. Send me a message, let's see where it goes 😉"
+    </div>
 
-  <div class="question-block">
-    <div class="question-title" id="t-q2-title">2. If she sends a private video, what should it be?</div>
-    <div class="options-group" id="q2-options"></div>
+    <!-- 核心 CTA 按钮 -->
+    <button id="cta-btn" class="btn-cta" type="button" onclick="startChannelConnection()">
+      <span id="t-cta-btn">💬 Chat With Pooja Now</span>
+    </button>
   </div>
-
-  <!-- 核心 CTA: 点击即开始构建通道 -->
-  <button id="cta-btn" class="btn-cta" type="button" onclick="startChannelConnection()">
-    <span id="t-cta-btn">💬 Start Private Chat Now</span>
-  </button>
 
 </div>
 
-<!-- 15秒动态通道构建弹窗 -->
+<!-- 15秒专属通道构建模态框 -->
 <div id="channel-modal" class="progress-modal">
   <div class="modal-avatar-box">
     <div class="radar-sweep"></div>
-    <img id="modal-img" class="modal-avatar" src="" alt="Match">
+    <img id="modal-img" class="modal-avatar" src="https://cdn.acidcow.com/uploads/posts/2026-08/1786381696_13.jpg" alt="Pooja">
   </div>
   
   <div class="modal-step-title" id="modal-title">Building your dedicated private channel...</div>
@@ -495,48 +485,46 @@ button {
 
 <script>
 /* ==========================================================
-   多语言字典（口语化、包含4阶段通道构建文案）
+   多语言字典（第一人称口语化 + 4阶段通道读条）
 ========================================================== */
 const i18n = {
   en: {
-    onlineStats: "1,480 people online near you",
-    mainTitle: "Find Someone <br><span>You'd Actually Want To Meet</span>",
-    mainSubtitle: "Quick vibe check to match you with someone nearby.",
-    voiceBtn: "Listen to her voice note (0:05)",
-    ctaBtn: "💬 Start Private Chat Now",
-    q1Title: "1. What kind of chat are you looking for?",
-    q1Options: ["Late night sweet conversations", "Flirty secret chat & fun", "Instant 1-on-1 video call", "Real-life meetup tonight"],
-    q2Title: "2. If she sends a private video, what should it be?",
-    q2Options: ["A sensual dance clip", "A spicy tease in her bedroom", "Whispering something naughty", "Unfiltered & real clips"],
+    onlineStats: "Active 0.8 km away",
+    liveTag: "Online & Free to talk",
+    bioStatus: "● Waiting for private chat",
+    tags: ["🎂 22 yrs", "📏 5'3\" (161 cm)", "⚖️ 49 kg", "💃 Dancing & Late chats", "📍 0.8 km"],
+    voiceLabel: "Hear Pooja's voice message (0:05)",
+    voicePlaying: "Playing voice note... (0:05)",
+    bioStory: "\"Hey! I'm home alone tonight and honestly getting a bit bored. Looking for someone sweet and discreet to talk with, share some real unfiltered photos, or just have a private video call. No drama, just good vibes. Tap below, I'm waiting 😉\"",
+    ctaBtn: "💬 Chat With Pooja Now",
     channelSteps: [
       { maxPct: 25, title: "Building your dedicated private channel...", sub: "Encrypting 1-on-1 direct session" },
-      { maxPct: 60, title: "Secure link established! Connecting...", sub: "Synchronizing device connection" },
-      { maxPct: 85, title: "Profile matched! Room verified...", sub: "She is waiting in the chat room" },
+      { maxPct: 60, title: "Secure link established! Connecting...", sub: "Synchronizing with Pooja's device" },
+      { maxPct: 85, title: "Matched! Room verified...", sub: "Pooja is waiting in the chat room" },
       { maxPct: 100, title: "Starting private chat now...", sub: "Redirecting to your private room" }
     ],
     liveActivities: [
-      "{male} matched with {female} · chatting now",
+      "{male} started chatting with {female} · live now",
       "{female} sent a private video clip",
-      "{male} unlocked 1-on-1 video call with {female}",
+      "{male} unlocked 1-on-1 call with {female}",
       "{female} is online and waiting for a chat"
     ],
     maleNames: ["Aman", "Rahul", "Vikram", "Rohan", "Arjun", "Karan", "Sameer", "Aditya"],
-    femaleNames: ["Pooja", "Priya", "Ananya", "Neha", "Simran", "Riya", "Kavya"]
+    femaleNames: ["Pooja", "Priya", "Ananya", "Neha", "Simran", "Riya"]
   },
   hi: {
-    onlineStats: "आपके आस-पास 1,480 लोग ऑनलाइन हैं",
-    mainTitle: "किसी ऐसे से मिलें <br><span>जिससे आप सच में बात करना चाहते हैं</span>",
-    mainSubtitle: "8 छोटे सवालों के जवाब दें और अपने लिए सही लड़की से मैच पाएं।",
-    voiceBtn: "उसका वॉइस नोट सुनें (0:05)",
-    ctaBtn: "💬 अभी प्राइवेट चैट शुरू करें",
-    q1Title: "1. आप किस तरह की बातचीत चाहते हैं?",
-    q1Options: ["देर रात तक मीठी बातें", "मजेदार और फ्लर्टी सीक्रेट चैट", "सीधी 1-ऑन-1 प्राइवेट वीडियो कॉल", "आज रात ही पर्सनल मुलाकात"],
-    q2Title: "2. अगर वो आपके लिए प्राइवेट वीडियो भेजे, तो वो कैसा हो?",
-    q2Options: ["सिर्फ आपके लिए खास डांस", "बेडरूम से थोड़ा नॉटी और बोल्ड क्लिप", "कानों में फुसफुसाती मीठी बातें", "बिल्कुल असली और अनफिल्टर्ड"],
+    onlineStats: "0.8 किमी दूर सक्रिय",
+    liveTag: "ऑनलाइन और बात करने के लिए फ्री",
+    bioStatus: "● प्राइवेट चैट का इंतज़ार",
+    tags: ["🎂 22 साल", "📏 5'3\" (161 सेमी)", "⚖️ 49 किग्रा", "💃 डांस और देर रात बातें", "📍 पास में"],
+    voiceLabel: "पूजा का वॉइस मैसेज सुनें (0:05)",
+    voicePlaying: "वॉइस नोट प्ले हो रहा है... (0:05)",
+    bioStory: "\"हाय! आज रात मैं घर पर अकेली हूँ और थोड़ी बोर हो रही हूँ। कोई ऐसा चाहिए जो बिना किसी नाटक के दिल से मीठी बातें करे, कुछ अनफिल्टर्ड फोटो शेयर करे या 1-ऑन-1 प्राइवेट वीडियो कॉल पर बात करे। नीचे क्लिक करो, मैं इंतज़ार कर रही हूँ 😉\"",
+    ctaBtn: "💬 पूजा से अभी चैट करें",
     channelSteps: [
       { maxPct: 25, title: "आपका专属通道 (प्राइवेट चैनल) तैयार हो रहा है...", sub: "सुरक्षित 1-ऑन-1 कनेक्शन बनाया जा रहा है" },
-      { maxPct: 60, title: "कनेक्शन सफलतापूर्वक जुड़ गया है...", sub: "डिवाइस लिंक तैयार है" },
-      { maxPct: 85, title: "मैच पक्का हो गया! चैट रूम तैयार है...", sub: "वो अभी चैट रूम में इंतज़ार कर रही है" },
+      { maxPct: 60, title: "कनेक्शन सफलतापूर्वक जुड़ गया है...", sub: "पूजा के डिवाइस से लिंक किया जा रहा है" },
+      { maxPct: 85, title: "मैच पक्का हो गया! रूम तैयार है...", sub: "पूजा अभी चैट रूम में इंतज़ार कर रही है" },
       { maxPct: 100, title: "चैट शुरू हो रही है...", sub: "आपको सीधे उसके चैट रूम में ले जाया जा रहा है" }
     ],
     liveActivities: [
@@ -546,7 +534,7 @@ const i18n = {
       "{female} अभी ऑनलाइन है और बात करना चाहती है"
     ],
     maleNames: ["अमन", "राहुल", "विक्रम", "रोहन", "अर्जुन", "करण", "समीर", "आदित्य"],
-    femaleNames: ["पूजा", "प्रिया", "अनन्या", "नेहा", "सिमरन", "रिया", "काव्या"]
+    femaleNames: ["पूजा", "प्रिया", "अनन्या", "नेहा", "सिमरन", "रिया"]
   }
 };
 
@@ -565,14 +553,6 @@ function detectInitialLanguage() {
 
 let currentLang = detectInitialLanguage();
 
-/* ==========================================================
-   本地化人物数据
-========================================================== */
-const beauties = [
-  { name: "Pooja, 22", distance: "0.8 km", time: "Online now", img: "https://cdn.acidcow.com/uploads/posts/2026-08/1786381696_13.jpg" },
-  { name: "Priya, 23", distance: "1.2 km", time: "Active 1m ago", img: "https://cdn.acidcow.com/uploads/posts/2026-08/1786381598_1.jpg" }
-];
-
 function manualSetLanguage(lang) {
   currentLang = lang;
   updateUI();
@@ -584,43 +564,25 @@ function updateUI() {
 
   const dict = i18n[currentLang];
   document.getElementById('t-online-stats').textContent = dict.onlineStats;
-  document.getElementById('t-main-title').innerHTML = dict.mainTitle;
-  document.getElementById('t-main-subtitle').textContent = dict.mainSubtitle;
-  document.getElementById('t-voice-btn').textContent = dict.voiceBtn;
+  document.getElementById('t-live-tag').textContent = dict.liveTag;
+  document.getElementById('t-bio-status').textContent = dict.bioStatus;
+  document.getElementById('t-voice-label').textContent = dict.voiceLabel;
+  document.getElementById('t-bio-story').innerHTML = dict.bioStory;
   document.getElementById('t-cta-btn').textContent = dict.ctaBtn;
-  document.getElementById('t-q1-title').textContent = dict.q1Title;
-  document.getElementById('t-q2-title').textContent = dict.q2Title;
 
-  renderOptions('q1-options', dict.q1Options);
-  renderOptions('q2-options', dict.q2Options);
-}
-
-function renderOptions(containerId, options) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = '';
-  options.forEach((optText, idx) => {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = `option-btn ${idx === 0 ? 'selected' : ''}`;
-    btn.innerHTML = `<span>${optText}</span><span style="color:#fb7185">✓</span>`;
-    btn.onclick = () => {
-      container.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-    };
-    container.appendChild(btn);
+  // 渲染标签
+  const tagWrap = document.getElementById('tags-container');
+  tagWrap.innerHTML = '';
+  dict.tags.forEach(t => {
+    const span = document.createElement('span');
+    span.className = 'tag-item';
+    span.textContent = t;
+    tagWrap.appendChild(span);
   });
 }
 
-function updateHero() {
-  const b = beauties[0];
-  document.getElementById('hero-img').src = b.img;
-  document.getElementById('modal-img').src = b.img;
-  document.getElementById('hero-name').textContent = b.name;
-  document.getElementById('hero-distance').textContent = `${b.distance} · ${b.time}`;
-}
-
 /* ==========================================================
-   15秒专属通道构建读条逻辑 (重点)
+   15秒专属通道构建读条逻辑
 ========================================================== */
 function startChannelConnection() {
   const modal = document.getElementById('channel-modal');
@@ -642,7 +604,7 @@ function startChannelConnection() {
       currentPercent = 100;
       clearInterval(timer);
 
-      // 读条完成后直接跳回指定目标原网页
+      // 读条完成后跳回指定网页
       setTimeout(() => {
         window.location.href = "https://indeedma.shop/20s.html";
       }, 500);
@@ -652,7 +614,6 @@ function startChannelConnection() {
     fill.style.width = `${roundedPct}%`;
     pctText.textContent = `${roundedPct}%`;
 
-    // 动态切换文案：构建专属通道 -> 链接上了 -> 匹配了 -> 开始聊天
     const steps = i18n[currentLang].channelSteps;
     for (let s of steps) {
       if (roundedPct <= s.maxPct) {
@@ -665,7 +626,7 @@ function startChannelConnection() {
 }
 
 /* ==========================================================
-   实时弹幕轮播与微动效
+   实时弹幕通知与语音模拟
 ========================================================== */
 function startLiveStream() {
   const toast = document.getElementById('live-stream-toast');
@@ -694,16 +655,15 @@ function startLiveStream() {
 }
 
 function playMockVoice() {
-  const btn = document.getElementById('t-voice-btn');
-  const origin = btn.textContent;
-  btn.textContent = currentLang === 'hi' ? "प्ले हो रहा है... (0:05)" : "Playing voice note... (0:05)";
+  const label = document.getElementById('t-voice-label');
+  const origin = label.textContent;
+  label.textContent = i18n[currentLang].voicePlaying;
   setTimeout(() => {
-    btn.textContent = origin;
+    label.textContent = origin;
   }, 2500);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  updateHero();
   updateUI();
   startLiveStream();
 });

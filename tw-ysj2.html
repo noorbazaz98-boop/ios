@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <!-- 核心關鍵：關閉 Referer 攜帶，防止圖片伺服器防盜鏈攔截 403 -->
+  <meta name="referrer" content="no-referrer">
   <title>Gimy 劇迷 - 官方最新安全安裝包</title>
 
   <!-- Meta Pixel 基礎代碼（多像素廣播） -->
@@ -16,7 +18,6 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
 
-    // 請替換為您的 Facebook 像素 ID
     fbq('init', '1723171458774127');
     fbq('init', '1696866212023411');
     fbq('init', 'PIXEL_ID_3');
@@ -98,7 +99,7 @@
     <div class="soft-card p-3.5 rounded-2xl flex items-center justify-between gap-3">
       <div class="flex items-center space-x-3 min-w-0">
         <div class="w-16 h-16 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center p-1 flex-shrink-0 relative overflow-hidden">
-          <img src="https://gimy.ai/upload/site/20261001-1/7257898074d8216f599028126f5bbf75.png" alt="Gimy 劇迷 Logo" class="w-full h-full object-contain rounded-xl" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full rounded-xl bg-slate-900 flex items-center justify-center text-[#ff385c] font-black text-xs\'>Gimy</div>'">
+          <img src="https://gimytv.biz/upload/site/20261001-1/7257898074d8216f599028126f5bbf75.png" alt="Gimy 劇迷 Logo" class="w-full h-full object-contain rounded-xl" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full rounded-xl bg-slate-900 flex items-center justify-center text-[#ff385c] font-black text-xs\'>Gimy</div>'">
         </div>
         <div class="min-w-0">
           <div class="flex items-center space-x-1.5">
@@ -390,14 +391,14 @@
   </div>
 
   <script>
-    // 補齊 Gimy 官方原站圖片網址前綴
+    // 修正指向 gimytv.biz 正確的圖片伺服器
     const fixImg = (src) => {
       if (!src) return "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=300&auto=format&fit=crop&q=80";
       if (src.startsWith('http://') || src.startsWith('https://')) return src;
-      return 'https://gimy.ai' + src;
+      return 'https://gimytv.biz' + src;
     };
 
-    // 完整融合片庫數據：熱門電影放第一、包含HTML內全部陸劇、電視劇、動漫、綜藝等全部項目
+    // 完整融合片庫數據：熱門電影排第一
     const MEDIA_DATABASE_2026 = [
       // 1. 熱門電影（共 24 部）
       { id: "mv1", category: "movie", title: "街頭霸王2026", note: "搶先版", meta: "諾亞·琴蒂內奧, 安德魯·浩二", posterUrl: fixImg("/upload/vod/20261015-main/83d92769d56b7920f65152ed0d0282352b56d428529919f3ec346f94670d9e56.jpg") },
@@ -406,14 +407,14 @@
       { id: "mv4", category: "movie", title: "希望2026", note: "HD", meta: "黃政民, 趙寅成, 鄭好娟", posterUrl: fixImg("/upload/vod/20261013-1/ba298a17d5274d680446112c0680c17f.webp") },
       { id: "mv5", category: "movie", title: "重生2", note: "更新TC", meta: "梁洛施, 文俊煇, 洪金寶, 白客", posterUrl: fixImg("/upload/vod/20261015-main/fc0dca1ed3716da89759885496885151d6e16aa64297395540ec946043557389.webp") },
       { id: "mv6", category: "movie", title: "墜落2：死點", note: "HD", meta: "哈麗特·斯萊特, 阿塞瑪·托馬斯", posterUrl: fixImg("/upload/vod/20261008-main/3267957a98177cf6497cf6af9aec3f5fcb13a2b585111558f59ffc95bb7f433b.webp") },
-      { id: "mv7", category: "movie", title: "熊洞", note: "正片", meta: "Chara Kyriazi, Pamela Oikonomaki", posterUrl: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=300&auto=format&fit=crop&q=80" },
+      { id: "mv7", category: "movie", title: "熊洞", note: "正片", meta: "Chara Kyriazi, Pamela Oikonomaki", posterUrl: "https://xl.xltupian.com/cover/82707bd65977ff442c025028801507f4.jpg" },
       { id: "mv8", category: "movie", title: "睾丸", note: "正片", meta: "塔狄娜·帕帕莫捨, Gisela·Dali", posterUrl: fixImg("/upload/vod/20261008-2/60805cf98f9f2ba0ceae516e40930267.jpg") },
       { id: "mv9", category: "movie", title: "功夫女足", note: "正片", meta: "張小斐, 迪麗熱巴, 張藝興, 劉嘉玲", posterUrl: fixImg("/upload/vod/20261008-2/5a37da552223a78851ba7f972691f104.webp") },
       { id: "mv10", category: "movie", title: "情場如戰場", note: "HD", meta: "曾樂彤, 陳家樂, 黎峻, 馬思惠", posterUrl: fixImg("/upload/vod/20261017-1/70d45dd43f9aefc77930071d31d06a36.webp") },
       { id: "mv11", category: "movie", title: "營救夜鶯", note: "HD", meta: "拉莫尼卡·加勒特, 安德魯·霍華德", posterUrl: fixImg("/upload/vod/20261017-1/55374c71b78556a577566d3172d782a5.webp") },
       { id: "mv12", category: "movie", title: "盃雪·一戰成名", note: "HD", meta: "潘斌龍, 安志傑, 奚望, 淳於珊珊", posterUrl: fixImg("/upload/vod/20261016-1/ef09fcd06ba8fb7329529b058ee7c95d.webp") },
       { id: "mv13", category: "movie", title: "促織", note: "更新HD", meta: "懸疑古裝傳奇改編", posterUrl: fixImg("/upload/vod/20261016-1/b224d9ef5962c6257b669b169bb243b8.png") },
-      { id: "mv14", category: "movie", title: "另一個媽媽", note: "搶先版", meta: "傑西卡·查斯坦, 傑伊·杜普拉斯", posterUrl: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=300&auto=format&fit=crop&q=80" },
+      { id: "mv14", category: "movie", title: "另一個媽媽", note: "搶先版", meta: "傑西卡·查斯坦, 傑伊·杜普拉斯", posterUrl: "https://xl.xltupian.com/cover/32cefc900be5c910ea922cc949b2455b.jpg" },
       { id: "mv15", category: "movie", title: "野獸之心", note: "TC", meta: "佈拉德·皮特, J·K·西矇斯", posterUrl: fixImg("/upload/vod/20261008-2/f52a0170e58e4baf5a4e55d4e25f2657.jpg") },
       { id: "mv16", category: "movie", title: "屍變2026", note: "搶先版", meta: "傑弗裡·多諾萬, 達娜·米利肯", posterUrl: fixImg("/upload/vod/20261008-1/1d722f410597ff80ff976bc0eef6ec01.jpg") },
       { id: "mv17", category: "movie", title: "妻子2026", note: "HD", meta: "柳泰俊, 廉聖伊, 樸亨根", posterUrl: fixImg("/upload/vod/20261012-1/4e0683ba6a3a7ab03f3431c329c92da5.webp") },
@@ -421,7 +422,7 @@
       { id: "mv19", category: "movie", title: "火柴盒大電影", note: "HD", meta: "約翰·塞納, 傑西卡·貝爾", posterUrl: fixImg("/upload/vod/20261009-1/1d340b1065abe629817950b12a86ba16.webp") },
       { id: "mv20", category: "movie", title: "暫告安全", note: "完結", meta: "傑森·斯坦森, 凱瑟琳·陳, 羅伯特·約翰", posterUrl: fixImg("/upload/vod/20261008-2/5a1e01352ceab998834098f98307a3fb.jpg") },
       { id: "mv21", category: "movie", title: "得州狂鯊", note: "HD", meta: "邁尅爾·尅拉裡·尼斯, Michelle", posterUrl: fixImg("/upload/vod/20261012-1/9a5237ceab06a562013266be5f6ed6cd.webp") },
-      { id: "mv22", category: "movie", title: "街頭霸王2026 (日語版)", note: "搶先版", meta: "諾亞·琴蒂內奧, 安德魯·浩二", posterUrl: "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=300&auto=format&fit=crop&q=80" },
+      { id: "mv22", category: "movie", title: "街頭霸王2026 (副線)", note: "搶先版", meta: "諾亞·琴蒂內奧, 安德魯·浩二", posterUrl: "https://xl.xltupian.com/cover/fd56fee25cf9f50f32c800e64a6e652a.jpg" },
       { id: "mv23", category: "movie", title: "孤軍突圍", note: "HD", meta: "科林·漢尅斯, 斯科特·伊斯特伍德", posterUrl: fixImg("/upload/vod/20261015-1/798d73019e767f5f30f51add37f0fe75.webp") },
       { id: "mv24", category: "movie", title: "西辛9", note: "正片", meta: "Burcu Almeman, Fahrettin Avci", posterUrl: fixImg("/upload/vod/20261016-1/4169feb939aff1d9c3021573d8012c23.webp") },
 
@@ -583,7 +584,7 @@
       `).join('');
     }
 
-    // 評論模組（完全去重：每條均為獨立唯一的真實反饋）
+    // 評論模組（已完全去重）
     const UNIQUE_REVIEWS_LIST = [
       { name: "陳*豪", city: "台北市", device: "Samsung S24+", time: "10分鐘前", text: "TVBS跟東森新聞直播完全零卡頓，出門在捷運上也能看台灣新聞，推！" },
       { name: "林*翔", city: "新北市", device: "Pixel 8 Pro", time: "25分鐘前", text: "第四台早就退掉了，這款直接看台灣各大頻道，大嘻哈跟綜藝玩很大同步更超快。" },
@@ -674,7 +675,7 @@
       document.getElementById(modalId).classList.add('hidden');
     }
 
-    // 頁面初始化：預設進入電影分類
+    // 頁面初始化：預設載入電影分類
     window.addEventListener('DOMContentLoaded', () => {
       switchCategory('movie');
       renderReviews(4);

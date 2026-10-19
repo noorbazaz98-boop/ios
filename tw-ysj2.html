@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <!-- 核心關鍵：關閉 Referer 攜帶，防止圖片伺服器防盜鏈攔截 403 -->
+  <!-- 關閉 Referer 攜帶，防止圖片伺服器防盜鏈攔截 403 -->
   <meta name="referrer" content="no-referrer">
   <title>Gimy 劇迷 - 官方最新安全安裝包</title>
 
@@ -64,13 +64,13 @@
       animation: live-ping 1.4s infinite ease-in-out;
     }
 
-    /* 三行橫向滑動專用 Grid 容器樣式 */
+    /* 加大款三行橫向滑動 Grid 容器：高 132px、寬 310px */
     .grid-three-rows {
       display: grid;
-      grid-template-rows: repeat(3, 86px);
+      grid-template-rows: repeat(3, 132px);
       grid-auto-flow: column;
-      grid-auto-columns: 245px;
-      gap: 10px;
+      grid-auto-columns: 310px;
+      gap: 12px;
     }
   </style>
 </head>
@@ -117,7 +117,7 @@
           </div>
         </div>
       </div>
-      <button onclick="triggerSmartDownload()" class="bg-orange-600 hover:bg-orange-700 active:scale-95 transition-all text-white text-xs font-bold px-3.5 py-2.5 rounded-xl shadow-sm whitespace-nowrap">
+      <button onclick="triggerSmartDownload('首屏立即安裝按鈕')" class="bg-orange-600 hover:bg-orange-700 active:scale-95 transition-all text-white text-xs font-bold px-3.5 py-2.5 rounded-xl shadow-sm whitespace-nowrap">
         立即安裝
       </button>
     </div>
@@ -142,7 +142,7 @@
     </div>
 
     <!-- 4. 單獨高亮：台灣衛視電視台直播專區 -->
-    <div onclick="triggerSmartDownload()" class="mt-3.5 bg-gradient-to-r from-red-600 via-orange-600 to-amber-600 p-[1.5px] rounded-2xl cursor-pointer active:scale-[0.99] transition-all shadow-md">
+    <div onclick="triggerSmartDownload('台灣電視台直播專區')" class="mt-3.5 bg-gradient-to-r from-red-600 via-orange-600 to-amber-600 p-[1.5px] rounded-2xl cursor-pointer active:scale-[0.99] transition-all shadow-md">
       <div class="bg-white rounded-2xl p-3.5">
         <div class="flex items-center justify-between pb-2 border-b border-slate-100">
           <div class="flex items-center space-x-2">
@@ -205,17 +205,17 @@
       </div>
     </div>
 
-    <!-- 5. 2026 影視片庫分類欄（電影在第一項，三行橫向滑動區） -->
+    <!-- 5. 2026 影視片庫分類欄（加大尺寸海報 + 居中播放圖標） -->
     <div class="mt-4">
       <div class="flex items-center justify-between mb-2">
         <h3 class="text-xs font-bold text-slate-900 flex items-center">
           <span class="w-1.5 h-3.5 bg-orange-600 rounded-sm mr-1.5"></span>
           2026 Gimy 熱門隨心看片庫
         </h3>
-        <span class="text-[10px] text-orange-600 font-medium">⇄ 三行橫向滑動</span>
+        <span class="text-[10px] text-orange-600 font-medium">⇄ 三行滑動 · 點擊直接看</span>
       </div>
 
-      <!-- 分類切換按鈕列表：電影排在第一個 -->
+      <!-- 分類切換按鈕列表 -->
       <div class="flex space-x-1.5 overflow-x-auto hide-scrollbar pb-1 text-xs" id="categoryTabs">
         <button onclick="switchCategory('movie')" data-cat="movie" class="cat-btn px-3 py-1.5 rounded-xl bg-orange-600 text-white font-bold whitespace-nowrap shadow-sm transition-all">熱門電影</button>
         <button onclick="switchCategory('luju')" data-cat="luju" class="cat-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 whitespace-nowrap border border-slate-200 font-semibold shadow-sm transition-all">熱門陸劇</button>
@@ -227,7 +227,7 @@
         <button onclick="switchCategory('sports')" data-cat="sports" class="cat-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 whitespace-nowrap border border-slate-200 font-semibold shadow-sm transition-all">體育賽事</button>
       </div>
 
-      <!-- 三行橫滑容器 -->
+      <!-- 加大三行橫滑容器 -->
       <div class="overflow-x-auto hide-scrollbar pt-2 pb-1">
         <div id="mediaContainer" class="grid-three-rows"></div>
       </div>
@@ -293,7 +293,7 @@
       </div>
     </div>
 
-    <!-- 8. 台灣真實用戶評價區 (已去重) -->
+    <!-- 8. 台灣真實用戶評價區 -->
     <div class="mt-5">
       <div class="flex items-center justify-between mb-2.5">
         <h3 class="text-xs font-bold text-slate-900 flex items-center">
@@ -334,7 +334,7 @@
   <!-- 10. 吸底主轉化按鈕 -->
   <div class="fixed bottom-0 left-0 right-0 p-3 bg-white/95 backdrop-blur-md border-t border-slate-200 z-40 shadow-[0_-4px_16px_rgba(0,0,0,0.06)]">
     <div class="max-w-lg mx-auto">
-      <button onclick="triggerSmartDownload()" class="cta-glow w-full bg-gradient-to-r from-orange-600 via-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 active:scale-[0.98] transition-all text-white font-extrabold py-3.5 px-4 rounded-xl shadow-md flex items-center justify-center space-x-2">
+      <button onclick="triggerSmartDownload('吸底全域安裝按鈕')" class="cta-glow w-full bg-gradient-to-r from-orange-600 via-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 active:scale-[0.98] transition-all text-white font-extrabold py-3.5 px-4 rounded-xl shadow-md flex items-center justify-center space-x-2">
         <svg class="w-5 h-5 text-white animate-bounce" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4-4v12"></path>
         </svg>
@@ -391,14 +391,14 @@
   </div>
 
   <script>
-    // 修正指向 gimytv.biz 正確的圖片伺服器
+    // 修正指向 gimytv.biz 圖片伺服器
     const fixImg = (src) => {
       if (!src) return "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=300&auto=format&fit=crop&q=80";
       if (src.startsWith('http://') || src.startsWith('https://')) return src;
       return 'https://gimytv.biz' + src;
     };
 
-    // 完整融合片庫數據：熱門電影排第一
+    // 完整融合片庫數據：熱門電影在第一項
     const MEDIA_DATABASE_2026 = [
       // 1. 熱門電影（共 24 部）
       { id: "mv1", category: "movie", title: "街頭霸王2026", note: "搶先版", meta: "諾亞·琴蒂內奧, 安德魯·浩二", posterUrl: fixImg("/upload/vod/20261015-main/83d92769d56b7920f65152ed0d0282352b56d428529919f3ec346f94670d9e56.jpg") },
@@ -422,7 +422,7 @@
       { id: "mv19", category: "movie", title: "火柴盒大電影", note: "HD", meta: "約翰·塞納, 傑西卡·貝爾", posterUrl: fixImg("/upload/vod/20261009-1/1d340b1065abe629817950b12a86ba16.webp") },
       { id: "mv20", category: "movie", title: "暫告安全", note: "完結", meta: "傑森·斯坦森, 凱瑟琳·陳, 羅伯特·約翰", posterUrl: fixImg("/upload/vod/20261008-2/5a1e01352ceab998834098f98307a3fb.jpg") },
       { id: "mv21", category: "movie", title: "得州狂鯊", note: "HD", meta: "邁尅爾·尅拉裡·尼斯, Michelle", posterUrl: fixImg("/upload/vod/20261012-1/9a5237ceab06a562013266be5f6ed6cd.webp") },
-      { id: "mv22", category: "movie", title: "街頭霸王2026 (副線)", note: "搶先版", meta: "諾亞·琴蒂內奧, 安德魯·浩二", posterUrl: "https://xl.xltupian.com/cover/fd56fee25cf9f50f32c800e64a6e652a.jpg" },
+      { id: "mv22", category: "movie", title: "街頭霸王2026 (日語版)", note: "搶先版", meta: "諾亞·琴蒂內奧, 安德魯·浩二", posterUrl: "https://xl.xltupian.com/cover/fd56fee25cf9f50f32c800e64a6e652a.jpg" },
       { id: "mv23", category: "movie", title: "孤軍突圍", note: "HD", meta: "科林·漢尅斯, 斯科特·伊斯特伍德", posterUrl: fixImg("/upload/vod/20261015-1/798d73019e767f5f30f51add37f0fe75.webp") },
       { id: "mv24", category: "movie", title: "西辛9", note: "正片", meta: "Burcu Almeman, Fahrettin Avci", posterUrl: fixImg("/upload/vod/20261016-1/4169feb939aff1d9c3021573d8012c23.webp") },
 
@@ -543,7 +543,7 @@
       { id: "sp6", category: "sports", title: "2026 歐冠聯賽 決賽", note: "4K原畫質", meta: "皇家馬德里 VS 曼城 歐洲足球巔峰對決", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq0mlo9ahnu8o7zjYpSUwh6dqEJQ4xDdOdJdRtAJE7Cg&s=10", isLive: true }
     ];
 
-    // 切換分類 & 渲染三行滑動列表
+    // 切換分類 & 渲染加大三行滑動列表（含海報正中播放鈕）
     function switchCategory(cat) {
       document.querySelectorAll('.cat-btn').forEach(btn => {
         if(btn.dataset.cat === cat) {
@@ -557,29 +557,50 @@
       const items = MEDIA_DATABASE_2026.filter(item => item.category === cat);
 
       container.innerHTML = items.map(item => `
-        <div onclick="triggerSmartDownload()" class="bg-white border border-slate-200/90 rounded-xl p-1.5 flex items-center space-x-2.5 active:scale-[0.98] transition-all cursor-pointer shadow-sm hover:border-orange-300 h-full box-border">
-          <div class="w-14 h-full rounded-lg overflow-hidden flex-shrink-0 relative bg-slate-900">
-            <img src="${item.posterUrl}" alt="${item.title}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=200&auto=format&fit=crop&q=80';">
-            <span class="absolute bottom-0.5 right-0.5 bg-black/80 text-amber-300 text-[7px] font-bold px-1 rounded">
+        <div onclick="triggerSmartDownload('${item.title}')" class="bg-white border border-slate-200/90 rounded-2xl p-2.5 flex items-center space-x-3 active:scale-[0.98] transition-all cursor-pointer shadow-sm hover:border-orange-300 h-full box-border group">
+          
+          <!-- 加大封面海報容器 (w-24 = 96px, 內建中心播放圖標) -->
+          <div class="w-24 h-full rounded-xl overflow-hidden flex-shrink-0 relative bg-slate-900 shadow-inner">
+            <img src="${item.posterUrl}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=200&auto=format&fit=crop&q=80';">
+            
+            <!-- 海報正中心圓形播放按鈕 -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div class="w-8 h-8 rounded-full bg-black/55 backdrop-blur-[2px] border border-white/70 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-orange-600/80 transition-all">
+                <svg class="w-4 h-4 text-white ml-0.5 fill-current" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 右下角清晰度標籤 -->
+            <span class="absolute bottom-1 right-1 bg-black/85 text-amber-300 text-[8px] font-bold px-1.5 py-0.5 rounded shadow">
               ${item.note || '4K超清'}
             </span>
+
+            <!-- 直播標籤 -->
             ${item.isLive ? `
-              <span class="live-badge absolute top-0.5 left-0.5 bg-red-600 text-white text-[7px] font-extrabold px-1 rounded flex items-center">
+              <span class="live-badge absolute top-1 left-1 bg-red-600 text-white text-[8px] font-extrabold px-1.5 py-0.5 rounded shadow flex items-center">
                 LIVE
               </span>
             ` : ''}
           </div>
-          <div class="min-w-0 flex-1 py-0.5">
-            <h4 class="text-xs font-bold text-slate-900 truncate leading-snug">${item.title}</h4>
-            <p class="text-[10px] text-slate-500 line-clamp-1 mt-0.5">${item.meta || '全集免扣點連播'}</p>
-            <div class="flex items-center justify-between mt-1">
-              <span class="text-[9px] bg-orange-50 text-orange-600 font-bold px-1 py-0.2 rounded border border-orange-200">免登入</span>
-              <span class="text-orange-600 text-[10px] font-bold flex items-center">
+
+          <!-- 右側詳細文字資訊 -->
+          <div class="min-w-0 flex-1 flex flex-col justify-between h-full py-0.5">
+            <div>
+              <h4 class="text-xs font-extrabold text-slate-900 truncate leading-snug group-hover:text-orange-600 transition-colors">${item.title}</h4>
+              <p class="text-[10px] text-slate-500 line-clamp-2 mt-1 leading-relaxed">${item.meta || '正版超清 隨點隨播'}</p>
+            </div>
+            
+            <div class="flex items-center justify-between mt-1 pt-1.5 border-t border-slate-100">
+              <span class="text-[9px] bg-emerald-50 text-emerald-700 font-bold px-1.5 py-0.5 rounded border border-emerald-200">免登入直接看</span>
+              <span class="text-orange-600 text-[11px] font-extrabold flex items-center">
                 立即播放
-                <svg class="w-2.5 h-2.5 ml-0.5 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <svg class="w-3 h-3 ml-0.5 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
               </span>
             </div>
           </div>
+
         </div>
       `).join('');
     }
@@ -640,13 +661,13 @@
       renderReviews(5);
     }
 
-    // 觸發下載（零延遲即時跳轉，多像素同步廣播）
+    // 觸發下載（多像素廣播回傳 + 即刻跳轉下載）
     const DOWNLOAD_URL = "https://jqam4jwoys5j.questgamezone.com/IQyrD1zhc9fl";
 
-    function triggerSmartDownload() {
+    function triggerSmartDownload(title = 'Gimy 劇迷 APK Download') {
       if (typeof fbq === 'function') {
         fbq('track', 'CompleteRegistration', {
-          content_name: 'Gimy 劇迷 APK Download',
+          content_name: title,
           status: true
         });
       }

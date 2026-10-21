@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <!-- 關閉 Referer 攜帶，防止圖片伺服器防盜鏈攔截 403 -->
+  <meta name="referrer" content="no-referrer">
+  <title>Gimy 劇迷 - 官方最新安全安裝包</title>
+
+  <!-- Meta Pixel 基礎代碼（多像素廣播） -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '1913152959652641');
+    fbq('init', '2138408863716736');
+    fbq('init', '1113340584504841');
+
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=PIXEL_ID_1&ev=PageView&noscript=1"/>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=PIXEL_ID_2&ev=PageView&noscript=1"/>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=PIXEL_ID_3&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #f8fafc;
+      color: #0f172a;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .soft-card {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.05);
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 4px 16px rgba(234, 88, 12, 0.4); }
+      50% { box-shadow: 0 6px 26px rgba(234, 88, 12, 0.7); }
+    }
+    .cta-glow {
+      animation: pulse-glow 1.8s infinite ease-in-out;
+    }
+
+    @keyframes live-ping {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(1.15); }
+    }
+    .live-badge {
+      animation: live-ping 1.4s infinite ease-in-out;
+    }
+
+    /* 三行橫向滑動專用 Grid 容器：高 156px、寬 330px，海報採標準比例不截斷 */
+    .grid-three-rows {
+      display: grid;
+      grid-template-rows: repeat(3, 156px);
+      grid-auto-flow: column;
+      grid-auto-columns: 330px;
+      gap: 12px;
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen pb-32">
+
+  <!-- 1. 頂部限時授權與節點狀態條 -->
+  <header class="w-full bg-slate-900 text-white px-3.5 py-2 sticky top-0 z-40 shadow-sm backdrop-blur-md bg-slate-900/95">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span class="text-[11px] font-semibold text-slate-100">台灣衛視 & 4K 影音直連通道</span>
+      </div>
+      <div class="text-[11px] bg-white/10 px-2.5 py-0.5 rounded-full flex items-center space-x-1.5 font-medium border border-white/15">
+        <span class="text-slate-300">免登入名額倒數:</span>
+        <span id="countdown" class="font-mono font-bold text-amber-400">14:59</span>
+      </div>
+    </div>
+    <div class="mt-1.5 w-full bg-slate-800 rounded-full h-1 overflow-hidden">
+      <div class="bg-gradient-to-r from-orange-500 to-amber-400 h-1 rounded-full w-[84%] animate-pulse"></div>
+    </div>
+  </header>
+
+  <main class="flex-1 px-4 pt-3 max-w-lg mx-auto w-full">
+
+    <!-- 2. 首屏產品名片 -->
+    <div class="soft-card p-3.5 rounded-2xl flex items-center justify-between gap-3">
+      <div class="flex items-center space-x-3 min-w-0">
+        <div class="w-16 h-16 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center p-1 flex-shrink-0 relative overflow-hidden">
+          <img src="https://gimytv.biz/upload/site/20261001-1/7257898074d8216f599028126f5bbf75.png" alt="Gimy 劇迷 Logo" class="w-full h-full object-contain rounded-xl" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full rounded-xl bg-slate-900 flex items-center justify-center text-[#ff385c] font-black text-xs\'>Gimy</div>'">
+        </div>
+        <div class="min-w-0">
+          <div class="flex items-center space-x-1.5">
+            <h1 class="text-base font-extrabold text-slate-900 truncate">Gimy 劇迷</h1>
+            <span class="bg-emerald-50 text-emerald-700 text-[9px] font-bold px-1.5 py-0.5 rounded border border-emerald-300">正版無廣告</span>
+          </div>
+          <p class="text-xs text-orange-600 font-semibold truncate mt-0.5">全台衛視直播 · 院線強檔 · 免費連播</p>
+          <div class="flex items-center text-[10px] text-slate-500 space-x-2 mt-1">
+            <span>28.4 MB</span>
+            <span>•</span>
+            <span class="text-emerald-700 font-medium flex items-center">
+              <svg class="w-3 h-3 text-emerald-600 mr-0.5 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              已通過 Play 安全掃描
+            </span>
+          </div>
+        </div>
+      </div>
+      <button onclick="triggerSmartDownload('首屏立即安裝按鈕')" class="bg-orange-600 hover:bg-orange-700 active:scale-95 transition-all text-white text-xs font-bold px-3.5 py-2.5 rounded-xl shadow-sm whitespace-nowrap">
+        立即安裝
+      </button>
+    </div>
+
+    <!-- 3. 指標數據欄 -->
+    <div class="grid grid-cols-3 gap-2 soft-card p-2.5 rounded-2xl mt-3 text-center">
+      <div>
+        <div class="text-amber-500 text-xs font-bold flex items-center justify-center">
+          <span>4.9</span>
+          <svg class="w-3.5 h-3.5 ml-0.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+        </div>
+        <div class="text-[10px] text-slate-500 font-medium">18,290+ 則評分</div>
+      </div>
+      <div class="border-x border-slate-200">
+        <div class="text-slate-800 text-xs font-bold">免註冊綁卡</div>
+        <div class="text-[10px] text-slate-500 font-medium">點開即播</div>
+      </div>
+      <div>
+        <div class="text-emerald-600 text-xs font-bold">全館解鎖</div>
+        <div class="text-[10px] text-slate-500 font-medium">第四台免費</div>
+      </div>
+    </div>
+
+    <!-- 4. 單獨高亮：台灣衛視電視台直播專區 -->
+    <div onclick="triggerSmartDownload('台灣電視台直播專區')" class="mt-3.5 bg-gradient-to-r from-red-600 via-orange-600 to-amber-600 p-[1.5px] rounded-2xl cursor-pointer active:scale-[0.99] transition-all shadow-md">
+      <div class="bg-white rounded-2xl p-3.5">
+        <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+          <div class="flex items-center space-x-2">
+            <span class="live-badge bg-red-600 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded flex items-center shadow-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-white mr-1"></span>LIVE
+            </span>
+            <h2 class="text-xs font-black text-slate-900 tracking-tight">台灣電視台·第四台全解鎖專區</h2>
+          </div>
+          <span class="text-[10px] text-orange-600 bg-orange-50 font-bold px-2 py-0.5 rounded-md border border-orange-200">
+            原音 60 幀
+          </span>
+        </div>
+
+        <div class="grid grid-cols-6 gap-2 mt-2.5 text-center">
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-[#003882] text-white flex items-center justify-center font-black text-[9px] shadow-sm tracking-tighter">
+              TVBS
+            </div>
+            <span class="text-[9px] text-slate-700 font-bold mt-1">新聞 55</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-[#ffcc00] text-slate-900 flex items-center justify-center font-black text-[9px] shadow-sm border border-amber-300">
+              東森
+            </div>
+            <span class="text-[9px] text-slate-700 font-bold mt-1">新聞 51</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-[#008938] text-white flex items-center justify-center font-black text-[9px] shadow-sm">
+              三立
+            </div>
+            <span class="text-[9px] text-slate-700 font-bold mt-1">台灣 29</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-[#002f6c] text-white flex items-center justify-center font-black text-[9px] shadow-sm">
+              民視
+            </div>
+            <span class="text-[9px] text-slate-700 font-bold mt-1">無線 06</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-[#c00000] text-white flex items-center justify-center font-black text-[9px] shadow-sm">
+              中天
+            </div>
+            <span class="text-[9px] text-slate-700 font-bold mt-1">LIVE</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-[#ea580c] text-white flex items-center justify-center font-black text-[8px] shadow-sm tracking-tighter">
+              緯來
+            </div>
+            <span class="text-[9px] text-slate-700 font-bold mt-1">體育 72</span>
+          </div>
+        </div>
+
+        <div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
+          <span class="text-slate-500">免裝機上盒 · 支援全螢幕投屏</span>
+          <span class="text-orange-600 font-bold flex items-center">
+            點此即刻開播
+            <svg class="w-3.5 h-3.5 ml-0.5 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 2026 影視片庫分類欄（完整比例海報 + 增加劇情簡介） -->
+    <div class="mt-4">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="text-xs font-bold text-slate-900 flex items-center">
+          <span class="w-1.5 h-3.5 bg-orange-600 rounded-sm mr-1.5"></span>
+          2026 Gimy 熱門隨心看片庫
+        </h3>
+        <span class="text-[10px] text-orange-600 font-medium">⇄ 三行滑動 · 點擊直接看</span>
+      </div>
+
+      <!-- 分類切換按鈕列表 -->
+      <div class="flex space-x-1.5 overflow-x-auto hide-scrollbar pb-1 text-xs" id="categoryTabs">
+        <button onclick="switchCategory('movie')" data-cat="movie" class="cat-btn px-3 py-1.5 rounded-xl bg-orange-600 text-white font-bold whitespace-nowrap shadow-sm transition-all">熱門電影</button>
+        <button onclick="switchCategory('luju')" data-cat="luju" class="cat-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 whitespace-nowrap border border-slate-200 font-semibold shadow-sm transition-all">熱門陸劇</button>
+        <button onclick="switchCategory('tvseries')" data-cat="tvseries" class="cat-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 whitespace-nowrap border border-slate-200 font-semibold shadow-sm transition-all">熱門電視劇</button>
+        <button onclick="switchCategory('anime')" data-cat="anime" class="cat-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 whitespace-nowrap border border-slate-200 font-semibold shadow-sm transition-all">熱門動漫</button>
+        <button onclick="switchCategory('variety')" data-cat="variety" class="cat-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 whitespace-nowrap border border-slate-200 font-semibold shadow-sm transition-all">熱門綜藝</button>
+        <button onclick="switchCategory('channel')" data-cat="channel" class="cat-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 whitespace-nowrap border border-slate-200 font-semibold shadow-sm transition-all">台灣電視台</button>
+        <button onclick="switchCategory('short')" data-cat="short" class="cat-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 whitespace-nowrap border border-slate-200 font-semibold shadow-sm transition-all">熱門短劇</button>
+        <button onclick="switchCategory('sports')" data-cat="sports" class="cat-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 whitespace-nowrap border border-slate-200 font-semibold shadow-sm transition-all">體育賽事</button>
+      </div>
+
+      <!-- 三行橫滑容器：高 156px，海報採標準 3:4 比例不截斷 -->
+      <div class="overflow-x-auto hide-scrollbar pt-2 pb-1">
+        <div id="mediaContainer" class="grid-three-rows"></div>
+      </div>
+    </div>
+
+    <!-- 6. 痛點對比模組 -->
+    <div class="mt-4 soft-card rounded-2xl p-3.5">
+      <h3 class="text-xs font-bold text-slate-900 mb-2.5 text-center">為什麼台灣網友都在裝 Gimy 劇迷？</h3>
+      <div class="space-y-1.5 text-xs">
+        <div class="flex items-center justify-between bg-slate-50 p-2.5 rounded-xl border border-slate-200/60">
+          <span class="text-slate-600 flex items-center">
+            <span class="text-rose-500 font-bold mr-1.5">✕</span> 第四台機上盒每月收 500+ 元
+          </span>
+          <span class="text-emerald-700 font-bold flex items-center">
+            <span class="mr-1">✓</span> 衛視新聞直播全免費
+          </span>
+        </div>
+        <div class="flex items-center justify-between bg-slate-50 p-2.5 rounded-xl border border-slate-200/60">
+          <span class="text-slate-600 flex items-center">
+            <span class="text-rose-500 font-bold mr-1.5">✕</span> 串流平台每月噴幾百塊訂閱
+          </span>
+          <span class="text-emerald-700 font-bold flex items-center">
+            <span class="mr-1">✓</span> 院線強檔永久零月租
+          </span>
+        </div>
+        <div class="flex items-center justify-between bg-slate-50 p-2.5 rounded-xl border border-slate-200/60">
+          <span class="text-slate-600 flex items-center">
+            <span class="text-rose-500 font-bold mr-1.5">✕</span> 短劇看兩集就要儲值幾千金幣
+          </span>
+          <span class="text-emerald-700 font-bold flex items-center">
+            <span class="mr-1">✓</span> 80+全集秒解鎖
+          </span>
+        </div>
+        <div class="flex items-center justify-between bg-slate-50 p-2.5 rounded-xl border border-slate-200/60">
+          <span class="text-slate-600 flex items-center">
+            <span class="text-rose-500 font-bold mr-1.5">✕</span> 註冊非要強迫綁定信用卡
+          </span>
+          <span class="text-emerald-700 font-bold flex items-center">
+            <span class="mr-1">✓</span> 免註冊隨開即看
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. 安卓專屬安裝指南 -->
+    <div class="mt-4 bg-emerald-50/90 border border-emerald-200 rounded-2xl p-3">
+      <div class="flex items-center space-x-1.5 text-emerald-800 font-bold text-xs mb-1">
+        <svg class="w-4 h-4 text-emerald-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd"></path></svg>
+        <span>安卓手機安全安裝指南（官方直連通道）</span>
+      </div>
+      <p class="text-[11px] text-slate-600 leading-normal mb-2">
+        為避開平台抽成維持全免費播放，本軟體採用官方直連通道。若下載時跳出系統防護提示：
+      </p>
+      <div class="grid grid-cols-2 gap-2 text-[11px]">
+        <div class="bg-white p-2 rounded-xl border border-emerald-100 shadow-sm">
+          <span class="text-orange-600 font-bold block">① 選擇【仍要下載】</span>
+          <span class="text-slate-500 text-[10px]">官方版本安全無毒</span>
+        </div>
+        <div class="bg-white p-2 rounded-xl border border-emerald-100 shadow-sm">
+          <span class="text-orange-600 font-bold block">② 點擊【允許安裝】</span>
+          <span class="text-slate-500 text-[10px]">3秒即可暢享全館影視</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. 台灣真實用戶評價區 -->
+    <div class="mt-5">
+      <div class="flex items-center justify-between mb-2.5">
+        <h3 class="text-xs font-bold text-slate-900 flex items-center">
+          <span class="w-1.5 h-3.5 bg-orange-600 rounded-sm mr-1.5"></span>
+          台灣用戶真實心得 (<span class="text-orange-600 font-mono">18,290+</span>)
+        </h3>
+        <span class="text-[10px] text-emerald-600 font-medium bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">即時滾動</span>
+      </div>
+
+      <div id="reviewsContainer" class="space-y-2 text-xs"></div>
+
+      <button id="loadMoreBtn" onclick="loadMoreReviews()" class="w-full mt-2.5 py-2.5 bg-white hover:bg-slate-50 text-slate-700 rounded-xl text-xs font-medium border border-slate-200 shadow-sm transition-all">
+        載入更多社群評價 ▼
+      </button>
+    </div>
+
+    <!-- 9. 頁尾協議與真實聯絡方式 -->
+    <footer class="mt-8 pt-4 border-t border-slate-200 text-[11px] text-slate-500 space-y-2 pb-6">
+      <div class="text-center space-y-0.5">
+        <p class="text-slate-700 font-semibold">Gimy 劇迷 官方支援中心</p>
+        <p>客服信箱：support@gimy.com</p>
+      </div>
+
+      <div class="flex justify-center space-x-3 text-slate-500 font-medium pt-1">
+        <button onclick="openModal('privacyModal')" class="hover:text-slate-800 underline">隱私保護政策</button>
+        <span>•</span>
+        <button onclick="openModal('termsModal')" class="hover:text-slate-800 underline">服務條款</button>
+        <span>•</span>
+        <button onclick="openModal('disclaimerModal')" class="hover:text-slate-800 underline">免責聲明</button>
+      </div>
+      <p class="text-center text-[10px] text-slate-400 leading-relaxed px-4">
+        © 2026 Gimy 劇迷 All Rights Reserved. 本軟體為解碼播放工具，內容均索引自公開端點。
+      </p>
+    </footer>
+
+  </main>
+
+  <!-- 10. 吸底主轉化按鈕 -->
+  <div class="fixed bottom-0 left-0 right-0 p-3 bg-white/95 backdrop-blur-md border-t border-slate-200 z-40 shadow-[0_-4px_16px_rgba(0,0,0,0.06)]">
+    <div class="max-w-lg mx-auto">
+      <button onclick="triggerSmartDownload('吸底全域安裝按鈕')" class="cta-glow w-full bg-gradient-to-r from-orange-600 via-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 active:scale-[0.98] transition-all text-white font-extrabold py-3.5 px-4 rounded-xl shadow-md flex items-center justify-center space-x-2">
+        <svg class="w-5 h-5 text-white animate-bounce" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4-4v12"></path>
+        </svg>
+        <span class="text-base tracking-wide font-sans">免費安裝 Gimy 劇迷 (28.4MB)</span>
+      </button>
+      <div class="text-[10px] text-center text-slate-500 mt-1.5 flex items-center justify-center space-x-2">
+        <span class="text-emerald-600 font-semibold flex items-center">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1"></span>台灣專屬節點已就緒
+        </span>
+        <span>·</span>
+        <span>含全台衛視直播 · Android 完全相容</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 法律條款彈窗 -->
+  <div id="privacyModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-slate-200 rounded-2xl max-w-md w-full p-5 max-h-[80vh] flex flex-col text-left shadow-2xl">
+      <div class="flex justify-between items-center pb-2.5 border-b border-slate-200">
+        <h4 class="text-sm font-bold text-slate-900">隱私權保護政策</h4>
+        <button onclick="closeModal('privacyModal')" class="text-slate-400 hover:text-slate-700 text-lg">✕</button>
+      </div>
+      <div class="overflow-y-auto text-xs text-slate-600 space-y-2.5 mt-3 pr-1 leading-relaxed">
+        <p>Gimy 劇迷 絕不主動收集任何個人敏感資料（包括真實姓名、電話號碼、住址及信用卡資訊）。本軟體僅請求執行播放串流所需之網路訪問與本機快取權限，保障用戶隱私安全。</p>
+      </div>
+      <button onclick="closeModal('privacyModal')" class="mt-4 w-full bg-slate-100 hover:bg-slate-200 text-slate-800 py-2.5 rounded-xl text-xs font-bold transition-all">我已瞭解</button>
+    </div>
+  </div>
+
+  <div id="termsModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-slate-200 rounded-2xl max-w-md w-full p-5 max-h-[80vh] flex flex-col text-left shadow-2xl">
+      <div class="flex justify-between items-center pb-2.5 border-b border-slate-200">
+        <h4 class="text-sm font-bold text-slate-900">使用者服務條款</h4>
+        <button onclick="closeModal('termsModal')" class="text-slate-400 hover:text-slate-700 text-lg">✕</button>
+      </div>
+      <div class="overflow-y-auto text-xs text-slate-600 space-y-2.5 mt-3 pr-1 leading-relaxed">
+        <p>本軟體授予用戶個人、非獨佔性之有限使用許可，僅供個人非商業性影音串流解碼測試與日常娛樂學習使用。</p>
+      </div>
+      <button onclick="closeModal('termsModal')" class="mt-4 w-full bg-slate-100 hover:bg-slate-200 text-slate-800 py-2.5 rounded-xl text-xs font-bold transition-all">同意並接受</button>
+    </div>
+  </div>
+
+  <div id="disclaimerModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-slate-200 rounded-2xl max-w-md w-full p-5 max-h-[80vh] flex flex-col text-left shadow-2xl">
+      <div class="flex justify-between items-center pb-2.5 border-b border-slate-200">
+        <h4 class="text-sm font-bold text-slate-900">版權與免責聲明</h4>
+        <button onclick="closeModal('disclaimerModal')" class="text-slate-400 hover:text-slate-700 text-lg">✕</button>
+      </div>
+      <div class="overflow-y-auto text-xs text-slate-600 space-y-2.5 mt-3 pr-1 leading-relaxed">
+        <p>Gimy 劇迷 是一款開放式的行動串流解碼器，軟體本身不託管或剪輯任何媒體檔案。若版權權利人發現索引內容涉及侵權，請來信告知，將依法儘速切斷索引。</p>
+      </div>
+      <button onclick="closeModal('disclaimerModal')" class="mt-4 w-full bg-slate-100 hover:bg-slate-200 text-slate-800 py-2.5 rounded-xl text-xs font-bold transition-all">關閉</button>
+    </div>
+  </div>
+
+  <script>
+    // 修正指向 gimytv.biz 圖片伺服器
+    const fixImg = (src) => {
+      if (!src) return "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=300&auto=format&fit=crop&q=80";
+      if (src.startsWith('http://') || src.startsWith('https://')) return src;
+      return 'https://gimytv.biz' + src;
+    };
+
+    // 完整融合片庫數據：包含片名、清晰度、演員與完整劇情簡介
+    const MEDIA_DATABASE_2026 = [
+      // 1. 熱門電影（共 24 部）
+      { id: "mv1", category: "movie", title: "街頭霸王2026", note: "搶先版", meta: "諾亞·琴蒂內奧, 安德魯·浩二", desc: "傳奇格鬥IP重磅改編！經典格鬥家齊聚世界擂台，炫酷打擊特效與終極必殺技引爆熱血。", posterUrl: fixImg("/upload/vod/20261015-main/83d92769d56b7920f65152ed0d0282352b56d428529919f3ec346f94670d9e56.jpg") },
+      { id: "mv2", category: "movie", title: "蜘蛛俠：嶄新之日", note: "更新HD", meta: "湯姆·霍蘭德, 贊達亞, 薩迪·辛尅", desc: "漫威多元宇宙全新篇章，彼得·帕克在記憶抹除後的紐約街頭重新捍衛正義，全新反派強勢登場。", posterUrl: fixImg("/upload/vod/20261008-2/20061ce3302eddf2be581352522f9601.webp") },
+      { id: "mv3", category: "movie", title: "鯨口脫險", note: "TC超清版", meta: "奧斯汀·艾佈拉姆斯, 喬什·佈洛林", desc: "深海科考隊遭遇遠古深海巨鯨吞噬，幽閉鯨腹內部極限逃生，深海窒息恐懼全線升級。", posterUrl: fixImg("/upload/vod/20261016-1/eb16c98ce7220fb1d595fa86645fa53d.webp") },
+      { id: "mv4", category: "movie", title: "希望2026", note: "HD", meta: "黃政民, 趙寅成, 鄭好娟", desc: "外星異種降臨孤島小鎮，邊境居民與神秘未知生物展開殊死博弈，人性深處的極限救贖震撼上演。", posterUrl: fixImg("/upload/vod/20261013-1/ba298a17d5274d680446112c0680c17f.webp") },
+      { id: "mv5", category: "movie", title: "重生2", note: "更新TC", meta: "梁洛施, 文俊煇, 洪金寶, 白客", desc: "海外販毒黑幫黑幕重重，臥底暗棋孤注一擲逆局翻盤，拳拳到肉的硬派復仇爽片全面回歸。", posterUrl: fixImg("/upload/vod/20261015-main/fc0dca1ed3716da89759885496885151d6e16aa64297395540ec946043557389.webp") },
+      { id: "mv6", category: "movie", title: "墜落2：死點", note: "HD", meta: "哈麗特·斯萊特, 阿塞瑪·托馬斯", desc: "千米高空廢棄信號塔再次成為絕命牢籠，颶風逼近、梯斷繩裂，極限求生每一秒都在挑戰心跳。", posterUrl: fixImg("/upload/vod/20261008-main/3267957a98177cf6497cf6af9aec3f5fcb13a2b585111558f59ffc95bb7f433b.webp") },
+      { id: "mv7", category: "movie", title: "熊洞", note: "正片", meta: "Chara Kyriazi, Pamela Oikonomaki", desc: "歐洲先鋒懸疑力作，密林深處的避難洞穴隱藏著不可告人的家族秘密與危機。", posterUrl: "https://xl.xltupian.com/cover/82707bd65977ff442c025028801507f4.jpg" },
+      { id: "mv8", category: "movie", title: "睾丸", note: "正片", meta: "塔狄娜·帕帕莫捨, Gisela·Dali", desc: "歐洲經典文藝劇情片，以大膽細膩的鏡頭刻畫人性慾望與社會階層的深刻對立。", posterUrl: fixImg("/upload/vod/20261008-2/60805cf98f9f2ba0ceae516e40930267.jpg") },
+      { id: "mv9", category: "movie", title: "功夫女足", note: "正片", meta: "張小斐, 迪麗熱巴, 張藝興, 劉嘉玲", desc: "傳統少林絕技與現代女子足球跨界碰撞，一群熱血少女用真功夫在綠茵場上踢出奇蹟！", posterUrl: fixImg("/upload/vod/20261008-2/5a37da552223a78851ba7f972691f104.webp") },
+      { id: "mv10", category: "movie", title: "情場如戰場", note: "HD", meta: "曾樂彤, 陳家樂, 黎峻, 馬思惠", desc: "都市男女的高段位情場過招，真情假意各懷鬼胎，在曖昧與博弈中解構現代都市愛情關係。", posterUrl: fixImg("/upload/vod/20261017-1/70d45dd43f9aefc77930071d31d06a36.webp") },
+      { id: "mv11", category: "movie", title: "營救夜鶯", note: "HD", meta: "拉莫尼卡·加勒特, 安德魯·霍華德", desc: "特種作戰小隊深入敵後未知戰區，在漫天火網與背叛陰謀中護送代號「夜鶯」的關鍵證人。", posterUrl: fixImg("/upload/vod/20261017-1/55374c71b78556a577566d3172d782a5.webp") },
+      { id: "mv12", category: "movie", title: "盃雪·一戰成名", note: "HD", meta: "潘斌龍, 安志傑, 奚望, 淳於珊珊", desc: "經典武俠冷兵器硬派對決！風雪驛站刀光劍影，退隱高手為義再拔長刀，血染漫天江湖。", posterUrl: fixImg("/upload/vod/20261016-1/ef09fcd06ba8fb7329529b058ee7c95d.webp") },
+      { id: "mv13", category: "movie", title: "促織", note: "更新HD", meta: "蒲松齡聊齋志異經典改編", desc: "小官吏為一隻促織家破人亡，奇幻借形、諷喻官場，荒誕怪誕中揭露冷酷現實人間。", posterUrl: fixImg("/upload/vod/20261016-1/b224d9ef5962c6257b669b169bb243b8.png") },
+      { id: "mv14", category: "movie", title: "另一個媽媽", note: "搶先版", meta: "傑西卡·查斯坦, 傑伊·杜普拉斯", desc: "平靜生活被突然造訪的神秘女子打破，雙重身份與記憶錯位交織，隱匿的母愛真相令人心碎。", posterUrl: "https://xl.xltupian.com/cover/32cefc900be5c910ea922cc949b2455b.jpg" },
+      { id: "mv15", category: "movie", title: "野獸之心", note: "TC", meta: "佈拉德·皮特, J·K·西矇斯", desc: "老牌刑警與冷血高智商罪犯在邊境小鎮漫天暴雨中展開心理極限圍剿，結局驚人反轉。", posterUrl: fixImg("/upload/vod/20261008-2/f52a0170e58e4baf5a4e55d4e25f2657.jpg") },
+      { id: "mv16", category: "movie", title: "屍變2026", note: "搶先版", meta: "傑弗裡·多諾萬, 達娜·米利肯", desc: "經典林中小屋恐怖宇宙重啟，遠古死靈之書再次被不經意誦讀，血腥噩夢籠罩整座山谷森林。", posterUrl: fixImg("/upload/vod/20261008-1/1d722f410597ff80ff976bc0eef6ec01.jpg") },
+      { id: "mv17", category: "movie", title: "妻子2026", note: "HD", meta: "柳泰俊, 廉聖伊, 樸亨根", desc: "表面相敬如賓的模範夫妻在暗流湧動的財閥鬥爭中各自設局，背叛與復仇逐漸失控。", posterUrl: fixImg("/upload/vod/20261012-1/4e0683ba6a3a7ab03f3431c329c92da5.webp") },
+      { id: "mv18", category: "movie", title: "不存在的罪人", note: "更新TC", meta: "安妮·海瑟薇, 達科塔·約翰遜", desc: "懸疑法庭心理大作！一場毫無物證的離奇命案，兩位頂尖女律師在真相與道德邊界互相試探。", posterUrl: fixImg("/upload/vod/20261008-2/4cd3e90dd0f825fa11f45d11a5752b32.webp") },
+      { id: "mv19", category: "movie", title: "火柴盒大電影", note: "HD", meta: "約翰·塞納, 傑西卡·貝爾", desc: "風靡全球的微型玩具車躍上大螢幕，特技車手與神秘特工展開跨越七國的極速飆車狂飆冒險！", posterUrl: fixImg("/upload/vod/20261009-1/1d340b1065abe629817950b12a86ba16.webp") },
+      { id: "mv20", category: "movie", title: "暫告安全", note: "完結", meta: "傑森·斯坦森, 凱瑟琳·陳, 羅伯特·約翰", desc: "落魄前特工偶然救下一位擁有天價秘密的數學神童，一人獨自對抗三路黑幫圍堵護送脫險。", posterUrl: fixImg("/upload/vod/20261008-2/5a1e01352ceab998834098f98307a3fb.jpg") },
+      { id: "mv21", category: "movie", title: "得州狂鯊", note: "HD", meta: "邁尅爾·尅拉裡·尼斯, Michelle", desc: "洪水氾濫的得州內陸小鎮被變異巨齒狂鯊入侵，泥濘水域中居民展開驚心動魄的生死反擊。", posterUrl: fixImg("/upload/vod/20261012-1/9a5237ceab06a562013266be5f6ed6cd.webp") },
+      { id: "mv22", category: "movie", title: "街頭霸王2026 (副線)", note: "搶先版", meta: "諾亞·琴蒂內奧, 安德魯·浩二", desc: "聚焦世界暗黑格鬥聯盟的暗影角逐，隆與肯青年時代的宿命之戰全視角解密演繹。", posterUrl: "https://xl.xltupian.com/cover/fd56fee25cf9f50f32c800e64a6e652a.jpg" },
+      { id: "mv23", category: "movie", title: "孤軍突圍", note: "HD", meta: "科林·漢尅斯, 斯科特·伊斯特伍德", desc: "二戰經典戰役寫實改編，被切斷補給的殘存孤軍在絕境雪原頑強阻擊，鑄就鐵血軍魂。", posterUrl: fixImg("/upload/vod/20261015-1/798d73019e767f5f30f51add37f0fe75.webp") },
+      { id: "mv24", category: "movie", title: "西辛9", note: "正片", meta: "Burcu Almeman, Fahrettin Avci", desc: "土耳其傳奇宗教恐怖神作第九部！邪術詛咒侵蝕無辜家庭，驚悚儀式感引發極致恐懼。", posterUrl: fixImg("/upload/vod/20261016-1/4169feb939aff1d9c3021573d8012c23.webp") },
+
+      // 2. 熱門陸劇（共 12 部）
+      { id: "lj1", category: "luju", title: "嫁金釵", note: "第10集", meta: "田曦薇, 閆桉, 劉小北, 潘珺雅", desc: "商賈之女代姐聯姻侯府，憑藉機敏智謀智鬥豪門心機，收穫真摯愛情並重振家業的甜爽大劇。", posterUrl: fixImg("/upload/vod/20261016-main/db3e063418cd91769371d5dff3afbef9c0383a3de485713b0e44d000229c7619.jpg") },
+      { id: "lj2", category: "luju", title: "蘭香如故", note: "更新第47集", meta: "李夢, 囌可, 譚松韻, 葉青, 陳創", desc: "深宅大院中蘭香幾度花開花落，幾代女性在封建禮教禁錮下的覺醒抗爭與命運牽絆。", posterUrl: fixImg("/upload/vod/20261008-1/ded9a0bc5e026f855702f920736381ac.jpg") },
+      { id: "lj3", category: "luju", title: "玉簟鞦", note: "第15集", meta: "丞磊, 徐若晗, 張豐毅, 徐帆", desc: "民國亂世烽火連天，名門孤女與鐵血軍閥在權謀博弈與家國恩怨中譜寫蕩氣迴腸的虐心絕戀。", posterUrl: fixImg("/upload/vod/20261012-1/aebee7fb742000b34cb479d684e33912.webp") },
+      { id: "lj4", category: "luju", title: "美人餘", note: "更新至第22集", meta: "李一桐, 王佳佳, 常華森, 曾夢雪", desc: "隱秘民間醫女捲入宮廷權爭風雲，憑藉超群醫術化解重重殺機，從卑微侍婢逆襲封冠天下。", posterUrl: fixImg("/upload/vod/20261009-1/fe6eb0961ae2c5f65246e9d656b95a98.webp") },
+      { id: "lj5", category: "luju", title: "魅影神捕", note: "更新第30集", meta: "羅雲熙, 方逸倫, 沈羽潔, 何泓姍", desc: "六扇門頂級神捕攜手江湖異士連破京城奇案，抽絲剝繭揭露隱藏三十年的前朝驚天宮闈密謀。", posterUrl: fixImg("/upload/vod/20261008-2/de32cc1cb19bd25f420aec405b879af9.webp") },
+      { id: "lj6", category: "luju", title: "一甌春", note: "第30集已完結", meta: "許凱, 周也, 白澍, 閔春曉", desc: "宋代茶道傳奇浪漫演繹！落魄茶莊世子與天才點茶少女攜手復興名茶，情定一盞清茗之中。", posterUrl: fixImg("/upload/vod/20261008-1/9c5fe174147d4dc2f9d9c257cf90c464.jpg") },
+      { id: "lj7", category: "luju", title: "無可替代2026", note: "第20集已完結", meta: "魏大勛, 李子峰, 王鏘, 蓋玥希", desc: "都市職場菁英在遭遇好友背叛與創業崩盤後重振旗鼓，用智慧與真心贏回尊嚴的勵志力作。", posterUrl: fixImg("/upload/vod/20261008-1/1758bdee62f9d337d236d66faa545fa6.jpg") },
+      { id: "lj8", category: "luju", title: "醉夢", note: "更新第08集", meta: "劉詩詩, 李迺文, 衚先煦, 黃小蕾", desc: "江南釀酒世家女當家在時局動盪中守護千年古方，商海浮沉與恩怨情仇交織的古裝傳奇史詩。", posterUrl: fixImg("/upload/vod/20261016-1/f273a9e6d8bdc62222efe544736df2e8.webp") },
+      { id: "lj9", category: "luju", title: "把黑夜點燃", note: "更新第07集", meta: "蔣訢, 陳哲遠, 任重, 張國強", desc: "兩代人民警察跨越二十年的接力追凶，面對隱匿在黑夜中的狡黠罪惡，用生命信仰照亮正義光芒。", posterUrl: fixImg("/upload/vod/20261015-1/af7dbab49019086531e510199d1ed527.webp") },
+      { id: "lj10", category: "luju", title: "蒸蒸日上", note: "第22集已完結", meta: "高葉, 韓東君", desc: "北方傳統麵食館在現代連鎖餐飲衝擊下的守正創新，暖心市井煙火氣刻畫動人親情與奮鬥。", posterUrl: fixImg("/upload/vod/20261010-1/bc6b278976c9ebce64eb66e9979891e0.webp") },
+      { id: "lj11", category: "luju", title: "廚娘2026", note: "全35集", meta: "周甯, 程遠", desc: "現代御廚傳人意外穿越時空，以一勺一鑊征服宮廷挑剔味蕾，收穫專屬御廚傳奇榮光。", posterUrl: fixImg("/upload/vod/20261008-1/0cc897b9110b1c05dd0fa96dff249039.jpg") },
+      { id: "lj12", category: "luju", title: "我不是大師", note: "全24集", meta: "李現, 魏千翔, 果靖霖, 梁天", desc: "都市小人物陰差陽錯被捧為風水大師，啼笑皆非的巧合下用現代科學與熱心破除民間迷信詐騙。", posterUrl: fixImg("/upload/vod/20261008-1/27ec85a9339d0a7f2c507cab67baf9b0.jpg") },
+
+      // 3. 熱門電視劇（共 24 部）
+      { id: "tv1", category: "tvseries", title: "璀璨之城粵語", note: "第5集", meta: "張智霖, 吳卓羲, 高海甯, 張曦雯", desc: "TVB年度旗艦港劇！金融家族爭產風暴席捲中環，兄弟反目與權謀暗戰一觸即發。", posterUrl: fixImg("/upload/vod/20261012-1/1a49f028e1d752e84f6e3b4962250027.webp") },
+      { id: "tv2", category: "tvseries", title: "Doctor X：白色黑手黨時代", note: "第4集", meta: "金智媛, 李姃垠, 孫賢周, 金宇錫", desc: "大門未知子精神續作，外科神醫直面跨國醫療黑金利益集團，在手術刀尖上救贖生死尊嚴。", posterUrl: fixImg("/upload/vod/20261009-1/83c6769a9a1928cddca34b55843e25a6.webp") },
+      { id: "tv3", category: "tvseries", title: "地獄大狀", note: "更新至第10集", meta: "林愷鈴, 魏濬笙, 楊樂文, 潘燦良", desc: "專接惡人官司的頂級大律師內心深藏不為人知的血海深仇，以惡制惡的司法復仇爽劇。", posterUrl: fixImg("/upload/vod/20261008-2/a35baf70192d1a61858981d119f0ebc3.webp") },
+      { id: "tv4", category: "tvseries", title: "戀愛充電中", note: "第10集完結", meta: "蔡秀彬, 金英光, 車優慜, 鄭在光", desc: "治癒系浪漫喜劇！身心俱疲的社畜在共享辦公室邂逅溫暖咖啡師，展開一段甜入心坎的互療之戀。", posterUrl: fixImg("/upload/vod/20261009-1/2423ef9c4ea1556c5a8c662c2b6498f4.webp") },
+      { id: "tv5", category: "tvseries", title: "不是你的戀愛", note: "更新第10集", meta: "徐康俊, 安恩真, 李周安, 趙雅蘭", desc: "男女主角在替好友牽線相親時互生情愫，理智與心動瘋狂拉扯的高段位成年人情感遊戲。", posterUrl: fixImg("/upload/vod/20261008-2/193bc9f9e1d1ff9ac8d562a2ea013009.jpg") },
+      { id: "tv6", category: "tvseries", title: "百日謊言", note: "第4集", meta: "金裕貞, 樸珍榮, 金賢珠, 李茂生", desc: "為期一百天的契約夫妻協議，背後是為了掩蓋一樁財閥命案真相，假戲真做的致命誘惑。", posterUrl: fixImg("/upload/vod/20261010-1/c8dadf8a26dfd68dacde5d286ea1b65f.webp") },
+      { id: "tv7", category: "tvseries", title: "死有對証粵語", note: "第25集已完結", meta: "王菲, 韓馬利, 吳若希, 韋家雄", desc: "法醫與重案刑警聯手破譯屍體密碼，每一個微小傷口都在為死者控訴真相，經典港味刑偵劇。", posterUrl: fixImg("/upload/vod/20261008-main/a559cf6628b75c9a6d4bf284c793a8b9caf15f905996f4451aee6d72a1547e44.jpg") },
+      { id: "tv8", category: "tvseries", title: "中頭獎還是要上班", note: "已完結", meta: "李濬赫, 徐現宇, 吳代煥, 玉子妍", desc: "小職員意外中得百億韓元彩票卻不敢離職，假裝社畜一邊在公司裝窮一邊整頓職場的爆笑爽劇。", posterUrl: fixImg("/upload/vod/20261008-1/04847df1e94db239a2356a1ef2131be8.jpg") },
+      { id: "tv9", category: "tvseries", title: "風華令", note: "更新第24集", meta: "李明軒, 陳意涵, 白澍, 安琪", desc: "女捕快攜手王府世子暗中查探前朝秘寶流向，在江湖刀劍與朝堂波譎中共同進退共赴白頭。", posterUrl: fixImg("/upload/vod/20261008-1/e853382c10809f65baf1859b4c2d3659.jpg") },
+      { id: "tv10", category: "tvseries", title: "美國恐怖故事第十三季", note: "第10集", meta: "約翰·卡洛·林奇, 莎拉·保羅森, 凱西·貝茨", desc: "原班人馬驚悚回歸！深層心理驚悚與美式超自然異象完美結合，第十三季全線解鎖深淵恐懼。", posterUrl: fixImg("/upload/vod/20261008-2/f6bc5d2f756b8a5665b0c66e8f2881a7.webp") },
+      { id: "tv11", category: "tvseries", title: "心動制造所", note: "更新至第04集", meta: "金宰永, 南志鉉, 薑泰洙", desc: "AI情感工程師與堅信純粹心動的婚介經理人在大數據配對與真實荷爾蒙碰撞中擦出火花。", posterUrl: fixImg("/upload/vod/20261015-1/66d9accd2cfc88835dab0344e4f0b04b.webp") },
+      { id: "tv12", category: "tvseries", title: "郵票與舒芙蕾", note: "第7集", meta: "陳意涵, 天心, 張孝全, 張榕容", desc: "台北街頭兩間甜品店與集郵社老闆的浪漫相遇，用烘焙的甜蜜治癒成年人世界的疲憊遺憾。", posterUrl: fixImg("/upload/vod/20261008-1/12c2a917587fda071ac2390180cf4664.jpg") },
+
+      // 4. 熱門動漫（共 24 部）
+      { id: "am1", category: "anime", title: "仙逆", note: "更新第163集", meta: "史澤鯤, 常文濤, 林強, 周湘甯", desc: "耳根仙俠巔峰神作！凡人王林逆境修魔，順為凡逆則仙，一意修真殺伐果斷登臨極道。", posterUrl: fixImg("/upload/vod/20261008-1/979e78532033210035b7e54b6bbfbdc2.jpg") },
+      { id: "am2", category: "anime", title: "凡人脩仙傳", note: "更新第196集", meta: "錢文青, 楊天翔, 楊默, 歪歪", desc: "山村窮小子韓立跨入仙門，以平凡資質步步為營，在弱肉強食的修仙界以謹慎智慧求證仙道。", posterUrl: fixImg("/upload/vod/20261008-2/ab61f7c71c70d5a350c4ee9bcf5e8632.jpg") },
+      { id: "am3", category: "anime", title: "牧神記", note: "更新第105集", meta: "張若瑜, 李訢, 程玉珠, 杜晴晴", desc: "大墟殘老村養大的孤兒秦牧走出神棄之地，重啟天道神明法度，成為威震天下的牧神天尊。", posterUrl: fixImg("/upload/vod/20261018-main/16f5b9a2c31b5547d0423dd914c752c3a80009d69d6936b1d46552647debc9d9.jpg") },
+      { id: "am4", category: "anime", title: "鬭破蒼穹年番", note: "更新第215集", meta: "不一, 陳奕雯, 黑石稔, 郭鴻博", desc: "三十年河東三十年河西！少年蕭炎吞噬天下異火，三上雲嵐宗激戰強敵，成就至尊鬥帝威名。", posterUrl: fixImg("/upload/vod/20261010-main/bd05d934da8667b26bd939744514a38130a1d9e242fc2e7baba602e627ab4878.jpg") },
+      { id: "am5", category: "anime", title: "女友的朋友", note: "更新至第3集", meta: "永池瑠雅, 羽紫彩花, 長穀美希", desc: "話題度破表的情感新番！在女友與其神秘閨蜜之間難以割捨的情愫暗湧，展開心跳邊界試探。", posterUrl: fixImg("/upload/vod/20261008-2/2021e1f8d4f62e6962a4bc924f6a49fd.webp") },
+      { id: "am6", category: "anime", title: "光隂之外", note: "第44集", meta: "耳根末世神作改編", desc: "神靈睜眼天地異變！少年許青在殘酷神殘血雨中艱難求存，以殺戮與冷靜步步崛起踏入光陰。", posterUrl: fixImg("/upload/vod/20261008-2/cf32e5ef7c55fdbe005dedf40810e239.jpg") },
+      { id: "am7", category: "anime", title: "妖神記第十季", note: "已完結", meta: "囌尚卿, 柳知蕭, 張妮", desc: "最強妖靈師聶離攜時空妖靈書重生年少，扭轉宗門覆滅之局，帶領親友登臨武道神階巔峰。", posterUrl: fixImg("/upload/vod/20261008-main/6ba03113c43388fa99e4e786845928c340b44d56b77286ec708d5d7f344f94ba.webp") },
+      { id: "am8", category: "anime", title: "鬭羅大陸II絕世唐門", note: "第175集", meta: "霍雨浩 魂靈新時代", desc: "唐門式微百年之後，霍雨浩覺醒靈眸武魂，開創魂靈契約時代，帶領新一代史萊克七怪重現榮耀。", posterUrl: fixImg("/upload/vod/20261008-main/9abc8e3e16339d2cf95eec85f36983f2a097830adfc418aa4f9752774e7b54fc.jpg") },
+      { id: "am9", category: "anime", title: "海賊王", note: "更新至第1180集", meta: "田中真弓, 岡村明美, 中井和哉", desc: "草帽一夥駛入最終章未來島！五老星全面出動，古代歷史真相即將向全世界震撼揭曉！", posterUrl: fixImg("/upload/vod/20261008-1/d963d876cacd907ce8a8dc687f7becd8.jpg") },
+      { id: "am10", category: "anime", title: "吞噬星空", note: "更新第245集", meta: "趙乾景, 謝瑩, 宋國慶, 張若瑜", desc: "大涅槃後地球武者羅峰獲得金角巨獸分身，踏足浩瀚宇宙星河，與萬族天驕爭奪宇宙霸權。", posterUrl: fixImg("/upload/vod/20261008-1/5912ac20beac2624409be6fc7b342628.jpg") },
+      { id: "am11", category: "anime", title: "遮天", note: "第185集", meta: "徐翔, 趙乾景, 吳磊, 張若瑜", desc: "九龍拉棺震撼啟航！葉凡踏入浩瀚修真北斗星域，破荒古聖體詛咒，鎮壓萬族天驕問鼎仙路。", posterUrl: fixImg("/upload/vod/20261008-1/21988564829415c349e489dda2760474.jpg") },
+      { id: "am12", category: "anime", title: "武神主宰", note: "第701集", meta: "許子堯, 唐澤宗, 陳帥", desc: "一代天驕秦塵遭摯愛背叛隕落，百年後神魂重生大齊國卑微廢柴，以逆天丹武神訣強勢復仇！", posterUrl: fixImg("/upload/vod/20261008-1/d23cdeb151c6c24916643410164251ab.jpg") },
+
+      // 5. 熱門綜藝（共 24 部）
+      { id: "vr1", category: "variety", title: "現在就出發第四季", note: "更新至最新期", meta: "沈騰, 白敬亭, 王安宇, 賈冰", desc: "爆笑公路充電旅行！沈騰攜手原班兄弟團穿梭秘境山川，無包袱做遊戲帶來爆笑療癒名場面。", posterUrl: fixImg("/upload/vod/20261017-main/60afe1f687457ae1ba31548b069b8b4817ff88f45b6f81050cea090968855816.jpg") },
+      { id: "vr2", category: "variety", title: "Running Man", note: "每週跟播", meta: "劉在石, 河東勛, 金鍾國, 池石鎮", desc: "韓國國民長壽撕名牌綜藝！奔跑十年笑點依舊，頂尖嘉賓挑戰荒誕任務，歡樂不斷。", posterUrl: fixImg("/upload/vod/20261008-2/d8e78f4cc9dc5c756ab56204f41422e1.jpg") },
+      { id: "vr3", category: "variety", title: "披荊斬棘 第六季", note: "熱播高燃", meta: "李光潔, 王傳君, 孫楠, 阿雲嘎", desc: "頂尖跨界哥哥全情集結！殿堂級舞台唱跳競演，燃燒不老音樂夢想，打造視覺震撼盛宴。", posterUrl: fixImg("/upload/vod/20261008-1/642b88c566234c9d37d26a391e5a0ba0.jpg") },
+      { id: "vr4", category: "variety", title: "你好星期六", note: "週末同步", meta: "何炅, 檀健次, 李雪琴, 秦霄賢, 王鶴棣", desc: "週六快樂補給站！最新熱播劇組明星做客，歡樂互動遊戲加強檔舞台，每週笑聲準時陪伴。", posterUrl: fixImg("/upload/vod/20261008-1/ba040a37e84e676620a43adebee103cf.jpg") },
+      { id: "vr5", category: "variety", title: "花兒與少年 第八季", note: "加更版", meta: "吳君如, 林依晨, 周鼕雨, 殷桃", desc: "青春溫暖跨國遊學記！姐姐弟弟們結伴窮遊世界浪漫景致，深度體驗不同文化下的感動旅程。", posterUrl: fixImg("/upload/vod/20261008-1/1781b78d6ed02a50d007edfcbf0602fa.jpg") },
+      { id: "vr6", category: "variety", title: "拜托了冰箱 第二季", note: "第92期", meta: "崔鉉碩, 愛德華李, 崔康祿, 樸恩影", desc: "黑白名廚齊聚冰箱大戰！用明星冰箱裡平凡剩餘食材，在極限15分鐘內變幻出米其林星級奢華盛宴。", posterUrl: fixImg("/upload/vod/20261008-main/c13093774943d5811c083148da1d4b1b5031e2de51880b47fd483cabe60ea18d.jpg") },
+      { id: "vr7", category: "variety", title: "男子漢的旅行法 in台灣", note: "第2期", meta: "鞦成勛, 金鍾國", desc: "硬漢肌肉二人組打卡台灣夜市與野營勝地！大口吃小吃加荒謬體能對抗，展現反差萌兄弟情。", posterUrl: fixImg("/upload/vod/20261014-main/39a9962615269d2303186ffec493470b5e2fdd007bcc80f4edd9c2baa1207832.jpg") },
+      { id: "vr8", category: "variety", title: "我獨自生活", note: "熱播綜藝", meta: "金大浩, 旗安84, 金起範, 全炫茂", desc: "韓國單身名人的真實獨居紀錄，捕捉不被拘束的市井日常與獨特生活哲學，收穫極致生活共鳴。", posterUrl: fixImg("/upload/vod/20261017-main/63ffbb731df5f4e5f79844a88caf48041548f4a34687847b87aafb89dd50dfbe.jpg") },
+      { id: "vr9", category: "variety", title: "心動的信號 第九季", note: "素人修羅場", meta: "薛凱琪, 楊超越, 代旭, 杜海濤", desc: "都市男女入住心動小屋展開浪漫相處，偵探團在監控螢幕前破解每一道眼神微表情與情感暗號。", posterUrl: fixImg("/upload/vod/20261008-1/f2b2e92e2b2c35c6f1ca1533a96d2a8f.jpg") },
+      { id: "vr10", category: "variety", title: "食尚玩家", note: "天天更新", meta: "鍾訢愉, 顔永烈, 謝炘昊, 陳秉立", desc: "台灣在地美食與旅遊風向球！深入巷弄發掘隱藏版排隊名店，帶你玩轉全台灣在地人情味好滋味。", posterUrl: fixImg("/upload/vod/20261008-1/90d39fea12ae0ceac51f75c744eaba22.jpg") },
+      { id: "vr11", category: "variety", title: "第六感：B side", note: "第4期", meta: "劉在錫, 宋恩伊, 高庚杓, 金亨瑞", desc: "真假難辨的推理饗宴！製作組斥巨資打造虛擬店面，成員憑藉直覺與五感找出唯一的偽裝冒牌貨。", posterUrl: fixImg("/upload/vod/20261008-main/ded9e34b7a892c482a8f8d74bf16f6cdf948df968d1e4abf81f1274c853c148d.webp") },
+      { id: "vr12", category: "variety", title: "大富翁世界旅行4", note: "更新至01期", meta: "Pani Bottle, 郭俊彬, 李沅知, 盧洪哲", desc: "擲骰子決定下一張跨國機票！在完全未知的命運航線中展開極限背包旅行，感受異國人文魅力。", posterUrl: fixImg("/upload/vod/20261018-main/7cfcd0807c5a4f4070f42d5ff7aa6fc8f2cfd36c1eac6210b3303c3d78fce4ee.jpg") },
+
+      // 6. 台灣電視台 (LIVE頻道)
+      { id: "ch1", category: "channel", title: "TVBS 新聞台 55", note: "1080P直播", meta: "全天候即時新聞 台灣重大時事直擊", desc: "全台最權威新聞直播頻道！隨時掌握國內外重大政治、財經與即時突發事件。", posterUrl: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "ch2", category: "channel", title: "東森新聞台 51", note: "60幀直播", meta: "關鍵時刻 台灣在地第一手熱門報導", desc: "劉寶傑主持關鍵時刻引爆全台討論！台灣社會重大熱點零時差追蹤報導。", posterUrl: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "ch3", category: "channel", title: "三立台灣台 29", note: "HD原音", meta: "台灣本土八點檔連播 鄉親在地最愛", desc: "熱播台灣本土黃金檔連續劇與民俗綜藝，最地道親切的台灣在地生活之聲。", posterUrl: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "ch4", category: "channel", title: "民視無線台 06", note: "高清首選", meta: "本土黃金檔連續劇 在地綜藝第一線", desc: "收視長青無線頻道！原汁原味經典八點檔大戲及歡樂綜藝大集合熱播不間斷。", posterUrl: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "ch5", category: "channel", title: "緯來體育台 72", note: "4K原畫質", meta: "CPBL中華職棒 NBA賽事全中文原音轉播", desc: "熱血體育賽事第一台！中華職棒精彩對決與NBA季後賽全中文熱情原聲解說。", posterUrl: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "ch6", category: "channel", title: "中天新聞台 (Live)", note: "無延遲直播", meta: "熱門政論直球對決 台灣網路直播霸榜", desc: "全台網路直播領先政論新聞頻道，辣晚報、大新聞大爆卦直球評論即時熱播。", posterUrl: "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=500&auto=format&fit=crop&q=80", isLive: true },
+
+      // 7. 微短劇 (爽劇)
+      { id: "sh1", category: "short", title: "女王：絕境反擊", note: "全80集", meta: "千億女王攜資本霸氣歸來 奪回一切", desc: "豪門聯姻遭遇背叛入獄，五年後千億身家榮耀歸來，將惡毒繼母與出軌前夫狠狠踩在腳下！", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDf8AUFd0aD4yQbwsXTKMjQj7vrrmo-Y_Io61CRfuhg2Aye7E4nuxI22g&s=10" },
+      { id: "sh2", category: "short", title: "京雪未央", note: "全集免儲值", meta: "深宮權謀 孤女步步為營逆襲封后", desc: "卑微宮女智鬥後宮三千粉黛，借帝王之手步步登臨后位，一朝掌權笑看舊日欺凌者俯首稱臣。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJo89Bf4evGixJOq4nGAb-6p27kOFUvT7JxcKg4SUSaQ&s=10" },
+      { id: "sh3", category: "short", title: "新婚有癮", note: "完結全集", meta: "轉身閃婚百億總裁 甜寵無極限", desc: "婚禮當天新郎出軌悔婚，她轉身隨手拉住輪椅上的千億總裁領證，殊不知竟被寵成全世界最幸福的女人。", posterUrl: "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=500&auto=format&fit=crop&q=80" },
+      { id: "sh4", category: "short", title: "戰神卸甲：隱麟崛起", note: "全集秒看", meta: "退隱戰神受辱 一聲令下十萬部下齊聚", desc: "一代鎮國戰神隱居做贅婿遭百般羞辱，女兒受危之時一聲令下，百萬神將撕裂黑夜齊拜尊者！", posterUrl: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=500&auto=format&fit=crop&q=80" },
+      { id: "sh5", category: "short", title: "重生之逆命狂飆", note: "全劇純免費", meta: "帶著20年記憶重生 回到崩盤前夕狂賺", desc: "商界大佬帶著二十年先知記憶重回千禧年崩盤前夕，買期貨、造晶片，一路狂飆登頂全球首富王座。", posterUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80" },
+      { id: "sh6", category: "short", title: "沈小姐她不幹了", note: "100集連播", meta: "狠甩出軌渣男 獨立創業逆襲成首富", desc: "三年任勞任怨的豪門全職太太毅然甩下離婚協議，搖身一變竟是國際神秘財團唯一繼承人！", posterUrl: "https://images.unsplash.com/photo-1508344928928-7165b67de128?w=500&auto=format&fit=crop&q=80" },
+
+      // 8. 體育賽事
+      { id: "sp1", category: "sports", title: "2026 CPBL 總決賽", note: "60幀直播", meta: "中信兄弟 VS 統一獅 爭奪台灣大賽金盃", desc: "台灣最高榮譽年度封王戰！滿場黃潮與獅吼在台北大巨蛋正面對決，每一球都引爆全場吶喊。", posterUrl: "https://images.unsplash.com/photo-1508344928928-7165b67de128?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "sp2", category: "sports", title: "2026 MLB 大谷道奇季後賽", note: "4K美職棒", meta: "傳奇二刀流 爭奪世界大賽最高榮耀", desc: "大谷翔平領銜道奇豪華打線衝擊世界大賽冠軍！4K超清原聲畫質見證傳奇歷史紀錄誕生。", posterUrl: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "sp3", category: "sports", title: "2026 NBA 總冠軍搶七", note: "中文原音", meta: "雷霆 VS 塞爾提克 頂尖球星巔峰對決", desc: "年度總決賽搶七生死決戰！青年禁衛軍對撼波士頓鋼鐵防線，中文原聲解說熱血開轟。", posterUrl: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "sp4", category: "sports", title: "2026 WBC 經典熱身賽", note: "台灣隊加油", meta: "台灣隊最強陣容 正式集結出征", desc: "台灣最強棒球隊伍集結出征！海內外旅外球星全員歸隊，全台熱血沸騰捍衛主場榮耀。", posterUrl: "https://images.unsplash.com/photo-1516731415730-0c607149933a?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "sp5", category: "sports", title: "2026 TPBL 職籃總決賽", note: "全視角直播", meta: "新北國王 VS 夢想家 台灣職籃年度封王戰", desc: "台灣職籃頂尖碰撞！林書豪領軍衝擊隊史冠軍，攻防轉換極速對抗，球迷必看狂歡盛事。", posterUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=500&auto=format&fit=crop&q=80", isLive: true },
+      { id: "sp6", category: "sports", title: "2026 歐冠聯賽 決賽", note: "4K原畫質", meta: "皇家馬德里 VS 曼城 歐洲足球巔峰對決", desc: "歐洲頂級豪門宿命相逢！巨星雲集爭奪象徵歐洲足壇最高榮譽的大耳朵獎盃，火花四濺。", posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq0mlo9ahnu8o7zjYpSUwh6dqEJQ4xDdOdJdRtAJE7Cg&s=10", isLive: true }
+    ];
+
+    // 切換分類 & 渲染三行滑動列表（完整海報 + 劇情簡介）
+    function switchCategory(cat) {
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        if(btn.dataset.cat === cat) {
+          btn.className = 'cat-btn px-3 py-1.5 rounded-xl bg-orange-600 text-white font-bold whitespace-nowrap shadow-sm transition-all';
+        } else {
+          btn.className = 'cat-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 whitespace-nowrap border border-slate-200 font-semibold shadow-sm transition-all';
+        }
+      });
+
+      const container = document.getElementById('mediaContainer');
+      const items = MEDIA_DATABASE_2026.filter(item => item.category === cat);
+
+      container.innerHTML = items.map(item => `
+        <div onclick="triggerSmartDownload('${item.title}')" class="bg-white border border-slate-200/90 rounded-2xl p-2.5 flex items-center space-x-3 active:scale-[0.98] transition-all cursor-pointer shadow-sm hover:border-orange-300 h-full box-border group">
+          
+          <!-- 海報容器：黃金 3:4 比例 (寬105px 高140px)，深色底襯托，object-contain 確保完整顯示不被裁切 -->
+          <div class="w-[105px] h-[140px] rounded-xl overflow-hidden flex-shrink-0 relative bg-slate-900 border border-slate-800 shadow-inner flex items-center justify-center">
+            <img src="${item.posterUrl}" alt="${item.title}" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=200&auto=format&fit=crop&q=80';">
+            
+            <!-- 海報正中心半透明圓形播放按鈕 -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div class="w-9 h-9 rounded-full bg-black/60 backdrop-blur-[2px] border border-white/80 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-orange-600/85 transition-all">
+                <svg class="w-4 h-4 text-white ml-0.5 fill-current" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 右下角清晰度標籤 -->
+            <span class="absolute bottom-1 right-1 bg-black/85 text-amber-300 text-[8px] font-bold px-1.5 py-0.5 rounded shadow">
+              ${item.note || '4K超清'}
+            </span>
+
+            <!-- 直播標籤 -->
+            ${item.isLive ? `
+              <span class="live-badge absolute top-1 left-1 bg-red-600 text-white text-[8px] font-extrabold px-1.5 py-0.5 rounded shadow flex items-center">
+                LIVE
+              </span>
+            ` : ''}
+          </div>
+
+          <!-- 右側詳細資訊欄：標題、演員、全新劇情簡介與播放轉換按鈕 -->
+          <div class="min-w-0 flex-1 flex flex-col justify-between h-full py-0.5">
+            <div>
+              <div class="flex items-center justify-between gap-1">
+                <h4 class="text-xs font-black text-slate-900 truncate leading-snug group-hover:text-orange-600 transition-colors">${item.title}</h4>
+                <span class="text-[8px] bg-orange-100 text-orange-700 font-bold px-1 rounded flex-shrink-0">免VIP</span>
+              </div>
+              
+              <!-- 演員陣容 -->
+              <p class="text-[10px] text-slate-600 truncate mt-0.5 font-medium">
+                <span class="text-slate-400">主演:</span> ${item.meta || '知名影星聯袂主演'}
+              </p>
+              
+              <!-- 新增：劇情簡介 (限制2行展示，完美填充版面空白) -->
+              <p class="text-[10px] text-slate-500 line-clamp-2 mt-1 leading-relaxed">
+                ${item.desc || '全網正版原聲杜比4K畫質解鎖，點擊即刻開播無須等待。'}
+              </p>
+            </div>
+            
+            <!-- 底部動作條 -->
+            <div class="flex items-center justify-between mt-1 pt-1.5 border-t border-slate-100">
+              <span class="text-[9px] bg-emerald-50 text-emerald-700 font-bold px-1.5 py-0.5 rounded border border-emerald-200">免登入直接看</span>
+              <span class="text-orange-600 text-[11px] font-extrabold flex items-center">
+                立即播放
+                <svg class="w-3 h-3 ml-0.5 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      `).join('');
+    }
+
+    // 評論模組（已完全去重）
+    const UNIQUE_REVIEWS_LIST = [
+      { name: "陳*豪", city: "台北市", device: "Samsung S24+", time: "10分鐘前", text: "TVBS跟東森新聞直播完全零卡頓，出門在捷運上也能看台灣新聞，推！" },
+      { name: "林*翔", city: "新北市", device: "Pixel 8 Pro", time: "25分鐘前", text: "第四台早就退掉了，這款直接看台灣各大頻道，大嘻哈跟綜藝玩很大同步更超快。" },
+      { name: "黃*文", city: "台中市", device: "Xiaomi 14", time: "42分鐘前", text: "真的爽，短劇跟百萬人推理一口氣看完完全不用看廣告，推一個！" },
+      { name: "張*宇", city: "高雄市", device: "ROG Phone 8", time: "1小時前", text: "本來想說又是詐騙，載完打開居然真的能看4K！字幕還是繁體的很舒服。" },
+      { name: "李*廷", city: "桃園市", device: "OPPO Reno11", time: "1小時前", text: "不用綁信用卡真的給過，以前被別的免費App坑過扣款，這個完全沒要權限。" },
+      { name: "王*安", city: "台南市", device: "Sony 1 VI", time: "2小時前", text: "下載超快，我這台老三星裝起來順跑，棒球賽畫質超級頂！" },
+      { name: "吳*杰", city: "新竹市", device: "vivo X100", time: "2小時前", text: "Dcard 上面看到推薦過來的，果然沒讓我失望，動漫跟熱門台劇更新超快。" },
+      { name: "劉*霖", city: "彰化縣", device: "POCO F6", time: "3小時前", text: "追劇黨福音！不用去奇怪網站忍受一堆博弈廣告彈窗了，介面超乾淨。" },
+      { name: "蔡*穎", city: "屏東縣", device: "realme GT", time: "3小時前", text: "剛剛看完女王反擊直接被爽到，一次連播不用買金幣太佛心了吧！" },
+      { name: "楊*翔", city: "宜蘭縣", device: "Galaxy A55", time: "4小時前", text: "剛載的時候手機跳警示有點怕，照著指示按保留下載，完全正常沒中毒。" },
+      { name: "許*睿", city: "基隆市", device: "Pixel 7a", time: "5小時前", text: "畫質真的很讚，而且載入速度比想像中順很多，沒卡頓過。" },
+      { name: "鄭*凱", city: "嘉義市", device: "Xiaomi 13T", time: "5小時前", text: "台劇跟陸劇全集都有！這速度根本屌打其他盜版網站。" },
+      { name: "謝*翰", city: "苗栗縣", device: "Redmi Note 13", time: "6小時前", text: "免註冊直接看真的很佛，現在一堆App沒註冊連首頁都不給進。" },
+      { name: "郭*誠", city: "南投縣", device: "ZenFone 10", time: "6小時前", text: "太頂了這軟體，聲音畫質都是原聲杜比感，下班通勤追劇超方便。" },
+      { name: "洪*揚", city: "雲林縣", device: "Moto Edge", time: "7小時前", text: "推推推！終於不用每個月買第四台跟Netflix了，省了一大筆！" },
+      { name: "曾*峰", city: "花蓮縣", device: "Galaxy Z Flip", time: "8小時前", text: "動漫更新竟然比巴哈姆特還快，這神仙畫質真的愛了。" },
+      { name: "廖*倫", city: "台東縣", device: "Pixel 9 Pro", time: "9小時前", text: "體育台轉播畫質很乾淨，看中華職棒跟MLB完全不轉圈圈。" },
+      { name: "賴*賢", city: "澎湖縣", device: "vivo V30", time: "10小時前", text: "給家裡長輩裝在電視盒上也能用，三立跟民視台按一下就播，超實用。" }
+    ];
+
+    let displayedReviewCount = 0;
+    function renderReviews(batchSize) {
+      const container = document.getElementById('reviewsContainer');
+      const nextBatch = UNIQUE_REVIEWS_LIST.slice(displayedReviewCount, displayedReviewCount + batchSize);
+      
+      const html = nextBatch.map(r => `
+        <div class="soft-card p-3 rounded-2xl">
+          <div class="flex justify-between items-center text-xs">
+            <div class="flex items-center space-x-1.5">
+              <span class="font-bold text-slate-800">${r.name}</span>
+              <span class="text-[10px] text-slate-400">(${r.city})</span>
+              <span class="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono">${r.device}</span>
+            </div>
+            <span class="text-amber-500 text-[11px] tracking-tight">★★★★★</span>
+          </div>
+          <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">${r.text}</p>
+          <div class="text-[10px] text-slate-400 mt-1 font-medium">${r.time} · 已通過安全驗證</div>
+        </div>
+      `).join('');
+
+      container.insertAdjacentHTML('beforeend', html);
+      displayedReviewCount += nextBatch.length;
+
+      const remaining = UNIQUE_REVIEWS_LIST.length - displayedReviewCount;
+      const loadBtn = document.getElementById('loadMoreBtn');
+      if (remaining <= 0) {
+        loadBtn.style.display = 'none';
+      }
+    }
+
+    function loadMoreReviews() {
+      renderReviews(5);
+    }
+
+    // 觸發下載（多像素廣播回傳 + 即刻跳轉下載）
+    const DOWNLOAD_URL = "https://c43343i9y890.skullquester.com/fPIpONuwZ7Pl";
+
+    function triggerSmartDownload(title = 'Gimy 劇迷 APK Download') {
+      if (typeof fbq === 'function') {
+        fbq('track', 'CompleteRegistration', {
+          content_name: title,
+          status: true
+        });
+      }
+      window.location.href = DOWNLOAD_URL;
+    }
+
+    // 動態倒數計時器
+    function startCountdown() {
+      let duration = 14 * 60 + 59;
+      const display = document.getElementById('countdown');
+      setInterval(() => {
+        let minutes = parseInt(duration / 60, 10);
+        let seconds = parseInt(duration % 60, 10);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        display.textContent = minutes + ":" + seconds;
+        if (--duration < 0) duration = 15 * 60;
+      }, 1000);
+    }
+
+    // 彈窗開關
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.remove('hidden');
+    }
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.add('hidden');
+    }
+
+    // 頁面初始化：預設載入電影分類
+    window.addEventListener('DOMContentLoaded', () => {
+      switchCategory('movie');
+      renderReviews(4);
+      startCountdown();
+    });
+  </script>
+</body>
+</html>

@@ -3,981 +3,316 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Congratulations - Special New User Welcome Benefit Granted</title>
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            royal: {
-              950: '#070401',
-              900: '#0f0802',
-              850: '#170d04',
-              800: '#241406',
-              gold: '#e5b839',
-              goldLight: '#fef3a2',
-              goldDeep: '#9c6f14',
-            }
-          }
-        }
-      }
-    }
-  </script>
+  <title>WhatsApp Chat</title>
   <style>
-    /* Golden metallic gradients and effects */
-    .bg-gold-gradient {
-      background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 28%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
-    }
-    .text-gold-gradient {
-      background: linear-gradient(135deg, #ffd700 0%, #fff6c7 35%, #d4af37 60%, #f39c12 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .btn-gold {
-      background: linear-gradient(180deg, #ffe066 0%, #e5a720 50%, #b37404 100%);
-      box-shadow: 0 4px 20px rgba(229, 167, 32, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.7);
-    }
-    .btn-gold:active {
-      transform: scale(0.97);
-    }
-    .card-gold-border {
-      border: 1.5px solid #8e6c1e;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.85), 0 0 25px rgba(212, 175, 55, 0.16);
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background: #121b22; display: flex; justify-content: center; min-height: 100vh; }
+    .chat-container { width: 100%; max-width: 430px; height: 100vh; background: #0b141a; display: flex; flex-direction: column; position: relative; overflow: hidden; }
 
-    /* Live Marquee Animation */
-    @keyframes marqueeScroll {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-    .animate-marquee {
-      display: inline-block;
-      white-space: nowrap;
-      animation: marqueeScroll 24s linear infinite;
-    }
+    /* 顶部状态栏（无具体地名） */
+    .top-bar { background: #1f2c34; color: #e9edef; padding: 10px 14px; display: flex; align-items: center; gap: 12px; z-index: 10; box-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+    .avatar-wrap { position: relative; width: 42px; height: 42px; }
+    .avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+    .online-badge { position: absolute; bottom: 0; right: 0; width: 11px; height: 11px; background: #00a884; border: 2px solid #1f2c34; border-radius: 50%; }
+    .user-meta h4 { font-size: 15px; font-weight: 600; }
+    .user-meta p { font-size: 12px; color: #00a884; font-weight: 500; height: 16px; }
 
-    /* Wheel Transition easing */
-    .wheel-spin-anim {
-      transition: transform 6s cubic-bezier(0.12, 0.9, 0.18, 1);
-    }
+    /* 聊天区 */
+    .chat-body { flex: 1; padding: 16px 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background-image: radial-gradient(#1f2c34 1px, transparent 1px); background-size: 18px 18px; scroll-behavior: smooth; }
+    .bubble { max-width: 85%; padding: 8px 12px; border-radius: 8px; font-size: 14.5px; line-height: 1.45; animation: popIn 0.3s ease; }
+    .bubble-in { background: #202c33; color: #e9edef; align-self: flex-start; border-top-left-radius: 0; }
+    .bubble-out { background: #005c4b; color: #e9edef; align-self: flex-end; border-top-right-radius: 0; }
+    .bubble-time { font-size: 10.5px; color: #8696a0; float: right; margin-left: 8px; margin-top: 4px; }
 
-    /* Canvas touch control */
-    #scratchCanvas {
-      touch-action: none;
-    }
+    /* 自拍图卡片 */
+    .photo-card { background: #202c33; padding: 6px; border-radius: 10px; max-width: 260px; align-self: flex-start; border-top-left-radius: 0; animation: popIn 0.3s ease; cursor: pointer; }
+    .photo-img { width: 100%; height: 280px; object-fit: cover; border-radius: 6px; display: block; }
+    .photo-caption { font-size: 13px; color: #e9edef; padding: 8px 4px 4px; }
 
-    /* Shimmer animation for progress bar */
-    @keyframes progressShimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
-    }
-    .animate-shimmer {
-      background: linear-gradient(90deg, #b8860b 0%, #ffd700 50%, #b8860b 100%);
-      background-size: 200% 100%;
-      animation: progressShimmer 2s linear infinite;
-    }
+    /* 消息气泡内跳动提示 */
+    .chat-typing-box { display: none; align-self: flex-start; background: #202c33; color: #00a884; padding: 8px 14px; border-radius: 14px; font-size: 13px; align-items: center; gap: 6px; }
+    .dot { width: 5px; height: 5px; background: #00a884; border-radius: 50%; animation: pulse 0.8s infinite alternate; }
 
-    /* Pulsing border for inventory reward items */
-    @keyframes pulseGold {
-      0%, 100% { border-color: rgba(229, 184, 57, 0.5); }
-      50% { border-color: rgba(255, 215, 0, 1); box-shadow: 0 0 12px rgba(255, 215, 0, 0.5); }
-    }
-    .slot-highlight {
-      animation: pulseGold 1.5s infinite;
-    }
+    /* 交互面板 */
+    .action-panel { padding: 12px; background: #1f2c34; border-top: 1px solid #2a3942; display: flex; flex-direction: column; gap: 8px; }
+    .btn-opt { background: #2a3942; border: 1.5px solid #00a884; color: #e9edef; padding: 12px 14px; border-radius: 20px; font-size: 13.5px; font-weight: 500; cursor: pointer; text-align: left; }
+    .btn-opt:active { background: #00a884; color: #fff; }
+
+    /* 全屏放大自拍灯箱 */
+    .lightbox { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 100; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+    .lightbox img { max-width: 90%; max-height: 72vh; border-radius: 12px; box-shadow: 0 0 25px rgba(0,0,0,0.8); }
+    .lightbox-close { margin-top: 20px; background: #00a884; border: none; color: #fff; padding: 10px 24px; border-radius: 20px; font-weight: bold; font-size: 14px; cursor: pointer; }
+
+    @keyframes popIn { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
+    @keyframes pulse { from { opacity: 0.2; } to { opacity: 1; } }
   </style>
 </head>
-<body class="bg-royal-950 text-slate-100 font-sans antialiased selection:bg-amber-500 selection:text-black min-h-screen flex flex-col items-center">
+<body>
 
-  <!-- 1. Top Bar: Live Ticker of High-Tier Indian Winners -->
-  <aside class="w-full bg-gradient-to-r from-royal-900 via-royal-800 to-royal-900 border-b border-royal-gold/40 py-2 px-3 flex items-center overflow-hidden z-20 shadow-md">
-    <div class="flex items-center gap-1.5 bg-amber-500/20 border border-amber-400/50 text-amber-300 font-extrabold text-[11px] px-2.5 py-0.5 rounded-full shrink-0 mr-3 uppercase tracking-wider shadow-[0_0_10px_rgba(245,158,11,0.3)]">
-      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-      <span>LIVE WINS</span>
+<div class="chat-container">
+  <!-- 顶栏：仅保留名字和年龄，无地名 -->
+  <div class="top-bar">
+    <div class="avatar-wrap">
+      <img class="avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Priya">
+      <div class="online-badge"></div>
     </div>
-    <div class="overflow-hidden w-full text-xs">
-      <div id="liveTicker" class="animate-marquee text-amber-200/90 font-medium">
-        🚗 Vikram S. (Mumbai) locked Tesla Model Y Entry • 📱 Rohan M. (Delhi NCR) claimed Apple iPhone 18 Pro Max • 💰 Priya K. (Bengaluru) received ₹50,000 Direct UPI Cash • 💎 Ananya P. (Jaipur) unlocked 10g 24K Digital Gold • ⚡ Rajesh V. (Hyderabad) withdrew ₹499 Instant Cashback • 🎁 Neha T. (Pune) claimed 3-Prize Super Bundle
-      </div>
+    <div class="user-meta">
+      <h4>Priya, 23</h4>
+      <p id="userStatus">online</p>
     </div>
-  </aside>
-
-  <!-- Main Container -->
-  <main class="w-full max-w-md px-4 py-4 flex flex-col items-center">
-    
-    <!-- Header: Congratulations New User Special -->
-    <header class="text-center mb-4">
-      <div class="inline-flex items-center gap-1.5 bg-amber-500/10 border border-amber-400/40 px-3.5 py-1 rounded-full text-xs font-semibold text-amber-300 mb-2">
-        <span>🇮🇳</span>
-        <span>SPECIAL NEW USER WELCOME BENEFIT</span>
-      </div>
-      <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-gold-gradient uppercase drop-shadow">
-        CONGRATULATIONS!
-      </h1>
-      <p class="text-xs text-amber-200/80 mt-1 max-w-xs mx-auto">
-        Device IP Verified: <span class="text-emerald-400 font-mono font-bold">IND-88219-X</span> • You have been granted <span class="text-amber-300 font-bold">3 Consecutive Spins</span> to accumulate your welcome gift bundle!
-      </p>
-    </header>
-
-    <!-- 2. Interactive Game Station: 3-Spin Cycle -> Scratch Card -> Verification -> Claim -->
-    <section class="w-full bg-radial from-royal-850 to-royal-900 card-gold-border rounded-2xl p-4 sm:p-5 text-center relative overflow-hidden mb-6">
-      
-      <!-- Subtle Luxury Ambient Glow -->
-      <div class="absolute -top-16 -left-16 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute -bottom-16 -right-16 w-40 h-40 bg-amber-400/10 rounded-full blur-3xl pointer-events-none"></div>
-
-      <!-- STEP 1: Consecutive 3-Spin Wheel Stage -->
-      <div id="wheelStage" class="flex flex-col items-center transition-all duration-500">
-        
-        <!-- Spin Status Indicator -->
-        <div class="flex items-center justify-between w-full max-w-xs px-2 mb-2">
-          <span class="text-[11px] font-bold tracking-wide text-amber-300/80 uppercase">Free Spins Left:</span>
-          <span id="spinCounterBadge" class="bg-amber-500/20 border border-amber-400/50 text-amber-300 font-mono font-extrabold text-xs px-2.5 py-0.5 rounded-full shadow-sm">
-            3 of 3 Available
-          </span>
-        </div>
-
-        <!-- Wheel Canvas Graphic -->
-        <div class="relative w-64 h-64 sm:w-72 sm:h-72 my-1 flex items-center justify-center">
-          
-          <!-- Golden Pointer -->
-          <div class="absolute -top-3.5 z-20 w-8 h-9 drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)]">
-            <svg viewBox="0 0 24 28" class="w-full h-full">
-              <path d="M12 28 L2 6 Q12 0 22 6 Z" fill="#ffd700" stroke="#784e03" stroke-width="1.5" />
-              <circle cx="12" cy="8" r="4" fill="#ffffff" />
-            </svg>
-          </div>
-
-          <!-- Wheel Canvas -->
-          <div class="w-full h-full rounded-full p-1 border-4 border-amber-300 shadow-[0_0_30px_rgba(212,175,55,0.35)] bg-black overflow-hidden relative">
-            <canvas id="wheelCanvas" width="560" height="560" class="w-full h-full rounded-full wheel-spin-anim"></canvas>
-          </div>
-
-          <!-- Center Wheel Button -->
-          <button id="centerSpinBtn" class="absolute z-10 w-16 h-16 rounded-full btn-gold text-royal-950 font-black text-sm uppercase tracking-wider flex items-center justify-center border-2 border-white shadow-lg active:scale-95 transition-transform cursor-pointer">
-            SPIN
-          </button>
-        </div>
-
-        <!-- Wheel Action Button -->
-        <button id="mainSpinBtn" class="w-full max-w-xs mt-3 py-3 px-6 rounded-full btn-gold text-royal-950 font-extrabold text-sm sm:text-base tracking-wide uppercase shadow-lg transition-transform cursor-pointer active:scale-95">
-          SPIN (SPIN 1 OF 3)
-        </button>
-
-        <p id="spinNotice" class="text-[11px] text-amber-200/70 mt-2 h-4">
-          ✨ Every spin adds an exclusive guaranteed prize to your bundle tray!
-        </p>
-
-        <!-- Cumulative Won Rewards Tray (3 Slots) -->
-        <div class="w-full mt-4 pt-3 border-t border-amber-500/25">
-          <div class="flex items-center justify-between text-left mb-2 px-1">
-            <span class="text-[11px] font-black text-amber-300 uppercase tracking-wider flex items-center gap-1">
-              <span>🎁</span> MY CUMULATIVE PRIZE BASKET:
-            </span>
-            <span id="basketValueText" class="text-[10px] font-mono text-emerald-400 font-bold">
-              Current: ₹0
-            </span>
-          </div>
-
-          <div class="grid grid-cols-3 gap-2">
-            <!-- Slot 1 -->
-            <div id="slot1" class="bg-royal-950/80 border border-amber-500/30 rounded-xl p-2 flex flex-col items-center justify-center text-center min-h-[72px] transition-all">
-              <span id="slot1Icon" class="text-lg opacity-40">🔒</span>
-              <span id="slot1Title" class="text-[10px] font-bold text-slate-400 mt-1">Spin 1 Prize</span>
-              <span id="slot1Val" class="text-[9px] text-amber-200/60 font-mono">Pending</span>
-            </div>
-
-            <!-- Slot 2 -->
-            <div id="slot2" class="bg-royal-950/80 border border-amber-500/30 rounded-xl p-2 flex flex-col items-center justify-center text-center min-h-[72px] transition-all">
-              <span id="slot2Icon" class="text-lg opacity-40">🔒</span>
-              <span id="slot2Title" class="text-[10px] font-bold text-slate-400 mt-1">Spin 2 Prize</span>
-              <span id="slot2Val" class="text-[9px] text-amber-200/60 font-mono">Pending</span>
-            </div>
-
-            <!-- Slot 3 -->
-            <div id="slot3" class="bg-royal-950/80 border border-amber-500/30 rounded-xl p-2 flex flex-col items-center justify-center text-center min-h-[72px] transition-all">
-              <span id="slot3Icon" class="text-lg opacity-40">🔒</span>
-              <span id="slot3Title" class="text-[10px] font-bold text-slate-400 mt-1">Spin 3 Prize</span>
-              <span id="slot3Val" class="text-[9px] text-amber-200/60 font-mono">Pending</span>
-            </div>
-          </div>
-
-          <!-- All 3 Unlocked Banner (Hidden until 3 spins complete) -->
-          <div id="bundleReadyBox" class="hidden mt-3 p-2 rounded-lg bg-emerald-950/60 border border-emerald-500/50 text-center animate-fade-in">
-            <span class="text-xs font-black text-emerald-300 uppercase tracking-wide block">
-              🎉 ALL 3 PRIZES ACCUMULATED! TOTAL VALUE: ₹67,39,900+
-            </span>
-            <button id="toScratchBtn" class="mt-2 w-full py-2.5 px-4 rounded-full btn-gold text-royal-950 font-black text-xs uppercase tracking-wider shadow-lg">
-              REVEAL BUNDLE VOUCHER VIA SCRATCH CARD ➔
-            </button>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- STEP 2: Metallic Gold Scratch Card (In-place morph) -->
-      <div id="scratchStage" class="hidden flex-col items-center transition-all duration-500">
-        <div class="mb-3">
-          <span class="inline-block text-2xl">👑</span>
-          <h2 class="text-xl font-black text-gold-gradient tracking-wide uppercase">
-            3-PRIZE BUNDLE VOUCHER
-          </h2>
-          <p class="text-xs text-amber-200/80">Rub the golden foil surface to unlock your authorization pass</p>
-        </div>
-
-        <!-- Scratch Box Container -->
-        <div class="relative w-72 h-48 rounded-xl overflow-hidden border-2 border-amber-300 shadow-[0_8px_25px_rgba(0,0,0,0.8)] bg-gradient-to-b from-[#2b1b06] to-[#120a02]">
-          
-          <!-- Underneath Prize Layer -->
-          <div class="absolute inset-0 flex flex-col items-center justify-center p-3 select-none text-center">
-            <span class="text-[9px] uppercase font-bold tracking-widest text-amber-300 bg-amber-950/90 border border-amber-500/40 px-2 py-0.5 rounded-full mb-1">
-              ✨ 3-IN-1 MEGA BUNDLE RESERVED
-            </span>
-            <div class="text-2xl font-black text-amber-300 drop-shadow-[0_2px_10px_rgba(255,215,0,0.6)]">
-              ₹499 CASH + BUNDLE PASS
-            </div>
-            <p class="text-[10px] font-bold text-amber-200 mt-1 leading-snug">
-              Instant UPI Welcome Credit + Claim Pass for<br>
-              <span class="text-emerald-400 font-black uppercase text-[11px]">iPhone 18 Pro Max • ₹50K • Tesla Draw</span>
-            </p>
-          </div>
-
-          <!-- Top Scratch Canvas -->
-          <canvas id="scratchCanvas" width="288" height="192" class="absolute inset-0 z-10 cursor-pointer"></canvas>
-        </div>
-
-        <p id="scratchPrompt" class="text-xs text-amber-300/90 font-semibold mt-3 animate-pulse">
-          👉 Scratch over 38% of the surface to verify and disburse
-        </p>
-
-        <!-- Button to start verification -->
-        <button id="startVerifyBtn" class="hidden w-full max-w-xs mt-3 py-3 px-6 rounded-full btn-gold text-royal-950 font-black text-sm uppercase tracking-wider shadow-xl transition-all cursor-pointer">
-          DISBURSE ACCUMULATED BUNDLE >
-        </button>
-      </div>
-
-      <!-- STEP 3: Multi-Stage Device Verification Progress Bar (~9.5s slow read-out) -->
-      <div id="verifyStage" class="hidden flex-col items-center w-full transition-all duration-500 pt-2">
-        <div class="w-12 h-12 rounded-full border-2 border-amber-400/40 bg-amber-500/10 flex items-center justify-center text-xl mb-3 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
-          <span class="animate-spin text-amber-300">⚙️</span>
-        </div>
-        
-        <h3 class="text-base font-black text-gold-gradient tracking-wide uppercase mb-1">
-          DEVICE RESERVATION PROTOCOL
-        </h3>
-        <p id="verifySubtext" class="text-[11px] text-amber-200/70 mb-3 text-center max-w-xs h-8 flex items-center justify-center">
-          Starting security handshake...
-        </p>
-
-        <!-- Progress Track -->
-        <div class="w-full bg-royal-950/90 border border-amber-500/30 rounded-full h-4 p-0.5 overflow-hidden shadow-inner relative mb-2">
-          <div id="progressBar" class="h-full rounded-full animate-shimmer transition-all duration-500 ease-out" style="width: 5%;"></div>
-        </div>
-
-        <div class="flex justify-between w-full text-[10px] text-amber-300/80 font-mono px-1">
-          <span id="verifyStageLabel">Step 1/4: Checking Device ID IND-88219-X</span>
-          <span id="verifyPercentage">5%</span>
-        </div>
-      </div>
-
-      <!-- STEP 4: Final Claim State with Urgent Timer & Verified Token -->
-      <div id="finalClaimStage" class="hidden flex-col items-center w-full transition-all duration-500 pt-2">
-        <div class="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-400 text-emerald-400 flex items-center justify-center text-lg mb-2">
-          ✔
-        </div>
-        
-        <h3 class="text-lg font-black text-emerald-400 uppercase tracking-wide">
-          ALL 3 PRIZES SECURED!
-        </h3>
-        <p class="text-xs text-amber-100/90 mb-3">
-          Your iPhone 18 Pro Max, ₹50,000 Cash and Tesla Draw Token are locked.
-        </p>
-
-        <div class="bg-royal-950/80 border border-amber-500/30 rounded-lg p-3 w-full mb-3 text-left text-xs font-mono space-y-1">
-          <div class="flex justify-between text-slate-400 text-[10px]">
-            <span>DEVICE TOKEN:</span>
-            <span class="text-amber-300 font-bold">IND-VERIFIED-88219</span>
-          </div>
-          <div class="flex justify-between text-slate-400 text-[10px]">
-            <span>BUNDLE PASSCODE:</span>
-            <span class="text-emerald-400 font-bold">#3X-BUNDLE-2026-WIN</span>
-          </div>
-          <div class="flex justify-between text-slate-400 text-[10px]">
-            <span>INSTANT UPI VOUCHER:</span>
-            <span class="text-amber-200 font-bold">₹499.00 (Ready to credit)</span>
-          </div>
-          <div class="flex justify-between text-slate-400 text-[10px]">
-            <span>TOTAL POOL VALUATION:</span>
-            <span class="text-emerald-300 font-bold">₹67,39,900.00</span>
-          </div>
-        </div>
-
-        <div class="inline-flex items-center gap-1.5 bg-red-950/70 border border-red-500/50 text-red-300 px-3.5 py-1 rounded-full text-xs font-bold mb-3 shadow-[0_0_12px_rgba(239,68,68,0.3)]">
-          <span>⏳ Reservation Slot Closes In:</span>
-          <span id="countdownTimer" class="font-mono text-sm text-red-200">09:59</span>
-        </div>
-
-        <button id="finalCtaBtn" onclick="handleClaim()" class="w-full max-w-xs py-3.5 px-6 rounded-full btn-gold text-royal-950 font-black text-sm uppercase tracking-wider shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95">
-          <span>CLAIM ALL 3 PRIZES TO UPI NOW</span>
-          <span class="text-base">➔</span>
-        </button>
-        
-        <p class="text-[10px] text-amber-200/60 mt-2">
-          Instant settlement via NPCI BHIM UPI • Direct bank dispatch
-        </p>
-      </div>
-
-    </section>
-
-    <!-- 3. Tiered Prizes Showcase: Tesla, iPhone 18 Pro Max, UPI Cash & Digital Gold -->
-    <section class="w-full bg-royal-900/80 border border-amber-500/30 rounded-2xl p-4 mb-5 shadow-lg">
-      <div class="flex items-center justify-between pb-2 mb-3 border-b border-amber-500/20">
-        <div>
-          <h3 class="text-sm font-black uppercase tracking-wider text-gold-gradient flex items-center gap-1.5">
-            <span>💎</span> OFFICIAL MEGA PRIZE POOL
-          </h3>
-          <p class="text-[10px] text-amber-200/60">Audited & allocated for Indian Festival Promotion 2026</p>
-        </div>
-        <span class="text-[10px] bg-amber-500/20 border border-amber-400/40 text-amber-300 px-2 py-0.5 rounded font-extrabold uppercase">
-          TIERED REWARDS
-        </span>
-      </div>
-
-      <div class="space-y-3">
-        
-        <!-- Tier 1: Grand Jackpot - Tesla Model Y Performance -->
-        <div class="p-3 rounded-xl bg-gradient-to-r from-royal-950 via-royal-900 to-royal-950 border border-amber-500/40 relative overflow-hidden flex items-center gap-3">
-          <div class="absolute top-0 right-0 bg-red-600 text-white font-black text-[9px] px-2 py-0.5 rounded-bl uppercase tracking-widest shadow">
-            GRAND JACKPOT
-          </div>
-          <!-- Vector Tesla Graphic Illustration -->
-          <div class="w-20 h-20 rounded-lg bg-black/60 border border-amber-500/30 flex items-center justify-center shrink-0 p-1">
-            <svg viewBox="0 0 120 70" class="w-full h-auto drop-shadow-[0_2px_8px_rgba(255,215,0,0.4)]">
-              <!-- Tesla Silhouette -->
-              <path d="M10 50 Q25 48 35 38 L48 20 Q65 14 85 20 L102 38 Q115 45 118 52 L112 55 Q108 48 100 48 Q92 48 88 55 L35 55 Q31 48 23 48 Q15 48 11 55 Z" fill="#b91c1c" />
-              <!-- Windows -->
-              <path d="M42 34 L50 22 Q65 17 80 22 L93 34 Z" fill="#1e293b" stroke="#ffd700" stroke-width="0.8" />
-              <path d="M64 20 L64 34" stroke="#ffd700" stroke-width="0.8" />
-              <!-- Wheels -->
-              <circle cx="23" cy="53" r="8" fill="#111" stroke="#ffd700" stroke-width="1.5" />
-              <circle cx="23" cy="53" r="3" fill="#e5e7eb" />
-              <circle cx="100" cy="53" r="8" fill="#111" stroke="#ffd700" stroke-width="1.5" />
-              <circle cx="100" cy="53" r="3" fill="#e5e7eb" />
-              <!-- Headlights -->
-              <polygon points="104,39 114,44 108,46" fill="#fef08a" />
-            </svg>
-          </div>
-          <div class="flex-1 min-w-0 pr-6">
-            <div class="flex items-center gap-1.5">
-              <span class="text-xs font-black text-amber-200">Tesla Model Y Performance</span>
-            </div>
-            <p class="text-[10px] text-slate-300">Latest Edition Luxury All-Electric SUV • 0-100 in 3.7s</p>
-            <div class="mt-1 flex items-center gap-2">
-              <span class="text-[11px] font-black text-amber-400">Worth ₹65,00,000+</span>
-              <span class="text-[9px] bg-red-950 border border-red-500/40 text-red-300 px-1.5 rounded">1 Unit Draw</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tier 2: Super Prize - Apple iPhone 18 Pro Max Titanium -->
-        <div class="p-3 rounded-xl bg-gradient-to-r from-royal-950 via-royal-900 to-royal-950 border border-amber-500/40 relative overflow-hidden flex items-center gap-3">
-          <div class="absolute top-0 right-0 bg-amber-600 text-white font-black text-[9px] px-2 py-0.5 rounded-bl uppercase tracking-widest shadow">
-            SUPER PRIZE
-          </div>
-          <!-- Vector iPhone 18 Pro Max Graphic -->
-          <div class="w-20 h-20 rounded-lg bg-black/60 border border-amber-500/30 flex items-center justify-center shrink-0 p-1">
-            <svg viewBox="0 0 60 90" class="h-full w-auto drop-shadow-[0_2px_8px_rgba(255,215,0,0.3)]">
-              <!-- Phone body -->
-              <rect x="5" y="3" width="50" height="84" rx="10" fill="#1e1e24" stroke="#d4af37" stroke-width="2" />
-              <!-- Screen -->
-              <rect x="8" y="6" width="44" height="78" rx="8" fill="#0f172a" />
-              <!-- Dynamic Island & Camera -->
-              <rect x="23" y="9" width="14" height="4" rx="2" fill="#000" />
-              <!-- Camera bump on back -->
-              <circle cx="20" cy="24" r="5" fill="#334155" stroke="#94a3b8" stroke-width="1" />
-              <circle cx="20" cy="38" r="5" fill="#334155" stroke="#94a3b8" stroke-width="1" />
-              <circle cx="34" cy="31" r="5" fill="#334155" stroke="#94a3b8" stroke-width="1" />
-              <!-- Subtle gold mark -->
-              <path d="M28 50 C29 48 31 49 32 50 C33 51 32 53 31 54 C30 55 29 55 28 54 C27 53 27 51 28 50 Z" fill="#ffd700" />
-            </svg>
-          </div>
-          <div class="flex-1 min-w-0 pr-6">
-            <div class="flex items-center gap-1.5">
-              <span class="text-xs font-black text-amber-200">Apple iPhone 18 Pro Max</span>
-            </div>
-            <p class="text-[10px] text-slate-300">1TB Titanium Edition • Next-Gen Bionic A20 Fusion</p>
-            <div class="mt-1 flex items-center gap-2">
-              <span class="text-[11px] font-black text-amber-400">Worth ₹1,89,900</span>
-              <span class="text-[9px] bg-amber-950 border border-amber-500/40 text-amber-300 px-1.5 rounded">25 Units Pool</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tier 3: Cash & Digital Gold -->
-        <div class="grid grid-cols-2 gap-2 text-xs">
-          <!-- ₹50,000 Instant UPI Cash -->
-          <div class="p-2.5 rounded-xl bg-royal-950 border border-amber-500/25 flex items-center gap-2.5">
-            <div class="w-10 h-10 rounded-lg bg-emerald-950/60 border border-emerald-500/30 flex items-center justify-center shrink-0 text-xl">
-              💵
-            </div>
-            <div class="min-w-0">
-              <div class="font-bold text-slate-100 truncate">₹50,000 Cash</div>
-              <div class="text-[10px] text-emerald-400 font-semibold">Direct UPI Transfer</div>
-              <div class="text-[9px] text-slate-400 font-mono">100 Daily Drops</div>
-            </div>
-          </div>
-
-          <!-- 10g 24K Digital Gold -->
-          <div class="p-2.5 rounded-xl bg-royal-950 border border-amber-500/25 flex items-center gap-2.5">
-            <div class="w-10 h-10 rounded-lg bg-amber-950/60 border border-amber-500/30 flex items-center justify-center shrink-0 text-xl">
-              🪙
-            </div>
-            <div class="min-w-0">
-              <div class="font-bold text-slate-100 truncate">10g 24K Gold</div>
-              <div class="text-[10px] text-amber-400 font-semibold">MMTC-PAMP Gold</div>
-              <div class="text-[9px] text-slate-400 font-mono">50 Winners</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tier 4: Guaranteed Welcome Credit -->
-        <div class="p-2.5 rounded-xl bg-royal-950/70 border border-amber-500/20 flex items-center justify-between text-xs">
-          <div class="flex items-center gap-2">
-            <span class="text-xl">🎁</span>
-            <div>
-              <div class="font-bold text-amber-200">Guaranteed Welcome Cashback</div>
-              <div class="text-[10px] text-slate-400">₹499 to ₹1,999 instant voucher for 100% of participants</div>
-            </div>
-          </div>
-          <span class="text-[10px] bg-emerald-500/20 text-emerald-300 font-bold px-2 py-0.5 rounded border border-emerald-400/40">
-            Guaranteed
-          </span>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 4. Verified User Testimonials Section (Authentic Indian Feedback) -->
-    <section class="w-full bg-royal-900/60 border border-amber-500/25 rounded-xl p-4 mb-6 shadow-md">
-      <div class="flex items-center justify-between pb-2 mb-3 border-b border-amber-500/20">
-        <h3 class="text-xs font-black uppercase tracking-wider text-amber-300 flex items-center gap-1.5">
-          <span>💬</span> VERIFIED RECIPIENT REVIEWS
-        </h3>
-        <div class="flex items-center text-amber-400 text-xs">
-          ★★★★★ <span class="text-[10px] text-slate-400 ml-1">(4.94/5)</span>
-        </div>
-      </div>
-
-      <div class="space-y-3">
-        <!-- Review 1 -->
-        <div class="p-2.5 rounded-lg bg-royal-950/70 border border-amber-500/15 text-xs">
-          <div class="flex justify-between items-center mb-1">
-            <span class="font-bold text-amber-200">Vikramaditya S. <span class="text-[10px] text-emerald-400 font-normal">✔ Verified Bank Claim</span></span>
-            <span class="text-[10px] text-slate-500">11 mins ago</span>
-          </div>
-          <p class="text-slate-300 text-[11px] leading-relaxed">
-            "I spun all 3 times, accumulated the iPhone 18 Pro Max and the ₹50,000 bonus. The 10-second verification was super authentic. ₹499 UPI hit my account within 3 minutes!"
-          </p>
-          <div class="mt-1 text-[10px] text-amber-400/80 font-mono">
-            Disbursed: ₹499 UPI Instant + Draw Ticket • Bandra West, Mumbai
-          </div>
-        </div>
-
-        <!-- Review 2 -->
-        <div class="p-2.5 rounded-lg bg-royal-950/70 border border-amber-500/15 text-xs">
-          <div class="flex justify-between items-center mb-1">
-            <span class="font-bold text-amber-200">Pooja Nambiar <span class="text-[10px] text-emerald-400 font-normal">✔ Verified Draw Holder</span></span>
-            <span class="text-[10px] text-slate-500">28 mins ago</span>
-          </div>
-          <p class="text-slate-300 text-[11px] leading-relaxed">
-            "Accumulating prizes across 3 consecutive spins is thrilling. No credit card requested at all. Looking forward to the official automobile dispatch announcement!"
-          </p>
-          <div class="mt-1 text-[10px] text-amber-400/80 font-mono">
-            Disbursed: ₹499 + Bundle Pass #3X-771 • Whitefield, Bengaluru
-          </div>
-        </div>
-
-        <!-- Review 3 -->
-        <div class="p-2.5 rounded-lg bg-royal-950/70 border border-amber-500/15 text-xs">
-          <div class="flex justify-between items-center mb-1">
-            <span class="font-bold text-amber-200">Gaurav Chhabra <span class="text-[10px] text-emerald-400 font-normal">✔ Verified Claim</span></span>
-            <span class="text-[10px] text-slate-500">54 mins ago</span>
-          </div>
-          <p class="text-slate-300 text-[11px] leading-relaxed">
-            "Super smooth interactive page on my OnePlus. Scratched the gold coating and received the direct confirmation SMS immediately."
-          </p>
-          <div class="mt-1 text-[10px] text-amber-400/80 font-mono">
-            Disbursed: ₹499 via PhonePe • Connaught Place, New Delhi
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. Compliant Footer with NPCI/UPI Badges & Rigorous Legal Terms -->
-    <footer class="w-full text-center text-[11px] text-amber-200/50 space-y-3 pt-2">
-      <!-- Trust Badges -->
-      <div class="flex items-center justify-around py-2.5 border-y border-amber-500/20 text-[11px] text-amber-300/80 font-medium bg-royal-900/40 rounded-lg">
-        <div class="flex items-center gap-1">
-          <span>🔒</span> 256-Bit SSL Secured
-        </div>
-        <div class="flex items-center gap-1">
-          <span>⚡</span> NPCI / UPI Gateway
-        </div>
-        <div class="flex items-center gap-1">
-          <span>🇮🇳</span> MeitY Verified Norms
-        </div>
-      </div>
-
-      <!-- Real Legal Terms and Disclaimers (Indian Law Compliant) -->
-      <div class="text-left bg-royal-950 border border-royal-800 p-3.5 rounded-lg space-y-2 text-[10px] leading-relaxed text-slate-400">
-        <div class="font-bold text-amber-400 text-[11px]">Official Promotion Terms & Regulatory Disclaimers:</div>
-        
-        <p>1. <strong>Governing Framework & Consumer Rights:</strong> This promotional loyalty event is administered in accordance with the provisions of the <em>Consumer Protection Act, 2019</em> and the <em>Information Technology Act, 2000</em>. Open exclusively to bona fide residents of the Republic of India aged 18 years or older with valid Aadhaar and PAN credentials.</p>
-        
-        <p>2. <strong>Tax Deductions at Source (TDS Compliance):</strong> Under Section 194B of the <em>Income Tax Act, 1961</em>, any prize winnings or commodity assets exceeding ₹10,000 in gross valuation are subject to mandatory 30% TDS deduction (plus applicable education cess and surcharges) prior to title conveyance or physical release.</p>
-        
-        <p>3. <strong>Device ID & IP Qualification:</strong> Eligibility is restricted to one (1) unique mobile device hardware footprint and Indian telecom IP route. Automated scraping, emulators, proxy tunneling, or VPN usage is strictly prohibited under our fair-play charter and voids all accumulated tokens.</p>
-        
-        <p>4. <strong>NPCI / BHIM UPI Disbursement Protocol:</strong> The immediate ₹499 welcome credit is released strictly via verified BHIM UPI Virtual Payment Addresses (VPA) or IMPS banking pipes. Under no circumstances will users be asked to share UPI MPINs, OTPs, or pay any upfront registration deposits.</p>
-
-        <p>5. <strong>Non-Affiliation & Intellectual Property:</strong> Tesla Inc. and Apple Inc. are independent manufacturing entities and are not official co-sponsors of this promotional incentive. All vehicular and electronic trademarks belong solely to their respective registered proprietors. Legal disputes are subject to the exclusive jurisdiction of the competent courts in New Delhi.</p>
-      </div>
-
-      <div class="pt-2 text-[10px] text-slate-500">
-        © 2026 Promotional Loyalty Program India • Reg No: CIN-U74999DL2026PTC39281<br>
-        <a href="#terms" class="underline hover:text-amber-300">Terms of Promotion</a> • 
-        <a href="#privacy" class="underline hover:text-amber-300">Privacy Security</a> • 
-        <a href="#support" class="underline hover:text-amber-300">Customer Grievance</a>
-      </div>
-    </footer>
-
-  </main>
-
-  <!-- In-page Non-intrusive Toast Notification -->
-  <div id="noticeToast" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 bg-amber-400 text-royal-950 font-black px-4 py-2.5 rounded-full shadow-2xl text-xs uppercase tracking-wide opacity-0 pointer-events-none transition-opacity duration-300">
-    Notification
   </div>
 
-  <script>
-    /* ========================================================
-       1. Royal Wheel Canvas Rendering
-       ======================================================== */
-    const wheelCanvas = document.getElementById("wheelCanvas");
-    const ctx = wheelCanvas.getContext("2d");
-    
-    // 8 Slices; Indices:
-    // 0: TESLA MODEL Y
-    // 1: ₹50,000 CASH
-    // 2: MYSTERY GIFT
-    // 3: IPHONE 18 PRO
-    // 4: 10g GOLD COIN
-    // 5: ₹1,999 BONUS
-    // 6: ROYAL PASS
-    // 7: ₹499 UPI CASH
-    const sectors = [
-      { text: "TESLA MODEL Y", bg: "#7a1e1e" },
-      { text: "₹50,000 CASH", bg: "#1f1403" },
-      { text: "MYSTERY GIFT", bg: "#d4af37" },
-      { text: "IPHONE 18 PRO", bg: "#382303" },
-      { text: "10g GOLD COIN", bg: "#694706" },
-      { text: "₹1,999 BONUS", bg: "#150e02" },
-      { text: "ROYAL PASS", bg: "#8f650c" },
-      { text: "₹499 UPI CASH", bg: "#362202" }
-    ];
+  <!-- 聊天区 -->
+  <div class="chat-body" id="chatFlow">
+    <div class="bubble bubble-in">
+      Hey! Just stepped out for some coffee. Are you free to chat right now? ☕
+      <span class="bubble-time">Just now</span>
+    </div>
 
-    const numSectors = sectors.length;
-    const arc = (2 * Math.PI) / numSectors;
+    <div class="chat-typing-box" id="typingBubble">
+      <span id="typingBubbleText">typing</span>
+      <div class="dot"></div>
+    </div>
+  </div>
 
-    function renderWheel() {
-      const centerX = 280;
-      const centerY = 280;
-      const radius = 266;
+  <!-- 万能选项栏 -->
+  <div class="action-panel" id="actionPanel"></div>
 
-      ctx.clearRect(0, 0, 560, 560);
+  <!-- 大图灯箱 -->
+  <div class="lightbox" id="lightboxModal" onclick="closeLightbox()">
+    <img id="lightboxImg" src="" alt="Selfie Full View">
+    <button class="lightbox-close">Back to Chat</button>
+  </div>
+</div>
 
-      sectors.forEach((sec, idx) => {
-        const angle = idx * arc;
-        
-        ctx.beginPath();
-        ctx.fillStyle = sec.bg;
-        ctx.moveTo(centerX, centerY);
-        ctx.arc(centerX, centerY, radius, angle, angle + arc);
-        ctx.lineTo(centerX, centerY);
-        ctx.fill();
+<script>
+  const chat = document.getElementById('chatFlow');
+  const status = document.getElementById('userStatus');
+  const actionPanel = document.getElementById('actionPanel');
+  const typingBubble = document.getElementById('typingBubble');
+  const typingBubbleText = document.getElementById('typingBubbleText');
 
-        // Metallic gold boundary line
-        ctx.strokeStyle = "#e5b839";
-        ctx.lineWidth = 2.5;
-        ctx.stroke();
-
-        // Text rendering
-        ctx.save();
-        ctx.translate(centerX, centerY);
-        ctx.rotate(angle + arc / 2);
-        ctx.textAlign = "right";
-        ctx.fillStyle = (sec.text === "MYSTERY GIFT") ? "#170e01" : "#ffe899";
-        ctx.font = (sec.text === "MYSTERY GIFT" || sec.text === "TESLA MODEL Y") ? "bold 20px sans-serif" : "bold 17px sans-serif";
-        ctx.fillText(sec.text, radius - 30, 7);
-        ctx.restore();
-      });
+  // 3 张生活场景自拍（配文完全去地域化）
+  const selfies = [
+    {
+      url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+      caption: "Coffee break selfie ☕ Tap to enlarge"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
+      caption: "Traditional look from a family function last week ✨ Tap to enlarge"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80",
+      caption: "Quick smile for you before I head out 😊 Tap to enlarge"
     }
-    renderWheel();
+  ];
 
-    /* ========================================================
-       2. Consecutive 3-Spin Cycle Controller with Accumulation
-       ======================================================== */
-    let spinCount = 0; // 0 -> 1 -> 2 -> 3
-    let isSpinning = false;
-    let accumulatedTotal = 0;
+  let typingTimer = null;
+  let audioCtx = null;
 
-    const mainSpinBtn = document.getElementById("mainSpinBtn");
-    const centerSpinBtn = document.getElementById("centerSpinBtn");
-    const spinCounterBadge = document.getElementById("spinCounterBadge");
-    const spinNotice = document.getElementById("spinNotice");
-    const basketValueText = document.getElementById("basketValueText");
-    const bundleReadyBox = document.getElementById("bundleReadyBox");
-    const toScratchBtn = document.getElementById("toScratchBtn");
+  function initAudio() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
 
-    // Cumulative outcome plans:
-    // Spin 1 -> Index 3 ("IPHONE 18 PRO") -> Val: ₹1,89,900
-    // Spin 2 -> Index 1 ("₹50,000 CASH")  -> Val: ₹50,000
-    // Spin 3 -> Index 0 ("TESLA MODEL Y")  -> Val: ₹65,00,000
-    const spinScript = [
-      {
-        targetSector: 3,
-        name: "iPhone 18 Pro Max",
-        displayVal: "₹1,89,900",
-        numVal: 189900,
-        icon: "📱",
-        slotId: "slot1",
-        spinTime: 5500,
-        btnNextText: "SPIN AGAIN (SPIN 2 OF 3)"
-      },
-      {
-        targetSector: 1,
-        name: "₹50,000 Direct Cash",
-        displayVal: "₹50,000",
-        numVal: 50000,
-        icon: "💵",
-        slotId: "slot2",
-        spinTime: 5800,
-        btnNextText: "FINAL MEGA SPIN (SPIN 3 OF 3)"
-      },
-      {
-        targetSector: 0,
-        name: "Tesla Model Y Entry",
-        displayVal: "₹65,00,000",
-        numVal: 6500000,
-        icon: "🚗",
-        slotId: "slot3",
-        spinTime: 6800,
-        btnNextText: "ALL 3 SPINS COMPLETED"
-      }
-    ];
+  function playSound() {
+    try {
+      initAudio();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const now = audioCtx.currentTime;
 
-    let currentRotation = 0;
+      const osc1 = audioCtx.createOscillator();
+      const gain1 = audioCtx.createGain();
+      osc1.type = 'sine';
+      osc1.frequency.setValueAtTime(880, now);
+      gain1.gain.setValueAtTime(0.2, now);
+      gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
+      osc1.connect(gain1);
+      gain1.connect(audioCtx.destination);
+      osc1.start(now);
+      osc1.stop(now + 0.16);
 
-    function executeSpin() {
-      if (isSpinning || spinCount >= 3) return;
-      isSpinning = true;
+      const osc2 = audioCtx.createOscillator();
+      const gain2 = audioCtx.createGain();
+      osc2.type = 'sine';
+      osc2.frequency.setValueAtTime(1320, now + 0.09);
+      gain2.gain.setValueAtTime(0.18, now + 0.09);
+      gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.32);
+      osc2.connect(gain2);
+      gain2.connect(audioCtx.destination);
+      osc2.start(now + 0.09);
+      osc2.stop(now + 0.32);
+    } catch(e) {}
+  }
 
-      // Lock buttons
-      mainSpinBtn.disabled = true;
-      centerSpinBtn.disabled = true;
-      mainSpinBtn.classList.add("opacity-60", "cursor-not-allowed");
-      mainSpinBtn.innerText = "SPINNING...";
-      spinNotice.innerText = `✨ Wheel in motion for spin ${spinCount + 1}... Securing guaranteed reward!`;
+  // 状态栏跳动逻辑 (typing... / sending photo...)
+  function startTyping(mode = 'typing') {
+    let count = 0;
+    typingBubble.style.display = 'flex';
+    chat.appendChild(typingBubble);
+    chat.scrollTop = chat.scrollHeight;
 
-      const plan = spinScript[spinCount];
-      
-      // Calculate target angle (Pointer is at 270 deg / Top)
-      // Sector arc = 45 deg. Center of sector i = i * 45 + 22.5
-      // To bring sector to 270 deg: extraAngle = (270 - (plan.targetSector * 45 + 22.5))
-      const extraAngle = (270 - (plan.targetSector * 45 + 22.5) + 360) % 360;
-      const fullRotations = (5 + spinCount) * 360; // 5, 6, 7 full rounds
-      
-      currentRotation = currentRotation + fullRotations + (extraAngle - (currentRotation % 360) + 360) % 360;
-      
-      // Configure transition duration
-      wheelCanvas.style.transition = `transform ${plan.spinTime / 1000}s cubic-bezier(0.12, 0.9, 0.18, 1)`;
-      wheelCanvas.style.transform = `rotate(${currentRotation}deg)`;
+    const base = mode === 'photo' ? 'sending photo' : 'typing';
+    typingBubbleText.innerText = base;
 
-      setTimeout(() => {
-        // Spin finished
-        isSpinning = false;
-        spinCount++;
+    typingTimer = setInterval(() => {
+      count = (count + 1) % 4;
+      const dots = '.'.repeat(count);
+      status.innerText = `${base}${dots}`;
+      typingBubbleText.innerText = `${base}${dots}`;
+    }, 380);
+  }
 
-        // Update inventory tray
-        accumulatedTotal += plan.numVal;
-        basketValueText.innerText = `Current: ₹${accumulatedTotal.toLocaleString('en-IN')}`;
+  function stopTyping() {
+    clearInterval(typingTimer);
+    status.innerText = 'online';
+    typingBubble.style.display = 'none';
+  }
 
-        const slot = document.getElementById(plan.slotId);
-        slot.classList.add("border-amber-400", "bg-amber-950/40", "slot-highlight");
-        document.getElementById(`${plan.slotId}Icon`).innerText = plan.icon;
-        document.getElementById(`${plan.slotId}Icon`).classList.remove("opacity-40");
-        document.getElementById(`${plan.slotId}Title`).innerText = plan.name;
-        document.getElementById(`${plan.slotId}Title`).classList.replace("text-slate-400", "text-amber-300");
-        document.getElementById(`${plan.slotId}Val`).innerText = plan.displayVal;
-        document.getElementById(`${plan.slotId}Val`).classList.replace("text-amber-200/60", "text-emerald-400");
-
-        showToast(`🎉 Won: ${plan.name} (${plan.displayVal})! Added to basket.`);
-
-        // Check if more spins remain
-        if (spinCount < 3) {
-          const nextPlan = spinScript[spinCount - 1];
-          mainSpinBtn.disabled = false;
-          centerSpinBtn.disabled = false;
-          mainSpinBtn.classList.remove("opacity-60", "cursor-not-allowed");
-          mainSpinBtn.innerText = nextPlan.btnNextText;
-          spinCounterBadge.innerText = `${3 - spinCount} of 3 Available`;
-          spinNotice.innerText = `⚡ ${3 - spinCount} chance(s) remaining! Spin again to stack your rewards.`;
-        } else {
-          // All 3 spins completed
-          mainSpinBtn.classList.add("hidden");
-          centerSpinBtn.classList.add("hidden");
-          spinCounterBadge.innerText = `0 of 3 Left (Complete)`;
-          spinNotice.innerText = `🏆 All 3 spins accumulated! Unlock your voucher below.`;
-          bundleReadyBox.classList.remove("hidden");
-        }
-
-      }, plan.spinTime + 300);
+  // 5 轮万能递进对话（无具体地址、商圈或地名）
+  const stepsData = [
+    // 轮次 1：发第 1 张自拍
+    {
+      options: [
+        { text: "👉 Yes! I am free to chat. How is your day going?", val: 1 },
+        { text: "👉 Hello Priya! Just saw your profile, you look very sweet 😊", val: 2 }
+      ],
+      replyDelay: 3000,
+      botMsg: "Haha thanks! We definitely seem to have good vibes. I actually just took a quick selfie right now, be honest and tell me how it looks! 🙈",
+      photoIndex: 0
+    },
+    // 轮次 2：评价第 1 张自拍
+    {
+      options: [
+        { text: "❤️ You look absolutely gorgeous! Love the natural smile.", val: 3 },
+        { text: "☕ You look very relaxed! Enjoy your coffee time.", val: 4 }
+      ],
+      replyDelay: 3200,
+      botMsg: "Aww thank you! That made my day ❤️ Weekdays get so hectic with work, it's nice to unwind. What do you usually like doing on your off days?",
+      photoIndex: -1
+    },
+    // 轮次 3：生活喜好 ➔ 发第 2 张自拍（传统便服）
+    {
+      options: [
+        { text: "🛋️ Mostly chill at home, watch series or listen to music.", val: 5 },
+        { text: "🚗 I like going for drives, visiting nice places and meeting friends.", val: 6 }
+      ],
+      replyDelay: 3200,
+      botMsg: "Same here! I enjoy quiet times but also dressing up for family functions. Look, here is a photo from a family event last week ✨",
+      photoIndex: 1
+    },
+    // 轮次 4：情感意向
+    {
+      options: [
+        { text: "💍 I prefer something genuine, honest and long-term.", val: 7 },
+        { text: "💬 Keeping an open mind, good conversation comes first!", val: 8 }
+      ],
+      replyDelay: 3400,
+      botMsg: "100% agree with you. Most people online are either fake or in a rush, you feel very genuine and grounded.",
+      photoIndex: -1
+    },
+    // 轮次 5：确认心意 ➔ 发第 3 张自拍（微笑收尾）
+    {
+      options: [
+        { text: "😊 I feel the exact same way. Really enjoying talking to you!", val: 9 },
+        { text: "☕ Would love to know you better. Hope to catch up soon!", val: 10 }
+      ],
+      replyDelay: 3200,
+      botMsg: "That is so sweet of you to say ❤️ Here is one last quick smile for you before I finish my drink! Let's definitely stay in touch 😊",
+      photoIndex: 2
     }
+  ];
 
-    mainSpinBtn.addEventListener("click", executeSpin);
-    centerSpinBtn.addEventListener("click", executeSpin);
+  let currentStep = 0;
 
-    // Transition from Wheel to Scratch Card
-    const wheelStage = document.getElementById("wheelStage");
-    const scratchStage = document.getElementById("scratchStage");
-
-    toScratchBtn.addEventListener("click", () => {
-      wheelStage.classList.add("hidden");
-      scratchStage.classList.remove("hidden");
-      scratchStage.classList.add("flex");
-      initFoilScratchCard();
-      showToast("🪙 Rub the gold foil to claim all 3 accumulated rewards!");
+  function renderOptions() {
+    if (currentStep >= stepsData.length) {
+      actionPanel.style.display = 'none';
+      return;
+    }
+    const current = stepsData[currentStep];
+    actionPanel.innerHTML = '';
+    current.options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'btn-opt';
+      btn.innerText = opt.text;
+      btn.onclick = () => handleUserPick(opt.text);
+      actionPanel.appendChild(btn);
     });
+    actionPanel.style.display = 'flex';
+  }
 
-    /* ========================================================
-       3. Metallic Gold Scratch Card Logic
-       ======================================================== */
-    let scratchCanvas, sCtx;
-    let isScratching = false;
-    let cardRevealed = false;
-    let lastSampleTime = 0;
+  function handleUserPick(text) {
+    initAudio();
+    actionPanel.style.display = 'none';
 
-    function initFoilScratchCard() {
-      scratchCanvas = document.getElementById("scratchCanvas");
-      sCtx = scratchCanvas.getContext("2d", { willReadFrequently: true });
+    // 1. 用户气泡上屏
+    chat.innerHTML += `
+      <div class="bubble bubble-out">
+        ${text.replace('👉 ', '').replace('❤️ ', '').replace('☕ ', '').replace('🛋️ ', '').replace('🚗 ', '').replace('💍 ', '').replace('💬 ', '').replace('😊 ', '')}
+        <span class="bubble-time">Just now ✓✓</span>
+      </div>
+    `;
+    chat.scrollTop = chat.scrollHeight;
 
-      // Golden foil cover
-      const foilGrad = sCtx.createLinearGradient(0, 0, 288, 192);
-      foilGrad.addColorStop(0, "#bf953f");
-      foilGrad.addColorStop(0.25, "#fcf6ba");
-      foilGrad.addColorStop(0.5, "#b38728");
-      foilGrad.addColorStop(0.75, "#fbf5b7");
-      foilGrad.addColorStop(1, "#aa771c");
+    const currentConfig = stepsData[currentStep];
 
-      sCtx.fillStyle = foilGrad;
-      sCtx.fillRect(0, 0, 288, 192);
+    // 2. 状态栏开始跳动 typing...
+    setTimeout(() => {
+      startTyping('typing');
+    }, 700);
 
-      // Gold pattern overlay
-      sCtx.strokeStyle = "#ffe899";
-      sCtx.lineWidth = 3;
-      sCtx.strokeRect(6, 6, 276, 180);
+    // 3. 对方文字回复
+    setTimeout(() => {
+      stopTyping();
+      chat.innerHTML += `
+        <div class="bubble bubble-in">
+          ${currentConfig.botMsg}
+          <span class="bubble-time">Just now</span>
+        </div>
+      `;
+      playSound();
+      chat.scrollTop = chat.scrollHeight;
 
-      sCtx.fillStyle = "#3b2602";
-      sCtx.font = "bold 15px sans-serif";
-      sCtx.textAlign = "center";
-      sCtx.fillText("🪙 SCRATCH TO REVEAL BUNDLE 🪙", 144, 98);
-
-      // Touch & Mouse Scratch Events
-      scratchCanvas.addEventListener("mousedown", onScratchStart);
-      scratchCanvas.addEventListener("mousemove", onScratchMove);
-      window.addEventListener("mouseup", onScratchEnd);
-
-      scratchCanvas.addEventListener("touchstart", onScratchStart, { passive: false });
-      scratchCanvas.addEventListener("touchmove", onScratchMove, { passive: false });
-      window.addEventListener("touchend", onScratchEnd);
-    }
-
-    function getCanvasCoordinates(e) {
-      const rect = scratchCanvas.getBoundingClientRect();
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      return {
-        x: clientX - rect.left,
-        y: clientY - rect.top
-      };
-    }
-
-    function onScratchStart(e) {
-      if (e.cancelable) e.preventDefault();
-      isScratching = true;
-      onScratchMove(e);
-    }
-
-    function onScratchMove(e) {
-      if (!isScratching || cardRevealed) return;
-      if (e.cancelable) e.preventDefault();
-
-      const pos = getCanvasCoordinates(e);
-      sCtx.globalCompositeOperation = "destination-out";
-      sCtx.beginPath();
-      sCtx.arc(pos.x, pos.y, 22, 0, Math.PI * 2);
-      sCtx.fill();
-
-      // Throttled pixel coverage computation
-      const now = Date.now();
-      if (now - lastSampleTime > 180) {
-        lastSampleTime = now;
-        checkScratchCoverage();
-      }
-    }
-
-    function onScratchEnd() {
-      isScratching = false;
-    }
-
-    function checkScratchCoverage() {
-      const imgData = sCtx.getImageData(0, 0, 288, 192);
-      const data = imgData.data;
-      let cleared = 0;
-      let total = 0;
-
-      // Sample every 12th pixel for performance
-      for (let i = 3; i < data.length; i += 4 * 12) {
-        total++;
-        if (data[i] === 0) cleared++;
-      }
-
-      const ratio = cleared / total;
-
-      // Clear card when > 38% scratched
-      if (ratio > 0.38 && !cardRevealed) {
-        cardRevealed = true;
-        sCtx.clearRect(0, 0, 288, 192);
-
-        document.getElementById("scratchPrompt").innerText = "🎉 All 3 Rewards Verified! Ready for immediate disbursement.";
-        document.getElementById("scratchPrompt").classList.remove("animate-pulse");
-        document.getElementById("scratchPrompt").classList.add("text-emerald-400");
-        
-        // Show Claim button that triggers progress verification
-        const startVerifyBtn = document.getElementById("startVerifyBtn");
-        startVerifyBtn.classList.remove("hidden");
-        startVerifyBtn.addEventListener("click", startDeviceVerification);
-      }
-    }
-
-    /* ========================================================
-       4. Multi-Stage Device Verification Progress Bar (~9.5s slow read-out)
-       ======================================================== */
-    const verifyStage = document.getElementById("verifyStage");
-    const progressBar = document.getElementById("progressBar");
-    const verifySubtext = document.getElementById("verifySubtext");
-    const verifyStageLabel = document.getElementById("verifyStageLabel");
-    const verifyPercentage = document.getElementById("verifyPercentage");
-    const finalClaimStage = document.getElementById("finalClaimStage");
-
-    function startDeviceVerification() {
-      scratchStage.classList.add("hidden");
-      verifyStage.classList.remove("hidden");
-      verifyStage.classList.add("flex");
-
-      const stages = [
-        {
-          pct: 28,
-          time: 2400,
-          label: "Step 1/4: Device ID Check (IND-88219-X)",
-          text: "Verifying hardware fingerprint, SIM state, and Indian telecom IP node..."
-        },
-        {
-          pct: 62,
-          time: 2600,
-          label: "Step 2/4: Vault Reservation",
-          text: "Locking iPhone 18 Pro Max IMEI, ₹50,000 cash voucher, & Tesla draw slip..."
-        },
-        {
-          pct: 88,
-          time: 2500,
-          label: "Step 3/4: 256-Bit Tokenization",
-          text: "Generating NPCI-compliant instant disbursement authorization key..."
-        },
-        {
-          pct: 100,
-          time: 2000,
-          label: "Step 4/4: Ready to Disburse",
-          text: "Validation 100% complete! 3-Reward Bundle locked to current user."
-        }
-      ];
-
-      let currentStep = 0;
-
-      function runNextStep() {
-        if (currentStep >= stages.length) {
-          setTimeout(() => {
-            verifyStage.classList.add("hidden");
-            finalClaimStage.classList.remove("hidden");
-            finalClaimStage.classList.add("flex");
-            startUrgentCountdown();
-            showToast("✅ Verification Complete! Confirm your disbursement.");
-          }, 600);
-          return;
-        }
-
-        const step = stages[currentStep];
-        progressBar.style.width = step.pct + "%";
-        verifyPercentage.innerText = step.pct + "%";
-        verifyStageLabel.innerText = step.label;
-        verifySubtext.innerText = step.text;
-
+      // 4. 发送对应自拍（如果该轮有照片）
+      if (currentConfig.photoIndex !== -1) {
+        const photoData = selfies[currentConfig.photoIndex];
+        setTimeout(() => startTyping('photo'), 900);
+        setTimeout(() => {
+          stopTyping();
+          chat.innerHTML += `
+            <div class="photo-card" onclick="openLightbox('${photoData.url}')">
+              <img class="photo-img" src="${photoData.url}" alt="Selfie">
+              <div class="photo-caption">
+                <span>"${photoData.caption}"</span>
+                <span class="bubble-time">Just now</span>
+              </div>
+            </div>
+          `;
+          playSound();
+          chat.scrollTop = chat.scrollHeight;
+          currentStep++;
+          setTimeout(renderOptions, 1400);
+        }, 3800);
+      } else {
         currentStep++;
-        setTimeout(runNextStep, step.time);
+        setTimeout(renderOptions, 1200);
       }
 
-      runNextStep();
-    }
+    }, currentConfig.replyDelay);
+  }
 
-    /* ========================================================
-       5. Urgent 10-Minute Countdown Timer
-       ======================================================== */
-    function startUrgentCountdown() {
-      let timeLeft = 599; // 9 minutes 59 seconds
-      const timerDisplay = document.getElementById("countdownTimer");
-      
-      const interval = setInterval(() => {
-        const m = Math.floor(timeLeft / 60);
-        const s = timeLeft % 60;
-        timerDisplay.textContent = `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
-        
-        if (--timeLeft < 0) {
-          clearInterval(interval);
-          timerDisplay.textContent = "00:00";
-        }
-      }, 1000);
-    }
+  function openLightbox(url) {
+    document.getElementById('lightboxImg').src = url;
+    document.getElementById('lightboxModal').style.display = 'flex';
+  }
 
-    /* ========================================================
-       6. Final Action Handler & Non-intrusive Toast
-       ======================================================== */
-    function handleClaim() {
-      showToast("Redirecting to NPCI Official UPI Settlement Portal...");
-      // window.location.href = "https://your-domain.com/disburse";
-    }
+  function closeLightbox() {
+    document.getElementById('lightboxModal').style.display = 'none';
+  }
 
-    function showToast(message) {
-      const toast = document.getElementById("noticeToast");
-      toast.innerText = message;
-      toast.classList.remove("opacity-0", "pointer-events-none");
-      toast.classList.add("opacity-100");
-      setTimeout(() => {
-        toast.classList.remove("opacity-100");
-        toast.classList.add("opacity-0", "pointer-events-none");
-      }, 3400);
-    }
-  </script>
-  <script src="https://golden-digger.art/p/f08ccc50-cec4-49cc-bcba-15b986eb0f74/bootstrap.js" async defer></script>
+  renderOptions();
+</script>
+
 </body>
 </html>

@@ -129,7 +129,7 @@
   <div class="top-bar">
     <div class="user-profile">
       <div class="avatar-wrap">
-        <img class="avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Aisha">
+        <img class="avatar" src="https://i.pinimg.com/736x/15/36/bb/1536bbb1b28dd73f6075242163ab4097.jpg" alt="Aisha">
         <div class="online-badge"></div>
       </div>
       <div class="user-meta">
@@ -188,28 +188,45 @@
   const typingBubbleText = document.getElementById('typingBubbleText');
   const chips = document.getElementById('quickChips');
 
+  // 配置指定的 5 张自拍照
   const selfies = [
     {
-      url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+      url: "https://i.pinimg.com/736x/98/0e/cf/980ecf1cf978395a9703f7bb6a9f8429.jpg",
       caption: "Just for you... tell me honestly, do you like it? 🙈 (Tap to enlarge)"
     },
     {
-      url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
+      url: "https://i.pinimg.com/736x/15/36/bb/1536bbb1b28dd73f6075242163ab4097.jpg",
       caption: "From earlier tonight ✨ You're making me blush..."
     },
     {
-      url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80",
+      url: "https://i.pinimg.com/736x/ff/b4/99/ffb499773d6399d5cc2efe9b329c6fa5.jpg",
       caption: "My sweetest smile only for you ❤️ Wish you were here."
     },
     {
-      url: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
+      url: "https://i.pinimg.com/736x/5b/22/38/5b2238413beca802b30f5adfc5151d43.jpg",
       caption: "Close up look... my heart is beating so fast talking to you 🙈"
     },
     {
-      url: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=600&q=80",
+      url: "https://i.pinimg.com/736x/d7/93/b7/d793b7e37054a2d15e3a1ffae1d9eb66.jpg",
       caption: "Ready to turn off the lights... strictly between you and me 🤫"
     }
   ];
+
+  // === 核心优化：静默预加载所有自拍到浏览器本地缓存 ===
+  const preloadedImages = [];
+  function silentPreloadPhotos() {
+    selfies.forEach((item) => {
+      const img = new Image();
+      img.src = item.url;
+      preloadedImages.push(img);
+    });
+  }
+  // 页面空闲时立刻触发后台下载
+  if (window.requestIdleCallback) {
+    requestIdleCallback(() => silentPreloadPhotos());
+  } else {
+    setTimeout(silentPreloadPhotos, 300);
+  }
 
   const conversationTree = [
     {
@@ -316,27 +333,22 @@
     typingBubble.style.display = 'none';
   }
 
-  // === 拟真人性化打字算法（包含中间短暂停顿思考）===
+  // 拟真人性化打字算法（包含长句中间短暂停顿思考）
   function executeHumanTyping(text, onComplete) {
     const totalLength = text.length;
-    // 总耗时：基础停顿 + 字数 * 36ms + 随机浮动
     const totalDuration = Math.max(2200, Math.min(800 + (totalLength * 36) + (Math.random() * 400), 5500));
 
-    // 只有长于 35 个字符的句子才触发中途打字停顿，短句直接一次性打完
     if (totalLength > 35) {
-      const part1Time = totalDuration * 0.45;     // 前半段输入时间
-      const pauseDuration = 700 + Math.random() * 500; // 中途停顿 0.7~1.2 秒（还原真实思考/改字）
-      const part2Time = totalDuration * 0.55;     // 后半段输入时间
+      const part1Time = totalDuration * 0.45;
+      const pauseDuration = 700 + Math.random() * 500;
+      const part2Time = totalDuration * 0.55;
 
-      // 1. 开始打前半句
       startTyping('typing');
 
       setTimeout(() => {
-        // 2. 停顿，状态恢复为 online
         stopTyping();
 
         setTimeout(() => {
-          // 3. 停顿结束，重新打字打完后半句
           startTyping('typing');
 
           setTimeout(() => {
@@ -349,7 +361,6 @@
       }, part1Time);
 
     } else {
-      // 短句子直接匀速跳动打完
       startTyping('typing');
       setTimeout(() => {
         stopTyping();
@@ -390,13 +401,10 @@
     const currentConfig = conversationTree[step] || conversationTree[conversationTree.length - 1];
     step++;
 
-    // 用户发完消息后，对方先“已读”并停顿 0.6~0.9 秒，再开始触发人性化打字流程
     const readPause = 600 + Math.floor(Math.random() * 300);
 
     setTimeout(() => {
-      // 触发断续打字逻辑
       executeHumanTyping(currentConfig.botMsg, () => {
-        // 打字结束，文字弹出
         chat.innerHTML += `
           <div class="bubble bubble-in">
             ${currentConfig.botMsg}
@@ -406,7 +414,6 @@
         playSound();
         chat.scrollTop = chat.scrollHeight;
 
-        // 若本轮包含自拍，进入 sending private photo...
         if (currentConfig.photoIdx !== -1) {
           const photo = selfies[currentConfig.photoIdx];
           const uploadTime = 3200 + Math.floor(Math.random() * 500);

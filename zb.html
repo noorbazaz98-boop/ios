@@ -3,114 +3,213 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>WhatsApp Chat</title>
+  <title>Private Chat - Aisha</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { background: #121b22; display: flex; justify-content: center; min-height: 100vh; }
-    .chat-container { width: 100%; max-width: 430px; height: 100vh; background: #0b141a; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
+    body { background: #080c10; display: flex; justify-content: center; min-height: 100vh; overflow: hidden; }
 
-    /* 顶部状态栏（无具体地名） */
-    .top-bar { background: #1f2c34; color: #e9edef; padding: 10px 14px; display: flex; align-items: center; gap: 12px; z-index: 10; box-shadow: 0 1px 3px rgba(0,0,0,0.5); }
-    .avatar-wrap { position: relative; width: 42px; height: 42px; }
-    .avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-    .online-badge { position: absolute; bottom: 0; right: 0; width: 11px; height: 11px; background: #00a884; border: 2px solid #1f2c34; border-radius: 50%; }
-    .user-meta h4 { font-size: 15px; font-weight: 600; }
+    .chat-container {
+      width: 100%; max-width: 430px; height: 100vh; background: #0d1418;
+      display: flex; flex-direction: column; position: relative;
+      box-shadow: 0 0 40px rgba(0, 168, 132, 0.15);
+    }
+
+    /* 顶栏：高级微光渐变 */
+    .top-bar {
+      background: linear-gradient(180deg, #182229 0%, #111a20 100%);
+      color: #e9edef; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.06); z-index: 10;
+    }
+    .user-profile { display: flex; align-items: center; gap: 12px; }
+    .avatar-wrap { position: relative; width: 46px; height: 46px; }
+    .avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 1.5px solid #00a884; box-shadow: 0 0 10px rgba(0,168,132,0.4); }
+    .online-badge { position: absolute; bottom: 1px; right: 1px; width: 11px; height: 11px; background: #00a884; border: 2px solid #111a20; border-radius: 50%; }
+    .user-meta h4 { font-size: 15.5px; font-weight: 600; color: #fff; display: flex; align-items: center; gap: 4px; }
     .user-meta p { font-size: 12px; color: #00a884; font-weight: 500; height: 16px; }
+    .verified-mark { color: #00a884; font-size: 13px; }
 
-    /* 聊天区 */
-    .chat-body { flex: 1; padding: 16px 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background-image: radial-gradient(#1f2c34 1px, transparent 1px); background-size: 18px 18px; scroll-behavior: smooth; }
-    .bubble { max-width: 85%; padding: 8px 12px; border-radius: 8px; font-size: 14.5px; line-height: 1.45; animation: popIn 0.3s ease; }
-    .bubble-in { background: #202c33; color: #e9edef; align-self: flex-start; border-top-left-radius: 0; }
-    .bubble-out { background: #005c4b; color: #e9edef; align-self: flex-end; border-top-right-radius: 0; }
-    .bubble-time { font-size: 10.5px; color: #8696a0; float: right; margin-left: 8px; margin-top: 4px; }
+    /* 聊天区背景暗纹 */
+    .chat-body {
+      flex: 1; padding: 16px 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px;
+      background: radial-gradient(circle at 50% 30%, rgba(20, 35, 45, 0.6) 0%, #090e11 100%);
+      scroll-behavior: smooth;
+    }
 
-    /* 自拍图卡片 */
-    .photo-card { background: #202c33; padding: 6px; border-radius: 10px; max-width: 260px; align-self: flex-start; border-top-left-radius: 0; animation: popIn 0.3s ease; cursor: pointer; }
-    .photo-img { width: 100%; height: 280px; object-fit: cover; border-radius: 6px; display: block; }
-    .photo-caption { font-size: 13px; color: #e9edef; padding: 8px 4px 4px; }
+    /* 气泡美化 */
+    .bubble {
+      max-width: 82%; padding: 10px 14px; border-radius: 14px; font-size: 14.5px; line-height: 1.5;
+      animation: popIn 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28); position: relative;
+    }
+    .bubble-in {
+      background: #1f2c34; color: #f1f2f3; align-self: flex-start;
+      border-top-left-radius: 2px; border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    .bubble-out {
+      background: linear-gradient(135deg, #005c4b 0%, #007a63 100%); color: #fff;
+      align-self: flex-end; border-top-right-radius: 2px;
+      box-shadow: 0 4px 14px rgba(0,92,75,0.3);
+    }
+    .bubble-time { font-size: 10.5px; color: rgba(255,255,255,0.45); float: right; margin-left: 10px; margin-top: 6px; }
 
-    /* 消息气泡内跳动提示 */
-    .chat-typing-box { display: none; align-self: flex-start; background: #202c33; color: #00a884; padding: 8px 14px; border-radius: 14px; font-size: 13px; align-items: center; gap: 6px; }
-    .dot { width: 5px; height: 5px; background: #00a884; border-radius: 50%; animation: pulse 0.8s infinite alternate; }
+    /* 自拍照片卡片：更具诱惑力的圆角与轻微光晕 */
+    .photo-card {
+      background: #1f2c34; padding: 6px; border-radius: 14px; max-width: 260px;
+      align-self: flex-start; border-top-left-radius: 2px; animation: popIn 0.35s ease;
+      cursor: pointer; border: 1px solid rgba(0, 168, 132, 0.3); box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+    }
+    .photo-img { width: 100%; height: 320px; object-fit: cover; border-radius: 10px; display: block; filter: brightness(0.96); }
+    .photo-caption { font-size: 13px; color: #e9edef; padding: 8px 6px 4px; font-style: italic; }
 
-    /* 交互面板 */
-    .action-panel { padding: 12px; background: #1f2c34; border-top: 1px solid #2a3942; display: flex; flex-direction: column; gap: 8px; }
-    .btn-opt { background: #2a3942; border: 1.5px solid #00a884; color: #e9edef; padding: 12px 14px; border-radius: 20px; font-size: 13.5px; font-weight: 500; cursor: pointer; text-align: left; }
-    .btn-opt:active { background: #00a884; color: #fff; }
+    /* 正在输入气泡 */
+    .chat-typing-box {
+      display: none; align-self: flex-start; background: #1f2c34; color: #00a884;
+      padding: 9px 16px; border-radius: 16px; font-size: 13px; align-items: center; gap: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .dot { width: 5px; height: 5px; background: #00a884; border-radius: 50%; animation: pulse 0.7s infinite alternate; }
 
-    /* 全屏放大自拍灯箱 */
-    .lightbox { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 100; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
-    .lightbox img { max-width: 90%; max-height: 72vh; border-radius: 12px; box-shadow: 0 0 25px rgba(0,0,0,0.8); }
-    .lightbox-close { margin-top: 20px; background: #00a884; border: none; color: #fff; padding: 10px 24px; border-radius: 20px; font-weight: bold; font-size: 14px; cursor: pointer; }
+    /* 底部真实打字输入栏 */
+    .input-bar {
+      padding: 10px 12px; background: #111a20; border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; gap: 8px; z-index: 10;
+    }
+    .input-wrap {
+      flex: 1; background: #1f2c34; border-radius: 24px; padding: 8px 16px;
+      display: flex; align-items: center; border: 1px solid transparent; transition: border-color 0.2s;
+    }
+    .input-wrap:focus-within { border-color: #00a884; box-shadow: 0 0 8px rgba(0,168,132,0.2); }
+    .chat-input {
+      width: 100%; background: transparent; border: none; outline: none;
+      color: #e9edef; font-size: 14.5px;
+    }
+    .chat-input::placeholder { color: #8696a0; font-size: 13.5px; }
 
-    @keyframes popIn { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
+    .send-btn {
+      width: 44px; height: 44px; border-radius: 50%; background: #00a884;
+      border: none; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: transform 0.15s, background 0.2s; flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(0,168,132,0.35);
+    }
+    .send-btn:active { transform: scale(0.92); background: #029474; }
+    .send-btn svg { width: 20px; height: 20px; fill: #fff; transform: translateX(1px); }
+
+    /* 快捷回复标签（引导用户更快开始打字互动） */
+    .quick-chips {
+      padding: 8px 12px; background: #111a20; display: flex; gap: 8px; overflow-x: auto;
+      scrollbar-width: none; border-top: 1px solid rgba(255,255,255,0.03);
+    }
+    .quick-chips::-webkit-scrollbar { display: none; }
+    .chip {
+      background: rgba(255,255,255,0.05); color: #8696a0; border: 1px solid rgba(255,255,255,0.08);
+      padding: 5px 12px; border-radius: 14px; font-size: 12.5px; white-space: nowrap; cursor: pointer;
+    }
+    .chip:active { background: #00a884; color: #fff; }
+
+    /* 大图灯箱 */
+    .lightbox {
+      display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.95); z-index: 100; flex-direction: column;
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .lightbox img { max-width: 92%; max-height: 75vh; border-radius: 12px; box-shadow: 0 0 30px rgba(0,168,132,0.3); }
+    .lightbox-close {
+      margin-top: 24px; background: #00a884; border: none; color: #fff;
+      padding: 10px 30px; border-radius: 25px; font-weight: bold; font-size: 14.5px; cursor: pointer;
+    }
+
+    @keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
     @keyframes pulse { from { opacity: 0.2; } to { opacity: 1; } }
   </style>
 </head>
 <body>
 
 <div class="chat-container">
-  <!-- 顶栏：仅保留名字和年龄，无地名 -->
+  <!-- 顶栏 -->
   <div class="top-bar">
-    <div class="avatar-wrap">
-      <img class="avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Priya">
-      <div class="online-badge"></div>
+    <div class="user-profile">
+      <div class="avatar-wrap">
+        <img class="avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Aisha">
+        <div class="online-badge"></div>
+      </div>
+      <div class="user-meta">
+        <h4>Aisha, 22 <span class="verified-mark">✓</span></h4>
+        <p id="userStatus">online</p>
+      </div>
     </div>
-    <div class="user-meta">
-      <h4>Priya, 23</h4>
-      <p id="userStatus">online</p>
+    <div style="font-size: 11px; color: #00a884; background: rgba(0,168,132,0.15); padding: 4px 8px; border-radius: 8px;">
+      🔒 Encrypted Chat
     </div>
   </div>
 
-  <!-- 聊天区 -->
+  <!-- 聊天消息流 -->
   <div class="chat-body" id="chatFlow">
+    <!-- 第一句：诱惑性自我介绍 -->
     <div class="bubble bubble-in">
-      Hey! Just stepped out for some coffee. Are you free to chat right now? ☕
+      Hey handsome... I'm Aisha (22). Just lying in bed alone tonight and got a bit bored 🙈 You look really cute... Can I send you a quick private selfie?
       <span class="bubble-time">Just now</span>
     </div>
 
+    <!-- 动态跳动指示气泡 -->
     <div class="chat-typing-box" id="typingBubble">
       <span id="typingBubbleText">typing</span>
       <div class="dot"></div>
     </div>
   </div>
 
-  <!-- 万能选项栏 -->
-  <div class="action-panel" id="actionPanel"></div>
+  <!-- 快捷引导标签（让懒得打字的用户秒点入局） -->
+  <div class="quick-chips" id="quickChips">
+    <div class="chip" onclick="fillInput('Yes please, send it! 🔥')">🔥 Send it!</div>
+    <div class="chip" onclick="fillInput('Hey Aisha, you look stunning 😍')">😍 You look stunning</div>
+    <div class="chip" onclick="fillInput('Where are you right now? 🙈')">🙈 Where are you?</div>
+  </div>
 
-  <!-- 大图灯箱 -->
+  <!-- 真实的打字输入栏 -->
+  <div class="input-bar">
+    <div class="input-wrap">
+      <input type="text" class="chat-input" id="userInput" placeholder="Type a message to Aisha..." autocomplete="off">
+    </div>
+    <button class="send-btn" onclick="sendMessage()">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+    </button>
+  </div>
+
+  <!-- 全屏大图灯箱 -->
   <div class="lightbox" id="lightboxModal" onclick="closeLightbox()">
-    <img id="lightboxImg" src="" alt="Selfie Full View">
-    <button class="lightbox-close">Back to Chat</button>
+    <img id="lightboxImg" src="" alt="Private Selfie">
+    <button class="lightbox-close">Back to Aisha</button>
   </div>
 </div>
 
 <script>
   const chat = document.getElementById('chatFlow');
   const status = document.getElementById('userStatus');
-  const actionPanel = document.getElementById('actionPanel');
+  const input = document.getElementById('userInput');
   const typingBubble = document.getElementById('typingBubble');
   const typingBubbleText = document.getElementById('typingBubbleText');
+  const chips = document.getElementById('quickChips');
 
-  // 3 张生活场景自拍（配文完全去地域化）
+  // 私密生活感自拍照源（依次递进）
   const selfies = [
     {
       url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
-      caption: "Coffee break selfie ☕ Tap to enlarge"
+      caption: "Just for you... tell me honestly, do you like it? 🙈 (Tap to view full)"
     },
     {
       url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
-      caption: "Traditional look from a family function last week ✨ Tap to enlarge"
+      caption: "From my bedroom earlier tonight ✨ You're making me blush..."
     },
     {
       url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80",
-      caption: "Quick smile for you before I head out 😊 Tap to enlarge"
+      caption: "My sweetest smile only for you ❤️ Wish you were here next to me."
     }
   ];
 
+  let step = 0;
   let typingTimer = null;
   let audioCtx = null;
 
+  // 原生音频合成（无文件依赖）
   function initAudio() {
     if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   }
@@ -145,14 +244,14 @@
     } catch(e) {}
   }
 
-  // 状态栏跳动逻辑 (typing... / sending photo...)
+  // 状态栏与气泡跳动
   function startTyping(mode = 'typing') {
     let count = 0;
     typingBubble.style.display = 'flex';
     chat.appendChild(typingBubble);
     chat.scrollTop = chat.scrollHeight;
 
-    const base = mode === 'photo' ? 'sending photo' : 'typing';
+    const base = mode === 'photo' ? 'sending private photo' : 'typing';
     typingBubbleText.innerText = base;
 
     typingTimer = setInterval(() => {
@@ -160,7 +259,7 @@
       const dots = '.'.repeat(count);
       status.innerText = `${base}${dots}`;
       typingBubbleText.innerText = `${base}${dots}`;
-    }, 380);
+    }, 360);
   }
 
   function stopTyping() {
@@ -169,137 +268,127 @@
     typingBubble.style.display = 'none';
   }
 
-  // 5 轮万能递进对话（无具体地址、商圈或地名）
-  const stepsData = [
-    // 轮次 1：发第 1 张自拍
-    {
-      options: [
-        { text: "👉 Yes! I am free to chat. How is your day going?", val: 1 },
-        { text: "👉 Hello Priya! Just saw your profile, you look very sweet 😊", val: 2 }
-      ],
-      replyDelay: 3000,
-      botMsg: "Haha thanks! We definitely seem to have good vibes. I actually just took a quick selfie right now, be honest and tell me how it looks! 🙈",
-      photoIndex: 0
-    },
-    // 轮次 2：评价第 1 张自拍
-    {
-      options: [
-        { text: "❤️ You look absolutely gorgeous! Love the natural smile.", val: 3 },
-        { text: "☕ You look very relaxed! Enjoy your coffee time.", val: 4 }
-      ],
-      replyDelay: 3200,
-      botMsg: "Aww thank you! That made my day ❤️ Weekdays get so hectic with work, it's nice to unwind. What do you usually like doing on your off days?",
-      photoIndex: -1
-    },
-    // 轮次 3：生活喜好 ➔ 发第 2 张自拍（传统便服）
-    {
-      options: [
-        { text: "🛋️ Mostly chill at home, watch series or listen to music.", val: 5 },
-        { text: "🚗 I like going for drives, visiting nice places and meeting friends.", val: 6 }
-      ],
-      replyDelay: 3200,
-      botMsg: "Same here! I enjoy quiet times but also dressing up for family functions. Look, here is a photo from a family event last week ✨",
-      photoIndex: 1
-    },
-    // 轮次 4：情感意向
-    {
-      options: [
-        { text: "💍 I prefer something genuine, honest and long-term.", val: 7 },
-        { text: "💬 Keeping an open mind, good conversation comes first!", val: 8 }
-      ],
-      replyDelay: 3400,
-      botMsg: "100% agree with you. Most people online are either fake or in a rush, you feel very genuine and grounded.",
-      photoIndex: -1
-    },
-    // 轮次 5：确认心意 ➔ 发第 3 张自拍（微笑收尾）
-    {
-      options: [
-        { text: "😊 I feel the exact same way. Really enjoying talking to you!", val: 9 },
-        { text: "☕ Would love to know you better. Hope to catch up soon!", val: 10 }
-      ],
-      replyDelay: 3200,
-      botMsg: "That is so sweet of you to say ❤️ Here is one last quick smile for you before I finish my drink! Let's definitely stay in touch 😊",
-      photoIndex: 2
-    }
-  ];
-
-  let currentStep = 0;
-
-  function renderOptions() {
-    if (currentStep >= stepsData.length) {
-      actionPanel.style.display = 'none';
-      return;
-    }
-    const current = stepsData[currentStep];
-    actionPanel.innerHTML = '';
-    current.options.forEach(opt => {
-      const btn = document.createElement('button');
-      btn.className = 'btn-opt';
-      btn.innerText = opt.text;
-      btn.onclick = () => handleUserPick(opt.text);
-      actionPanel.appendChild(btn);
-    });
-    actionPanel.style.display = 'flex';
+  // 点击快捷词自动填入并发送
+  function fillInput(text) {
+    input.value = text;
+    sendMessage();
   }
 
-  function handleUserPick(text) {
-    initAudio();
-    actionPanel.style.display = 'none';
+  // 回车键支持
+  input.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') sendMessage();
+  });
 
-    // 1. 用户气泡上屏
+  // 用户主动输入发送
+  function sendMessage() {
+    const text = input.value.trim();
+    if (!text) return;
+
+    initAudio();
+    input.value = '';
+    chips.style.display = 'none'; // 发送后隐藏快捷提示
+
+    // 用户消息上屏
     chat.innerHTML += `
       <div class="bubble bubble-out">
-        ${text.replace('👉 ', '').replace('❤️ ', '').replace('☕ ', '').replace('🛋️ ', '').replace('🚗 ', '').replace('💍 ', '').replace('💬 ', '').replace('😊 ', '')}
+        ${escapeHtml(text)}
         <span class="bubble-time">Just now ✓✓</span>
       </div>
     `;
     chat.scrollTop = chat.scrollHeight;
 
-    const currentConfig = stepsData[currentStep];
+    handleAishaResponse();
+  }
 
-    // 2. 状态栏开始跳动 typing...
+  // 万能接话响应流（不管用户打什么，都能无缝接上）
+  function handleAishaResponse() {
+    step++;
+
+    // 0.7 秒后进入 typing...
     setTimeout(() => {
       startTyping('typing');
     }, 700);
 
-    // 3. 对方文字回复
+    // 对方先用万能话术回复，然后立刻进入发自拍模式
     setTimeout(() => {
       stopTyping();
+
+      let botText = "";
+      let photoIdx = -1;
+
+      if (step === 1) {
+        // 第一轮回复：毫不犹豫甩第一张自拍
+        botText = "Haha you're so sweet ❤️ Okay, here it comes... don't show it to anyone else, promise? 🙈";
+        photoIdx = 0;
+      } else if (step === 2) {
+        // 第二轮回复：受到夸奖，害羞并接着甩第二张
+        botText = "Aww thank you baby! That makes me so happy... Actually I took another one right from my bed, look at this one ✨";
+        photoIdx = 1;
+      } else if (step === 3) {
+        // 第三轮回复：暧昧拉满，询问心意并甩第三张
+        botText = "You really know how to talk to a girl ❤️ If we were together right now, what would we do? Look at my smile, you did this to me 😊";
+        photoIdx = 2;
+      } else {
+        // 后续万能循环挂机（稳固超长停留）
+        botText = "You're so charming... I don't want this night to end. Keep talking to me, I'm listening ❤️";
+      }
+
       chat.innerHTML += `
         <div class="bubble bubble-in">
-          ${currentConfig.botMsg}
+          ${botText}
           <span class="bubble-time">Just now</span>
         </div>
       `;
       playSound();
       chat.scrollTop = chat.scrollHeight;
 
-      // 4. 发送对应自拍（如果该轮有照片）
-      if (currentConfig.photoIndex !== -1) {
-        const photoData = selfies[currentConfig.photoIndex];
+      // 如果本轮有照片，立刻启动 sending private photo... 跳动
+      if (photoIdx !== -1) {
+        const photo = selfies[photoIdx];
         setTimeout(() => startTyping('photo'), 900);
+
         setTimeout(() => {
           stopTyping();
           chat.innerHTML += `
-            <div class="photo-card" onclick="openLightbox('${photoData.url}')">
-              <img class="photo-img" src="${photoData.url}" alt="Selfie">
+            <div class="photo-card" onclick="openLightbox('${photo.url}')">
+              <img class="photo-img" src="${photo.url}" alt="Private Selfie">
               <div class="photo-caption">
-                <span>"${photoData.caption}"</span>
+                <span>"${photo.caption}"</span>
                 <span class="bubble-time">Just now</span>
               </div>
             </div>
           `;
           playSound();
           chat.scrollTop = chat.scrollHeight;
-          currentStep++;
-          setTimeout(renderOptions, 1400);
-        }, 3800);
+
+          // 更新快捷引导
+          updateChips();
+        }, 3600); // 假发图跳动 2.7 秒，给用户极高期待感
       } else {
-        currentStep++;
-        setTimeout(renderOptions, 1200);
+        updateChips();
       }
 
-    }, currentConfig.replyDelay);
+    }, 2800);
+  }
+
+  function updateChips() {
+    chips.style.display = 'flex';
+    if (step === 1) {
+      chips.innerHTML = `
+        <div class="chip" onclick="fillInput('Wow you look breathtaking 🔥')">🔥 You look breathtaking</div>
+        <div class="chip" onclick="fillInput('Do you have another photo? 🙈')">🙈 Have another one?</div>
+      `;
+    } else if (step === 2) {
+      chips.innerHTML = `
+        <div class="chip" onclick="fillInput('I wish I was there with you ❤️')">❤️ Wish I was there</div>
+        <div class="chip" onclick="fillInput('You have the prettiest eyes 😊')">😊 Prettiest eyes</div>
+      `;
+    } else {
+      chips.innerHTML = `
+        <div class="chip" onclick="fillInput('Can I take you out tomorrow? ☕')">☕ Take you out?</div>
+        <div class="chip" onclick="fillInput('Let’s stay up all night talking 🥰')">🥰 Talk all night</div>
+      `;
+    }
   }
 
   function openLightbox(url) {
@@ -311,7 +400,9 @@
     document.getElementById('lightboxModal').style.display = 'none';
   }
 
-  renderOptions();
+  function escapeHtml(text) {
+    return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
 </script>
 
 </body>

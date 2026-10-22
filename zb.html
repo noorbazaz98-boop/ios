@@ -35,7 +35,7 @@
       scroll-behavior: smooth;
     }
 
-    /* 气泡 */
+    /* 气泡美化 */
     .bubble {
       max-width: 82%; padding: 10px 14px; border-radius: 14px; font-size: 14.5px; line-height: 1.5;
       animation: popIn 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28); position: relative;
@@ -61,7 +61,7 @@
     .photo-img { width: 100%; height: 320px; object-fit: cover; border-radius: 10px; display: block; filter: brightness(0.96); }
     .photo-caption { font-size: 13px; color: #e9edef; padding: 8px 6px 4px; font-style: italic; }
 
-    /* 输入状态 */
+    /* 动态打字气泡 */
     .chat-typing-box {
       display: none; align-self: flex-start; background: #1f2c34; color: #00a884;
       padding: 9px 16px; border-radius: 16px; font-size: 13px; align-items: center; gap: 6px;
@@ -149,14 +149,14 @@
       <span class="bubble-time">Just now</span>
     </div>
 
-    <!-- 动态打字指示器 -->
+    <!-- 动态打字指示气泡 -->
     <div class="chat-typing-box" id="typingBubble">
       <span id="typingBubbleText">typing</span>
       <div class="dot"></div>
     </div>
   </div>
 
-  <!-- 快捷引导标签 -->
+  <!-- 快捷回复词条 -->
   <div class="quick-chips" id="quickChips">
     <div class="chip" onclick="fillInput('Yes please, send it! 🔥')">🔥 Send it!</div>
     <div class="chip" onclick="fillInput('Hey Aisha, you look stunning 😍')">😍 You look stunning</div>
@@ -188,7 +188,6 @@
   const typingBubbleText = document.getElementById('typingBubbleText');
   const chips = document.getElementById('quickChips');
 
-  // 5 张递进私密生活照源
   const selfies = [
     {
       url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
@@ -208,55 +207,46 @@
     },
     {
       url: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=600&q=80",
-      caption: "Ready to turn off the lights... promise not to share this one with anyone 🤫"
+      caption: "Ready to turn off the lights... strictly between you and me 🤫"
     }
   ];
 
-  // 8 轮真实具体对话剧情树
   const conversationTree = [
-    // Step 1: 首次发照
     {
       botMsg: "Haha you're so sweet ❤️ Okay, here it comes... don't show it to anyone else, promise? 🙈",
       photoIdx: 0,
       chips: ["🔥 Wow you look breathtaking", "🙈 Have another one?"]
     },
-    // Step 2: 害羞并甩第二张
     {
       botMsg: "Aww thank you baby! That makes me so happy... Actually I took another one right from my bed, look at this one ✨",
       photoIdx: 1,
       chips: ["❤️ Wish I was next to you", "😊 You have the prettiest eyes"]
     },
-    // Step 3: 挑逗心意，甩第三张
     {
       botMsg: "You really know how to make a girl feel special ❤️ If we were hanging out right now, what's the first thing you'd do? Look at my smile, you did this to me 😊",
       photoIdx: 2,
       chips: ["☕ I'd hug you so tight", "🥰 Stare into your eyes all night"]
     },
-    // Step 4: 咬唇近景自拍（原挂机内容替换为真实推进）
     {
       botMsg: "Stop it, you're making me so shy haha! 🙈 I took this close-up selfie just now while thinking about what you said... my heart is actually racing.",
       photoIdx: 3,
       chips: ["🔥 You are driving me crazy", "❤️ Tell me what you're thinking"]
     },
-    // Step 5: 探讨私密性格偏好
     {
       botMsg: "I usually never open up like this with anyone online... you just feel very different and comforting. Tell me honestly, do you like girls who are playful and bold, or more sweet and caring? ❤️",
       photoIdx: -1,
       chips: ["😍 I love playful and bold", "🌹 Sweet and caring is perfect"]
     },
-    // Step 6: 睡前私照
     {
       botMsg: "I knew you'd say that... I can be both for you 😉 Getting under the blankets now, it's cozy here. Here is one last bedtime photo, strictly between you and me 🤫",
       photoIdx: 4,
       chips: ["❤️ You look so cozy", "🙈 Send me one more please!"]
     },
-    // Step 7: 索要互动/交换照片（促使停留与强烈好奇）
     {
       botMsg: "Hey, that's not fair! I've shared so many private photos with you tonight... when do I get to see you? Don't be shy, tell me what you're wearing right now 👀",
       photoIdx: -1,
       chips: ["👕 Just a casual t-shirt and shorts", "📸 Where can I send you my photo?"]
     },
-    // Step 8: 终极暧昧挽留与明日约定
     {
       botMsg: "I really don't want this conversation to end... living alone gets so quiet at night, but you made tonight special ❤️ What time do you wake up tomorrow? Promise to text me first thing in the morning? 😊",
       photoIdx: -1,
@@ -311,6 +301,7 @@
     const base = mode === 'photo' ? 'sending private photo' : 'typing';
     typingBubbleText.innerText = base;
 
+    if (typingTimer) clearInterval(typingTimer);
     typingTimer = setInterval(() => {
       count = (count + 1) % 4;
       const dots = '.'.repeat(count);
@@ -320,9 +311,51 @@
   }
 
   function stopTyping() {
-    clearInterval(typingTimer);
+    if (typingTimer) clearInterval(typingTimer);
     status.innerText = 'online';
     typingBubble.style.display = 'none';
+  }
+
+  // === 拟真人性化打字算法（包含中间短暂停顿思考）===
+  function executeHumanTyping(text, onComplete) {
+    const totalLength = text.length;
+    // 总耗时：基础停顿 + 字数 * 36ms + 随机浮动
+    const totalDuration = Math.max(2200, Math.min(800 + (totalLength * 36) + (Math.random() * 400), 5500));
+
+    // 只有长于 35 个字符的句子才触发中途打字停顿，短句直接一次性打完
+    if (totalLength > 35) {
+      const part1Time = totalDuration * 0.45;     // 前半段输入时间
+      const pauseDuration = 700 + Math.random() * 500; // 中途停顿 0.7~1.2 秒（还原真实思考/改字）
+      const part2Time = totalDuration * 0.55;     // 后半段输入时间
+
+      // 1. 开始打前半句
+      startTyping('typing');
+
+      setTimeout(() => {
+        // 2. 停顿，状态恢复为 online
+        stopTyping();
+
+        setTimeout(() => {
+          // 3. 停顿结束，重新打字打完后半句
+          startTyping('typing');
+
+          setTimeout(() => {
+            stopTyping();
+            onComplete();
+          }, part2Time);
+
+        }, pauseDuration);
+
+      }, part1Time);
+
+    } else {
+      // 短句子直接匀速跳动打完
+      startTyping('typing');
+      setTimeout(() => {
+        stopTyping();
+        onComplete();
+      }, totalDuration);
+    }
   }
 
   function fillInput(text) {
@@ -357,49 +390,50 @@
     const currentConfig = conversationTree[step] || conversationTree[conversationTree.length - 1];
     step++;
 
-    // 0.8秒后进入 typing...
-    setTimeout(() => {
-      startTyping('typing');
-    }, 800);
+    // 用户发完消息后，对方先“已读”并停顿 0.6~0.9 秒，再开始触发人性化打字流程
+    const readPause = 600 + Math.floor(Math.random() * 300);
 
     setTimeout(() => {
-      stopTyping();
+      // 触发断续打字逻辑
+      executeHumanTyping(currentConfig.botMsg, () => {
+        // 打字结束，文字弹出
+        chat.innerHTML += `
+          <div class="bubble bubble-in">
+            ${currentConfig.botMsg}
+            <span class="bubble-time">Just now</span>
+          </div>
+        `;
+        playSound();
+        chat.scrollTop = chat.scrollHeight;
 
-      chat.innerHTML += `
-        <div class="bubble bubble-in">
-          ${currentConfig.botMsg}
-          <span class="bubble-time">Just now</span>
-        </div>
-      `;
-      playSound();
-      chat.scrollTop = chat.scrollHeight;
+        // 若本轮包含自拍，进入 sending private photo...
+        if (currentConfig.photoIdx !== -1) {
+          const photo = selfies[currentConfig.photoIdx];
+          const uploadTime = 3200 + Math.floor(Math.random() * 500);
 
-      // 如果有自拍照片，进入 sending photo...
-      if (currentConfig.photoIdx !== -1) {
-        const photo = selfies[currentConfig.photoIdx];
-        setTimeout(() => startTyping('photo'), 900);
+          setTimeout(() => startTyping('photo'), 800);
 
-        setTimeout(() => {
-          stopTyping();
-          chat.innerHTML += `
-            <div class="photo-card" onclick="openLightbox('${photo.url}')">
-              <img class="photo-img" src="${photo.url}" alt="Private Selfie">
-              <div class="photo-caption">
-                <span>"${photo.caption}"</span>
-                <span class="bubble-time">Just now</span>
+          setTimeout(() => {
+            stopTyping();
+            chat.innerHTML += `
+              <div class="photo-card" onclick="openLightbox('${photo.url}')">
+                <img class="photo-img" src="${photo.url}" alt="Private Selfie">
+                <div class="photo-caption">
+                  <span>"${photo.caption}"</span>
+                  <span class="bubble-time">Just now</span>
+                </div>
               </div>
-            </div>
-          `;
-          playSound();
-          chat.scrollTop = chat.scrollHeight;
+            `;
+            playSound();
+            chat.scrollTop = chat.scrollHeight;
 
+            renderChips(currentConfig.chips);
+          }, 800 + uploadTime);
+        } else {
           renderChips(currentConfig.chips);
-        }, 3600);
-      } else {
-        renderChips(currentConfig.chips);
-      }
-
-    }, 3000);
+        }
+      });
+    }, readPause);
   }
 
   function renderChips(chipList) {

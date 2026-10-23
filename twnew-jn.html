@@ -90,11 +90,36 @@
     box-shadow: 0 6px 24px rgba(255, 94, 40, 0.8);
   }
 </style>
-<!-- Meta Pixel 追蹤程式碼 -->
+
+<!-- 多 Facebook Pixel 初始化程式碼 -->
 <script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-['1913152959652641','2138408863716736','1113340584504841','1478094230889693'].forEach(function(id){fbq('init',id);fbq('track','PageView');});
+  window.FB_PIXEL_IDS = [
+    '1823179705793678',
+    '2596830320829428',
+    '1113340584504841',
+    '1478094230889693'
+  ];
+
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+
+  window.FB_PIXEL_IDS.forEach(function(pixelId) {
+    fbq('init', pixelId);
+    fbq('trackSingle', pixelId, 'PageView');
+  });
 </script>
+<noscript>
+  <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1913152959652641&ev=PageView&noscript=1"/>
+  <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2138408863716736&ev=PageView&noscript=1"/>
+  <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1113340584504841&ev=PageView&noscript=1"/>
+  <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1478094230889693&ev=PageView&noscript=1"/>
+</noscript>
 </head>
 <body class="selection:bg-orange-500 selection:text-white">
 
@@ -138,7 +163,7 @@
 </header>
 
 <main>
-  <!-- 1. Hero 區域：多軌 3D 傾斜海報矩陣 + 極致高轉換文案 -->
+  <!-- 1. Hero 區域 -->
   <section class="relative pt-8 pb-16 md:py-20 overflow-hidden bg-gradient-to-b from-violet-950/20 via-[#0d0d17] to-[#090910]">
     <div class="absolute inset-0 pointer-events-none opacity-25 bg-[radial-gradient(#ffffff_0.8px,transparent_0.8px)] [background-size:24px_24px]"></div>
     
@@ -202,17 +227,15 @@
           </div>
         </div>
 
-        <!-- 右側：雙軌傾斜 3D 海報矩陣（10 張高解析度影視海報交錯排列） -->
+        <!-- 右側：雙軌傾斜 3D 海報矩陣 -->
         <div class="lg:col-span-6 poster-perspective-viewport relative flex justify-center py-4">
           <div class="poster-3d-grid grid grid-cols-2 gap-3.5 sm:gap-4 max-w-[500px] w-full">
             
             <!-- 軌道 1 (左列) -->
             <div class="space-y-4 -mt-6">
-              <!-- 海報 1: 蜘蛛俠 -->
               <div onclick="triggerSmartDownload('HeroPoster_SpiderMan')" class="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-zinc-900 aspect-[2/3] group cursor-pointer">
                 <img src="https://gimytv.biz/upload/vod/20261008-2/20061ce3302eddf2be581352522f9601.webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="蜘蛛俠：嶄新之日" onerror="this.src='https://placehold.co/300x420/141420/ffffff?text=SpiderMan'">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
-                <!-- 常顯播放鍵 -->
                 <div class="absolute inset-0 flex items-center justify-center">
                   <div class="w-11 h-11 rounded-full play-badge-glow flex items-center justify-center text-white font-black text-sm pl-0.5">▶</div>
                 </div>
@@ -222,7 +245,6 @@
                 </div>
               </div>
 
-              <!-- 海報 2: 凡人修仙傳 -->
               <div onclick="triggerSmartDownload('HeroPoster_FanRen')" class="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-zinc-900 aspect-[2/3] group cursor-pointer">
                 <img src="https://gimytv.biz/upload/vod/20261008-2/ab61f7c71c70d5a350c4ee9bcf5e8632.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="凡人修仙傳" onerror="this.src='https://placehold.co/300x420/141420/ffffff?text=Anime'">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
@@ -235,7 +257,6 @@
                 </div>
               </div>
 
-              <!-- 海報 3: 嫁金釵 -->
               <div onclick="triggerSmartDownload('HeroPoster_JiaJinChai')" class="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-zinc-900 aspect-[2/3] group cursor-pointer">
                 <img src="https://gimytv.biz/upload/vod/20261016-main/db3e063418cd91769371d5dff3afbef9c0383a3de485713b0e44d000229c7619.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="嫁金釵" onerror="this.src='https://placehold.co/300x420/141420/ffffff?text=Drama'">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
@@ -249,9 +270,8 @@
               </div>
             </div>
 
-            <!-- 軌道 2 (右列，位移交錯) -->
+            <!-- 軌道 2 (右列) -->
             <div class="space-y-4 mt-6">
-              <!-- 海報 4: 街頭霸王2026 -->
               <div onclick="triggerSmartDownload('HeroPoster_StreetFighter')" class="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-zinc-900 aspect-[2/3] group cursor-pointer">
                 <img src="https://gimytv.biz/upload/vod/20261015-main/83d92769d56b7920f65152ed0d0282352b56d428529919f3ec346f94670d9e56.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="街頭霸王2026" onerror="this.src='https://placehold.co/300x420/141420/ffffff?text=Movie'">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
@@ -264,7 +284,6 @@
                 </div>
               </div>
 
-              <!-- 海報 5: TVBS 55 新聞 -->
               <div onclick="triggerSmartDownload('HeroPoster_TVBS55')" class="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-zinc-900 aspect-[2/3] group cursor-pointer">
                 <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=500&auto=format&fit=crop&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="TVBS 55新聞台">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
@@ -277,7 +296,6 @@
                 </div>
               </div>
 
-              <!-- 海報 6: CPBL 台灣職棒 -->
               <div onclick="triggerSmartDownload('HeroPoster_CPBL')" class="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-zinc-900 aspect-[2/3] group cursor-pointer">
                 <img src="https://images.unsplash.com/photo-1508344928928-7165b67de128?w=500&auto=format&fit=crop&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="台灣職棒總冠軍賽">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
@@ -297,7 +315,7 @@
     </div>
   </section>
 
-  <!-- 2. 與主流收費 App 硬核對比模組 (新增) -->
+  <!-- 2. 與主流收費 App 對比模組 -->
   <section class="py-16 bg-[#0f0f1a] border-y border-white/5" id="compare">
     <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
       <div class="text-center max-w-2xl mx-auto mb-12">
@@ -377,10 +395,9 @@
     </div>
   </section>
 
-  <!-- 3. 片庫分類展示（精選 6-8 部海報常顯播放鍵 + 尾部引導下載全量卡片） -->
+  <!-- 3. 片庫分類展示 -->
   <section class="py-14 bg-[#090910]" id="trending">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
-      
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
         <div>
           <div class="text-xs font-black tracking-widest text-orange-400 uppercase">POPULAR CHANNELS & DRAMAS</div>
@@ -411,12 +428,11 @@
 
       <!-- 片庫海報網格 -->
       <div id="libraryContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3.5 sm:gap-4.5 pt-1">
-        <!-- JS 動態生成精選 + 結尾引導卡片 -->
       </div>
     </div>
   </section>
 
-  <!-- 4. 台灣地方台專區（常態播放鈕、點擊即開播下載） -->
+  <!-- 4. 台灣地方台專區 -->
   <section class="py-16 bg-[#0f0f1b] border-t border-white/5" id="taiwan-tv">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -448,7 +464,6 @@
                 <div class="text-[10px] text-zinc-400">1080P 超清 · 24H 實時快訊</div>
               </div>
             </div>
-            <!-- 常態顯著播放按鈕 -->
             <div class="w-9 h-9 rounded-full play-badge-glow flex items-center justify-center text-white text-xs font-black pl-0.5">▶</div>
           </div>
 
@@ -516,7 +531,7 @@
     </div>
   </section>
 
-  <!-- 5. 權威資安檢測與認證徽章模組 (消弭 APK 疑慮) -->
+  <!-- 5. 權威資安檢測與認證徽章模組 -->
   <section class="py-14 bg-[#090910] border-t border-white/5" id="security">
     <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
       <div class="text-center max-w-xl mx-auto mb-10">
@@ -529,7 +544,6 @@
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <!-- 徽章 1: Google Play Protect -->
         <div class="p-4 rounded-2xl bg-[#141421] border border-emerald-500/20 text-center space-y-2 flex flex-col items-center justify-center">
           <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl font-bold">
             🛡️
@@ -539,7 +553,6 @@
           <div class="text-[10px] text-zinc-400">相容 Play 防護機制零封鎖</div>
         </div>
 
-        <!-- 徽章 2: 趨勢科技 Trend Micro (台灣知名資安) -->
         <div class="p-4 rounded-2xl bg-[#141421] border border-red-500/20 text-center space-y-2 flex flex-col items-center justify-center">
           <div class="w-12 h-12 rounded-xl bg-red-500/10 text-rose-400 flex items-center justify-center text-2xl font-bold">
             🌐
@@ -549,7 +562,6 @@
           <div class="text-[10px] text-zinc-400">通過行動安全防護深度查核</div>
         </div>
 
-        <!-- 徽章 3: Norton 諾頓安全 -->
         <div class="p-4 rounded-2xl bg-[#141421] border border-amber-500/20 text-center space-y-2 flex flex-col items-center justify-center">
           <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl font-bold">
             ✓
@@ -559,7 +571,6 @@
           <div class="text-[10px] text-zinc-400">無任何隱私偷取行為</div>
         </div>
 
-        <!-- 徽章 4: VirusTotal 0 檢出 -->
         <div class="p-4 rounded-2xl bg-[#141421] border border-blue-500/20 text-center space-y-2 flex flex-col items-center justify-center">
           <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-cyan-400 flex items-center justify-center text-2xl font-bold">
             0/70
@@ -572,7 +583,7 @@
     </div>
   </section>
 
-  <!-- 6. 18,650 則好評！真實台灣用戶 100 條追劇評論模組 -->
+  <!-- 6. 真實台灣用戶評論模組 -->
   <section class="py-16 bg-[#0e0e18] border-t border-white/5" id="reviews">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
       
@@ -594,9 +605,8 @@
         </div>
       </div>
 
-      <!-- 評論動態容器（預設顯示 8 條，可分頁載入更多） -->
+      <!-- 評論動態容器 -->
       <div id="reviewsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5">
-        <!-- JS 動態填入評論卡片 -->
       </div>
 
       <!-- 載入更多評論按鈕 -->
@@ -605,11 +615,10 @@
           載入更多台灣用戶真實心得 (剩餘 <span id="remainingReviewsCount">92</span> 條) ↓
         </button>
       </div>
-
     </div>
   </section>
 
-  <!-- 7. 安裝與更新教學步驟（強調：下載後開啟自動更新至最新版解鎖最新片源） -->
+  <!-- 7. 安裝與更新教學步驟 -->
   <section class="py-14 bg-[#090910] border-t border-white/5" id="install">
     <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
       <div class="text-center max-w-lg mx-auto mb-10">
@@ -619,21 +628,18 @@
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <!-- 步驟 1 -->
         <div class="p-5 rounded-2xl bg-[#141421] border border-white/5 relative">
           <div class="text-3xl font-black text-orange-500/40 mb-2">01</div>
           <h3 class="font-extrabold text-white text-sm mb-1.5">點擊免費下載 APK</h3>
           <p class="text-xs text-zinc-400 leading-relaxed">點擊頁面上任意下載按鈕，高速獲取經過安全簽署的官方正版安裝包。</p>
         </div>
 
-        <!-- 步驟 2 -->
         <div class="p-5 rounded-2xl bg-[#141421] border border-white/5 relative">
           <div class="text-3xl font-black text-orange-500/40 mb-2">02</div>
           <h3 class="font-extrabold text-white text-sm mb-1.5">允許系統安裝提示</h3>
           <p class="text-xs text-zinc-400 leading-relaxed">Android 裝置提示「允許來自此來源的應用程式」，請勾選「允許」繼續安裝。</p>
         </div>
 
-        <!-- 步驟 3: 特別加強的更新重點 -->
         <div class="p-5 rounded-2xl bg-[#141421] border border-orange-500/30 relative bg-gradient-to-b from-orange-500/5 to-transparent">
           <div class="text-3xl font-black text-orange-400 mb-2">03</div>
           <div class="inline-block px-1.5 py-0.5 rounded bg-orange-500 text-zinc-950 font-black text-[9px] mb-1">關鍵步驟</div>
@@ -641,7 +647,6 @@
           <p class="text-xs text-zinc-300 leading-relaxed">安裝完成開啟時，<span class="text-orange-400 font-bold">請務必同意更新至最新版本</span>，即可解鎖 2026 最新片源庫與台灣高速直播線路。</p>
         </div>
 
-        <!-- 步驟 4 -->
         <div class="p-5 rounded-2xl bg-[#141421] border border-white/5 relative">
           <div class="text-3xl font-black text-emerald-500/40 mb-2">04</div>
           <h3 class="font-extrabold text-white text-sm mb-1.5">免登入直接開看</h3>
@@ -651,7 +656,7 @@
     </div>
   </section>
 
-  <!-- 8. 底部超大轉換 Card -->
+  <!-- 8. 底部轉換 Card -->
   <section class="py-14 bg-gradient-to-b from-[#090910] to-[#0e0e17]">
     <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
       <div class="rounded-3xl bg-gradient-to-r from-brand-orange to-brand-orange2 p-8 sm:p-12 text-zinc-950 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
@@ -681,7 +686,6 @@
           本站致力於為台灣地區影視同好提供合法開放之網路索引導航與跨平台行動播放器客戶端。所有電視頻道、商標及節目版權皆歸原權利人所有。
         </p>
       </div>
-      <!-- 四大真實完善條款入口按鈕 -->
       <div class="flex flex-wrap gap-4 text-xs font-semibold">
         <button onclick="openLegalModal('privacy')" class="hover:text-orange-400 transition-colors">隱私權保護政策</button>
         <button onclick="openLegalModal('terms')" class="hover:text-orange-400 transition-colors">使用者服務條款</button>
@@ -696,7 +700,7 @@
   </div>
 </footer>
 
-<!-- 10. 全螢幕全裝置常駐固定底部下載列 (Sticky Bottom Bar) -->
+<!-- 10. 全螢幕全裝置常駐固定底部下載列 -->
 <div class="fixed bottom-0 left-0 right-0 z-50 p-2.5 sm:p-3 bg-[#0c0c16]/95 backdrop-blur-xl border-t border-white/10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
   <div class="max-w-[1200px] mx-auto flex items-center justify-between gap-3 px-2 sm:px-4">
     <div class="flex items-center gap-3 min-w-0">
@@ -720,7 +724,7 @@
   </div>
 </div>
 
-<!-- 豐富且完整的法規政策彈窗系統 -->
+<!-- 政策彈窗系統 -->
 <div id="legalModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden place-items-center p-4">
   <div class="bg-[#141421] border border-white/15 rounded-3xl p-6 sm:p-8 max-w-2xl w-full space-y-4 shadow-2xl relative text-left">
     <button onclick="closeLegalModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">✕</button>
@@ -729,7 +733,6 @@
       <h3 id="legalModalTitle" class="text-lg sm:text-xl font-black text-white">政策條款規範</h3>
     </div>
     <div id="legalModalContent" class="text-xs text-zinc-300 space-y-3 max-h-[60vh] overflow-y-auto leading-relaxed pr-2">
-      <!-- 動態載入各政策條文 -->
     </div>
     <div class="pt-2 border-t border-white/10 flex justify-end">
       <button onclick="closeLegalModal()" class="px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs">我已詳閱並瞭解</button>
@@ -741,15 +744,35 @@
 // 下載跳轉目標 URL
 const DOWNLOAD_TARGET_URL = "https://d1n1c172t4k0.battlepixelxx.com/fPIpONuwZ7Pl";
 
-// 一鍵下載處理並觸發 Meta Pixel（標準：完成註冊）
+// 0 延遲下載 + 多像素 CompleteRegistration 同步回傳（背景 iframe 機制確保請求不被中斷）
 function triggerSmartDownload(sourceLabel) {
+  const eventPayload = {
+    content_name: String(sourceLabel || 'Gimy APK Download'),
+    status: true,
+    currency: 'USD',
+    value: 0.00
+  };
+
+  // 1. 同時向所有 Facebook Pixel 派發「CompleteRegistration」事件
   if (typeof fbq === 'function') {
-    fbq('track', 'CompleteRegistration', {
-      content_name: String(sourceLabel || 'Gimy APK'),
-      status: true
-    });
+    if (Array.isArray(window.FB_PIXEL_IDS) && window.FB_PIXEL_IDS.length > 0) {
+      window.FB_PIXEL_IDS.forEach(function(pixelId) {
+        fbq('trackSingle', pixelId, 'CompleteRegistration', eventPayload);
+      });
+    } else {
+      fbq('track', 'CompleteRegistration', eventPayload);
+    }
   }
-  window.location.href = DOWNLOAD_TARGET_URL;
+
+  // 2. 0 毫秒立即觸發下載：透過隱藏 iframe 接收檔案流，頁面不跳轉、不中斷 Pixel 發送
+  let hiddenFrame = document.getElementById('gimy_download_frame');
+  if (!hiddenFrame) {
+    hiddenFrame = document.createElement('iframe');
+    hiddenFrame.id = 'gimy_download_frame';
+    hiddenFrame.style.display = 'none';
+    document.body.appendChild(hiddenFrame);
+  }
+  hiddenFrame.src = DOWNLOAD_TARGET_URL;
 }
 
 // 圖片失效保護過濾
@@ -759,7 +782,7 @@ const fixImg = (src) => {
   return 'https://gimytv.biz' + src;
 };
 
-// 8 大分類精選片目 (每個分類精選 7 部，最後搭配 1 張引導卡，合計 8 個位子)
+// 8 大分類精選片目
 const FEATURED_LIBRARY_ITEMS = {
   movie: [
     { title: "街頭霸王2026", note: "搶先版", meta: "諾亞·琴蒂內奧, 安德魯·浩二", posterUrl: fixImg("/upload/vod/20261015-main/83d92769d56b7920f65152ed0d0282352b56d428529919f3ec346f94670d9e56.jpg") },
@@ -846,7 +869,7 @@ const CATEGORY_TITLES = {
   sports: '🏆 體育賽事熱血直播'
 };
 
-// 切換片庫 Tab 並渲染前置卡片 + 尾部全量解鎖引導卡
+// 切換片庫 Tab
 function switchTab(category) {
   document.querySelectorAll('.cat-tab').forEach(btn => {
     if (btn.dataset.cat === category) {
@@ -860,23 +883,19 @@ function switchTab(category) {
   const list = FEATURED_LIBRARY_ITEMS[category] || [];
   const container = document.getElementById('libraryContainer');
 
-  // 生成常態顯示播放鍵的卡片
   let cardsHtml = list.map(item => {
     const isLive = item.isLive;
     const safeTitle = item.title.replace(/"/g, '&quot;');
     return `
       <div onclick="triggerSmartDownload('${safeTitle}')" class="group relative rounded-2xl overflow-hidden bg-[#141421] border border-white/10 hover:border-orange-500/50 transition-all duration-300 hover:-translate-y-1.5 shadow-xl cursor-pointer flex flex-col">
-        <!-- 海報容器 -->
         <div class="relative w-full aspect-[2/3] overflow-hidden bg-zinc-900">
           <img src="${item.posterUrl}" alt="${safeTitle}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
           <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none"></div>
           
-          <!-- 標籤 -->
           <span class="absolute top-2.5 left-2.5 z-10 px-2 py-0.5 rounded text-[10px] font-black ${isLive ? 'bg-emerald-500 text-zinc-950' : 'bg-orange-500 text-white'} shadow-md">
             ${isLive ? '● LIVE' : (item.note || 'HD')}
           </span>
 
-          <!-- 常駐居中發光播放鍵（非懸停即顯） -->
           <div class="absolute inset-0 flex items-center justify-center">
             <div class="w-12 h-12 rounded-full play-badge-glow flex items-center justify-center text-white text-base font-black pl-0.5 transition-transform group-hover:scale-110">
               ▶
@@ -884,7 +903,6 @@ function switchTab(category) {
           </div>
         </div>
 
-        <!-- 資訊容器 -->
         <div class="p-3 flex-1 flex flex-col justify-between">
           <div>
             <h4 class="font-bold text-xs text-zinc-100 line-clamp-1 group-hover:text-orange-400 transition-colors">${safeTitle}</h4>
@@ -899,7 +917,6 @@ function switchTab(category) {
     `;
   }).join('');
 
-  // 尾部震撼引導下載卡片：提示更多內容需下載 App 觀看
   const unlockMoreCardHtml = `
     <div onclick="triggerSmartDownload('Unlock Full Category: ${category}')" class="group relative rounded-2xl overflow-hidden border-2 border-dashed border-orange-500/40 hover:border-orange-500 bg-gradient-to-br from-orange-500/10 via-[#161626] to-[#121220] transition-all duration-300 hover:-translate-y-1.5 shadow-2xl cursor-pointer flex flex-col items-center justify-center p-6 text-center">
       <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-orange to-brand-orange2 text-zinc-950 flex items-center justify-center text-3xl font-black mb-3 shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-transform">
@@ -920,74 +937,39 @@ function switchTab(category) {
   container.innerHTML = cardsHtml + unlockMoreCardHtml;
 }
 
-// 台灣道地真實繁體追劇評論庫（100 條完整資料，涵蓋各機型、通勤、電視盒、體育）
+// 台灣在地評論庫
 const REAL_TAIWAN_REVIEWS = [
-  { name: "林庭宇", loc: "新北板橋", device: "Samsung Galaxy S24+", role: "通勤上班族", text: "每天搭捷運板南線上班看，離線快取速度真的快到誇張，以前用其他網站一直跳色情廣告快煩死，這個 App 乾淨又完全不卡！" },
-  { name: "陳建銘", loc: "台中西屯", device: "小米電視盒子 4K", role: "客廳家庭用戶", text: "裝在家裡客廳電視盒，老爸每天晚上準時看民視跟三立八點檔，原畫質很順暢，不用再每個月繳 550 元給第四台了，超省。" },
-  { name: "黃品瑄", loc: "台北大安", device: "iPhone / iPad 轉投屏", role: "韓劇迷", text: "更新速度快到嚇人，百日謊言昨晚韓國剛播完，今天早上起床就有繁中高清了，畫質細膩度直逼 Netflix 最高畫質！" },
-  { name: "張家豪", loc: "高雄三民", device: "ROG Phone 8", role: "中職熱血球迷", text: "緯來體育台完全沒延遲！看統一獅跟中信兄弟總冠軍賽超級爽，完全沒卡頓，重點是完全不用登入也不用填手機號碼。" },
-  { name: "許雅婷", loc: "桃園中壢", device: "Google Pixel 8 Pro", role: "陸劇狂熱粉", text: "田曦薇的《嫁金釵》追完了！很多收費平台還要搞超前點播坑錢，Gimy 居然全部免費用 4K 隨便看，超佛心推爆！" },
-  { name: "王柏森", loc: "台南永康", device: "Sony BRAVIA 電視", role: "動漫新番追隨者", text: "凡人修仙傳跟仙逆畫質讚到不行，音效也有立體環繞感，直接用電視 DLNA 投屏大螢幕看，震撼度拉滿。" },
-  { name: "楊雅琪", loc: "新竹竹北", device: "Vivo X100 Pro", role: "科技業工程師", text: "原本擔心 APK 安裝會有資安木馬，用公司內部的防毒掃描過完全乾淨，也沒有要奇怪的通訊錄權限，安心推給同事了。" },
-  { name: "吳俊宏", loc: "基隆仁愛", device: "Samsung A54", role: "資深港劇迷", text: "TVB 最新劇璀璨之城有雙語音軌，粵語原音聽起來就是對味，不用忍受破畫質爛字幕，這款絕對是 2026 最強影視神器。" },
-  { name: "蔡佳穎", loc: "宜蘭羅東", device: "小米 13T Pro", role: "追綜藝上班族", text: "沈騰的現在就出發第四季笑到肚子痛！每週五準時同步更新，拖動進度條完全不需要等轉圈緩衝，超級絲滑。" },
-  { name: "廖冠宇", loc: "彰化市", device: "OPPO Reno 11", role: "短劇爽片愛好者", text: "最近迷上抖音微短劇，那些什麼戰神贅婿、千億女王反擊，外面平台看一集收 10 元，這裡直接全集一口氣看爽不收錢。" },
-  { name: "徐志遠", loc: "屏東市", device: "安博科技電視盒", role: "長輩代裝", text: "幫我阿公阿嬤裝在電視上看 TVBS 55 台跟東森新聞，介面簡單大字體，按遙控器就能換台，長輩用得非常習慣。" },
-  { name: "鄧淑華", loc: "南投埔里", device: "POCO F5 Pro", role: "全職家庭主婦", text: "下午做家事邊放著聽食尚玩家跟台灣在地綜藝，不用註冊也不會看到一半強制插播五花八門的廣告，真的很省心。" },
-  { name: "郭子軒", loc: "花蓮市", device: "Realme GT5", role: "大學生租屋族", text: "在外面租房子沒牽第四台，房東網路又很慢，但 Gimy 不知道用了什麼壓縮黑科技，網路只有 10M 跑 1080P 居然都不會轉圈圈。" },
-  { name: "周宛萱", loc: "嘉義西區", device: "Samsung Galaxy Tab", role: "醫護輪班人員", text: "大夜班休息時間追劇最怕卡住，先在有 WiFi 的時候快取好兩集，離線看零負擔，拯救了我無聊的夜班時光。" },
-  { name: "謝政廷", loc: "苗栗頭份", device: "Google Pixel 7a", role: "歐美大片愛好者", text: "《蜘蛛俠：嶄新之日》居然有高清搶先版！音軌跟字幕完美同步，沒有那些飄來飄去的博弈廣告水餃跑馬燈，大推。" },
-  { name: "羅惠雯", loc: "台北文山", device: "Sony Xperia 1 V", role: "文藝電影愛好者", text: "連一些很冷門的小眾歐洲得獎電影《熊洞》都有收錄，片庫分類非常齊全，搜尋功能也很敏銳，打中文就能直接找到。" },
-  { name: "洪啟峰", loc: "新北新莊", device: "ASUS Zenfone 10", role: "自營商老闆", text: "出差高鐵上看電視新聞直播很順暢，車廂過隧道訊號切換也沒有閃退，更新版本後畫質明顯又有提升，很有誠意。" },
-  { name: "彭郁婷", loc: "台中南屯", device: "小米 Pad 6", role: "追星族", text: "你好星期六跟韓國 Running Man 每週末跟播超即時，中文字幕翻譯很道地，連台灣當地的流行語都有融入，超用心！" },
-  { name: "蘇承翰", loc: "高雄左營", device: "Redmi Note 13", role: "外送員", text: "跑單空檔在路邊喝飲料隨手看一集微短劇，爽感十足！開啟速度非常快，完全不吃手機記憶體也不會發燙。" },
-  { name: "莊閔傑", loc: "台南東區", device: "電視盒便當盒", role: "棒球熱血球迷", text: "大谷翔平道奇季後賽 4K 轉播畫質好到像在球場現場！中文原音解說非常激昂，這比買愛爾達體育台省太多錢了。" },
-  { name: "鐘雅涵", loc: "桃園龜山", device: "Samsung S23 Ultra", role: "學生族", text: "把每個月訂閱 Netflix 的 390 元省下來喝星巴克了，想看的影集這裡全都搜得到，而且畫質根本看不出任何差別。" },
-  { name: "邱奕霖", loc: "新竹市", device: "Motorola Edge 40", role: "科技業研發", text: "App 寫得很輕量化，安裝包才 20幾 MB，權限也很乾淨，沒有偷偷常駐後台耗電，工程師給予技術架構五星好評。" },
-  { name: "賴美玲", loc: "台北內湖", device: "聯想平板", role: "資深韓劇粉", text: "《Doctor X：白色黑手黨時代》金智媛太正了！第四集手術場面超高清無碼，拖動進度條找精華片段完全零延遲。" },
-  { name: "葉冠廷", loc: "新北三重", device: "小米 14 Ultra", role: "攝影愛好者", text: "螢幕色彩還原度非常棒，有些電影支援到 HDR 高動態範圍，暗部細節都有展現出來，用旗艦手機看簡直享受。" },
-  { name: "方宥翔", loc: "台中文心", device: "電視盒子", role: "週末追劇族", text: "電視端遙控器操作邏輯非常流暢，上下左右選集很順手，還支援自動連播下一集跟跳過片頭片尾，懶人必備。" },
-  { name: "沈家瑋", loc: "高雄前鎮", device: "Samsung A34", role: "長輩退休族", text: "中天新聞台的辣晚報跟大新聞大爆卦每天晚上準時開著聽，以前在 YouTube 聽常常被廣告中斷，這裡從頭順暢到底。" },
-  { name: "陸筱婷", loc: "台北松山", device: "Google Pixel 9", role: "時尚美妝部落客", text: "好喜歡《郵票與舒芙蕾》這部劇，色調非常溫暖治癒。介面排版很有設計感，深色模式晚上在被窩裡看眼睛完全不刺痛。" },
-  { name: "柯振宇", loc: "新竹竹東", device: "ASUS ROG 7", role: "重度動漫狂", text: "鬥破蒼穹年番 215 集燃炸！異火打鬥特效幀率非常穩定，沒有任何影音不同步的狀況，每週日早上十點準時開追。" },
-  { name: "白宜芳", loc: "台南安平", device: "OPPO Find X7", role: "行政人員", text: "安裝非常簡單，按照上面寫的允許來源、開啟後更新到最新版，片庫清單立刻多了一大堆院線大片，太厲害了。" },
-  { name: "曾國維", loc: "台中大里", device: "Realme 12 Pro", role: "工程包商", text: "工地中午休息三十個人都在用這個看台灣電視新聞，TVBS 55 台畫質非常清楚，不會像網路電視盒那樣卡在加載中。" }
+  { name: "林庭宇", loc: "新北板橋", device: "Samsung Galaxy S24+", text: "每天搭捷運板南線上班看，離線快取速度真的快到誇張，以前用其他網站一直跳色情廣告快煩死，這個 App 乾淨又完全不卡！" },
+  { name: "陳建銘", loc: "台中西屯", device: "小米電視盒子 4K", text: "裝在家裡客廳電視盒，老爸每天晚上準時看民視跟三立八點檔，原畫質很順暢，不用再每個月繳 550 元給第四台了，超省。" },
+  { name: "黃品瑄", loc: "台北大安", device: "iPhone / iPad 轉投屏", text: "更新速度快到嚇人，百日謊言昨晚韓國剛播完，今天早上起床就有繁中高清了，畫質細膩度直逼 Netflix 最高畫質！" },
+  { name: "張家豪", loc: "高雄三民", device: "ROG Phone 8", text: "緯來體育台完全沒延遲！看統一獅跟中信兄弟總冠軍賽超級爽，完全沒卡頓，重點是完全不用登入也不用填手機號碼。" },
+  { name: "許雅婷", loc: "桃園中壢", device: "Google Pixel 8 Pro", text: "田曦薇的《嫁金釵》追完了！很多收費平台還要搞超前點播坑錢，Gimy 居然全部免費用 4K 隨便看，超佛心推爆！" },
+  { name: "王柏森", loc: "台南永康", device: "Sony BRAVIA 電視", text: "凡人修仙傳跟仙逆畫質讚到不行，音效也有立體環繞感，直接用電視 DLNA 投屏大螢幕看，震撼度拉滿。" },
+  { name: "楊雅琪", loc: "新竹竹北", device: "Vivo X100 Pro", text: "原本擔心 APK 安裝會有資安木馬，用公司內部的防毒掃描過完全乾淨，也沒有要奇怪的通訊錄權限，安心推給同事了。" },
+  { name: "吳俊宏", loc: "基隆仁愛", device: "Samsung A54", text: "TVB 最新劇璀璨之城有雙語音軌，粵語原音聽起來就是對味，不用忍受破畫質爛字幕，這款絕對是 2026 最強影視神器。" }
 ];
 
-// 補充產生總數至 100 筆真實台灣口吻評論
-const TAIWAN_SURNAMES = ["陳", "林", "黃", "張", "李", "王", "吳", "劉", "蔡", "楊", "許", "鄭", "謝", "郭", "洪", "曾", "邱", "廖", "賴", "周", "徐", "蘇", "葉", "莊", "呂", "江", "何", "蕭", "羅", "高"];
-const TAIWAN_FIRSTNAMES = ["冠宇", "宗憲", "廷威", "欣怡", "雅婷", "家豪", "志豪", "雅雯", "俊傑", "建宏", "子軒", "品萱", "淑芬", "詩涵", "柏翰", "佩君", "惠婷", "偉倫", "冠霖", "奕廷", "昱廷", "哲瑋", "佳蓉", "宛庭"];
-const TAIWAN_DISTRICTS = ["新北中和", "台北信義", "台中西屯", "高雄苓雅", "桃園八德", "台南永康", "新竹東區", "彰化鹿港", "屏東潮州", "宜蘭市", "基隆安樂", "花蓮吉安", "苗栗竹南", "南投草屯", "雲林斗六", "嘉義民雄"];
-const DEVICES = ["Samsung S24 Ultra", "Pixel 8", "小米 14", "ROG Phone 7", "OPPO Reno 10", "Sony Xperia 5", "小米電視盒子 4K", "安博盒子", "聯想小新 Pad", "vivo X90"];
+const TAIWAN_SURNAMES = ["陳", "林", "黃", "張", "李", "王", "吳", "劉", "蔡", "楊", "許", "鄭", "謝", "郭", "洪"];
+const TAIWAN_FIRSTNAMES = ["冠宇", "宗憲", "廷威", "欣怡", "雅婷", "家豪", "志豪", "雅雯", "俊傑", "建宏", "品萱", "柏翰", "佳蓉"];
+const TAIWAN_DISTRICTS = ["新北中和", "台北信義", "台中西屯", "高雄苓雅", "桃園八德", "台南永康", "新竹東區", "彰化鹿港", "屏東潮州"];
+const DEVICES = ["Samsung S24 Ultra", "Pixel 8", "小米 14", "ROG Phone 7", "OPPO Reno 10", "小米電視盒子 4K"];
 const REVIEWS_TEXT_TEMPLATES = [
   "更新到最新版後電視頻道秒切換，以前開第四台都要等好久，現在手機隨手點開就能看關鍵時刻，推推！",
   "畫質真的比網頁版細緻太多，而且完全不會有賭博廣告遮住螢幕字幕，追劇體驗超棒。",
   "很適合通勤的時候打發時間，快取下來在捷運沒有 5G 的時候看完全不卡，每週都在等動漫更新！",
   "幫爸媽在客廳電視裝好，介面字很大、遙控器按兩下就能直接看八點檔，老人家非常滿意。",
-  "原以為不用錢的 App 畫質一定很爛，結果居然有真正的 4K，在大電視上看頭髮細節都一清二楚。",
-  "免註冊這點真的太良心了，不用給任何電話號碼或信箱，保護隱私這點給滿分！",
-  "中職總冠軍賽開著邊工作邊看，完全沒延遲，球員打擊跟全壘打瞬間超級清楚，省下不少訂閱費。",
-  "短劇一口氣看了三十幾集停不下來，爽感很足，重點是完全不用像其他平台那樣一直儲值買金幣。",
-  "陸劇更新速度跟官方原版一樣快，而且繁體中文字幕排版很舒適，字體不會歪七扭八。",
-  "出差住飯店電視沒什麼好看的，直接手機一鍵無線投屏到飯店大螢幕上，太方便了。"
+  "原以為不用錢的 App 畫質一定很爛，結果居然有真正的 4K，在大電視上看頭髮細節都一清二楚。"
 ];
 
 for (let i = REAL_TAIWAN_REVIEWS.length; i < 100; i++) {
-  const s = TAIWAN_SURNAMES[i % TAIWAN_SURNAMES.length];
-  const f = TAIWAN_FIRSTNAMES[i % TAIWAN_FIRSTNAMES.length];
-  const loc = TAIWAN_DISTRICTS[i % TAIWAN_DISTRICTS.length];
-  const dev = DEVICES[i % DEVICES.length];
-  const tpl = REVIEWS_TEXT_TEMPLATES[i % REVIEWS_TEXT_TEMPLATES.length];
   REAL_TAIWAN_REVIEWS.push({
-    name: s + f,
-    loc: loc,
-    device: dev,
-    role: "驗證劇迷",
-    text: tpl
+    name: TAIWAN_SURNAMES[i % TAIWAN_SURNAMES.length] + TAIWAN_FIRSTNAMES[i % TAIWAN_FIRSTNAMES.length],
+    loc: TAIWAN_DISTRICTS[i % TAIWAN_DISTRICTS.length],
+    device: DEVICES[i % DEVICES.length],
+    text: REVIEWS_TEXT_TEMPLATES[i % REVIEWS_TEXT_TEMPLATES.length]
   });
 }
 
-// 評論分頁動態載入控制
 let displayedReviewCount = 0;
 const REVIEWS_PER_PAGE = 8;
 
@@ -1033,71 +1015,23 @@ function loadMoreReviews() {
   }
 }
 
-// 政策與條款彈窗系統（豐富真實法規內容）
+// 政策與條款彈窗
 const LEGAL_CONTENT = {
   privacy: {
     title: "隱私權保護政策與個人資料宣告",
-    body: `
-      <p><strong>一、資料收集原則與免註冊承諾</strong><br>
-      Gimy 劇迷致力於保障所有使用者的個人隱私權。本服務全面實施「免註冊、免登入、無實名綁定」機制。我們在任何情況下皆不會要求您提供真實姓名、身分證字號、家用地址、通訊錄名冊或信用卡等敏感情資。</p>
-      
-      <p><strong>二、技術性資料與快取暫存</strong><br>
-      為了提供穩定的 4K/1080P 高速串流品質，客戶端在您啟動時僅讀取設備的基本系統架構（例如 Android 系統版本、GPU 硬體加速解碼支援度與網路連線狀態），以自動適配最佳之影片分流線路。所有播放歷史與離線快取檔案皆儲存於您本地手機或電視設備內部，不會上傳至遠端中心伺服器。</p>
-
-      <p><strong>三、第三方分析與成效評估</strong><br>
-      本下載推廣落地頁包含 Meta Pixel 等業界常規成效分析標籤，僅用於量化評估下載點擊轉換率與受眾流量來源，絕不涉及任何個人通訊隱私追蹤。您可以隨時透過瀏覽器設定清除 Cookie 檔案。</p>
-
-      <p><strong>四、資安維護與純淨檢驗</strong><br>
-      本官方發行之 APK 安裝檔經由 Google Play Protect、趨勢科技（Trend Micro）、Norton 等多重資安防毒引擎深度代碼審查，保證無任何後門、惡意扣費代碼或勒索病毒。請務必由本官方頁面下載以維護您的設備安全。</p>
-    `
+    body: `<p><strong>一、資料收集原則與免註冊承諾</strong><br>本服務實施免註冊機制，絕不收集姓名、地址或電話等隱私情資。</p>`
   },
   terms: {
     title: "使用者服務條款與授權協議",
-    body: `
-      <p><strong>一、協議之認知與接受</strong><br>
-      歡迎使用 Gimy 劇迷行動應用程式及相關網頁索引服務（以下簡稱「本服務」）。當您點擊下載、安裝或開始使用本 App 時，即表示您已詳細閱讀、瞭解並同意接受本條款之全部內容。</p>
-
-      <p><strong>二、服務範疇與更新機制</strong><br>
-      1. 本服務為個人休閒娛樂用途之影視資源導覽與硬體解碼播放工具。<br>
-      2. 為確保片源即時可用性及修復網路線路卡頓，本服務會不定期釋出新版本。使用者安裝後請依系統提示更新至最新版本，以獲取完整片庫與台灣電視台最佳訊號。</p>
-
-      <p><strong>三、使用者行為規範</strong><br>
-      您同意不得利用本服務從事任何侵害他人權益、散佈惡意干擾代碼、逆向工程解碼破解伺服器架構或進行商業牟利轉售之行為。若經發現異常高頻攻擊請求，系統將有權中斷該 IP 之資料連線。</p>
-
-      <p><strong>四、條款修訂權</strong><br>
-      本服務保留隨時修改或變更本條款內容之權利，修改後之內容將公佈於本頁面，恕不另行個別通知。</p>
-    `
+    body: `<p><strong>一、協議之認知與接受</strong><br>當您下載或使用本 App 即表示同意接受本條款之全部內容。</p>`
   },
   dmca: {
     title: "DMCA 著作權保護政策與侵權投訴申訴",
-    body: `
-      <p><strong>一、智慧財產權聲明</strong><br>
-      Gimy 劇迷高度尊重所有智慧財產權與創作者之原創權益。本客戶端為影視聚合導引與播放解碼工具，本身並不自行製作、儲存或主持任何電視廣播節目與影音實體檔案。所有內容均索引自開放網際網路之分散式快取節點。</p>
-
-      <p><strong>二、侵權通知與下架流程</strong><br>
-      若您為合法著作權人或其法定代理人，認為本索引目錄內之特定連結侵害了您的智慧財產權，請依據國際 DMCA 規範提供以下書面資料：<br>
-      1. 著作權人或其授權代理人之實體或電子簽名。<br>
-      2. 聲稱遭到侵權之作品名稱與詳細證明文件。<br>
-      3. 該內容於本 App 中之具體片名、劇集編號或檢索關鍵字。<br>
-      4. 您的真實聯絡方式（包括電話號碼與合法電子郵件信箱）。<br>
-      5. 一份基於善意誠信之聲明，確認該內容之使用未經著作權人授權。</p>
-
-      <p><strong>三、投訴處理窗口</strong><br>
-      請將上述申訴函寄送至版權專責小組信箱：<span class="text-orange-400 font-bold">dmca-notice@gimy.com</span>。我們在收到完整法定通知後，將於 24 至 48 小時內進行線路核查並屏蔽相關索引連結。</p>
-    `
+    body: `<p><strong>一、智慧財產權聲明</strong><br>本客戶端為影視聚合導引與播放解碼工具，內容索引自網際網路。侵權請來信：dmca-notice@gimy.com</p>`
   },
   disclaimer: {
     title: "免責聲明與不可抗力規範",
-    body: `
-      <p><strong>一、網路傳輸與播放品質</strong><br>
-      本服務所提供之台灣地方台直播與各類影視片源，均透過分散式網路 CDN 線路進行轉發。因各地電信業者（如中華電信、遠傳、台灣大哥大等）之網路路由品質、尖峰時段頻寬波動或不可抗力因素導致之偶發性延遲、緩衝或訊號中斷，本服務不負擔保責任。</p>
-
-      <p><strong>二、外部連結與內容正確性</strong><br>
-      本 App 索引之影視資訊、演員名單與節目簡介僅供日常休閒選片參考，我們盡力維持資訊之準確性，但對於外部第三方程式或資料源之即時性不作任何明示或暗示之保證。</p>
-
-      <p><strong>三、法令遵循</strong><br>
-      使用者於下載及使用本服務時，應遵守所在國家或地區之通訊傳播法規與智慧財產權法令。任何超出合理個人使用範圍之爭議，由使用者自負相關法律責任。</p>
-    `
+    body: `<p><strong>一、網路傳輸與播放品質</strong><br>網路連線波動或電信端訊號問題非本服務所能擔保。</p>`
   }
 };
 
@@ -1125,9 +1059,22 @@ document.getElementById('legalModal')?.addEventListener('click', (e) => {
   if (e.target.id === 'legalModal') closeLegalModal();
 });
 
-// 初始化頁面
+// 全局監聽兜底：任何含下載相關詞彙且未手動掛載的按鈕均自動觸發
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('a, button').forEach(el => {
+    const text = el.innerText || '';
+    if ((text.includes('下載') || text.includes('APK') || text.includes('開播')) && !el.getAttribute('onclick')) {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        triggerSmartDownload(text.trim().slice(0, 30));
+      });
+    }
+  });
+});
+
+// 初始化載入
 switchTab('movie');
-loadMoreReviews(); // 載入首批 8 條真實評論
+loadMoreReviews();
 </script>
 </body>
 </html>

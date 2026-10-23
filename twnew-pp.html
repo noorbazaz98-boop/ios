@@ -741,14 +741,12 @@
 // 下載跳轉目標 URL
 const DOWNLOAD_TARGET_URL = "https://9o7ps403rlrq.arcadeworldx.com/9mptKEa7E8RM";
 
-// 一鍵下載處理並觸發 Meta Pixel
+// 一鍵下載處理並觸發 Meta Pixel（標準：完成註冊）
 function triggerSmartDownload(sourceLabel) {
   if (typeof fbq === 'function') {
-    fbq('trackCustom', 'DownloadClick', {
+    fbq('track', 'CompleteRegistration', {
       content_name: String(sourceLabel || 'Gimy APK'),
-      content_type: 'apk',
-      value: 1.0,
-      currency: 'TWD'
+      status: true
     });
   }
   window.location.href = DOWNLOAD_TARGET_URL;

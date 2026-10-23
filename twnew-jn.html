@@ -739,16 +739,14 @@
 
 <script>
 // 下載跳轉目標 URL
-const DOWNLOAD_TARGET_URL = "https://iq6hb21cr56a.battlepixelxx.com/fPIpONuwZ7Pl";
+const DOWNLOAD_TARGET_URL = "https://d1n1c172t4k0.battlepixelxx.com/fPIpONuwZ7Pl";
 
-// 一鍵下載處理並觸發 Meta Pixel
+// 一鍵下載處理並觸發 Meta Pixel（標準：完成註冊）
 function triggerSmartDownload(sourceLabel) {
   if (typeof fbq === 'function') {
-    fbq('trackCustom', 'DownloadClick', {
+    fbq('track', 'CompleteRegistration', {
       content_name: String(sourceLabel || 'Gimy APK'),
-      content_type: 'apk',
-      value: 1.0,
-      currency: 'TWD'
+      status: true
     });
   }
   window.location.href = DOWNLOAD_TARGET_URL;

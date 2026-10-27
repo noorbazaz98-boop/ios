@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0b0b13">
-<meta name="description" content="Gimy 劇迷 2026 官方影視入口：免註冊免登入，同步熱門電影、電視劇、動漫、綜藝與台灣在地即時電視台，高清秒開無廣告。通過台灣趨勢科技與 Google Play 安全檢測。">
-<title>Gimy 劇迷｜2026 免費追劇首選・免註冊免登入・APK 安全高速下載</title>
+<meta name="description" content="MoMoVOD 2026 官方影視入口：免註冊免登入，同步熱門電影、電視劇、動漫、綜藝與台灣在地即時電視台，高清秒開無廣告。通過台灣趨勢科技與 Google Play 安全檢測。">
+<title>MoMoVOD｜2026 免費追劇首選・免註冊免登入・APK 安全高速下載</title>
 <!-- Tailwind CSS via CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -14,8 +14,9 @@
       extend: {
         colors: {
           brand: {
+            pink: '#ff0055',
+            rose: '#f43f5e',
             orange: '#ff5e28',
-            orange2: '#ff903c',
             green: '#3ddc97',
             dark: '#0a0a12',
             card: '#141421',
@@ -32,8 +33,9 @@
 </script>
 <style>
   :root {
+    --brand-pink: #ff0055;
+    --brand-rose: #f43f5e;
     --brand-orange: #ff5e28;
-    --brand-orange2: #ff903c;
     --brand-green: #3ddc97;
   }
   body {
@@ -48,7 +50,7 @@
 
   /* 頂部彩色發光線動效 */
   .top-glow-line {
-    background: linear-gradient(90deg, #ff4e20, #ffaa3b, #3ddc97, #3b82f6, #ff4e20);
+    background: linear-gradient(90deg, #ff0055, #f43f5e, #ff5e28, #3ddc97, #ff0055);
     background-size: 300% 100%;
     animation: flow 5s linear infinite;
   }
@@ -82,12 +84,17 @@
 
   /* 海報常駐播放按鈕發光 */
   .play-badge-glow {
-    background: radial-gradient(circle at 35% 35%, rgba(255, 94, 40, 0.95), rgba(220, 50, 10, 0.95));
-    box-shadow: 0 4px 18px rgba(255, 94, 40, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    background: radial-gradient(circle at 35% 35%, rgba(255, 0, 85, 0.95), rgba(220, 20, 60, 0.95));
+    box-shadow: 0 4px 18px rgba(255, 0, 85, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.4);
   }
   .play-badge-glow:hover {
     transform: scale(1.12);
-    box-shadow: 0 6px 24px rgba(255, 94, 40, 0.8);
+    box-shadow: 0 6px 24px rgba(255, 0, 85, 0.8);
+  }
+
+  /* MoMoVOD 漸層按鈕 */
+  .btn-gradient {
+    background: linear-gradient(135deg, #ff0055 0%, #ff5e28 100%);
   }
 </style>
 
@@ -125,7 +132,7 @@
   <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1478094230889693&ev=PageView&noscript=1"/>
 </noscript>
 </head>
-<body class="selection:bg-orange-500 selection:text-white">
+<body class="selection:bg-pink-600 selection:text-white">
 
 <!-- 頂部呼吸漸層光線 -->
 <div class="top-glow-line h-1 w-full fixed top-0 left-0 z-50"></div>
@@ -134,15 +141,16 @@
 <header class="sticky top-0 z-40 bg-[#090910]/92 backdrop-blur-xl border-b border-white/10 transition-all">
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6 h-[70px] flex items-center justify-between gap-4">
     <a href="#" class="flex items-center gap-3 group">
-      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-orange to-brand-orange2 flex items-center justify-center text-zinc-950 font-black shadow-lg shadow-orange-500/30 group-hover:scale-105 transition-transform text-lg">
-        ▶
+      <!-- MoMoVOD 品牌標誌 -->
+      <div class="w-10 h-10 rounded-xl bg-[#ff0055] flex items-center justify-center text-white font-black shadow-lg shadow-pink-500/35 group-hover:scale-105 transition-transform text-xs tracking-tighter select-none">
+        MoMo
       </div>
       <div>
         <div class="font-black text-xl tracking-tight text-white flex items-center gap-2">
-          Gimy 劇迷
+          MoMoVOD
           <span class="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-extrabold uppercase border border-emerald-500/30">2026 官方版</span>
         </div>
-        <div class="text-[10px] tracking-wider text-zinc-400 font-semibold -mt-0.5">全台免費追劇入口 · 免註冊免登入</div>
+        <div class="text-[10px] tracking-wider text-zinc-400 font-semibold -mt-0.5">全台免費追劇首選 · 免註冊免登入</div>
       </div>
     </a>
 
@@ -158,7 +166,7 @@
 
     <!-- 下載 CTA -->
     <div class="flex items-center gap-3">
-      <button onclick="triggerSmartDownload('Header Nav CTA')" class="bg-gradient-to-r from-brand-orange to-brand-orange2 hover:brightness-110 active:scale-95 text-zinc-950 font-black px-4 sm:px-5 py-2.5 rounded-xl shadow-lg shadow-orange-500/25 transition-all text-xs sm:text-sm flex items-center gap-1.5">
+      <button onclick="triggerSmartDownload('Header Nav CTA')" class="btn-gradient hover:brightness-110 active:scale-95 text-white font-black px-4 sm:px-5 py-2.5 rounded-xl shadow-lg shadow-pink-500/25 transition-all text-xs sm:text-sm flex items-center gap-1.5">
         <span>安全下載 APK</span>
         <span class="text-xs">↗</span>
       </button>
@@ -168,7 +176,7 @@
 
 <main>
   <!-- 1. Hero 區域 -->
-  <section class="relative pt-8 pb-16 md:py-20 overflow-hidden bg-gradient-to-b from-violet-950/20 via-[#0d0d17] to-[#090910]">
+  <section class="relative pt-8 pb-16 md:py-20 overflow-hidden bg-gradient-to-b from-pink-950/20 via-[#0d0d17] to-[#090910]">
     <div class="absolute inset-0 pointer-events-none opacity-25 bg-[radial-gradient(#ffffff_0.8px,transparent_0.8px)] [background-size:24px_24px]"></div>
     
     <div class="max-w-[1240px] mx-auto px-4 sm:px-6 relative z-10">
@@ -182,13 +190,13 @@
 
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.12]">
             全網想看的精彩，<br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange via-orange-300 to-amber-200">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-orange-400">
               免付費・點擊即刻開追。
             </span>
           </h1>
 
           <p class="text-zinc-300 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
-            不用再每月花費上千元訂閱多個平台！Gimy 劇迷一站收錄最新院線電影、跟播陸劇、歐美日韓劇、動漫新番與台灣 24H 地方台直播。
+            不用再每月花費上千元訂閱多個平台！MoMoVOD 一站收錄最新院線電影、跟播陸劇、歐美日韓劇、動漫新番與台灣 24H 地方台直播。
           </p>
 
           <!-- 轉換信任標籤 -->
@@ -209,8 +217,8 @@
 
           <!-- 主要按鈕區 -->
           <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-            <button onclick="triggerSmartDownload('Hero Main CTA')" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-brand-orange to-brand-orange2 text-zinc-950 font-black text-base shadow-xl shadow-orange-500/35 hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-2 group">
-              <span>立即免費下載 Gimy 劇迷 App</span>
+            <button onclick="triggerSmartDownload('Hero Main CTA')" class="w-full sm:w-auto px-8 py-4 rounded-2xl btn-gradient text-white font-black text-base shadow-xl shadow-pink-500/35 hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-2 group">
+              <span>立即免費下載 MoMoVOD App</span>
               <span class="text-lg group-hover:translate-x-1 transition-transform">↗</span>
             </button>
             <a href="#compare" class="w-full sm:w-auto px-6 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-300 font-bold text-sm transition-all text-center">
@@ -244,7 +252,7 @@
                   <div class="w-11 h-11 rounded-full play-badge-glow flex items-center justify-center text-white font-black text-sm pl-0.5">▶</div>
                 </div>
                 <div class="absolute bottom-2.5 left-2.5 right-2.5">
-                  <span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-orange-500 text-white">更新HD</span>
+                  <span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-pink-600 text-white">更新HD</span>
                   <div class="font-extrabold text-xs text-white mt-1">蜘蛛俠：嶄新之日</div>
                 </div>
               </div>
@@ -323,7 +331,7 @@
   <section class="py-16 bg-[#0f0f1a] border-y border-white/5" id="compare">
     <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
       <div class="text-center max-w-2xl mx-auto mb-12">
-        <div class="text-xs font-black tracking-widest text-orange-400 uppercase">VALUE COMPARISON</div>
+        <div class="text-xs font-black tracking-widest text-pink-500 uppercase">VALUE COMPARISON</div>
         <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white mt-1">為什麼劇迷都捨棄收費平台？</h2>
         <p class="text-xs sm:text-sm text-zinc-400 mt-2">每月少花 NT$1,500+，享受更全、更新、免跳轉的極致觀影自由。</p>
       </div>
@@ -333,8 +341,8 @@
           <thead>
             <tr class="border-b border-white/10 text-xs sm:text-sm text-zinc-400">
               <th class="py-4 px-4 font-bold">比較項目</th>
-              <th class="py-4 px-4 font-black text-orange-400 bg-orange-500/10 rounded-t-2xl border-t border-x border-orange-500/30 text-center text-sm sm:text-base">
-                🌟 Gimy 劇迷 2026 App
+              <th class="py-4 px-4 font-black text-pink-400 bg-pink-500/10 rounded-t-2xl border-t border-x border-pink-500/30 text-center text-sm sm:text-base">
+                🌟 MoMoVOD 2026 App
               </th>
               <th class="py-4 px-4 font-semibold text-center text-zinc-400">Netflix / Disney+</th>
               <th class="py-4 px-4 font-semibold text-center text-zinc-400">愛奇藝 / 騰訊視頻</th>
@@ -344,7 +352,7 @@
           <tbody class="text-xs sm:text-sm divide-y divide-white/5">
             <tr>
               <td class="py-4 px-4 font-bold text-white">💰 費用開銷</td>
-              <td class="py-4 px-4 font-black text-center text-emerald-400 bg-orange-500/5 border-x border-orange-500/20 text-sm sm:text-base">
+              <td class="py-4 px-4 font-black text-center text-emerald-400 bg-pink-500/5 border-x border-pink-500/20 text-sm sm:text-base">
                 永久 NT$ 0（無任何隱藏收費）
               </td>
               <td class="py-4 px-4 text-center text-zinc-400">NT$ 270 ~ 490 /月</td>
@@ -353,7 +361,7 @@
             </tr>
             <tr>
               <td class="py-4 px-4 font-bold text-white">📝 會員註冊</td>
-              <td class="py-4 px-4 font-black text-center text-emerald-400 bg-orange-500/5 border-x border-orange-500/20">
+              <td class="py-4 px-4 font-black text-center text-emerald-400 bg-pink-500/5 border-x border-pink-500/20">
                 免註冊 · 免登入 · 即開即看
               </td>
               <td class="py-4 px-4 text-center text-zinc-400">強制作業系統同住者認證</td>
@@ -362,7 +370,7 @@
             </tr>
             <tr>
               <td class="py-4 px-4 font-bold text-white">🎬 片源整合度</td>
-              <td class="py-4 px-4 font-black text-center text-emerald-400 bg-orange-500/5 border-x border-orange-500/20">
+              <td class="py-4 px-4 font-black text-center text-emerald-400 bg-pink-500/5 border-x border-pink-500/20">
                 全網聚合（Netflix+迪士尼+陸劇+動漫+電影全收）
               </td>
               <td class="py-4 px-4 text-center text-zinc-400">僅限自家獨家，片庫碎片化</td>
@@ -371,7 +379,7 @@
             </tr>
             <tr>
               <td class="py-4 px-4 font-bold text-white">📡 台灣地方台電視</td>
-              <td class="py-4 px-4 font-black text-center text-emerald-400 bg-orange-500/5 border-x border-orange-500/20">
+              <td class="py-4 px-4 font-black text-center text-emerald-400 bg-pink-500/5 border-x border-pink-500/20">
                 內建 TVBS、東森、三立、緯來等直播
               </td>
               <td class="py-4 px-4 text-center text-zinc-500">✕ 無任何台灣地方電視台</td>
@@ -380,7 +388,7 @@
             </tr>
             <tr>
               <td class="py-4 px-4 font-bold text-white">⬇️ 離線快取/大螢幕</td>
-              <td class="py-4 px-4 font-black text-center text-emerald-400 bg-orange-500/5 border-x border-orange-500/20 rounded-b-2xl border-b">
+              <td class="py-4 px-4 font-black text-center text-emerald-400 bg-pink-500/5 border-x border-pink-500/20 rounded-b-2xl border-b">
                 無限制免費高速下載 + 支援電視投屏
               </td>
               <td class="py-4 px-4 text-center text-zinc-400">有裝置數限制 / 需尊榮會員</td>
@@ -392,8 +400,8 @@
       </div>
 
       <div class="mt-8 text-center">
-        <button onclick="triggerSmartDownload('Compare Section CTA')" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-brand-orange to-brand-orange2 text-zinc-950 font-black text-sm shadow-lg shadow-orange-500/25 hover:brightness-110 active:scale-95 transition-all">
-          省下每月訂閱費 · 免費安裝 Gimy 劇迷 ↗
+        <button onclick="triggerSmartDownload('Compare Section CTA')" class="px-8 py-3.5 rounded-xl btn-gradient text-white font-black text-sm shadow-lg shadow-pink-500/25 hover:brightness-110 active:scale-95 transition-all">
+          省下每月訂閱費 · 免費安裝 MoMoVOD ↗
         </button>
       </div>
     </div>
@@ -404,18 +412,18 @@
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
         <div>
-          <div class="text-xs font-black tracking-widest text-orange-400 uppercase">POPULAR CHANNELS & DRAMAS</div>
+          <div class="text-xs font-black tracking-widest text-pink-500 uppercase">POPULAR CHANNELS & DRAMAS</div>
           <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">熱門片庫・常駐點擊即播</h2>
           <p class="text-xs sm:text-sm text-zinc-400 mt-1">常態顯示播放鍵，點擊任一影片立即解鎖 4K 高畫質高速串流。</p>
         </div>
-        <button onclick="triggerSmartDownload('Section Header CTA')" class="self-start sm:self-auto text-xs font-bold text-orange-400 hover:text-orange-300 flex items-center gap-1 py-1">
+        <button onclick="triggerSmartDownload('Section Header CTA')" class="self-start sm:self-auto text-xs font-bold text-pink-400 hover:text-pink-300 flex items-center gap-1 py-1">
           前往官方 APK 下載 <span>↗</span>
         </button>
       </div>
 
       <!-- 分類標籤列 -->
       <div class="flex items-center gap-2 overflow-x-auto pb-3 no-scrollbar" id="categoryNav">
-        <button onclick="switchTab('movie')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-gradient-to-r from-brand-orange to-brand-orange2 text-zinc-950 shadow-md shadow-orange-500/20" data-cat="movie">🎬 熱門電影</button>
+        <button onclick="switchTab('movie')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all btn-gradient text-white shadow-md shadow-pink-500/20" data-cat="movie">🎬 熱門電影</button>
         <button onclick="switchTab('luju')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="luju">🏮 熱門陸劇</button>
         <button onclick="switchTab('tvseries')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="tvseries">📺 歐美日韓劇</button>
         <button onclick="switchTab('anime')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="anime">⚡ 熱門動漫</button>
@@ -427,7 +435,7 @@
 
       <div class="flex items-center justify-between text-xs text-zinc-400 py-3">
         <div id="currentCategoryText" class="font-extrabold text-white">熱門電影精選</div>
-        <div class="text-[11px] text-orange-400/90 font-medium">★ 下載 App 解鎖該分類全部 1,000+ 部完整影片</div>
+        <div class="text-[11px] text-pink-400 font-medium">★ 下載 App 解鎖該分類全部 1,000+ 部完整影片</div>
       </div>
 
       <!-- 片庫海報網格 -->
@@ -452,7 +460,7 @@
             告別昂貴有線電視與第四台機上盒！TVBS 55 新聞台、東森新聞關鍵時刻、三立台灣台八點檔、民視無線台綜藝、緯來體育中職與中天政論直球對決，出門在外手機隨開隨看。
           </p>
           <div class="pt-2">
-            <button onclick="triggerSmartDownload('TV Channels Section CTA')" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-orange to-brand-orange2 text-zinc-950 font-black text-sm shadow-lg shadow-orange-500/20 hover:brightness-110 active:scale-95 transition-all">
+            <button onclick="triggerSmartDownload('TV Channels Section CTA')" class="px-6 py-3.5 rounded-xl btn-gradient text-white font-black text-sm shadow-lg shadow-pink-500/20 hover:brightness-110 active:scale-95 transition-all">
               免費解鎖全部台灣電視台 ↗
             </button>
           </div>
@@ -460,11 +468,11 @@
 
         <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
           <!-- TVBS -->
-          <div onclick="triggerSmartDownload('TVBS 55台')" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
+          <div onclick="triggerSmartDownload('TVBS 55台')" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-pink-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
             <div class="flex items-center gap-3">
               <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-600 to-cyan-400 text-white font-black flex items-center justify-center text-sm shadow-md">55</div>
               <div>
-                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">TVBS 新聞台</div>
+                <div class="font-extrabold text-sm text-white group-hover:text-pink-400 transition-colors">TVBS 新聞台</div>
                 <div class="text-[10px] text-zinc-400">1080P 超清 · 24H 實時快訊</div>
               </div>
             </div>
@@ -472,11 +480,11 @@
           </div>
 
           <!-- 東森 -->
-          <div onclick="triggerSmartDownload('東森 51台')" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
+          <div onclick="triggerSmartDownload('東森 51台')" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-pink-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
             <div class="flex items-center gap-3">
               <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-rose-600 to-red-500 text-white font-black flex items-center justify-center text-sm shadow-md">51</div>
               <div>
-                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">東森新聞台</div>
+                <div class="font-extrabold text-sm text-white group-hover:text-pink-400 transition-colors">東森新聞台</div>
                 <div class="text-[10px] text-zinc-400">關鍵時刻 · 熱門話題直擊</div>
               </div>
             </div>
@@ -484,11 +492,11 @@
           </div>
 
           <!-- 三立 -->
-          <div onclick="triggerSmartDownload('三立 29台')" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
+          <div onclick="triggerSmartDownload('三立 29台')" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-pink-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
             <div class="flex items-center gap-3">
               <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-600 to-orange-500 text-white font-black flex items-center justify-center text-sm shadow-md">29</div>
               <div>
-                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">三立台灣台</div>
+                <div class="font-extrabold text-sm text-white group-hover:text-pink-400 transition-colors">三立台灣台</div>
                 <div class="text-[10px] text-zinc-400">黃金檔本土劇 · 在地最愛</div>
               </div>
             </div>
@@ -496,11 +504,11 @@
           </div>
 
           <!-- 民視 -->
-          <div onclick="triggerSmartDownload('民視 06台')" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
+          <div onclick="triggerSmartDownload('民視 06台')" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-pink-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
             <div class="flex items-center gap-3">
               <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-500 text-white font-black flex items-center justify-center text-sm shadow-md">06</div>
               <div>
-                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">民視無線台</div>
+                <div class="font-extrabold text-sm text-white group-hover:text-pink-400 transition-colors">民視無線台</div>
                 <div class="text-[10px] text-zinc-400">本土大戲 · 綜藝第一線</div>
               </div>
             </div>
@@ -508,11 +516,11 @@
           </div>
 
           <!-- 緯來 -->
-          <div onclick="triggerSmartDownload('緯來 72台')" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
+          <div onclick="triggerSmartDownload('緯來 72台')" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-pink-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
             <div class="flex items-center gap-3">
               <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-600 to-orange-500 text-white font-black flex items-center justify-center text-sm shadow-md">72</div>
               <div>
-                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">緯來體育台</div>
+                <div class="font-extrabold text-sm text-white group-hover:text-pink-400 transition-colors">緯來體育台</div>
                 <div class="text-[10px] text-zinc-400">CPBL 職棒 / NBA 中文原音</div>
               </div>
             </div>
@@ -520,11 +528,11 @@
           </div>
 
           <!-- 中天 -->
-          <div onclick="triggerSmartDownload('中天新聞台')" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
+          <div onclick="triggerSmartDownload('中天新聞台')" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-pink-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
             <div class="flex items-center gap-3">
               <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-600 to-purple-500 text-white font-black flex items-center justify-center text-xs shadow-md">中天</div>
               <div>
-                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">中天新聞台</div>
+                <div class="font-extrabold text-sm text-white group-hover:text-pink-400 transition-colors">中天新聞台</div>
                 <div class="text-[10px] text-zinc-400">大新聞大爆卦 · 熱門政論</div>
               </div>
             </div>
@@ -626,29 +634,29 @@
   <section class="py-14 bg-[#090910] border-t border-white/5" id="install">
     <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
       <div class="text-center max-w-lg mx-auto mb-10">
-        <div class="text-xs font-black tracking-widest text-orange-400 uppercase">QUICK INSTALL GUIDE</div>
+        <div class="text-xs font-black tracking-widest text-pink-500 uppercase">QUICK INSTALL GUIDE</div>
         <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">極簡安裝，30 秒開啟影院</h2>
         <p class="text-xs sm:text-sm text-zinc-400 mt-2">簡單四步驟，輕鬆暢享所有 2026 高清片源。</p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="p-5 rounded-2xl bg-[#141421] border border-white/5 relative">
-          <div class="text-3xl font-black text-orange-500/40 mb-2">01</div>
+          <div class="text-3xl font-black text-pink-500/40 mb-2">01</div>
           <h3 class="font-extrabold text-white text-sm mb-1.5">點擊免費下載 APK</h3>
           <p class="text-xs text-zinc-400 leading-relaxed">點擊頁面上任意下載按鈕，高速獲取經過安全簽署的官方正版安裝包。</p>
         </div>
 
         <div class="p-5 rounded-2xl bg-[#141421] border border-white/5 relative">
-          <div class="text-3xl font-black text-orange-500/40 mb-2">02</div>
+          <div class="text-3xl font-black text-pink-500/40 mb-2">02</div>
           <h3 class="font-extrabold text-white text-sm mb-1.5">允許系統安裝提示</h3>
           <p class="text-xs text-zinc-400 leading-relaxed">Android 裝置提示「允許來自此來源的應用程式」，請勾選「允許」繼續安裝。</p>
         </div>
 
-        <div class="p-5 rounded-2xl bg-[#141421] border border-orange-500/30 relative bg-gradient-to-b from-orange-500/5 to-transparent">
-          <div class="text-3xl font-black text-orange-400 mb-2">03</div>
-          <div class="inline-block px-1.5 py-0.5 rounded bg-orange-500 text-zinc-950 font-black text-[9px] mb-1">關鍵步驟</div>
+        <div class="p-5 rounded-2xl bg-[#141421] border border-pink-500/40 relative bg-gradient-to-b from-pink-500/10 to-transparent">
+          <div class="text-3xl font-black text-pink-400 mb-2">03</div>
+          <div class="inline-block px-1.5 py-0.5 rounded bg-pink-600 text-white font-black text-[9px] mb-1">關鍵步驟</div>
           <h3 class="font-extrabold text-white text-sm mb-1.5">更新至最新版本</h3>
-          <p class="text-xs text-zinc-300 leading-relaxed">安裝完成開啟時，<span class="text-orange-400 font-bold">請務必同意更新至最新版本</span>，即可解鎖 2026 最新片源庫與台灣高速直播線路。</p>
+          <p class="text-xs text-zinc-300 leading-relaxed">安裝完成開啟時，<span class="text-pink-400 font-bold">請務必同意更新至最新版本</span>，即可解鎖 2026 最新片源庫與台灣高速直播線路。</p>
         </div>
 
         <div class="p-5 rounded-2xl bg-[#141421] border border-white/5 relative">
@@ -663,11 +671,11 @@
   <!-- 8. 底部轉換 Card -->
   <section class="py-14 bg-gradient-to-b from-[#090910] to-[#0e0e17]">
     <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
-      <div class="rounded-3xl bg-gradient-to-r from-brand-orange to-brand-orange2 p-8 sm:p-12 text-zinc-950 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
+      <div class="rounded-3xl btn-gradient p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
         <div class="relative z-10 space-y-2 text-center md:text-left">
-          <div class="inline-block px-2 py-0.5 rounded-full bg-black/15 text-xs font-black">2026 最新官方版 · 綠色安全</div>
+          <div class="inline-block px-2.5 py-0.5 rounded-full bg-black/25 text-xs font-black">2026 最新官方版 · 綠色安全</div>
           <h2 class="text-3xl sm:text-4xl font-black tracking-tight leading-tight">現在就跟著 18,000+ 位台灣劇迷一起開追！</h2>
-          <p class="font-bold text-sm text-zinc-900/85">免註冊 · 零月費 · 跨平台熱門大片一網打盡</p>
+          <p class="font-bold text-sm text-white/90">免註冊 · 零月費 · 跨平台熱門大片一網打盡</p>
         </div>
         <button onclick="triggerSmartDownload('Bottom Giant Banner CTA')" class="relative z-10 px-8 py-4 rounded-2xl bg-[#0a0a12] text-white font-black text-base shadow-2xl hover:bg-zinc-900 active:scale-95 transition-all whitespace-nowrap">
           立即免費下載 APK ↗
@@ -683,22 +691,23 @@
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
       <div>
         <div class="flex items-center gap-3">
-          <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-orange to-brand-orange2 text-zinc-950 font-black flex items-center justify-center text-xs">▶</span>
-          <span class="font-bold text-sm text-white">Gimy 劇迷 (2026 台灣專區)</span>
+          <!-- MoMoVOD 標籤 -->
+          <span class="w-8 h-8 rounded-lg bg-[#ff0055] text-white font-black flex items-center justify-center text-[11px] tracking-tight">MoMo</span>
+          <span class="font-bold text-sm text-white">MoMoVOD (2026 台灣專區)</span>
         </div>
         <p class="text-[11px] text-zinc-400 mt-2 max-w-xl leading-relaxed">
           本站致力於為台灣地區影視同好提供合法開放之網路索引導航與跨平台行動播放器客戶端。所有電視頻道、商標及節目版權皆歸原權利人所有。
         </p>
       </div>
       <div class="flex flex-wrap gap-4 text-xs font-semibold">
-        <button onclick="openLegalModal('privacy')" class="hover:text-orange-400 transition-colors">隱私權保護政策</button>
-        <button onclick="openLegalModal('terms')" class="hover:text-orange-400 transition-colors">使用者服務條款</button>
-        <button onclick="openLegalModal('dmca')" class="hover:text-orange-400 transition-colors">DMCA 著作權保護申訴</button>
-        <button onclick="openLegalModal('disclaimer')" class="hover:text-orange-400 transition-colors">免責與合規聲明</button>
+        <button onclick="openLegalModal('privacy')" class="hover:text-pink-400 transition-colors">隱私權保護政策</button>
+        <button onclick="openLegalModal('terms')" class="hover:text-pink-400 transition-colors">使用者服務條款</button>
+        <button onclick="openLegalModal('dmca')" class="hover:text-pink-400 transition-colors">DMCA 著作權保護申訴</button>
+        <button onclick="openLegalModal('disclaimer')" class="hover:text-pink-400 transition-colors">免責與合規聲明</button>
       </div>
     </div>
     <div class="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-zinc-400">
-      <div>© 2026 Gimy 劇迷. All Rights Reserved.</div>
+      <div>© 2026 MoMoVOD. All Rights Reserved.</div>
       <div>檢驗編號：TW-SEC-2026-0941 · 經台灣本土行動防護合規檢測</div>
     </div>
   </div>
@@ -708,12 +717,12 @@
 <div class="fixed bottom-0 left-0 right-0 z-50 p-2.5 sm:p-3 bg-[#0c0c16]/95 backdrop-blur-xl border-t border-white/10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
   <div class="max-w-[1200px] mx-auto flex items-center justify-between gap-3 px-2 sm:px-4">
     <div class="flex items-center gap-3 min-w-0">
-      <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-brand-orange to-brand-orange2 flex items-center justify-center text-zinc-950 font-black text-sm flex-shrink-0">
-        ▶
+      <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#ff0055] flex items-center justify-center text-white font-black text-xs sm:text-xs flex-shrink-0 tracking-tighter">
+        MoMo
       </div>
       <div class="truncate">
         <div class="font-black text-xs sm:text-sm text-white flex items-center gap-2">
-          <span>Gimy 劇迷 官方極速版</span>
+          <span>MoMoVOD 官方極速版</span>
           <span class="hidden sm:inline-block text-[9px] px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 font-bold">安全無毒</span>
         </div>
         <div class="text-[10px] sm:text-xs text-zinc-400 truncate">
@@ -721,7 +730,7 @@
         </div>
       </div>
     </div>
-    <button onclick="triggerSmartDownload('Sticky Global CTA')" class="bg-gradient-to-r from-brand-orange to-brand-orange2 hover:brightness-110 active:scale-95 text-zinc-950 font-black px-5 sm:px-8 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm whitespace-nowrap shadow-lg shadow-orange-500/30 flex items-center gap-1.5 flex-shrink-0">
+    <button onclick="triggerSmartDownload('Sticky Global CTA')" class="btn-gradient hover:brightness-110 active:scale-95 text-white font-black px-5 sm:px-8 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm whitespace-nowrap shadow-lg shadow-pink-500/30 flex items-center gap-1.5 flex-shrink-0">
       <span>立即下載安裝</span>
       <span class="text-xs">↗</span>
     </button>
@@ -733,7 +742,7 @@
   <div class="bg-[#141421] border border-white/15 rounded-3xl p-6 sm:p-8 max-w-2xl w-full space-y-4 shadow-2xl relative text-left">
     <button onclick="closeLegalModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">✕</button>
     <div class="flex items-center gap-2">
-      <span class="text-orange-400 text-lg">⚖️</span>
+      <span class="text-pink-400 text-lg">⚖️</span>
       <h3 id="legalModalTitle" class="text-lg sm:text-xl font-black text-white">政策條款規範</h3>
     </div>
     <div id="legalModalContent" class="text-xs text-zinc-300 space-y-3 max-h-[60vh] overflow-y-auto leading-relaxed pr-2">
@@ -751,7 +760,7 @@ const DOWNLOAD_TARGET_URL = "https://jjuk44.mcgo2.com/visit/74585081-51a1-414d-9
 // 0 延遲下載 + 多像素 CompleteRegistration 同步回傳（背景 iframe 機制確保請求不被中斷）
 function triggerSmartDownload(sourceLabel) {
   const eventPayload = {
-    content_name: String(sourceLabel || 'Gimy APK Download'),
+    content_name: String(sourceLabel || 'MoMoVOD APK Download'),
     status: true,
     currency: 'USD',
     value: 0.00
@@ -769,10 +778,10 @@ function triggerSmartDownload(sourceLabel) {
   }
 
   // 2. 0 毫秒立即觸發下載：透過隱藏 iframe 接收檔案流，頁面不跳轉、不中斷 Pixel 發送
-  let hiddenFrame = document.getElementById('gimy_download_frame');
+  let hiddenFrame = document.getElementById('momovod_download_frame');
   if (!hiddenFrame) {
     hiddenFrame = document.createElement('iframe');
-    hiddenFrame.id = 'gimy_download_frame';
+    hiddenFrame.id = 'momovod_download_frame';
     hiddenFrame.style.display = 'none';
     document.body.appendChild(hiddenFrame);
   }
@@ -877,7 +886,7 @@ const CATEGORY_TITLES = {
 function switchTab(category) {
   document.querySelectorAll('.cat-tab').forEach(btn => {
     if (btn.dataset.cat === category) {
-      btn.className = "cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-gradient-to-r from-brand-orange to-brand-orange2 text-zinc-950 shadow-md shadow-orange-500/20";
+      btn.className = "cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all btn-gradient text-white shadow-md shadow-pink-500/20";
     } else {
       btn.className = "cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10";
     }
@@ -891,12 +900,12 @@ function switchTab(category) {
     const isLive = item.isLive;
     const safeTitle = item.title.replace(/"/g, '&quot;');
     return `
-      <div onclick="triggerSmartDownload('${safeTitle}')" class="group relative rounded-2xl overflow-hidden bg-[#141421] border border-white/10 hover:border-orange-500/50 transition-all duration-300 hover:-translate-y-1.5 shadow-xl cursor-pointer flex flex-col">
+      <div onclick="triggerSmartDownload('${safeTitle}')" class="group relative rounded-2xl overflow-hidden bg-[#141421] border border-white/10 hover:border-pink-500/50 transition-all duration-300 hover:-translate-y-1.5 shadow-xl cursor-pointer flex flex-col">
         <div class="relative w-full aspect-[2/3] overflow-hidden bg-zinc-900">
           <img src="${item.posterUrl}" alt="${safeTitle}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
           <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none"></div>
           
-          <span class="absolute top-2.5 left-2.5 z-10 px-2 py-0.5 rounded text-[10px] font-black ${isLive ? 'bg-emerald-500 text-zinc-950' : 'bg-orange-500 text-white'} shadow-md">
+          <span class="absolute top-2.5 left-2.5 z-10 px-2 py-0.5 rounded text-[10px] font-black ${isLive ? 'bg-emerald-500 text-zinc-950' : 'bg-pink-600 text-white'} shadow-md">
             ${isLive ? '● LIVE' : (item.note || 'HD')}
           </span>
 
@@ -909,12 +918,12 @@ function switchTab(category) {
 
         <div class="p-3 flex-1 flex flex-col justify-between">
           <div>
-            <h4 class="font-bold text-xs text-zinc-100 line-clamp-1 group-hover:text-orange-400 transition-colors">${safeTitle}</h4>
+            <h4 class="font-bold text-xs text-zinc-100 line-clamp-1 group-hover:text-pink-400 transition-colors">${safeTitle}</h4>
             <p class="text-[10px] text-zinc-400 line-clamp-1 mt-1">${item.meta || '高畫質秒播'}</p>
           </div>
           <div class="mt-2.5 pt-2 border-t border-white/5 flex items-center justify-between text-[10px]">
             <span class="text-emerald-400 font-semibold">4K 極速串流</span>
-            <span class="text-orange-400 font-bold group-hover:translate-x-0.5 transition-transform">點擊開播 →</span>
+            <span class="text-pink-400 font-bold group-hover:translate-x-0.5 transition-transform">點擊開播 →</span>
           </div>
         </div>
       </div>
@@ -922,16 +931,16 @@ function switchTab(category) {
   }).join('');
 
   const unlockMoreCardHtml = `
-    <div onclick="triggerSmartDownload('Unlock Full Category: ${category}')" class="group relative rounded-2xl overflow-hidden border-2 border-dashed border-orange-500/40 hover:border-orange-500 bg-gradient-to-br from-orange-500/10 via-[#161626] to-[#121220] transition-all duration-300 hover:-translate-y-1.5 shadow-2xl cursor-pointer flex flex-col items-center justify-center p-6 text-center">
-      <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-orange to-brand-orange2 text-zinc-950 flex items-center justify-center text-3xl font-black mb-3 shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-transform">
+    <div onclick="triggerSmartDownload('Unlock Full Category: ${category}')" class="group relative rounded-2xl overflow-hidden border-2 border-dashed border-pink-500/40 hover:border-pink-500 bg-gradient-to-br from-pink-500/10 via-[#161626] to-[#121220] transition-all duration-300 hover:-translate-y-1.5 shadow-2xl cursor-pointer flex flex-col items-center justify-center p-6 text-center">
+      <div class="w-16 h-16 rounded-2xl btn-gradient text-white flex items-center justify-center text-3xl font-black mb-3 shadow-lg shadow-pink-500/30 group-hover:scale-110 transition-transform">
         +
       </div>
-      <div class="text-[11px] font-black text-orange-400 uppercase tracking-wider">FULL DATABASE UNLOCKED</div>
+      <div class="text-[11px] font-black text-pink-400 uppercase tracking-wider">FULL DATABASE UNLOCKED</div>
       <h3 class="text-base sm:text-lg font-black text-white mt-1">解鎖全部 9,999+ 部</h3>
       <p class="text-xs text-zinc-300 mt-1.5 leading-relaxed max-w-[200px]">
-        網頁端僅展示精選，下載 Gimy 劇迷 App 暢享全分類完整無刪減片源！
+        網頁端僅展示精選，下載 MoMoVOD App 暢享全分類完整無刪減片源！
       </p>
-      <div class="mt-4 px-4 py-2 rounded-xl bg-orange-500 text-zinc-950 font-black text-xs shadow-md group-hover:brightness-110 flex items-center gap-1.5">
+      <div class="mt-4 px-4 py-2 rounded-xl bg-pink-600 text-white font-black text-xs shadow-md group-hover:brightness-110 flex items-center gap-1.5">
         <span>下載解鎖全部</span>
         <span>↗</span>
       </div>
@@ -943,14 +952,14 @@ function switchTab(category) {
 
 // 台灣在地評論庫
 const REAL_TAIWAN_REVIEWS = [
-  { name: "林庭宇", loc: "新北板橋", device: "Samsung Galaxy S24+", text: "每天搭捷運板南線上班看，離線快取速度真的快到誇張，以前用其他網站一直跳色情廣告快煩死，這個 App 乾淨又完全不卡！" },
+  { name: "林庭宇", loc: "新北板橋", device: "Samsung Galaxy S24+", text: "每天搭捷運板南線上班看，離線快取速度真的快到誇張，以前用其他網站一直跳色情廣告快煩死，MoMoVOD 乾淨又完全不卡！" },
   { name: "陳建銘", loc: "台中西屯", device: "小米電視盒子 4K", text: "裝在家裡客廳電視盒，老爸每天晚上準時看民視跟三立八點檔，原畫質很順暢，不用再每個月繳 550 元給第四台了，超省。" },
   { name: "黃品瑄", loc: "台北大安", device: "iPhone / iPad 轉投屏", text: "更新速度快到嚇人，百日謊言昨晚韓國剛播完，今天早上起床就有繁中高清了，畫質細膩度直逼 Netflix 最高畫質！" },
   { name: "張家豪", loc: "高雄三民", device: "ROG Phone 8", text: "緯來體育台完全沒延遲！看統一獅跟中信兄弟總冠軍賽超級爽，完全沒卡頓，重點是完全不用登入也不用填手機號碼。" },
-  { name: "許雅婷", loc: "桃園中壢", device: "Google Pixel 8 Pro", text: "田曦薇的《嫁金釵》追完了！很多收費平台還要搞超前點播坑錢，Gimy 居然全部免費用 4K 隨便看，超佛心推爆！" },
+  { name: "許雅婷", loc: "桃園中壢", device: "Google Pixel 8 Pro", text: "田曦薇的《嫁金釵》追完了！很多收費平台還要搞超前點播坑錢，MoMoVOD 居然全部免費用 4K 隨便看，超佛心推爆！" },
   { name: "王柏森", loc: "台南永康", device: "Sony BRAVIA 電視", text: "凡人修仙傳跟仙逆畫質讚到不行，音效也有立體環繞感，直接用電視 DLNA 投屏大螢幕看，震撼度拉滿。" },
   { name: "楊雅琪", loc: "新竹竹北", device: "Vivo X100 Pro", text: "原本擔心 APK 安裝會有資安木馬，用公司內部的防毒掃描過完全乾淨，也沒有要奇怪的通訊錄權限，安心推給同事了。" },
-  { name: "吳俊宏", loc: "基隆仁愛", device: "Samsung A54", text: "TVB 最新劇璀璨之城有雙語音軌，粵語原音聽起來就是對味，不用忍受破畫質爛字幕，這款絕對是 2026 最強影視神器。" }
+  { name: "吳俊宏", loc: "基隆仁愛", device: "Samsung A54", text: "TVB 最新劇璀璨之城有雙語音軌，粵語原音聽起來就是對味，不用忍受破畫質爛字幕，MoMoVOD 絕對是 2026 最強影視神器。" }
 ];
 
 const TAIWAN_SURNAMES = ["陳", "林", "黃", "張", "李", "王", "吳", "劉", "蔡", "楊", "許", "鄭", "謝", "郭", "洪"];
@@ -988,7 +997,7 @@ function loadMoreReviews() {
       <div>
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-orange-500/20 to-purple-500/20 text-orange-400 font-black text-xs flex items-center justify-center border border-white/10">
+            <div class="w-8 h-8 rounded-full bg-pink-500/20 text-pink-400 font-black text-xs flex items-center justify-center border border-pink-500/30">
               ${rev.name.slice(0, 1)}
             </div>
             <div>
@@ -1027,11 +1036,11 @@ const LEGAL_CONTENT = {
   },
   terms: {
     title: "使用者服務條款與授權協議",
-    body: `<p><strong>一、協議之認知與接受</strong><br>當您下載或使用本 App 即表示同意接受本條款之全部內容。</p>`
+    body: `<p><strong>一、協議之認知與接受</strong><br>當您下載或使用 MoMoVOD App 即表示同意接受本條款之全部內容。</p>`
   },
   dmca: {
     title: "DMCA 著作權保護政策與侵權投訴申訴",
-    body: `<p><strong>一、智慧財產權聲明</strong><br>本客戶端為影視聚合導引與播放解碼工具，內容索引自網際網路。侵權請來信：dmca-notice@gimy.com</p>`
+    body: `<p><strong>一、智慧財產權聲明</strong><br>本客戶端為影視聚合導引與播放解碼工具，內容索引自網際網路。侵權請來信：dmca-notice@momovod.com</p>`
   },
   disclaimer: {
     title: "免責聲明與不可抗力規範",

@@ -450,6 +450,54 @@ function trackRegistrationAndDownload(sourceName) {
     gap: 3px;
   }
 
+  /* Category "More Content" Download Banner */
+  .category-more-banner {
+    margin-top: 18px;
+    padding: 14px 12px;
+    background: linear-gradient(135deg, rgba(225, 29, 72, 0.18) 0%, rgba(251, 191, 36, 0.12) 100%);
+    border: 1px dashed rgba(251, 191, 36, 0.45);
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  }
+  .more-banner-title {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .more-banner-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin: 0 0 10px;
+    line-height: 1.4;
+  }
+  .more-banner-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 10px 18px;
+    background: linear-gradient(90deg, #df1729 0%, #f59e0b 100%);
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    box-shadow: 0 3px 12px rgba(223, 23, 41, 0.4);
+    border: none;
+    cursor: pointer;
+  }
+  .more-banner-btn svg {
+    width: 15px;
+    height: 15px;
+    fill: currentColor;
+  }
+
   /* Comparison Section */
   .comparison-section {
     background: linear-gradient(180deg, #121624 0%, #0c0f18 100%);
@@ -918,10 +966,16 @@ function trackRegistrationAndDownload(sourceName) {
 
   </div>
 
-  <!-- Mid-Page Conversion Anchor -->
-  <div style="margin: 22px 0 10px;">
-    <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="btn-primary dl-trigger" data-source="mid_banner">
-      👉 Install App To Watch 1,000+ Movies &amp; Get ₹3,000 Free
+  <!-- Category "More Content" Download Banner (English CTA) -->
+  <div class="category-more-banner" id="categoryMoreBanner">
+    <div class="more-banner-title">
+      <span>🎬</span>
+      <span id="moreBannerText">For More Content, Please Download the App to Watch</span>
+    </div>
+    <p class="more-banner-sub">Unlock 1,000+ daily updated movies, web series &amp; instant ₹3,000 bonus credits in Flextv App.</p>
+    <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="more-banner-btn dl-trigger" data-source="category_more_cta">
+      <svg viewBox="0 0 24 24"><path d="M12 3v11m0 0l4-4m-4 4L8 10m-4 9h16v2H4v-2z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      Download App to Watch All
     </a>
   </div>
 
@@ -1054,9 +1108,19 @@ function trackRegistrationAndDownload(sourceName) {
       });
     });
 
-    // 2. Interactive Category Filter Chips
+    // 2. Interactive Category Filter Chips & Dynamic English Banner Text
     const chips = document.querySelectorAll('#categoryChips .chip-tag');
     const cards = document.querySelectorAll('#movieGrid .post-item');
+    const moreBannerText = document.getElementById('moreBannerText');
+
+    const categoryNames = {
+      'all': 'All Movies & Series',
+      'south': 'South Indian Dubbed Movies',
+      'dual': 'Dual Audio [Hindi] Movies',
+      'webseries': 'Web Series & Hotstar Shows',
+      'bollywood': 'Latest Bollywood Movies',
+      'hollywood': 'Hollywood Hindi Dubbed'
+    };
 
     chips.forEach(chip => {
       chip.addEventListener('click', function() {
@@ -1071,6 +1135,11 @@ function trackRegistrationAndDownload(sourceName) {
             card.classList.add('is-hidden');
           }
         });
+
+        if (moreBannerText) {
+          const catTitle = categoryNames[cat] || 'Content';
+          moreBannerText.textContent = `For More ${catTitle}, Please Download the App to Watch`;
+        }
       });
     });
 

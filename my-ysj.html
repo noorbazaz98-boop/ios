@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0b0b13">
-<meta name="description" content="1minutedrama Official 2026 Release in Malaysia: Stream trending short dramas, romance, billionaire revenge, and viral reels with ultra-fast speed. No sign-up required.">
-<title>1minutedrama｜Malaysia's #1 Free Short Drama App・Binge Watch Anywhere</title>
+<meta name="description" content="1minutedrama Keluaran Rasmi Malaysia 2026: Tonton drama pendek trending, romantik, dendam jutawan, dan reels viral dengan kelajuan ultra pantas. Tanpa daftar akaun.">
+<title>1minutedrama｜Aplikasi Drama Pendek Percuma #1 Malaysia・Tonton Di Mana Sahaja</title>
 <!-- Tailwind CSS via CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -43,12 +43,12 @@
     color: #f7f6fc;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     overflow-x: hidden;
-    padding-bottom: 84px; /* Space reserved for bottom sticky bar */
+    padding-bottom: 84px; /* Ruang untuk bar lekit di bawah */
   }
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-  /* Top glowing animated line */
+  /* Garisan animasi bercahaya di atas */
   .top-glow-line {
     background: linear-gradient(90deg, #ff0055, #f43f5e, #ff5e28, #3ddc97, #ff0055);
     background-size: 300% 100%;
@@ -59,7 +59,7 @@
     100% { background-position: 300% 0%; }
   }
 
-  /* Pulse green dot */
+  /* Titik hijau berdenyut */
   @keyframes pulseGlow {
     0%, 100% { box-shadow: 0 0 0 3px rgba(61,220,151,0.3); }
     50% { box-shadow: 0 0 0 9px rgba(61,220,151,0); }
@@ -68,7 +68,7 @@
     animation: pulseGlow 2s infinite;
   }
 
-  /* 3D Poster Wall Grid */
+  /* Grid Dinding Poster 3D */
   .poster-perspective-viewport {
     perspective: 1200px;
     transform-style: preserve-3d;
@@ -82,7 +82,7 @@
     transform: rotateY(-6deg) rotateX(4deg) rotateZ(1deg);
   }
 
-  /* Persistent Play Button Glow */
+  /* Kilauan Butang Main Berterusan */
   .play-badge-glow {
     background: radial-gradient(circle at 35% 35%, rgba(255, 0, 85, 0.95), rgba(220, 20, 60, 0.95));
     box-shadow: 0 4px 18px rgba(255, 0, 85, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.4);
@@ -92,7 +92,7 @@
     box-shadow: 0 6px 24px rgba(255, 0, 85, 0.8);
   }
 
-  /* Gradient Button */
+  /* Butang Kecerunan */
   .btn-gradient {
     background: linear-gradient(135deg, #ff0055 0%, #ff5e28 100%);
   }
@@ -135,23 +135,19 @@
 </head>
 <body class="selection:bg-pink-600 selection:text-white">
 
-<!-- Top Animated Gradient Line -->
+<!-- Garisan Bercahaya Atas -->
 <div class="top-glow-line h-1 w-full fixed top-0 left-0 z-50"></div>
 
-<!-- Header Navigation (已修复移动端挤压和重叠) -->
+<!-- Navigasi Pengepala -->
 <header class="sticky top-0 z-40 bg-[#090910]/95 backdrop-blur-xl border-b border-white/10">
   <div class="max-w-[1200px] mx-auto px-3 sm:px-6 h-[64px] sm:h-[70px] flex items-center justify-between gap-2">
-    <!-- Brand / Logo Area -->
+    <!-- Kawasan Jenama / Logo -->
     <a href="#" class="flex items-center gap-2.5 min-w-0 group flex-1">
-      <!-- 纯净轻量 SVG Logo (图一同款圆润红边白面小人) -->
       <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl flex-shrink-0 shadow-lg shadow-pink-500/25 overflow-hidden">
         <svg viewBox="0 0 100 100" class="w-full h-full">
           <rect width="100" height="100" rx="28" fill="#14141f"/>
-          <!-- 红色外框/侧身 -->
           <rect x="18" y="10" width="68" height="80" rx="30" fill="#f43f5e"/>
-          <!-- 白色小脸主体 -->
           <rect x="14" y="10" width="60" height="80" rx="28" fill="#ffffff"/>
-          <!-- 眼睛与微笑 -->
           <circle cx="28" cy="50" r="6" fill="#f43f5e"/>
           <circle cx="60" cy="48" r="6" fill="#f43f5e"/>
           <path d="M 40 50 Q 45 56 50 50" stroke="#f43f5e" stroke-width="4" stroke-linecap="round" fill="none"/>
@@ -163,23 +159,23 @@
           <span class="font-black text-lg sm:text-xl tracking-tight text-white truncate">1minutedrama</span>
           <span class="hidden sm:inline-block text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-extrabold uppercase border border-emerald-500/30">MY 2026</span>
         </div>
-        <div class="text-[10px] tracking-tight text-zinc-400 font-medium truncate mt-0.5">Free Short Drama App</div>
+        <div class="text-[10px] tracking-tight text-zinc-400 font-medium truncate mt-0.5">Aplikasi Drama Pendek Percuma</div>
       </div>
     </a>
 
-    <!-- Nav Menu (Desktop Only) -->
+    <!-- Menu Navigasi (Komputer Sahaja) -->
     <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-zinc-300">
-      <a href="#trending" class="hover:text-white transition-colors">🔥 Trending Short Dramas</a>
-      <a href="#compare" class="hover:text-white transition-colors">⚖️ Why Free?</a>
-      <a href="#security" class="hover:text-white transition-colors">🛡️ Safety Verified</a>
-      <a href="#reviews" class="hover:text-white transition-colors">💬 Malaysian Reviews</a>
-      <a href="#install" class="hover:text-white transition-colors">📲 Fast Install</a>
+      <a href="#trending" class="hover:text-white transition-colors">🔥 Drama Pendek Trending</a>
+      <a href="#compare" class="hover:text-white transition-colors">⚖️ Kenapa Percuma?</a>
+      <a href="#security" class="hover:text-white transition-colors">🛡️ Disahkan Selamat</a>
+      <a href="#reviews" class="hover:text-white transition-colors">💬 Ulasan Rakyat Malaysia</a>
+      <a href="#install" class="hover:text-white transition-colors">📲 Pasang Pantas</a>
     </nav>
 
-    <!-- Header Download Button (固定宽度不被挤压) -->
+    <!-- Butang Muat Turun Pengepala -->
     <div class="flex-shrink-0">
       <button onclick="triggerSmartDownload('Header Nav CTA')" class="btn-gradient hover:brightness-110 active:scale-95 text-white font-black px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl shadow-lg shadow-pink-500/25 transition-all text-xs sm:text-sm flex items-center gap-1">
-        <span>Install Free</span>
+        <span>Pasang Percuma</span>
         <span class="text-xs">↗</span>
       </button>
     </div>
@@ -187,58 +183,58 @@
 </header>
 
 <main>
-  <!-- 1. Hero Section -->
+  <!-- 1. Bahagian Utama (Hero) -->
   <section class="relative pt-6 pb-12 sm:pt-10 sm:pb-16 md:py-20 overflow-hidden bg-gradient-to-b from-pink-950/20 via-[#0d0d17] to-[#090910]">
     <div class="absolute inset-0 pointer-events-none opacity-25 bg-[radial-gradient(#ffffff_0.8px,transparent_0.8px)] [background-size:24px_24px]"></div>
     
     <div class="max-w-[1240px] mx-auto px-4 sm:px-6 relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-        <!-- Left Content -->
+        <!-- Kandungan Kiri -->
         <div class="lg:col-span-6 space-y-5 sm:space-y-6 text-center lg:text-left">
           <div class="inline-flex items-center gap-2 border border-emerald-500/30 bg-emerald-500/10 backdrop-blur-md px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold text-emerald-300">
             <span class="w-2 h-2 rounded-full bg-brand-green live-dot inline-block"></span>
-            Optimized for Malaysia 5G/4G Networks · Zero Buffering
+            Dioptimumkan untuk Rangkaian 5G/4G Malaysia · Sifar Penimbalan (No Buffering)
           </div>
 
           <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15]">
-            Addictive 1-Min Dramas,<br>
+            Drama 1 Minit Mengasyikkan,<br>
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-orange-400">
-              100% Free · Tap to Stream.
+              100% Percuma · Tekan & Terus Tonton.
             </span>
           </h1>
 
           <p class="text-zinc-300 text-xs sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
-            Stop paying RM 50+ every week for coin top-ups on pay-per-episode apps! <strong>1minutedrama</strong> gives you instant full access to viral Billionaire revenge, Alpha Wolf romances, CEO plot-twists, and sweet redemption dramas right on your Android phone.
+            Berhenti bayar RM 50+ setiap minggu untuk beli syiling di aplikasi drama lain! <strong>1minutedrama</strong> memberi akses penuh serta-merta ke drama dendam Jutawan, cinta Serigala Alpha, plot twist CEO, dan kisah penebusan hati terus pada telefon Android anda.
           </p>
 
-          <!-- Badges -->
+          <!-- Lencana Ciri -->
           <div class="flex flex-wrap justify-center lg:justify-start gap-2 pt-1">
             <div class="flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-bold text-zinc-200">
-              <span class="text-brand-green">✓</span> No Coins & No Subscriptions
+              <span class="text-brand-green">✓</span> Tiada Syiling & Tiada Langganan
             </div>
             <div class="flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-bold text-zinc-200">
-              <span class="text-brand-green">✓</span> No Sign-Up or Login Needed
+              <span class="text-brand-green">✓</span> Tanpa Daftar atau Log Masuk
             </div>
             <div class="flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-bold text-zinc-200">
-              <span class="text-brand-green">✓</span> Full Episode Binge Mode
+              <span class="text-brand-green">✓</span> Mod Maraton Episod Penuh
             </div>
             <div class="flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-bold text-zinc-200">
-              <span class="text-brand-green">✓</span> HD 1080P Ultra Fast CDN
+              <span class="text-brand-green">✓</span> CDN Pantas HD 1080P
             </div>
           </div>
 
-          <!-- Action Buttons -->
+          <!-- Butang Tindakan -->
           <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2">
             <button onclick="triggerSmartDownload('Hero Main CTA')" class="w-full sm:w-auto px-7 py-3.5 sm:px-8 sm:py-4 rounded-2xl btn-gradient text-white font-black text-sm sm:text-base shadow-xl shadow-pink-500/35 hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-2 group">
-              <span>Download 1minutedrama Free</span>
+              <span>Muat Turun 1minutedrama Percuma</span>
               <span class="text-lg group-hover:translate-x-1 transition-transform">↗</span>
             </button>
             <a href="#compare" class="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-300 font-bold text-xs sm:text-sm transition-all text-center">
-              Compare With Paid Apps ↓
+              Bandingkan Dengan Aplikasi Berbayar ↓
             </a>
           </div>
 
-          <!-- Trust Badges -->
+          <!-- Lencana Keselamatan -->
           <div class="flex items-center justify-center lg:justify-start gap-3 sm:gap-4 text-[11px] text-zinc-400 pt-1">
             <span class="flex items-center gap-1 text-emerald-400 font-bold">
               <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd"></path></svg>
@@ -251,59 +247,59 @@
           </div>
         </div>
 
-        <!-- Right 3D Wall -->
+        <!-- Dinding Poster 3D Sebelah Kanan -->
         <div class="lg:col-span-6 poster-perspective-viewport relative flex justify-center py-4">
           <div class="poster-3d-grid grid grid-cols-2 gap-3 sm:gap-4 max-w-[460px] w-full">
             
-            <!-- Column 1 -->
+            <!-- Lajur 1 -->
             <div class="space-y-3 sm:space-y-4 -mt-4 sm:-mt-6">
               <div onclick="triggerSmartDownload('HeroPoster_DonsQueen')" class="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-zinc-900 aspect-[2/3] group cursor-pointer">
-                <img src="https://zshipubcf.farsunpteltd.com/playlet/1786702332_Wej636SDdz.jpg?x-oss-process=image/resize,w_600,image/format,webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="They Don't Know I'm the Don's Pregnant Queen">
+                <img src="https://zshipubcf.farsunpteltd.com/playlet/1786702332_Wej636SDdz.jpg?x-oss-process=image/resize,w_600,image/format,webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Mereka Tidak Tahu Aku Permaisuri Mafia Mengandung">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
                 <div class="absolute inset-0 flex items-center justify-center">
                   <div class="w-10 h-10 rounded-full play-badge-glow flex items-center justify-center text-white font-black text-sm pl-0.5">▶</div>
                 </div>
                 <div class="absolute bottom-2 left-2 right-2">
-                  <span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-pink-600 text-white">42 EP FULL</span>
+                  <span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-pink-600 text-white">42 EP PENUH</span>
                   <div class="font-extrabold text-[11px] sm:text-xs text-white mt-1 line-clamp-1">Don's Pregnant Queen</div>
                 </div>
               </div>
 
               <div onclick="triggerSmartDownload('HeroPoster_BillionaireDad')" class="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-zinc-900 aspect-[2/3] group cursor-pointer">
-                <img src="https://zshipubcf.farsunpteltd.com/playlet/1789131155_ZztwKpRid4.jpg?x-oss-process=image/resize,w_600,image/format,webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Fifty Cents to Find My Billionaire Dad">
+                <img src="https://zshipubcf.farsunpteltd.com/playlet/1789131155_ZztwKpRid4.jpg?x-oss-process=image/resize,w_600,image/format,webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="50 Sen Demi Mencari Ayah Jutawan">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
                 <div class="absolute inset-0 flex items-center justify-center">
                   <div class="w-10 h-10 rounded-full play-badge-glow flex items-center justify-center text-white font-black text-sm pl-0.5">▶</div>
                 </div>
                 <div class="absolute bottom-2 left-2 right-2">
-                  <span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-purple-600 text-white">Top Revenge</span>
+                  <span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-purple-600 text-white">Dendam Teratas</span>
                   <div class="font-extrabold text-[11px] sm:text-xs text-white mt-1 line-clamp-1">Fifty Cents Billionaire Dad</div>
                 </div>
               </div>
             </div>
 
-            <!-- Column 2 -->
+            <!-- Lajur 2 -->
             <div class="space-y-3 sm:space-y-4 mt-4 sm:mt-6">
               <div onclick="triggerSmartDownload('HeroPoster_SubstituteBride')" class="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-zinc-900 aspect-[2/3] group cursor-pointer">
-                <img src="https://zshipubcf.farsunpteltd.com/playlet/1787298727_8ah3WKxz7S.jpg?x-oss-process=image/resize,w_600,image/format,webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Substitute Bride">
+                <img src="https://zshipubcf.farsunpteltd.com/playlet/1787298727_8ah3WKxz7S.jpg?x-oss-process=image/resize,w_600,image/format,webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Pengantin Pengganti">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
                 <div class="absolute inset-0 flex items-center justify-center">
                   <div class="w-10 h-10 rounded-full play-badge-glow flex items-center justify-center text-white font-black text-sm pl-0.5">▶</div>
                 </div>
                 <div class="absolute bottom-2 left-2 right-2">
-                  <span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-emerald-500 text-zinc-950">Viral Hit</span>
+                  <span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-emerald-500 text-zinc-950">Viral Panas</span>
                   <div class="font-extrabold text-[11px] sm:text-xs text-white mt-1 line-clamp-1">Substitute Bride</div>
                 </div>
               </div>
 
               <div onclick="triggerSmartDownload('HeroPoster_CrippledBillionaire')" class="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-zinc-900 aspect-[2/3] group cursor-pointer">
-                <img src="https://zshipubcf.farsunpteltd.com/playlet/1788787870_bBRB3mWGfp.jpg?x-oss-process=image/resize,w_600,image/format,webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Married to a Crippled Billionaire">
+                <img src="https://zshipubcf.farsunpteltd.com/playlet/1788787870_bBRB3mWGfp.jpg?x-oss-process=image/resize,w_600,image/format,webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Berkahwin dengan Jutawan Lumpuh">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
                 <div class="absolute inset-0 flex items-center justify-center">
                   <div class="w-10 h-10 rounded-full play-badge-glow flex items-center justify-center text-white font-black text-sm pl-0.5">▶</div>
                 </div>
                 <div class="absolute bottom-2 left-2 right-2">
-                  <span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-amber-500 text-zinc-950">Sweet Love</span>
+                  <span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-amber-500 text-zinc-950">Cinta Manis</span>
                   <div class="font-extrabold text-[11px] sm:text-xs text-white mt-1 line-clamp-1">Crippled Billionaire</div>
                 </div>
               </div>
@@ -315,22 +311,22 @@
     </div>
   </section>
 
-  <!-- 2. Value Comparison -->
+  <!-- 2. Perbandingan Nilai -->
   <section class="py-14 sm:py-16 bg-[#0f0f1a] border-y border-white/5" id="compare">
     <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
       <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
-        <div class="text-xs font-black tracking-widest text-pink-500 uppercase">TIRED OF PAYING COINS?</div>
-        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white mt-1">Why Malaysians Switch to 1minutedrama</h2>
-        <p class="text-xs sm:text-sm text-zinc-400 mt-2">Save RM 200+ monthly on episode unlocks with zero paywalls.</p>
+        <div class="text-xs font-black tracking-widest text-pink-500 uppercase">PENAT MEMBAYAR UNTUK SYILING?</div>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white mt-1">Mengapa Rakyat Malaysia Beralih ke 1minutedrama</h2>
+        <p class="text-xs sm:text-sm text-zinc-400 mt-2">Jimat RM 200+ setiap bulan untuk buka episod tanpa sekatan berbayar.</p>
       </div>
 
       <div class="overflow-x-auto no-scrollbar">
         <table class="w-full min-w-[560px] text-left border-collapse">
           <thead>
             <tr class="border-b border-white/10 text-xs sm:text-sm text-zinc-400">
-              <th class="py-3 px-3 sm:py-4 sm:px-4 font-bold">Feature</th>
+              <th class="py-3 px-3 sm:py-4 sm:px-4 font-bold">Ciri-ciri</th>
               <th class="py-3 px-3 sm:py-4 sm:px-4 font-black text-pink-400 bg-pink-500/10 rounded-t-2xl border-t border-x border-pink-500/30 text-center text-sm sm:text-base">
-                🌟 1minutedrama App
+                🌟 Aplikasi 1minutedrama
               </th>
               <th class="py-3 px-3 sm:py-4 sm:px-4 font-semibold text-center text-zinc-400">DramaBox / ReelShort</th>
               <th class="py-3 px-3 sm:py-4 sm:px-4 font-semibold text-center text-zinc-400">ShortMax / GoodShort</th>
@@ -338,36 +334,36 @@
           </thead>
           <tbody class="text-xs sm:text-sm divide-y divide-white/5">
             <tr>
-              <td class="py-3.5 px-3 sm:py-4 sm:px-4 font-bold text-white">💰 Cost Per Episode</td>
+              <td class="py-3.5 px-3 sm:py-4 sm:px-4 font-bold text-white">💰 Kos Setiap Episod</td>
               <td class="py-3.5 px-3 sm:py-4 sm:px-4 font-black text-center text-emerald-400 bg-pink-500/5 border-x border-pink-500/20 text-sm sm:text-base">
-                Permanent RM 0 (Unlimited)
+                Kekal RM 0 (Tanpa Had)
               </td>
               <td class="py-3.5 px-3 sm:py-4 sm:px-4 text-center text-zinc-400">RM 1.50 - 3.00 / ep</td>
-              <td class="py-3.5 px-3 sm:py-4 sm:px-4 text-center text-zinc-400">Heavy coin recharge</td>
+              <td class="py-3.5 px-3 sm:py-4 sm:px-4 text-center text-zinc-400">Tambah nilai syiling tinggi</td>
             </tr>
             <tr>
-              <td class="py-3.5 px-3 sm:py-4 sm:px-4 font-bold text-white">📝 Sign-Up & Phone</td>
+              <td class="py-3.5 px-3 sm:py-4 sm:px-4 font-bold text-white">📝 Pendaftaran & Telefon</td>
               <td class="py-3.5 px-3 sm:py-4 sm:px-4 font-black text-center text-emerald-400 bg-pink-500/5 border-x border-pink-500/20">
-                No Registration · Instant Play
+                Tanpa Daftar · Tonton Terus
               </td>
-              <td class="py-3.5 px-3 sm:py-4 sm:px-4 text-center text-zinc-400">Mandatory phone/social</td>
-              <td class="py-3.5 px-3 sm:py-4 sm:px-4 text-center text-zinc-400">Forced accounts</td>
+              <td class="py-3.5 px-3 sm:py-4 sm:px-4 text-center text-zinc-400">Wajib no. tel / media sosial</td>
+              <td class="py-3.5 px-3 sm:py-4 sm:px-4 text-center text-zinc-400">Paksa buat akaun</td>
             </tr>
             <tr>
-              <td class="py-3.5 px-3 sm:py-4 sm:px-4 font-bold text-white">🎬 Episode Unlocking</td>
+              <td class="py-3.5 px-3 sm:py-4 sm:px-4 font-bold text-white">🎬 Pembukaan Episod</td>
               <td class="py-3.5 px-3 sm:py-4 sm:px-4 font-black text-center text-emerald-400 bg-pink-500/5 border-x border-pink-500/20">
-                All Episodes Unlocked at Once
+                Semua Episod Dibuka Sekaligus
               </td>
-              <td class="py-3.5 px-3 sm:py-4 sm:px-4 text-center text-zinc-400">Paywalls after ep 5-10</td>
-              <td class="py-3.5 px-3 sm:py-4 sm:px-4 text-center text-zinc-400">Wait 24h or watch ads</td>
+              <td class="py-3.5 px-3 sm:py-4 sm:px-4 text-center text-zinc-400">Sekatan bayar lepas ep 5-10</td>
+              <td class="py-3.5 px-3 sm:py-4 sm:px-4 text-center text-zinc-400">Tunggu 24j atau tonton iklan</td>
             </tr>
             <tr>
-              <td class="py-3.5 px-3 sm:py-4 sm:px-4 font-bold text-white">⚡ Streaming Speed</td>
+              <td class="py-3.5 px-3 sm:py-4 sm:px-4 font-bold text-white">⚡ Kelajuan Penstriman</td>
               <td class="py-3.5 px-3 sm:py-4 sm:px-4 font-black text-center text-emerald-400 bg-pink-500/5 border-x border-pink-500/20 rounded-b-2xl border-b">
-                Local Malaysia CDN (Zero Lag)
+                CDN Tempatan Malaysia (Tiada Lag)
               </td>
-              <td class="py-3.5 px-3 sm:py-4 sm:px-4 text-center text-zinc-400">Occasional buffering</td>
-              <td class="py-3.5 px-3 sm:py-4 sm:px-4 text-center text-zinc-400">Slow overseas loading</td>
+              <td class="py-3.5 px-3 sm:py-4 sm:px-4 text-center text-zinc-400">Kadang-kadang tersekat</td>
+              <td class="py-3.5 px-3 sm:py-4 sm:px-4 text-center text-zinc-400">Pemuatan luar negara lambat</td>
             </tr>
           </tbody>
         </table>
@@ -375,55 +371,55 @@
 
       <div class="mt-8 text-center">
         <button onclick="triggerSmartDownload('Compare Section CTA')" class="px-7 py-3 sm:px-8 sm:py-3.5 rounded-xl btn-gradient text-white font-black text-xs sm:text-sm shadow-lg shadow-pink-500/25 hover:brightness-110 active:scale-95 transition-all">
-          Stop Buying Coins · Download 1minutedrama Free ↗
+          Hentikan Beli Syiling · Muat Turun 1minutedrama Percuma ↗
         </button>
       </div>
     </div>
   </section>
 
-  <!-- 3. Short Drama Catalog -->
+  <!-- 3. Katalog Drama Pendek -->
   <section class="py-14 bg-[#090910]" id="trending">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-5">
         <div>
-          <div class="text-xs font-black tracking-widest text-pink-500 uppercase">POPULAR 1-MINUTE DRAMAS</div>
-          <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">Binge All Episodes in One Go</h2>
-          <p class="text-xs sm:text-sm text-zinc-400 mt-1">Tap any title below to stream full episodes in HD 1080P.</p>
+          <div class="text-xs font-black tracking-widest text-pink-500 uppercase">DRAMA 1 MINIT POPULAR</div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">Tonton Semua Episod Sekaligus</h2>
+          <p class="text-xs sm:text-sm text-zinc-400 mt-1">Tekan mana-mana tajuk di bawah untuk tonton episod penuh dalam HD 1080P.</p>
         </div>
         <button onclick="triggerSmartDownload('Section Header CTA')" class="self-start sm:self-auto text-xs font-bold text-pink-400 hover:text-pink-300 flex items-center gap-1 py-1">
-          Download APK directly <span>↗</span>
+          Muat turun APK terus <span>↗</span>
         </button>
       </div>
 
-      <!-- Categories Navigation -->
+      <!-- Navigasi Kategori -->
       <div class="flex items-center gap-2 overflow-x-auto pb-3 no-scrollbar" id="categoryNav">
-        <button onclick="switchTab('hotPicks')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all btn-gradient text-white shadow-md shadow-pink-500/20" data-cat="hotPicks">🔥 Hot Picks</button>
-        <button onclick="switchTab('sevenDay')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="sevenDay">🥇 7-Day Star</button>
-        <button onclick="switchTab('oneGo')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="oneGo">⚡ All In One Go</button>
-        <button onclick="switchTab('gems')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="gems">💎 Hidden Gems</button>
+        <button onclick="switchTab('hotPicks')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all btn-gradient text-white shadow-md shadow-pink-500/20" data-cat="hotPicks">🔥 Pilihan Hangat</button>
+        <button onclick="switchTab('sevenDay')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="sevenDay">🥇 Bintang 7 Hari</button>
+        <button onclick="switchTab('oneGo')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="oneGo">⚡ Tonton Terus Tamat</button>
+        <button onclick="switchTab('gems')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="gems">💎 Permata Tersembunyi</button>
       </div>
 
       <div class="flex items-center justify-between text-xs text-zinc-400 py-2.5">
-        <div id="currentCategoryText" class="font-extrabold text-white">🔥 Hot Picks</div>
-        <div class="text-[11px] text-pink-400 font-medium">★ Download App to unlock 5,000+ completed short dramas</div>
+        <div id="currentCategoryText" class="font-extrabold text-white">🔥 Pilihan Hangat</div>
+        <div class="text-[11px] text-pink-400 font-medium">★ Muat turun aplikasi untuk buka 5,000+ drama pendek lengkap</div>
       </div>
 
-      <!-- Poster Grid -->
+      <!-- Grid Poster -->
       <div id="libraryContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3 sm:gap-4.5 pt-1">
       </div>
     </div>
   </section>
 
-  <!-- 4. Security Verification -->
+  <!-- 4. Pengesahan Keselamatan -->
   <section class="py-14 bg-[#090910] border-t border-white/5" id="security">
     <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
       <div class="text-center max-w-xl mx-auto mb-10">
         <div class="inline-flex items-center gap-2 text-xs font-black tracking-widest text-emerald-400 uppercase">
           <span class="w-2 h-2 rounded-full bg-emerald-400 live-dot"></span>
-          OFFICIAL SECURITY VERIFICATION
+          PENGESAHAN KESELAMATAN RASMI
         </div>
-        <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">100% Clean & Safe Installation</h2>
-        <p class="text-xs sm:text-sm text-zinc-400 mt-2">Verified by leading anti-virus engines. Completely free of malware, spyware, or malicious background scripts.</p>
+        <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">Pemasangan 100% Bersih & Selamat</h2>
+        <p class="text-xs sm:text-sm text-zinc-400 mt-2">Disahkan oleh enjin antivirus terkemuka. Bebas sepenuhnya daripada perisian hasad, spyware, atau skrip latar belakang berniat jahat.</p>
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
@@ -432,8 +428,8 @@
             🛡️
           </div>
           <div class="font-black text-xs sm:text-sm text-white">Google Play Protect</div>
-          <div class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">Passed & Safe</div>
-          <div class="text-[10px] text-zinc-400">Zero threat detection</div>
+          <div class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">Lulus & Selamat</div>
+          <div class="text-[10px] text-zinc-400">Sifar ancaman dikesan</div>
         </div>
 
         <div class="p-4 rounded-2xl bg-[#141421] border border-red-500/20 text-center space-y-2 flex flex-col items-center justify-center">
@@ -441,8 +437,8 @@
             🌐
           </div>
           <div class="font-black text-xs sm:text-sm text-white">Trend Micro Mobile</div>
-          <div class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">Clean Signature</div>
-          <div class="text-[10px] text-zinc-400">Verified privacy</div>
+          <div class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">Tandatangan Bersih</div>
+          <div class="text-[10px] text-zinc-400">Privasi disahkan</div>
         </div>
 
         <div class="p-4 rounded-2xl bg-[#141421] border border-amber-500/20 text-center space-y-2 flex flex-col items-center justify-center">
@@ -450,118 +446,117 @@
             ✓
           </div>
           <div class="font-black text-xs sm:text-sm text-white">Norton Mobile</div>
-          <div class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">Secure Hash</div>
-          <div class="text-[10px] text-zinc-400">No data sniffing</div>
+          <div class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">Hash Selamat</div>
+          <div class="text-[10px] text-zinc-400">Tiada intipan data</div>
         </div>
 
         <div class="p-4 rounded-2xl bg-[#141421] border border-blue-500/20 text-center space-y-2 flex flex-col items-center justify-center">
           <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-500/10 text-cyan-400 flex items-center justify-center text-xl sm:text-2xl font-bold">
             0/72
           </div>
-          <div class="font-black text-xs sm:text-sm text-white">VirusTotal Analysis</div>
-          <div class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">Clean Status</div>
-          <div class="text-[10px] text-zinc-400">Passed scanners</div>
+          <div class="font-black text-xs sm:text-sm text-white">Analisis VirusTotal</div>
+          <div class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">Status Bersih</div>
+          <div class="text-[10px] text-zinc-400">Lulus semua pengimbas</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 5. Real Malaysian User Reviews -->
+  <!-- 5. Ulasan Pengguna Malaysia Sebenar -->
   <section class="py-14 sm:py-16 bg-[#0e0e18] border-t border-white/5" id="reviews">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
       
-      <!-- Review Summary Header -->
+      <!-- Pengepala Ringkasan Ulasan -->
       <div class="bg-[#141421] border border-white/10 rounded-3xl p-5 sm:p-8 mb-8 flex flex-col md:flex-row items-center justify-between gap-6">
         <div class="flex items-center gap-4 sm:gap-5 w-full md:w-auto">
           <div class="text-4xl sm:text-5xl font-black text-white">4.9</div>
           <div>
             <div class="flex text-amber-400 text-base sm:text-lg">★★★★★</div>
-            <div class="text-xs sm:text-sm text-zinc-300 font-bold mt-0.5">Over 24,500+ Malaysian Drama Lovers Rated 5 Stars</div>
-            <div class="text-[10px] sm:text-[11px] text-zinc-500">Collected from Android users across KL, Penang, Johor Bahru, and Selangor</div>
+            <div class="text-xs sm:text-sm text-zinc-300 font-bold mt-0.5">Lebih 24,500+ Peminat Drama Malaysia Menilai 5 Bintang</div>
+            <div class="text-[10px] sm:text-[11px] text-zinc-500">Dikumpul daripada pengguna Android di KL, Pulau Pinang, Johor Bahru, dan Selangor</div>
           </div>
         </div>
         <div class="flex flex-wrap gap-2 text-xs w-full md:w-auto">
-          <span class="px-2.5 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-semibold">🚆 MRT Commute Friendly</span>
-          <span class="px-2.5 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-semibold">💎 Zero Coins Needed</span>
-          <span class="px-2.5 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-semibold">🔥 Fast on CelcomDigi / Maxis</span>
+          <span class="px-2.5 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-semibold">🚆 Sesuai Semasa Naik MRT</span>
+          <span class="px-2.5 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-semibold">💎 Sifar Syiling Diperlukan</span>
+          <span class="px-2.5 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-semibold">🔥 Pantas di CelcomDigi / Maxis</span>
         </div>
       </div>
 
-      <!-- Reviews Grid -->
+      <!-- Grid Ulasan -->
       <div id="reviewsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5">
       </div>
 
-      <!-- Load More Button -->
+      <!-- Butang Muat Lebih Banyak Ulasan -->
       <div class="mt-8 text-center">
         <button id="loadMoreReviewsBtn" onclick="loadMoreReviews()" class="px-6 py-2.5 sm:px-7 sm:py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-zinc-300 font-bold text-xs transition-all">
-          Load More Malaysian Reviews (<span id="remainingReviewsCount">40</span> remaining) ↓
+          Muat Lebih Banyak Ulasan Malaysia (<span id="remainingReviewsCount">40</span> lagi) ↓
         </button>
       </div>
     </div>
   </section>
 
-  <!-- 6. 4-Step Quick Install Guide -->
+  <!-- 6. Panduan Pemasangan Pantas 4 Langkah -->
   <section class="py-14 bg-[#090910] border-t border-white/5" id="install">
     <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
       <div class="text-center max-w-lg mx-auto mb-10">
-        <div class="text-xs font-black tracking-widest text-pink-500 uppercase">QUICK INSTALL GUIDE</div>
-        <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">Install in 30 Seconds</h2>
-        <p class="text-xs sm:text-sm text-zinc-400 mt-2">Get started and binge your favorite stories with 4 simple steps.</p>
+        <div class="text-xs font-black tracking-widest text-pink-500 uppercase">PANDUAN PEMASANGAN PANTAS</div>
+        <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">Pasang Dalam 30 Saat</h2>
+        <p class="text-xs sm:text-sm text-zinc-400 mt-2">Mula tonton cerita kegemaran anda dengan 4 langkah mudah.</p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="p-5 rounded-2xl bg-[#141421] border border-white/5 relative">
           <div class="text-3xl font-black text-pink-500/40 mb-2">01</div>
-          <h3 class="font-extrabold text-white text-sm mb-1.5">Download APK</h3>
-          <p class="text-xs text-zinc-400 leading-relaxed">Tap any download button on this page to quickly get the verified official installation file.</p>
+          <h3 class="font-extrabold text-white text-sm mb-1.5">Muat Turun APK</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Tekan mana-mana butang muat turun di halaman ini untuk mendapatkan fail pemasangan rasmi yang disahkan.</p>
         </div>
 
         <div class="p-5 rounded-2xl bg-[#141421] border border-white/5 relative">
           <div class="text-3xl font-black text-pink-500/40 mb-2">02</div>
-          <h3 class="font-extrabold text-white text-sm mb-1.5">Allow Permissions</h3>
-          <p class="text-xs text-zinc-400 leading-relaxed">If prompted by Android with "Install unknown apps", toggle "Allow from this source" to proceed.</p>
+          <h3 class="font-extrabold text-white text-sm mb-1.5">Benarkan Kebenaran</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Jika Android memaparkan "Pasang aplikasi tidak diketahui", hidupkan pilihan "Benarkan daripada sumber ini" untuk teruskan.</p>
         </div>
 
         <div class="p-5 rounded-2xl bg-[#141421] border border-pink-500/40 relative bg-gradient-to-b from-pink-500/10 to-transparent">
           <div class="text-3xl font-black text-pink-400 mb-2">03</div>
-          <div class="inline-block px-1.5 py-0.5 rounded bg-pink-600 text-white font-black text-[9px] mb-1">IMPORTANT STEP</div>
-          <h3 class="font-extrabold text-white text-sm mb-1.5">Update When Prompted</h3>
-          <p class="text-xs text-zinc-300 leading-relaxed">When opening the app, <span class="text-pink-400 font-bold">please agree to update to the latest release</span> to unlock all newest short dramas and high-speed servers.</p>
+          <div class="inline-block px-1.5 py-0.5 rounded bg-pink-600 text-white font-black text-[9px] mb-1">LANGKAH PENTING</div>
+          <h3 class="font-extrabold text-white text-sm mb-1.5">Kemas Kini Apabila Diminta</h3>
+          <p class="text-xs text-zinc-300 leading-relaxed">Apabila membuka aplikasi, <span class="text-pink-400 font-bold">sila setuju untuk mengemas kini ke versi terkini</span> bagi membuka semua drama baharu dan pelayan berkelajuan tinggi.</p>
         </div>
 
         <div class="p-5 rounded-2xl bg-[#141421] border border-white/5 relative">
           <div class="text-3xl font-black text-emerald-500/40 mb-2">04</div>
-          <h3 class="font-extrabold text-white text-sm mb-1.5">Enjoy Free Dramas</h3>
-          <p class="text-xs text-zinc-400 leading-relaxed">No login or subscription needed. Tap any episode and dive into non-stop drama entertainment!</p>
+          <h3 class="font-extrabold text-white text-sm mb-1.5">Nikmati Drama Percuma</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Tanpa log masuk atau langganan. Tekan mana-mana episod dan nikmati hiburan drama tanpa henti!</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 7. Giant CTA Banner -->
+  <!-- 7. Sepanduk Tindakan Gergasi -->
   <section class="py-14 bg-gradient-to-b from-[#090910] to-[#0e0e17]">
     <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
       <div class="rounded-3xl btn-gradient p-6 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 shadow-2xl relative overflow-hidden">
         <div class="relative z-10 space-y-2 text-center md:text-left">
-          <div class="inline-block px-2.5 py-0.5 rounded-full bg-black/25 text-xs font-black">2026 Malaysia Exclusive Version</div>
-          <h2 class="text-2xl sm:text-4xl font-black tracking-tight leading-tight">Join 24,000+ Malaysian Fans Bingeing Today!</h2>
-          <p class="font-bold text-xs sm:text-sm text-white/90">No In-App Coins · Zero Hidden Fees · Instant Episode Unlocking</p>
+          <div class="inline-block px-2.5 py-0.5 rounded-full bg-black/25 text-xs font-black">Versi Eksklusif Malaysia 2026</div>
+          <h2 class="text-2xl sm:text-4xl font-black tracking-tight leading-tight">Sertai 24,000+ Peminat Malaysia Menonton Hari Ini!</h2>
+          <p class="font-bold text-xs sm:text-sm text-white/90">Tiada Syiling Dalam Aplikasi · Sifar Bayaran Tersembunyi · Pembukaan Episod Serta-Merta</p>
         </div>
         <button onclick="triggerSmartDownload('Bottom Giant Banner CTA')" class="relative z-10 px-7 py-3.5 sm:px-8 sm:py-4 rounded-2xl bg-[#0a0a12] text-white font-black text-sm sm:text-base shadow-2xl hover:bg-zinc-900 active:scale-95 transition-all whitespace-nowrap">
-          Download 1minutedrama APK ↗
+          Muat Turun APK 1minutedrama ↗
         </button>
       </div>
     </div>
   </section>
 </main>
 
-<!-- Footer (修复 Logo) -->
+<!-- Pengaki (Footer) -->
 <footer class="border-t border-white/10 bg-[#07070b] py-12 text-xs text-zinc-400">
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
       <div>
         <div class="flex items-center gap-3">
-          <!-- 纯 SVG Logo -->
           <div class="w-8 h-8 rounded-xl overflow-hidden flex-shrink-0">
             <svg viewBox="0 0 100 100" class="w-full h-full">
               <rect width="100" height="100" rx="28" fill="#14141f"/>
@@ -572,31 +567,30 @@
               <path d="M 40 50 Q 45 56 50 50" stroke="#f43f5e" stroke-width="4" stroke-linecap="round" fill="none"/>
             </svg>
           </div>
-          <span class="font-bold text-sm text-white">1minutedrama (Malaysia Region)</span>
+          <span class="font-bold text-sm text-white">1minutedrama (Wilayah Malaysia)</span>
         </div>
         <p class="text-[11px] text-zinc-400 mt-2 max-w-xl leading-relaxed">
-          1minutedrama is an open mobile short-form video streaming client designed for Southeast Asian drama enthusiasts. All drama titles, posters, trademarks, and media assets belong to their respective copyright holders.
+          1minutedrama adalah klien penstriman video pendek mudah alih terbuka yang direka khas untuk peminat drama Asia Tenggara. Semua tajuk drama, poster, tanda dagangan, dan aset media adalah hak milik pemegang hak cipta masing-masing.
         </p>
       </div>
       <div class="flex flex-wrap gap-4 text-xs font-semibold">
-        <button onclick="openLegalModal('privacy')" class="hover:text-pink-400 transition-colors">Privacy Policy</button>
-        <button onclick="openLegalModal('terms')" class="hover:text-pink-400 transition-colors">Terms of Service</button>
-        <button onclick="openLegalModal('dmca')" class="hover:text-pink-400 transition-colors">DMCA Notice</button>
-        <button onclick="openLegalModal('disclaimer')" class="hover:text-pink-400 transition-colors">Disclaimer</button>
+        <button onclick="openLegalModal('privacy')" class="hover:text-pink-400 transition-colors">Dasar Privasi</button>
+        <button onclick="openLegalModal('terms')" class="hover:text-pink-400 transition-colors">Terma Perkhidmatan</button>
+        <button onclick="openLegalModal('dmca')" class="hover:text-pink-400 transition-colors">Notis Hak Cipta DMCA</button>
+        <button onclick="openLegalModal('disclaimer')" class="hover:text-pink-400 transition-colors">Penafian</button>
       </div>
     </div>
     <div class="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-zinc-400">
-      <div>© 2026 1minutedrama. All Rights Reserved.</div>
-      <div>Verification Code: MY-SEC-2026-9812 · Safe Browsing Certified</div>
+      <div>© 2026 1minutedrama. Hak Cipta Terpelihara.</div>
+      <div>Kod Pengesahan: MY-SEC-2026-9812 · Pensijilan Pelayaran Selamat</div>
     </div>
   </div>
 </footer>
 
-<!-- 8. Sticky Global Download Bar (已彻底修复 Logo 破图和文字排版) -->
+<!-- 8. Bar Muat Turun Melekat Bawah (Sticky) -->
 <div class="fixed bottom-0 left-0 right-0 z-50 p-2.5 sm:p-3 bg-[#0c0c16]/95 backdrop-blur-xl border-t border-white/10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
   <div class="max-w-[1200px] mx-auto flex items-center justify-between gap-2.5 px-2 sm:px-4">
     <div class="flex items-center gap-2.5 min-w-0 flex-1">
-      <!-- 纯 SVG 保证 100% 正常显示并对应图一小人 -->
       <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden flex-shrink-0 shadow-md">
         <svg viewBox="0 0 100 100" class="w-full h-full">
           <rect width="100" height="100" rx="28" fill="#14141f"/>
@@ -610,54 +604,54 @@
 
       <div class="min-w-0 flex-1">
         <div class="font-black text-xs sm:text-sm text-white flex items-center gap-1.5 leading-tight">
-          <span class="truncate">1minutedrama Free App</span>
-          <span class="hidden sm:inline-block text-[9px] px-1 py-0.2 rounded bg-emerald-500/20 text-emerald-400 font-bold">Free</span>
+          <span class="truncate">Aplikasi Percuma 1minutedrama</span>
+          <span class="hidden sm:inline-block text-[9px] px-1 py-0.2 rounded bg-emerald-500/20 text-emerald-400 font-bold">Percuma</span>
         </div>
         <div class="text-[10px] text-zinc-400 truncate mt-0.5">
-          No Coins · Full Episodes Unlocked
+          Tiada Syiling · Episod Penuh Dibuka
         </div>
       </div>
     </div>
     
     <div class="flex-shrink-0">
       <button onclick="triggerSmartDownload('Sticky Global CTA')" class="btn-gradient hover:brightness-110 active:scale-95 text-white font-black px-4 sm:px-7 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm whitespace-nowrap shadow-lg shadow-pink-500/30 flex items-center gap-1">
-        <span>Install Free</span>
+        <span>Pasang Percuma</span>
         <span class="text-xs">↗</span>
       </button>
     </div>
   </div>
 </div>
 
-<!-- Legal Modal Dialog -->
+<!-- Kotak Dialog Modal Dasar & Terma -->
 <div id="legalModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden place-items-center p-4">
   <div class="bg-[#141421] border border-white/15 rounded-3xl p-6 sm:p-8 max-w-2xl w-full space-y-4 shadow-2xl relative text-left">
     <button onclick="closeLegalModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">✕</button>
     <div class="flex items-center gap-2">
       <span class="text-pink-400 text-lg">⚖️</span>
-      <h3 id="legalModalTitle" class="text-lg sm:text-xl font-black text-white">Policies & Terms</h3>
+      <h3 id="legalModalTitle" class="text-lg sm:text-xl font-black text-white">Dasar & Terma</h3>
     </div>
     <div id="legalModalContent" class="text-xs text-zinc-300 space-y-3 max-h-[60vh] overflow-y-auto leading-relaxed pr-2">
     </div>
     <div class="pt-2 border-t border-white/10 flex justify-end">
-      <button onclick="closeLegalModal()" class="px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs">I Understand</button>
+      <button onclick="closeLegalModal()" class="px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs">Saya Faham</button>
     </div>
   </div>
 </div>
 
 <script>
-// Target APK Download Link
+// Pautan Sasaran Muat Turun APK
 const DOWNLOAD_TARGET_URL = "https://jjuk44.mcgo2.com/visit/4e177c08-a74d-496e-b475-c0cd7423015a?utm_campaign=%7B%7Bcampaign.name%7D%7D&utm_content=%7B%7Bad.name%7D%7D&mc_campaign_id=%7B%7Bcampaign.id%7D%7D&mc_adset_name=%7B%7Badset.name%7D%7D&mc_adset_id=%7B%7Badset.id%7D%7D&mc_ad_id=%7B%7Bad.id%7D%7D&mc_pub=%7B%7Bplacement%7D%7D&site_source_name=%7B%7Bsite_source_name%7D%7D";
 
-// Zero-delay background iframe download + simultaneous FB Pixel 'CompleteRegistration'
+// Muat turun berlatar belakang iframe tanpa lengah + penjejakan FB Pixel 'CompleteRegistration' serentak
 function triggerSmartDownload(sourceLabel) {
   const eventPayload = {
-    content_name: String(sourceLabel || '1minutedrama APK Download'),
+    content_name: String(sourceLabel || 'Muat Turun APK 1minutedrama'),
     status: true,
     currency: 'USD',
     value: 0.00
   };
 
-  // 1. Fire CompleteRegistration across all pixels
+  // 1. Pancarkan CompleteRegistration ke semua ID Pixel
   if (typeof fbq === 'function') {
     if (Array.isArray(window.FB_PIXEL_IDS) && window.FB_PIXEL_IDS.length > 0) {
       window.FB_PIXEL_IDS.forEach(function(pixelId) {
@@ -668,7 +662,7 @@ function triggerSmartDownload(sourceLabel) {
     }
   }
 
-  // 2. Download via silent iframe to avoid page jumps and keep pixel network threads intact
+  // 2. Muat turun melalui iframe senyap untuk elak lompatan laman dan kekalkan utas rangkaian pixel
   let hiddenFrame = document.getElementById('drama_download_frame');
   if (!hiddenFrame) {
     hiddenFrame = document.createElement('iframe');
@@ -679,194 +673,194 @@ function triggerSmartDownload(sourceLabel) {
   hiddenFrame.src = DOWNLOAD_TARGET_URL;
 }
 
-// Extracted Real Short Drama Catalog
+// Data Katalog Drama Pendek
 const SHORT_DRAMA_DATA = {
   hotPicks: [
     {
       title: "Fifty Cents to Find My Billionaire Dad",
-      tag: "All 60 EP",
-      meta: "Redemption · Lost & Found",
+      tag: "Semua 60 EP",
+      meta: "Penebusan · Hilang & Temui Semula",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1789131155_ZztwKpRid4.jpg?x-oss-process=image/resize,w_600,image/format,webp"
     },
     {
       title: "Testing Love: Married to a Crippled Billionaire",
-      tag: "All 41 EP",
-      meta: "Cinderella · CEO / Billionaire",
+      tag: "Semua 41 EP",
+      meta: "Cinderella · Kisah Jutawan CEO",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1788787870_bBRB3mWGfp.jpg?x-oss-process=image/resize,w_600,image/format,webp"
     },
     {
       title: "Substitute Bride, Conqueror of a Billionaire Family",
-      tag: "All 40 EP",
-      meta: "Marriage Before Love · Revenge",
+      tag: "Semua 40 EP",
+      meta: "Kahwin Dahulu Cinta Kemudian · Balas Dendam",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1787298727_8ah3WKxz7S.jpg?x-oss-process=image/resize,w_600,image/format,webp"
     },
     {
       title: "His Private Patient",
-      tag: "All 51 EP",
-      meta: "Secret Crush · High Society",
+      tag: "Semua 51 EP",
+      meta: "Cinta Rahsia · Golongan Elit",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1788530011_GHHsAmQCMS.jpg?x-oss-process=image/resize,w_600,image/format,webp"
     },
     {
       title: "The Stand-In Mama. She Fixes Everything",
-      tag: "All 53 EP",
-      meta: "Feel-Good · Badass Mommy",
+      tag: "Semua 53 EP",
+      meta: "Kisah Menarik · Ibu Hebat Berkuasa",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1789551101_QCta8ejjTA.jpg?x-oss-process=image/resize,w_600,image/format,webp"
     },
     {
       title: "The Genius Interpreter in Plain Sight",
-      tag: "All 56 EP",
-      meta: "Coming-of-Age · Secret Talent",
+      tag: "Semua 56 EP",
+      meta: "Kematangan Diri · Bakat Tersembunyi",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1785896007_MQKsCydJSF.jpg?x-oss-process=image/resize,w_600,image/format,webp"
     },
     {
       title: "The Ugly Girl is Chaos Queen",
-      tag: "All 51 EP",
-      meta: "Female Awakening · Rebirth",
+      tag: "Semua 51 EP",
+      meta: "Kebangkitan Wanita · Lahir Semula",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1787135670_THf7nn7Fzn.jpg"
     }
   ],
   sevenDay: [
     {
       title: "After My Divorce, My Billionaire Parents Made Me Their Heir",
-      tag: "All 56 EP",
-      meta: "Plot Twists · Sweet Revenge",
+      tag: "Semua 56 EP",
+      meta: "Plot Twist Mendalam · Dendam Manis",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1788492366_TfB8rZAY6w.jpg"
     },
     {
       title: "Reborn as a Condemned Bride, I Chose the Future Dragon King",
-      tag: "All 35 EP",
-      meta: "Dragon Blood · Slow Burn",
+      tag: "Semua 35 EP",
+      meta: "Darah Naga · Cinta Berputik Perlahan",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1792569134_X8M7ExXsDw.jpg"
     },
     {
       title: "Even Billionaires Beg to Borrow From Me",
-      tag: "All 43 EP",
-      meta: "Underdog Rise · Superpowers",
+      tag: "Semua 43 EP",
+      meta: "Bangkit Dari Bawah · Kuasa Luar Biasa",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1789899136_8yxfFRBZZK.jpg"
     },
     {
       title: "The Homeless Man Who Saved NASA",
-      tag: "All 51 EP",
-      meta: "Secret Genius · Truth Wins",
+      tag: "Semua 51 EP",
+      meta: "Genius Tersembunyi · Kebenaran Terbukti",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1789383071_eNfz4Q8RWx.jpg"
     },
     {
       title: "God-Tier Summoning: My Goblins Slay Gods",
-      tag: "All 50 EP",
-      meta: "S-Rank Prodigy · Abyss Conqueror",
+      tag: "Semua 50 EP",
+      meta: "Prodigi Kelas S · Penakluk Abyss",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1791794715_CQTQ4GHSsc.jpg"
     },
     {
       title: "They Don't Know I'm the Don's Pregnant Queen",
-      tag: "All 42 EP",
-      meta: "Mafia King · City Queen",
+      tag: "Semua 42 EP",
+      meta: "Raja Mafia · Ratu Bandar Metropolitan",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1786702332_Wej636SDdz.jpg?x-oss-process=image/resize,w_600,image/format,webp"
     },
     {
       title: "Sold to the Beasts, Claimed by the Alpha",
-      tag: "All 62 EP",
-      meta: "Alpha Wolf · Soulmate",
+      tag: "Semua 62 EP",
+      meta: "Serigala Alpha · Teman Jiwa",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1788180523_JHMmChDPdw.jpg"
     }
   ],
   oneGo: [
     {
       title: "Reborn at 18: The Great-Grandma Takes Charge",
-      tag: "All 90 EP",
-      meta: "Genius Heroine · Family Comedy",
+      tag: "Semua 90 EP",
+      meta: "Wanita Genius · Komedi Keluarga",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1749036906_REQCfC4twc.jpg?x-oss-process=image/resize,w_600,image/format,webp"
     },
     {
       title: "From Betrayal to Empowerment",
-      tag: "All 57 EP",
-      meta: "Betrayal · Furniture Empire",
+      tag: "Semua 57 EP",
+      meta: "Pengkhianatan · Empayar Perabot",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1745310082_RSWYrZpHsx.jpg?x-oss-process=image/resize,w_600,image/format,webp"
     },
     {
       title: "Broken Vows, Royal Lies",
-      tag: "All 65 EP",
-      meta: "Secret Heir · Sugar Boy Twist",
+      tag: "Semua 65 EP",
+      meta: "Pewaris Rahsia · Plot Twist Mengejutkan",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1744025417_PrYpmWaMEp.jpg?x-oss-process=image/resize,w_600,image/format,webp"
     },
     {
       title: "The Billionaire's Spoiled Sister-in-Law",
-      tag: "All 52 EP",
-      meta: "Taboo Romance · True Affection",
+      tag: "Semua 52 EP",
+      meta: "Romantik Larangan · Kasih Sebenar",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1733551643_fnr54k3pyQ.jpg?x-oss-process=image/resize,w_600,image/format,webp"
     },
     {
       title: "Silver Vows: Suddenly Married to a Billionaire",
-      tag: "All 69 EP",
-      meta: "Midlife Romance · Found Fortune",
+      tag: "Semua 69 EP",
+      meta: "Romantik Usia Matang · Takdir Kekayaan",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1728373160_ChTT4aPehE.jpg?x-oss-process=image/resize,w_600,image/format,webp"
     },
     {
       title: "From Peasant Lady to Royalty",
-      tag: "All 69 EP",
-      meta: "Maternal Love · Royalty Reborn",
+      tag: "Semua 69 EP",
+      meta: "Kasih Ibu · Kelahiran Semula Kerabat Diraja",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1728373131_jEtH8AHAAF.jpg?x-oss-process=image/resize,w_600,image/format,webp"
     },
     {
       title: "Unexpected Knot: My Husband is a Tycoon",
-      tag: "All 99 EP",
-      meta: "Contract Love · City's Wealthiest",
+      tag: "Semua 99 EP",
+      meta: "Cinta Kontrak · Taikun Terkaya Kota",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1722421184_ZMHFck5zaa.jpg"
     }
   ],
   gems: [
     {
       title: "From Rivals to Romance",
-      tag: "All 69 EP",
-      meta: "Childhood Crush · Rebirth",
+      tag: "Semua 69 EP",
+      meta: "Cinta Monyet Kanak-Kanak · Lahir Semula",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1758274766_xA5X4TS2ff.jpg?x-oss-process=image/resize,w_600,image/format,webp"
     },
     {
       title: "Captain, Your Fiancée Married Someone Else",
-      tag: "All 51 EP",
-      meta: "Heartbreak · True Protection",
+      tag: "Semua 51 EP",
+      meta: "Patah Hati · Perlindungan Sebenar",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1758189320_mCY2rwtK4F.jpg?x-oss-process=image/resize,w_600,image/format,webp"
     },
     {
       title: "The Everlasting Scent Of Us",
-      tag: "All 50 EP",
-      meta: "Reignited Passion · Overcoming Odds",
+      tag: "Semua 50 EP",
+      meta: "Semarak Cinta Kembali · Mengatasi Rintangan",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1757579068_AAed7QtrkP.jpg?x-oss-process=image/resize,w_600,image/format,webp"
     },
     {
       title: "My One and Only",
-      tag: "All 88 EP",
-      meta: "Age Gap · Billionaire Protector",
+      tag: "Semua 88 EP",
+      meta: "Jurang Usia · Pelindung Jutawan",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1758189536_tkEk8jAhak.jpg?x-oss-process=image/resize,w_600,image/format,webp"
     },
     {
       title: "Reborn in the 90s: Remarriage Unlocks My New Life",
-      tag: "All 62 EP",
-      meta: "Second Chance · Sweet Payback",
+      tag: "Semua 62 EP",
+      meta: "Peluang Kedua · Pembalasan Manis",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1754297911_A6yDaz6Hdt.jpg?x-oss-process=image/resize,w_600,image/format,webp"
     },
     {
       title: "The Grand Princess Strikes Back",
-      tag: "All 80 EP",
-      meta: "Royal Divorce · Empire Retaken",
+      tag: "Semua 80 EP",
+      meta: "Perceraian Diraja · Rampas Balik Empayar",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1755510295_nXfxARjQSQ.jpg?x-oss-process=image/resize,w_600,image/format,webp"
     },
     {
       title: "Death Was Her Glow-Up",
-      tag: "All 40 EP",
-      meta: "Heiress Unmasked · Savage Return",
+      tag: "Semua 40 EP",
+      meta: "Topeng Waris Dibuka · Kepulangan Hebat",
       poster: "https://zshipubcf.farsunpteltd.com/playlet/1754298011_cNQ6t36R7D.jpg?x-oss-process=image/resize,w_600,image/format,webp"
     }
   ]
 };
 
 const CATEGORY_TITLES = {
-  hotPicks: '🔥 Hot Picks',
-  sevenDay: '🥇 7-Day Star',
-  oneGo: '⚡ All In One Go',
-  gems: '💎 Hidden Gems'
+  hotPicks: '🔥 Pilihan Hangat',
+  sevenDay: '🥇 Bintang 7 Hari',
+  oneGo: '⚡ Tonton Terus Tamat',
+  gems: '💎 Permata Tersembunyi'
 };
 
-// Switch Drama Tabs
+// Tukar Tab Kategori
 function switchTab(category) {
   document.querySelectorAll('.cat-tab').forEach(btn => {
     if (btn.dataset.cat === category) {
@@ -876,7 +870,7 @@ function switchTab(category) {
     }
   });
 
-  document.getElementById('currentCategoryText').textContent = CATEGORY_TITLES[category] || 'Short Dramas';
+  document.getElementById('currentCategoryText').textContent = CATEGORY_TITLES[category] || 'Drama Pendek';
   const list = SHORT_DRAMA_DATA[category] || [];
   const container = document.getElementById('libraryContainer');
 
@@ -889,7 +883,7 @@ function switchTab(category) {
           <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none"></div>
           
           <span class="absolute top-2 left-2 z-10 px-1.5 py-0.5 rounded text-[9px] font-black bg-pink-600 text-white shadow-md">
-            ${item.tag || 'ALL EP'}
+            ${item.tag || 'SEMUA EP'}
           </span>
 
           <div class="absolute inset-0 flex items-center justify-center">
@@ -902,11 +896,11 @@ function switchTab(category) {
         <div class="p-2.5 sm:p-3 flex-1 flex flex-col justify-between">
           <div>
             <h4 class="font-bold text-[11px] sm:text-xs text-zinc-100 line-clamp-1 group-hover:text-pink-400 transition-colors">${safeTitle}</h4>
-            <p class="text-[9px] sm:text-[10px] text-zinc-400 line-clamp-1 mt-0.5">${item.meta || 'Full Episodes'}</p>
+            <p class="text-[9px] sm:text-[10px] text-zinc-400 line-clamp-1 mt-0.5">${item.meta || 'Episod Penuh'}</p>
           </div>
           <div class="mt-2 pt-1.5 border-t border-white/5 flex items-center justify-between text-[9px] sm:text-[10px]">
-            <span class="text-emerald-400 font-semibold">1080P Free</span>
-            <span class="text-pink-400 font-bold group-hover:translate-x-0.5 transition-transform">Stream →</span>
+            <span class="text-emerald-400 font-semibold">Percuma 1080P</span>
+            <span class="text-pink-400 font-bold group-hover:translate-x-0.5 transition-transform">Tonton →</span>
           </div>
         </div>
       </div>
@@ -914,17 +908,17 @@ function switchTab(category) {
   }).join('');
 
   const unlockMoreCardHtml = `
-    <div onclick="triggerSmartDownload('Unlock Full Category: ${category}')" class="group relative rounded-2xl overflow-hidden border-2 border-dashed border-pink-500/40 hover:border-pink-500 bg-gradient-to-br from-pink-500/10 via-[#161626] to-[#121220] transition-all duration-300 hover:-translate-y-1.5 shadow-2xl cursor-pointer flex flex-col items-center justify-center p-4 sm:p-6 text-center">
+    <div onclick="triggerSmartDownload('Buka Penuh Kategori: ${category}')" class="group relative rounded-2xl overflow-hidden border-2 border-dashed border-pink-500/40 hover:border-pink-500 bg-gradient-to-br from-pink-500/10 via-[#161626] to-[#121220] transition-all duration-300 hover:-translate-y-1.5 shadow-2xl cursor-pointer flex flex-col items-center justify-center p-4 sm:p-6 text-center">
       <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl btn-gradient text-white flex items-center justify-center text-2xl sm:text-3xl font-black mb-2 shadow-lg shadow-pink-500/30 group-hover:scale-110 transition-transform">
         +
       </div>
-      <div class="text-[10px] sm:text-[11px] font-black text-pink-400 uppercase tracking-wider">FULL DATABASE UNLOCKED</div>
-      <h3 class="text-sm sm:text-lg font-black text-white mt-1">Unlock 5,000+ Dramas</h3>
+      <div class="text-[10px] sm:text-[11px] font-black text-pink-400 uppercase tracking-wider">PANGKALAN DATA DIBUKA SEPENUHNYA</div>
+      <h3 class="text-sm sm:text-lg font-black text-white mt-1">Buka 5,000+ Drama</h3>
       <p class="text-[11px] sm:text-xs text-zinc-300 mt-1 leading-relaxed max-w-[200px]">
-        Download 1minutedrama app to stream all completed episodes without coins or waiting!
+        Muat turun aplikasi 1minutedrama untuk tonton semua episod penuh tanpa syiling atau menunggu!
       </p>
       <div class="mt-3 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-pink-600 text-white font-black text-xs shadow-md group-hover:brightness-110 flex items-center gap-1.5">
-        <span>Install Free</span>
+        <span>Pasang Percuma</span>
         <span>↗</span>
       </div>
     </div>
@@ -933,16 +927,16 @@ function switchTab(category) {
   container.innerHTML = cardsHtml + unlockMoreCardHtml;
 }
 
-// Localized Malaysian Reviews
+// Ulasan Pengguna Malaysia
 const MALAYSIA_REVIEWS = [
-  { name: "Siti Nurhaliza M.", loc: "Kuala Lumpur", device: "Samsung S24 Ultra", text: "I was spending almost RM 80 every week buying coins on other drama apps just to finish one revenge series. 1minutedrama unlocked every single episode for free! So addicted during my LRT commute." },
-  { name: "Kevin Tan", loc: "Petaling Jaya", device: "Xiaomi 14", text: "The drama 'Fifty Cents to Find My Billionaire Dad' is insane! Video loads instantly on CelcomDigi 5G without any lag. Super convenient without needing to register." },
-  { name: "Nurul Aina", loc: "Shah Alam", device: "Vivo V30", text: "Finally an app that doesn't stop at episode 10 and ask for coin top-ups! Clean app, verified safe by Google Play Protect, and no suspicious permissions." },
-  { name: "Danial Hakim", loc: "Johor Bahru", device: "OPPO Reno 11", text: "I installed it for my mom and myself. She loves the family rebirth dramas while I binge the CEO plot twists. Binge-watching 60 episodes in one night is so satisfying!" },
-  { name: "Grace Lim", loc: "Penang", device: "Honor Magic 6", text: "Picture quality is crisp 1080P with clear English subtitles. Make sure you click update when you first launch the app to see all new 2026 releases!" },
-  { name: "Farhan Iskandar", loc: "Ipoh", device: "Samsung A54", text: "Best drama app in Malaysia right now. Zero lag, no ads popping up in the middle of a spicy dialogue, and totally free. High recommend!" },
-  { name: "Priya S.", loc: "Subang Jaya", device: "Google Pixel 8", text: "The werewolf series 'Sold to the Beasts' had me hooked from minute 1. So glad I found this apk instead of burning money on coins." },
-  { name: "Chong Wei", loc: "Melaka", device: "Redmi Note 13 Pro", text: "Fast download, smooth playback, and actual full episodes. Perfect 5-star experience." }
+  { name: "Siti Nurhaliza M.", loc: "Kuala Lumpur", device: "Samsung S24 Ultra", text: "Sebelum ni saya habis dekat RM 80 seminggu beli syiling dekat app lain semata-mata nak habiskan satu cerita dendam. 1minutedrama buka semua episod secara percuma! Syok sangat layan masa naik LRT." },
+  { name: "Kevin Tan", loc: "Petaling Jaya", device: "Xiaomi 14", text: "Drama 'Fifty Cents to Find My Billionaire Dad' memang gempak! Video terus jalan laju guna CelcomDigi 5G tanpa sebarang lag. Paling senang sebab tak payah daftar akaun." },
+  { name: "Nurul Aina", loc: "Shah Alam", device: "Vivo V30", text: "Akhirnya jumpa app yang tak sekat dekat episod 10 minta tambah duit! Aplikasi bersih, disahkan selamat oleh Google Play Protect, dan tiada kebenaran mencurigakan." },
+  { name: "Danial Hakim", loc: "Johor Bahru", device: "OPPO Reno 11", text: "Saya install untuk mak dan saya sendiri. Mak suka drama lahir semula keluarga, saya layan plot twist CEO. Layan 60 episod satu malam memang puas hati!" },
+  { name: "Grace Lim", loc: "Pulau Pinang", device: "Honor Magic 6", text: "Kualiti gambar 1080P sangat jelas dengan sari kata Bahasa Inggeris & Melayu yang kemas. Pastikan tekan butang kemas kini bila buka kali pertama untuk dapat cerita baru 2026!" },
+  { name: "Farhan Iskandar", loc: "Ipoh", device: "Samsung A54", text: "Aplikasi drama paling mantap di Malaysia sekarang. Tiada lag, tiada iklan menyampah tengah-tengah babak sedih, dan betul-betul percuma. Sangat disyorkan!" },
+  { name: "Priya S.", loc: "Subang Jaya", device: "Google Pixel 8", text: "Drama serigala jadian 'Sold to the Beasts' buat saya terpaku dari minit pertama. Mujur jumpa apk ni, jimat duit tak payah beli syiling dah." },
+  { name: "Chong Wei", loc: "Melaka", device: "Redmi Note 13 Pro", text: "Muat turun pantas, main lancar, dan semua episod lengkap betul-betul ada. Pengalaman terbaik 5 bintang." }
 ];
 
 let displayedReviewCount = 0;
@@ -972,8 +966,8 @@ function loadMoreReviews() {
         <p class="text-xs text-zinc-300 mt-2.5 leading-relaxed">${rev.text}</p>
       </div>
       <div class="mt-3 pt-2 border-t border-white/5 flex items-center justify-between text-[10px] text-zinc-500">
-        <span class="text-emerald-400/90 font-medium">✓ Verified Malaysian Viewer</span>
-        <span>Just now</span>
+        <span class="text-emerald-400/90 font-medium">✓ Penonton Malaysia Disahkan</span>
+        <span>Sebentar tadi</span>
       </div>
     `;
     container.appendChild(card);
@@ -990,23 +984,23 @@ function loadMoreReviews() {
   }
 }
 
-// Policies & Legal Modals
+// Kandungan Dasar & Terma
 const LEGAL_CONTENT = {
   privacy: {
-    title: "Privacy Policy",
-    body: `<p><strong>1. Information Collection</strong><br>1minutedrama implements a no-registration, no-login policy. We do not collect names, phone numbers, or contacts.</p>`
+    title: "Dasar Privasi",
+    body: `<p><strong>1. Pengumpulan Maklumat</strong><br>1minutedrama mengamalkan polisi tanpa pendaftaran dan tanpa log masuk. Kami tidak mengumpul nama, nombor telefon, mahupun senarai kenalan anda.</p>`
   },
   terms: {
-    title: "Terms of Service",
-    body: `<p><strong>1. Acceptance of Terms</strong><br>By downloading or using the 1minutedrama application, you agree to comply with our fair-use community standards.</p>`
+    title: "Terma Perkhidmatan",
+    body: `<p><strong>1. Penerimaan Terma</strong><br>Dengan memuat turun atau menggunakan aplikasi 1minutedrama, anda bersetuju untuk mematuhi piawaian komuniti penggunaan wajar kami.</p>`
   },
   dmca: {
-    title: "DMCA Copyright Notice",
-    body: `<p><strong>1. Intellectual Property</strong><br>1minutedrama acts as an indexed content playback client. To submit a takedown request, email: dmca@1minutedrama.com</p>`
+    title: "Notis Hak Cipta DMCA",
+    body: `<p><strong>1. Harta Intelek</strong><br>1minutedrama bertindak sebagai klien pemain kandungan yang diindeks. Untuk menghantar permintaan pengalihan kandungan, sila emel: dmca@1minutedrama.com</p>`
   },
   disclaimer: {
-    title: "Disclaimer",
-    body: `<p><strong>1. Network Quality</strong><br>Streaming speed is subject to local telecom performance (CelcomDigi, Maxis, Unifi, U Mobile).</p>`
+    title: "Penafian",
+    body: `<p><strong>1. Kualiti Rangkaian</strong><br>Kelajuan penstriman bergantung kepada prestasi penyedia telekomunikasi tempatan anda (CelcomDigi, Maxis, Unifi, U Mobile).</p>`
   }
 };
 
@@ -1034,11 +1028,11 @@ document.getElementById('legalModal')?.addEventListener('click', (e) => {
   if (e.target.id === 'legalModal') closeLegalModal();
 });
 
-// Fallback Auto Event Attacher
+// Pelindung Klik Muat Turun
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('a, button').forEach(el => {
     const text = el.innerText || '';
-    if ((text.includes('Download') || text.includes('Install') || text.includes('Stream') || text.includes('APK')) && !el.getAttribute('onclick')) {
+    if ((text.includes('Muat Turun') || text.includes('Pasang') || text.includes('Tonton') || text.includes('APK')) && !el.getAttribute('onclick')) {
       el.addEventListener('click', (e) => {
         e.preventDefault();
         triggerSmartDownload(text.trim().slice(0, 30));
@@ -1047,7 +1041,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Initial boot
+// Permulaan halaman
 switchTab('hotPicks');
 loadMoreReviews();
 </script>

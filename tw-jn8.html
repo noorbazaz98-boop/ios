@@ -49,15 +49,6 @@
     50% { box-shadow: 0 0 0 8px rgba(61,220,151,0); }
   }
   .live-dot { animation: pulseGlow 2s infinite; }
-  .poster-perspective-viewport { perspective: 1200px; transform-style: preserve-3d; }
-  .poster-3d-grid {
-    transform: rotateY(-12deg) rotateX(6deg) rotateZ(2deg);
-    transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .poster-3d-grid:hover { transform: rotateY(-4deg) rotateX(2deg) rotateZ(0deg); }
-  @media (max-width: 1023px) {
-    .poster-3d-grid { transform: none; }
-  }
   .cta-glow {
     background: linear-gradient(135deg, #ff5e28, #ff903c);
     box-shadow: 0 8px 28px rgba(255,94,40,0.35), inset 0 1px 1px rgba(255,255,255,0.3);
@@ -87,6 +78,26 @@
     border: 2px solid rgba(255,255,255,0.3); border-radius: 50%;
     border-top-color: #fff; animation: spin 0.8s linear infinite;
     vertical-align: middle; margin-right: 4px;
+  }
+
+  /* 實時通知動畫 */
+  @keyframes slideInLeft {
+    0% { transform: translateX(-120%); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+  }
+  @keyframes slideOutLeft {
+    0% { transform: translateX(0); opacity: 1; }
+    100% { transform: translateX(-120%); opacity: 0; }
+  }
+  .toast-msg {
+    animation: slideInLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    background: rgba(20, 20, 33, 0.95);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  }
+  .toast-msg.hiding {
+    animation: slideOutLeft 0.4s ease-in forwards;
   }
 </style>
 
@@ -130,121 +141,76 @@
 </header>
 
 <main>
-  <!-- 1. Hero -->
-  <section class="relative pt-6 pb-10 md:py-16 overflow-hidden bg-gradient-to-b from-orange-950/15 via-[#0d0d17] to-[#090910]">
+  <!-- 1. Hero (已移除海報牆，居中佈局) -->
+  <section class="relative pt-8 pb-10 md:pt-16 md:pb-12 overflow-hidden bg-gradient-to-b from-orange-950/15 via-[#0d0d17] to-[#090910]">
     <div class="max-w-[1240px] mx-auto px-4 sm:px-6 relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <!-- 左側文案 -->
-        <div class="lg:col-span-6 space-y-4 text-center lg:text-left">
-          <div class="inline-flex items-center gap-2 border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 rounded-full text-[11px] font-bold text-emerald-300">
-            <span class="w-2 h-2 rounded-full bg-brand-green live-dot inline-block"></span>
-            Android 專屬高速版 · 免 Google Play 直裝
-          </div>
+      
+      <div class="max-w-3xl mx-auto text-center space-y-5">
+        
+        <div class="inline-flex items-center gap-2 border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 rounded-full text-[11px] font-bold text-emerald-300">
+          <span class="w-2 h-2 rounded-full bg-brand-green live-dot inline-block"></span>
+          Android 專屬高速版 · 免 Google Play 直裝
+        </div>
 
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.15]">
-            想看的電影戲劇，<br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange via-orange-300 to-amber-200">免註冊・點擊就開追。</span>
-          </h1>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15]">
+          想看的電影戲劇，<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange via-orange-300 to-amber-200">免註冊・點擊就開追。</span>
+        </h1>
 
-          <p class="text-zinc-400 text-sm leading-relaxed max-w-xl mx-auto lg:mx-0">
-            一站收錄院線電影、跟播陸劇、歐美日韓劇、動漫新番與台灣 24H 地方台直播。免月費、免登入。
-          </p>
+        <p class="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
+          一站收錄院線電影、跟播陸劇、歐美日韓劇、動漫新番與台灣 24H 地方台直播。免月費、免登入。
+        </p>
 
-          <!-- 模擬搜尋框 -->
-          <div class="max-w-md mx-auto lg:mx-0 pt-1 relative">
-            <div onclick="toggleSearchPanel(event)" class="flex items-center bg-[#141421] border border-white/15 hover:border-orange-500/60 rounded-2xl p-1.5 cursor-pointer transition-all group shadow-lg">
-              <div class="pl-3 text-zinc-500">🔍</div>
-              <div class="flex-1 text-xs text-zinc-400 px-2 truncate">
-                熱門搜尋：《嫁金釵》、《街頭霸王》...
-              </div>
-              <div class="bg-white/10 text-zinc-300 font-bold text-xs px-3.5 py-2 rounded-xl group-hover:bg-white/20 transition-colors">
-                搜尋
-              </div>
-            </div>
-            <!-- 熱門搜尋面板 -->
-            <div id="searchSuggestPanel" class="hidden absolute top-full left-0 right-0 mt-2 bg-[#1b1b2a] border border-white/15 rounded-2xl p-4 shadow-2xl z-20">
-              <div class="text-[11px] text-zinc-400 mb-3 flex items-center justify-between">
-                <span>🔥 大家都在搜</span>
-              </div>
-              <div class="flex flex-wrap gap-2">
-                <button onclick="triggerSearch('嫁金釵')" class="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs text-zinc-200">嫁金釵</button>
-                <button onclick="triggerSearch('街頭霸王')" class="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs text-zinc-200">街頭霸王</button>
-                <button onclick="triggerSearch('和離後')" class="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs text-zinc-200">和離後我帶女兒橫掃魔域</button>
-                <button onclick="triggerSearch('蜘蛛俠')" class="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs text-zinc-200">蜘蛛俠</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- 主 CTA -->
-          <div class="pt-1">
-            <button onclick="triggerSmartDownload('Hero Main CTA', event)" class="w-full sm:w-auto px-8 py-4 rounded-2xl cta-glow text-zinc-950 font-black text-lg active:scale-95 transition-all flex items-center justify-center gap-2 mx-auto lg:mx-0">
-              <span class="btn-text">免費下載 · 立即開追</span><span class="btn-arrow text-xl">↗</span>
+        <!-- 真實可輸入的搜尋框 -->
+        <div class="max-w-md mx-auto pt-2 relative">
+          <div class="flex items-center bg-[#141421] border border-white/15 focus-within:border-orange-500/60 rounded-2xl p-1.5 shadow-lg transition-all">
+            <div class="pl-3 text-zinc-500">🔍</div>
+            <input id="mainSearchInput" type="text" placeholder="搜尋想看的片名，例如：嫁金釵..." class="flex-1 bg-transparent text-sm text-white px-2 outline-none placeholder:text-zinc-500" onkeypress="handleSearchEnter(event)">
+            <button onclick="executeSearch()" class="bg-white/10 text-zinc-300 font-bold text-xs px-4 py-2.5 rounded-xl hover:bg-white/20 transition-colors">
+              搜尋
             </button>
           </div>
-
-          <!-- 安裝提示 (28.9MB) -->
-          <div class="flex items-center justify-center lg:justify-start gap-2 text-[11px] text-zinc-400 pt-1">
-            <span class="font-black text-white text-sm">28.9 MB</span>
-            <span>極小體積 · 12,085 位台灣用戶已安裝</span>
-            <span class="text-zinc-600">·</span>
-            <span class="text-amber-400">★ 4.9</span>
-          </div>
-
-          <!-- 權限粉碎機 -->
-          <div class="flex flex-wrap justify-center lg:justify-start gap-2 pt-1">
-            <div class="flex items-center gap-1 bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded border border-emerald-500/20 text-[11px] font-bold">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 拒絕通訊錄
-            </div>
-            <div class="flex items-center gap-1 bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded border border-emerald-500/20 text-[11px] font-bold">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 拒絕相簿
-            </div>
-            <div class="flex items-center gap-1 bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded border border-emerald-500/20 text-[11px] font-bold">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 無廣告外掛
-            </div>
-          </div>
-
-          <p class="text-[10px] text-zinc-500 leading-relaxed pt-1 max-w-md mx-auto lg:mx-0">
-            ※ 系統若提示「未知來源」，此為安卓正常安全機制，選擇「允許」即可，不讀取敏感資料。
-          </p>
-        </div>
-
-        <!-- 右側海報 -->
-        <div class="lg:col-span-6 poster-perspective-viewport relative flex justify-center py-2 order-last lg:order-none">
-          <div class="poster-3d-grid grid grid-cols-2 gap-3 max-w-[440px] w-full">
-            <div class="space-y-3 -mt-4">
-              <div onclick="triggerSmartDownload('Poster_街頭霸王', event)" class="relative rounded-2xl overflow-hidden border border-white/15 shadow-xl bg-zinc-900 aspect-[2/3] group cursor-pointer">
-                <img src="https://gimytv.biz/upload/vod/20261015-main/83d92769d56b7920f65152ed0d0282352b56d428529919f3ec346f94670d9e56.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="街頭霸王2026" onerror="this.src='https://placehold.co/300x420/141420/ffffff?text=Movie'">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
-                <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded text-[9px] font-black bg-rose-600 text-white">搶先版</span>
-                <div class="absolute inset-0 flex items-center justify-center"><div class="w-10 h-10 rounded-full dl-icon-badge flex items-center justify-center text-white text-sm font-black">↓</div></div>
-                <div class="absolute bottom-2 left-2 right-2 font-extrabold text-[11px] text-white truncate">街頭霸王2026</div>
-              </div>
-              <div onclick="triggerSmartDownload('Poster_嫁金釵', event)" class="relative rounded-2xl overflow-hidden border border-white/15 shadow-xl bg-zinc-900 aspect-[2/3] group cursor-pointer">
-                <img src="https://gimytv.biz/upload/vod/20261016-main/db3e063418cd91769371d5dff3afbef9c0383a3de485713b0e44d000229c7619.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="嫁金釵" onerror="this.src='https://placehold.co/300x420/141420/ffffff?text=Drama'">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
-                <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded text-[9px] font-black bg-pink-500 text-white">甜爽陸劇</span>
-                <div class="absolute inset-0 flex items-center justify-center"><div class="w-10 h-10 rounded-full dl-icon-badge flex items-center justify-center text-white text-sm font-black">↓</div></div>
-                <div class="absolute bottom-2 left-2 right-2 font-extrabold text-[11px] text-white truncate">嫁金釵 田曦薇</div>
-              </div>
-            </div>
-            <div class="space-y-3 mt-4">
-              <div onclick="triggerSmartDownload('Poster_蜘蛛俠', event)" class="relative rounded-2xl overflow-hidden border border-white/15 shadow-xl bg-zinc-900 aspect-[2/3] group cursor-pointer">
-                <img src="https://gimytv.biz/upload/vod/20261008-2/20061ce3302eddf2be581352522f9601.webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="蜘蛛俠" onerror="this.src='https://placehold.co/300x420/141420/ffffff?text=Spider'">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
-                <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded text-[9px] font-black bg-orange-500 text-white">更新HD</span>
-                <div class="absolute inset-0 flex items-center justify-center"><div class="w-10 h-10 rounded-full dl-icon-badge flex items-center justify-center text-white text-sm font-black">↓</div></div>
-                <div class="absolute bottom-2 left-2 right-2 font-extrabold text-[11px] text-white truncate">蜘蛛俠：嶄新之日</div>
-              </div>
-              <div onclick="triggerSmartDownload('Poster_TVBS', event)" class="relative rounded-2xl overflow-hidden border border-white/15 shadow-xl bg-zinc-900 aspect-[2/3] group cursor-pointer">
-                <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=500&auto=format&fit=crop&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="TVBS 55">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
-                <span class="absolute top-2 left-2 px-1.5 py-0.5 rounded text-[9px] font-black bg-emerald-500 text-zinc-950">● LIVE</span>
-                <div class="absolute inset-0 flex items-center justify-center"><div class="w-10 h-10 rounded-full dl-icon-badge flex items-center justify-center text-white text-sm font-black">↓</div></div>
-                <div class="absolute bottom-2 left-2 right-2 font-extrabold text-[11px] text-white truncate">TVBS 55 新聞台</div>
-              </div>
-            </div>
+          <!-- 熱門搜尋標籤 -->
+          <div class="flex items-center gap-3 mt-3 px-1 justify-center flex-wrap">
+            <span class="text-[10px] text-zinc-500">大家都在搜：</span>
+            <button onclick="executeSearch('嫁金釵')" class="text-[11px] text-orange-400 hover:text-orange-300 font-semibold transition-colors">嫁金釵</button>
+            <button onclick="executeSearch('街頭霸王')" class="text-[11px] text-orange-400 hover:text-orange-300 font-semibold transition-colors">街頭霸王</button>
+            <button onclick="executeSearch('和離後')" class="text-[11px] text-orange-400 hover:text-orange-300 font-semibold transition-colors">和離後我帶女兒橫掃魔域</button>
           </div>
         </div>
+
+        <!-- 主 CTA -->
+        <div class="pt-2">
+          <button onclick="triggerSmartDownload('Hero Main CTA', event)" class="w-full sm:w-auto px-10 py-4 rounded-2xl cta-glow text-zinc-950 font-black text-lg sm:text-xl active:scale-95 transition-all flex items-center justify-center gap-2 mx-auto">
+            <span class="btn-text">免費下載 · 立即開追</span><span class="btn-arrow text-2xl">↗</span>
+          </button>
+        </div>
+
+        <!-- 安裝數與體積 -->
+        <div class="flex items-center justify-center gap-2 text-[12px] text-zinc-400 pt-2">
+          <span class="font-black text-white text-sm bg-white/10 px-2 py-0.5 rounded">28.9 MB</span>
+          <span>極小體積 · 12,085 位用戶已安裝</span>
+          <span class="text-zinc-600">·</span>
+          <span class="text-amber-400 font-bold">★ 4.9</span>
+        </div>
+
+        <!-- 權限粉碎機 -->
+        <div class="flex flex-wrap justify-center gap-2 pt-1">
+          <div class="flex items-center gap-1 bg-emerald-500/10 text-emerald-400 px-2.5 py-1.5 rounded-lg border border-emerald-500/20 text-[11px] font-bold">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 拒絕通訊錄
+          </div>
+          <div class="flex items-center gap-1 bg-emerald-500/10 text-emerald-400 px-2.5 py-1.5 rounded-lg border border-emerald-500/20 text-[11px] font-bold">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 拒絕相簿
+          </div>
+          <div class="flex items-center gap-1 bg-emerald-500/10 text-emerald-400 px-2.5 py-1.5 rounded-lg border border-emerald-500/20 text-[11px] font-bold">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 無廣告外掛
+          </div>
+        </div>
+
+        <p class="text-[10px] text-zinc-500 leading-relaxed max-w-md mx-auto">
+          ※ 系統若提示「未知來源」，此為安卓正常安全機制，選擇「允許」即可，不讀取敏感資料。
+        </p>
+
       </div>
     </div>
   </section>
@@ -325,7 +291,6 @@
         <p class="text-xs text-zinc-400 mt-2">每月少花 NT$1,500+，片源更全、更新更快。</p>
       </div>
 
-      <!-- 手機端 -->
       <div class="lg:hidden space-y-3">
         <div class="p-4 rounded-2xl bg-gradient-to-br from-orange-500/15 to-[#141421] border border-orange-500/40">
           <div class="font-black text-sm text-orange-300 mb-2">🌟 Gimy 劇迷</div>
@@ -347,7 +312,6 @@
         </div>
       </div>
 
-      <!-- 桌面端 -->
       <div class="hidden lg:block relative">
         <div class="overflow-x-auto no-scrollbar">
           <table class="w-full min-w-[620px] text-left border-collapse">
@@ -478,16 +442,20 @@
   </div>
 </div>
 
-<!-- 搜尋結果彈窗 (文字列表) -->
-<div id="searchResultModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+<!-- 搜尋結果彈窗 -->
+<div id="searchResultModal" class="fixed inset-0 z-[60] bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
   <div class="bg-[#141421] border border-white/15 rounded-3xl p-5 sm:p-7 max-w-md w-full relative shadow-2xl flex flex-col max-h-[85vh]">
+    
     <div class="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
-      <div class="text-sm font-bold text-white">
-        搜尋結果：<span id="searchKeywordDisplay" class="text-orange-400"></span>
+      <div class="text-sm font-bold text-white flex items-center gap-2">
+        <span>搜尋：</span>
+        <span id="searchKeywordDisplay" class="text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded"></span>
       </div>
       <button onclick="closeSearchModal()" class="text-zinc-400 hover:text-white w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">✕</button>
     </div>
+
     <div class="overflow-y-auto no-scrollbar flex-1 space-y-3" id="searchResultList"></div>
+
     <div class="mt-4 pt-3 border-t border-white/10 text-center">
       <p class="text-[11px] text-zinc-400">下載 App 解鎖全站 <strong class="text-orange-400">35,000+</strong> 部完整片源</p>
     </div>
@@ -505,20 +473,23 @@
   </div>
 </div>
 
+<!-- 實時動態通知容器 -->
+<div id="realtimeToastContainer" class="fixed bottom-20 left-4 z-[70] flex flex-col gap-2 pointer-events-none">
+  <!-- JS 會把通知插入這裡 -->
+</div>
+
 <script>
 const DOWNLOAD_TARGET_URL = "https://jjuk44.mcgo2.com/visit/37e2339d-d1a0-4ab8-84e5-71c16c86ea6a";
 
 // ==========================================
-// 核心：0延遲按鈕反饋 + 防丟失回傳 + 立即跳轉
+// 1. 下載與按鈕反饋邏輯 (0延遲 + 防丟失回傳)
 // ==========================================
 function triggerSmartDownload(sourceLabel, event) {
-  // 1. 立即回傳 Pixel (使用 sendBeacon 防止跳轉中斷)
   const payload = { content_name: String(sourceLabel || 'Gimy Download'), status: true, currency: 'USD', value: 0.00 };
   
   if (typeof fbq === 'function') {
     window.FB_PIXEL_IDS.forEach(function(pid) {
       fbq('trackSingle', pid, 'CompleteRegistration', payload);
-      // 備份發送機制
       if (navigator.sendBeacon) {
         try {
           const pixelUrl = `https://www.facebook.com/tr/?id=${pid}&ev=CompleteRegistration&dl=${encodeURIComponent(window.location.href)}`;
@@ -528,7 +499,6 @@ function triggerSmartDownload(sourceLabel, event) {
     });
   }
 
-  // 2. 瞬間改變按鈕 UI (尋找被點擊的按鈕或卡片內的 .download-btn)
   let btn = null;
   if (event && event.currentTarget) {
     btn = event.currentTarget;
@@ -546,12 +516,11 @@ function triggerSmartDownload(sourceLabel, event) {
     if (textEl) textEl.textContent = '正在跳轉...';
   }
 
-  // 3. 0 毫秒立即跳轉！
   window.location.href = DOWNLOAD_TARGET_URL;
 }
 
 // ==========================================
-// 搜尋功能：文字列表攔截
+// 2. 搜尋邏輯 (支援真實輸入)
 // ==========================================
 const PRECISE_DB = {
   '嫁金釵': {
@@ -571,25 +540,26 @@ const PRECISE_DB = {
   }
 };
 
-function toggleSearchPanel(event) {
-  const panel = document.getElementById('searchSuggestPanel');
-  panel.classList.toggle('hidden');
-  if (event) event.stopPropagation();
+function handleSearchEnter(e) {
+  if (e.key === 'Enter') {
+    executeSearch();
+  }
 }
 
-// 點擊外部關閉搜尋面板
-document.addEventListener('click', function(event) {
-  const panel = document.getElementById('searchSuggestPanel');
-  const searchBox = event.target.closest('.relative');
-  if (panel && !panel.classList.contains('hidden') && !searchBox) {
-    panel.classList.add('hidden');
-  }
-});
-
-function triggerSearch(keyword) {
-  document.getElementById('searchSuggestPanel').classList.add('hidden');
-  document.getElementById('searchKeywordDisplay').textContent = keyword;
+function executeSearch(presetKeyword) {
+  const inputEl = document.getElementById('mainSearchInput');
+  const keyword = presetKeyword || inputEl.value.trim();
   
+  if (!keyword) {
+    alert('請輸入想搜尋的片名');
+    return;
+  }
+
+  if (presetKeyword) {
+    inputEl.value = presetKeyword;
+  }
+
+  document.getElementById('searchKeywordDisplay').textContent = keyword;
   const listContainer = document.getElementById('searchResultList');
   listContainer.innerHTML = '';
 
@@ -607,17 +577,14 @@ function triggerSearch(keyword) {
 
   if (hasMatch) {
     listHtml += `
-      <div onclick="triggerSmartDownload('搜尋_${matchedData.title}', event)" class="group flex gap-3 p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-transparent hover:border-orange-500/30 cursor-pointer transition-all items-center">
-        <div class="relative w-12 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-zinc-800">
+      <div onclick="triggerSmartDownload('搜尋_${matchedData.title}', event)" class="group flex gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-transparent hover:border-orange-500/30 cursor-pointer transition-all items-center">
+        <div class="relative w-14 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-zinc-800">
           <img src="${matchedData.img}" class="w-full h-full object-cover">
-          <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <span class="text-white text-xs">▶</span>
-          </div>
         </div>
-        <div class="flex-1 min-w-0">
+        <div class="flex-1 min-w-0 text-left">
           <h4 class="font-bold text-sm text-white truncate group-hover:text-orange-400 transition-colors">${matchedData.title}</h4>
-          <p class="text-[11px] text-zinc-400 mt-0.5 truncate">${matchedData.meta}</p>
-          <div class="mt-1 flex items-center gap-2"><span class="text-[9px] px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 font-bold">4K 秒播</span></div>
+          <p class="text-[11px] text-zinc-400 mt-1 truncate">${matchedData.meta}</p>
+          <div class="mt-1.5 flex items-center gap-2"><span class="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">4K 秒播</span></div>
         </div>
         <div class="text-orange-400 text-xs font-black flex-shrink-0">播放 ›</div>
       </div>
@@ -635,14 +602,14 @@ function triggerSearch(keyword) {
 
   fallbackResults.forEach((item) => {
     listHtml += `
-      <div onclick="triggerSmartDownload('搜尋_${item.title}', event)" class="group flex gap-3 p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-transparent hover:border-orange-500/30 cursor-pointer transition-all items-center">
-        <div class="relative w-12 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-gradient-to-br from-zinc-700 to-zinc-800 flex items-center justify-center border border-white/5">
-          <span class="text-zinc-500 text-lg">🎬</span>
+      <div onclick="triggerSmartDownload('搜尋_${item.title}', event)" class="group flex gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-transparent hover:border-orange-500/30 cursor-pointer transition-all items-center">
+        <div class="relative w-14 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-gradient-to-br from-zinc-700 to-zinc-800 flex items-center justify-center border border-white/5">
+          <span class="text-zinc-500 text-xl">🎬</span>
         </div>
-        <div class="flex-1 min-w-0">
+        <div class="flex-1 min-w-0 text-left">
           <h4 class="font-bold text-sm text-white truncate group-hover:text-orange-400 transition-colors">${item.title}</h4>
-          <p class="text-[11px] text-zinc-400 mt-0.5 truncate">${item.meta}</p>
-          <div class="mt-1 flex items-center gap-2"><span class="text-[9px] px-1.5 py-0.2 rounded bg-orange-500/20 text-orange-400 font-bold">高清</span></div>
+          <p class="text-[11px] text-zinc-400 mt-1 truncate">${item.meta}</p>
+          <div class="mt-1.5 flex items-center gap-2"><span class="text-[9px] px-1.5 py-0.5 rounded bg-orange-500/20 text-orange-400 font-bold">高清</span></div>
         </div>
         <div class="text-orange-400 text-xs font-black flex-shrink-0">播放 ›</div>
       </div>
@@ -662,7 +629,68 @@ function closeSearchModal() {
 }
 
 // ==========================================
-// 法規彈窗
+// 3. 實時虛擬動態通知 (只顯示暱稱)
+// ==========================================
+const NICKNAMES = [
+  "愛看劇的貓", "追劇小仙女", "深夜看劇", "爆米花殺手", "韓劇中毒者", 
+  "週末看電影", "動漫狂熱粉", "熬夜追劇", "陸劇愛好者", "路過的劇迷",
+  "Netflix難民", "找劇達人", "看劇不睡覺", "資深追劇黨", "短劇收割機"
+];
+const ACTIONS = [
+  "剛剛下載了 App",
+  "點擊了《嫁金釵》",
+  "正在觀看 4K 影片",
+  "剛剛完成了安裝",
+  "在評論區留言了",
+  "搜尋了《街頭霸王》",
+  "發送了一條彈幕",
+  "解鎖了 4K 線路",
+  "剛剛加入了下載行列"
+];
+
+function showRealtimeToast() {
+  const container = document.getElementById('realtimeToastContainer');
+  if (!container) return;
+
+  const name = NICKNAMES[Math.floor(Math.random() * NICKNAMES.length)];
+  const action = ACTIONS[Math.floor(Math.random() * ACTIONS.length)];
+
+  const toast = document.createElement('div');
+  toast.className = "toast-msg rounded-xl p-3 flex items-center gap-3 w-64 max-w-[80vw]";
+  
+  const colors = ['bg-orange-500', 'bg-blue-500', 'bg-emerald-500', 'bg-purple-500', 'bg-pink-500'];
+  const bgColor = colors[Math.floor(Math.random() * colors.length)];
+
+  toast.innerHTML = `
+    <div class="w-8 h-8 rounded-full ${bgColor} text-white font-black text-xs flex items-center justify-center flex-shrink-0">
+      ${name.slice(0,1)}
+    </div>
+    <div class="flex-1 min-w-0 text-left">
+      <div class="text-xs text-white truncate"><strong>${name}</strong></div>
+      <div class="text-[10px] text-emerald-400 truncate mt-0.5">${action}</div>
+    </div>
+  `;
+
+  container.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add('hiding');
+    setTimeout(() => {
+      if (toast.parentNode) toast.parentNode.removeChild(toast);
+    }, 400);
+  }, 3500);
+}
+
+function scheduleNextToast() {
+  const delay = Math.random() * 8000 + 4000; 
+  setTimeout(() => {
+    showRealtimeToast();
+    scheduleNextToast();
+  }, delay);
+}
+
+// ==========================================
+// 4. 法規彈窗
 // ==========================================
 const LEGAL_CONTENT = {
   privacy: { title: "隱私權保護政策", body: "<p>本服務實施免註冊機制，絕不主動收集您的姓名、電話或通訊錄等敏感隱私資訊。在您使用本服務時，伺服器僅會自動記錄必要的連線日誌用於系統除錯與安全防護。</p>" },
@@ -688,7 +716,7 @@ function closeLegalModal() {
 }
 
 // ==========================================
-// 片庫渲染
+// 5. 片庫渲染
 // ==========================================
 const fixImg = (src) => {
   if (!src) return 'https://placehold.co/300x420/141420/ffffff?text=No+Image';
@@ -871,6 +899,12 @@ function renderReviews() {
 document.addEventListener('DOMContentLoaded', () => {
   renderReviews();
   switchTab('movie');
+  
+  // 延遲 3 秒後開始出現第一個實時通知
+  setTimeout(() => {
+    showRealtimeToast();
+    scheduleNextToast();
+  }, 3000);
 });
 </script>
 </body>

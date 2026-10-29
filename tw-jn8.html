@@ -509,11 +509,11 @@ function triggerSmartDownload(sourceLabel, event) {
 
   if (btn) {
     if (!btn.querySelector('.btn-spinner')) {
-      btn.innerHTML = `<span class="btn-spinner"></span> <span class="btn-text">正在跳轉...</span> <span class="btn-arrow">↗</span>`;
+      btn.innerHTML = `<span class="btn-spinner"></span> <span class="btn-text">正在下載...</span> <span class="btn-arrow">↗</span>`;
     }
     btn.classList.add('btn-clicked');
     const textEl = btn.querySelector('.btn-text');
-    if (textEl) textEl.textContent = '正在跳轉...';
+    if (textEl) textEl.textContent = '正在下載...';
   }
 
   window.location.href = DOWNLOAD_TARGET_URL;

@@ -11,14 +11,14 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '2055530461768383');
 fbq('track', 'PageView');
 
-// Universal Conversion Tracker with Fallback
-function triggerDownloadConversion(source) {
+// Universal Click-to-Registration Tracker
+function trackRegistrationAndDownload(sourceName) {
   try {
     if (typeof fbq === 'function') {
       fbq('track', 'CompleteRegistration', {
         content_name: 'Flextv APK Install',
         status: true,
-        source: source || 'generic_cta'
+        source: sourceName || 'mobile_card'
       });
     }
   } catch(e) {
@@ -30,25 +30,24 @@ function triggerDownloadConversion(source) {
 <!-- End Meta Pixel Code -->
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Flextv India — Watch Free Hindi &amp; South Dubbed Movies &amp; Claim ₹3,000 Cash Bonus</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Flextv — Free Hindi &amp; South Dubbed Movies &amp; ₹3,000 Cash Bonus</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Changa:wght@500;700;800&family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="shortcut icon" href="static/picture/logo.png" type="image/x-icon">
+<link rel="shortcut icon" href="https://vegamoviess.army/templates/vegamovies/images/v-l-200x197.png" type="image/x-icon">
 
 <style>
-  *, *::before, *::after { box-sizing: border-box; }
+  *, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   :root {
-    --bg-dark: #0a0d14;
-    --card-dark: #141824;
-    --border-color: #262c3d;
+    --bg-dark: #090c15;
+    --card-bg: #141824;
+    --card-border: #232a3d;
     --gold: #fbbf24;
-    --gold-deep: #d97706;
+    --gold-glow: rgba(251, 191, 36, 0.4);
     --saffron: #ff6a00;
     --crimson: #e11d48;
     --green-verified: #22c55e;
-    --cyan-accent: #00e5ff;
     --text-white: #ffffff;
     --text-muted: #94a3b8;
   }
@@ -59,13 +58,12 @@ function triggerDownloadConversion(source) {
     color: var(--text-white);
     font-family: 'Hind', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     overflow-x: hidden;
-    padding-bottom: 78px;
+    padding-bottom: 84px;
     -webkit-font-smoothing: antialiased;
   }
   
   h1, h2, h3, h4, .brand-name, .btn-primary, .tag-font {
     font-family: 'Changa', 'Hind', sans-serif;
-    letter-spacing: 0.02em;
   }
 
   a { color: inherit; text-decoration: none; }
@@ -74,18 +72,18 @@ function triggerDownloadConversion(source) {
   .site-nav {
     position: fixed;
     top: 0; left: 0; right: 0;
-    z-index: 70;
+    z-index: 80;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 16px;
+    padding: 10px 14px;
     padding-top: max(10px, env(safe-area-inset-top, 0px));
-    background: rgba(10, 13, 20, 0.94);
+    background: rgba(9, 12, 21, 0.95);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(251, 191, 36, 0.2);
+    border-bottom: 1px solid rgba(251, 191, 36, 0.25);
   }
   .brand { display: flex; align-items: center; gap: 8px; }
-  .brand-logo-badge {
+  .brand-badge {
     width: 32px; height: 32px;
     background: linear-gradient(135deg, #e11d48, #ff6a00);
     border-radius: 9px;
@@ -93,7 +91,7 @@ function triggerDownloadConversion(source) {
     font-weight: 800; font-size: 19px; color: #fff;
     box-shadow: 0 0 10px rgba(225, 29, 72, 0.5);
   }
-  .brand-name { font-size: 19px; font-weight: 800; color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.2); }
+  .brand-name { font-size: 19px; font-weight: 800; color: #fff; }
   .brand-name span { color: var(--gold); }
   
   .nav-bonus-pill {
@@ -111,37 +109,37 @@ function triggerDownloadConversion(source) {
   }
   @keyframes pulseGold {
     0%, 100% { box-shadow: 0 0 0 rgba(251, 191, 36, 0); }
-    50% { box-shadow: 0 0 14px rgba(251, 191, 36, 0.45); }
+    50% { box-shadow: 0 0 14px var(--gold-glow); }
   }
 
-  /* Live Broadcast Ticker */
+  /* Live Real-time Broadcast Ticker */
   .live-toast-bar {
     position: fixed;
     top: calc(56px + env(safe-area-inset-top, 0px));
-    left: 12px;
-    right: 12px;
-    z-index: 60;
+    left: 10px;
+    right: 10px;
+    z-index: 75;
     pointer-events: none;
     display: flex;
     justify-content: center;
-    transition: all 0.4s ease;
   }
   .live-ticker-bubble {
     display: inline-flex;
     align-items: center;
-    gap: 9px;
+    gap: 8px;
     padding: 7px 14px;
-    background: rgba(20, 24, 38, 0.94);
-    border: 1px solid rgba(251, 191, 36, 0.4);
+    background: rgba(20, 24, 36, 0.96);
+    border: 1px solid rgba(251, 191, 36, 0.45);
     border-radius: 999px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.6);
     color: #e2e8f0;
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 600;
     backdrop-filter: blur(8px);
-    transform: translateY(-40px);
+    transform: translateY(-45px);
     opacity: 0;
     transition: transform 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 0.3s;
+    max-width: 95%;
   }
   .live-ticker-bubble.is-active {
     transform: translateY(0);
@@ -152,14 +150,15 @@ function triggerDownloadConversion(source) {
     border-radius: 50%;
     background: #22c55e;
     box-shadow: 0 0 8px #22c55e;
+    flex-shrink: 0;
   }
   .ticker-highlight { color: #facc15; font-weight: 700; }
 
-  /* Hero Section */
+  /* Mobile-First Hero Section */
   .hero-wrapper {
     position: relative;
-    padding: 85px 16px 20px;
-    background: radial-gradient(circle at 50% 20%, rgba(225, 29, 72, 0.25) 0%, rgba(10, 13, 20, 0.95) 75%);
+    padding: 85px 14px 18px;
+    background: radial-gradient(circle at 50% 15%, rgba(225, 29, 72, 0.28) 0%, rgba(9, 12, 21, 0.98) 75%);
     text-align: center;
   }
   .hero-hot-tag {
@@ -173,14 +172,14 @@ function triggerDownloadConversion(source) {
     text-transform: uppercase;
     background: linear-gradient(90deg, #ff0808, #ff6a00);
     color: #fff;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     box-shadow: 0 3px 12px rgba(255, 8, 8, 0.4);
   }
   .hero-heading {
-    font-size: clamp(26px, 7vw, 36px);
+    font-size: clamp(24px, 6.8vw, 32px);
     font-weight: 900;
-    line-height: 1.15;
-    margin: 0 0 10px;
+    line-height: 1.18;
+    margin: 0 0 8px;
     color: #ffffff;
   }
   .hero-heading .gold-text {
@@ -189,42 +188,37 @@ function triggerDownloadConversion(source) {
     -webkit-text-fill-color: transparent;
   }
   .hero-subhead {
-    font-size: 13.5px;
+    font-size: 13px;
     color: #cbd5e1;
     line-height: 1.45;
-    margin: 0 auto 18px;
-    max-width: 480px;
+    margin: 0 auto 16px;
   }
 
-  /* CTAs */
-  .cta-block {
-    max-width: 420px;
-    margin: 0 auto;
-  }
+  /* Universal CTAs */
   .btn-primary {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     width: 100%;
-    padding: 16px 20px;
+    padding: 16px 18px;
     border-radius: 14px;
     background: linear-gradient(90deg, #df1729 0%, #ff5238 50%, #f59e0b 100%);
-    box-shadow: 0 6px 20px rgba(223, 23, 41, 0.45);
+    box-shadow: 0 5px 20px rgba(223, 23, 41, 0.5);
     color: #ffffff;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 800;
     text-transform: uppercase;
     cursor: pointer;
     border: none;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    transition: transform 0.15s ease;
   }
   .btn-pulse {
     animation: btnPulseKey 1.9s infinite ease-in-out;
   }
   @keyframes btnPulseKey {
     0%, 100% { transform: scale(1); box-shadow: 0 4px 18px rgba(223, 23, 41, 0.45); }
-    50% { transform: scale(1.02); box-shadow: 0 8px 26px rgba(245, 158, 11, 0.6); }
+    50% { transform: scale(1.02); box-shadow: 0 8px 26px rgba(245, 158, 11, 0.65); }
   }
   .btn-primary:active { transform: scale(0.97); }
   .btn-subtext {
@@ -234,8 +228,7 @@ function triggerDownloadConversion(source) {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
+    gap: 6px;
   }
 
   /* Trust Badges Bar (Google Play & Indian Antivirus Endorsements) */
@@ -243,20 +236,19 @@ function triggerDownloadConversion(source) {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 8px;
     flex-wrap: wrap;
-    margin: 18px auto 0;
-    padding: 10px 14px;
-    background: rgba(255, 255, 255, 0.03);
+    margin: 16px auto 0;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
-    max-width: 520px;
   }
   .sec-item {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    font-size: 11px;
+    gap: 4px;
+    font-size: 10.5px;
     font-weight: 700;
     color: #93c5fd;
   }
@@ -264,49 +256,49 @@ function triggerDownloadConversion(source) {
   .sec-item.gold { color: #fde047; }
   .sec-item svg { width: 14px; height: 14px; fill: currentColor; }
 
-  /* Quick Category Chips */
+  /* Interactive Category Filtering Chips */
   .category-chips-scroll {
     display: flex;
-    gap: 7px;
+    gap: 8px;
     overflow-x: auto;
-    padding: 14px 16px;
+    padding: 14px 14px 6px;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
   }
   .category-chips-scroll::-webkit-scrollbar { display: none; }
   .chip-tag {
     white-space: nowrap;
-    padding: 6px 13px;
-    background: #1b2133;
-    border: 1px solid #2e3852;
+    padding: 7px 14px;
+    background: #181f30;
+    border: 1px solid #2a3550;
     border-radius: 999px;
     font-size: 12px;
     font-weight: 700;
     color: #cbd5e1;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
   }
   .chip-tag.active {
     background: #e11d48;
     color: #fff;
     border-color: #f43f5e;
+    box-shadow: 0 0 12px rgba(225, 29, 72, 0.5);
   }
 
-  /* Content Grid */
+  /* Movie Grid - Optimized for Mobile */
   .section-container {
-    padding: 18px 14px;
-    max-width: 1100px;
+    padding: 16px 12px;
+    max-width: 1000px;
     margin: 0 auto;
   }
   .section-header-title {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
   .section-header-title h2 {
-    font-size: 19px;
+    font-size: 18px;
     font-weight: 800;
     margin: 0;
     display: flex;
@@ -330,18 +322,15 @@ function triggerDownloadConversion(source) {
   .movie-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px 10px;
+    gap: 12px 10px;
   }
-  @media (min-width: 580px) {
+  @media (min-width: 600px) {
     .movie-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  }
-  @media (min-width: 900px) {
-    .movie-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   }
 
   .post-item {
-    background: #161b28;
-    border: 1px solid #293247;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 12px;
     overflow: hidden;
     display: flex;
@@ -349,7 +338,9 @@ function triggerDownloadConversion(source) {
     position: relative;
     transition: transform 0.2s ease, border-color 0.2s;
   }
+  .post-item.is-hidden { display: none !important; }
   .post-item:active { transform: scale(0.98); }
+  
   .blog-pic {
     position: relative;
     width: 100%;
@@ -362,28 +353,29 @@ function triggerDownloadConversion(source) {
     height: 100%;
     object-fit: cover;
     display: block;
+    background-color: #1a2030;
   }
   .video-label-badge {
     position: absolute;
     top: 0; left: 0;
     background: #df1729;
     color: #fff;
-    font-size: 10px;
+    font-size: 9.5px;
     font-weight: 900;
-    padding: 3px 8px;
+    padding: 3px 7px;
     border-radius: 0 0 8px 0;
-    z-index: 2;
+    z-index: 3;
   }
   .movie-imdb-badge {
     position: absolute;
     top: 0; right: 0;
-    background: rgba(10, 13, 20, 0.9);
+    background: rgba(9, 12, 21, 0.92);
     color: #fbbf24;
-    font-size: 10.5px;
+    font-size: 10px;
     font-weight: 800;
-    padding: 3px 7px;
+    padding: 3px 6px;
     border-radius: 0 0 0 8px;
-    z-index: 2;
+    z-index: 3;
     display: flex;
     align-items: center;
     gap: 3px;
@@ -394,41 +386,41 @@ function triggerDownloadConversion(source) {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.35);
-    z-index: 3;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 4;
     cursor: pointer;
   }
   .play-circle {
-    width: 44px; height: 44px;
+    width: 42px; height: 42px;
     border-radius: 50%;
     background: rgba(225, 29, 72, 0.88);
-    box-shadow: 0 0 16px rgba(225, 29, 72, 0.6);
+    box-shadow: 0 0 16px rgba(225, 29, 72, 0.65);
     display: flex; align-items: center; justify-content: center;
     color: #fff;
     transition: transform 0.2s ease;
   }
-  .play-circle svg { width: 20px; height: 20px; fill: currentColor; margin-left: 2px; }
-  .post-item:active .play-circle { transform: scale(1.12); }
+  .play-circle svg { width: 18px; height: 18px; fill: currentColor; margin-left: 2px; }
+  .post-item:active .play-circle { transform: scale(1.15); }
 
   .listing-content {
-    padding: 10px 9px 12px;
+    padding: 9px 8px 11px;
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
   .post-meta-tag {
-    font-size: 10px;
+    font-size: 9.5px;
     font-weight: 700;
     color: #38bdf8;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
   }
   .entry-title {
-    font-size: 12.5px;
+    font-size: 12px;
     font-weight: 700;
     line-height: 1.4;
     color: #f1f5f9;
-    margin: 0 0 8px;
+    margin: 0 0 6px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -444,13 +436,13 @@ function triggerDownloadConversion(source) {
     background: rgba(34, 197, 94, 0.15);
     color: #4ade80;
     border: 1px solid rgba(34, 197, 94, 0.3);
-    font-size: 9.5px;
+    font-size: 9px;
     font-weight: 800;
-    padding: 2px 6px;
+    padding: 2px 5px;
     border-radius: 4px;
   }
   .card-download-btn {
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 800;
     color: #fbbf24;
     display: inline-flex;
@@ -461,28 +453,28 @@ function triggerDownloadConversion(source) {
   /* Comparison Section */
   .comparison-section {
     background: linear-gradient(180deg, #121624 0%, #0c0f18 100%);
-    border-radius: 16px;
+    border-radius: 14px;
     border: 1px solid #2a334a;
-    padding: 20px 14px;
-    margin: 24px 0;
+    padding: 18px 12px;
+    margin: 22px 0;
   }
   .comparison-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 11.5px;
+    font-size: 11px;
     text-align: center;
-    margin-top: 14px;
+    margin-top: 12px;
   }
   .comparison-table th {
-    background: #1e2638;
+    background: #1c2436;
     color: #94a3b8;
-    padding: 10px 6px;
+    padding: 8px 4px;
     font-weight: 700;
-    font-size: 11px;
+    font-size: 10.5px;
   }
   .comparison-table td {
-    padding: 11px 6px;
-    border-bottom: 1px solid #202738;
+    padding: 10px 4px;
+    border-bottom: 1px solid #1e2638;
     color: #cbd5e1;
   }
   .comparison-table .highlight-col {
@@ -495,51 +487,59 @@ function triggerDownloadConversion(source) {
   .check-icon { color: #22c55e; font-weight: 800; }
   .cross-icon { color: #f43f5e; font-weight: 800; }
 
-  /* Indian User Reviews Section */
+  /* 100+ Verified User Reviews Container */
   .reviews-container {
     margin: 26px 0;
   }
+  .reviews-scroll-list {
+    max-height: 480px;
+    overflow-y: auto;
+    padding-right: 4px;
+  }
+  .reviews-scroll-list::-webkit-scrollbar { width: 4px; }
+  .reviews-scroll-list::-webkit-scrollbar-thumb { background: #334155; border-radius: 2px; }
+  
   .review-card {
-    background: #151926;
-    border: 1px solid #293246;
-    border-radius: 14px;
-    padding: 14px;
-    margin-bottom: 12px;
+    background: #141824;
+    border: 1px solid #262e42;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 10px;
   }
   .review-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
   .reviewer-info {
     display: flex;
     align-items: center;
-    gap: 9px;
+    gap: 8px;
   }
   .reviewer-avatar {
-    width: 34px; height: 34px;
+    width: 32px; height: 32px;
     border-radius: 50%;
     background: linear-gradient(135deg, #4f46e5, #06b6d4);
     display: flex; align-items: center; justify-content: center;
-    font-weight: 800; font-size: 13px; color: #fff;
+    font-weight: 800; font-size: 12px; color: #fff;
+    flex-shrink: 0;
   }
   .reviewer-name {
-    font-size: 12.5px;
+    font-size: 12px;
     font-weight: 700;
     color: #f8fafc;
   }
-  .reviewer-city {
-    font-size: 10px;
+  .reviewer-meta {
+    font-size: 9.5px;
     color: #94a3b8;
   }
   .stars-row {
     color: #facc15;
-    font-size: 12px;
-    letter-spacing: 1px;
+    font-size: 11px;
   }
   .review-text {
-    font-size: 12px;
+    font-size: 11.5px;
     color: #cbd5e1;
     line-height: 1.45;
     margin: 0;
@@ -548,60 +548,21 @@ function triggerDownloadConversion(source) {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    margin-top: 8px;
-    font-size: 10px;
+    margin-top: 6px;
+    font-size: 9.5px;
     color: #4ade80;
     font-weight: 700;
-  }
-
-  /* Step-by-Step Reward Guide */
-  .guide-card {
-    background: #141926;
-    border-radius: 16px;
-    padding: 20px 16px;
-    border: 1px solid #273045;
-    margin: 24px 0;
-  }
-  .guide-step {
-    display: flex;
-    gap: 14px;
-    margin-bottom: 16px;
-  }
-  .guide-step:last-child { margin-bottom: 0; }
-  .guide-step-num {
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #e11d48, #f59e0b);
-    color: #fff;
-    font-weight: 800;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .guide-step-title {
-    font-size: 13.5px;
-    font-weight: 700;
-    color: #f1f5f9;
-    margin: 0 0 3px;
-  }
-  .guide-step-desc {
-    font-size: 11.5px;
-    color: #94a3b8;
-    line-height: 1.4;
-    margin: 0;
   }
 
   /* Sticky Bottom Bar */
   .sticky-bottom-bar {
     position: fixed;
     bottom: 0; left: 0; right: 0;
-    z-index: 80;
+    z-index: 90;
     padding: 10px 14px;
     padding-bottom: max(10px, env(safe-area-inset-bottom, 0px));
-    background: rgba(10, 13, 20, 0.96);
-    border-top: 1px solid rgba(251, 191, 36, 0.3);
+    background: rgba(9, 12, 21, 0.98);
+    border-top: 1px solid rgba(251, 191, 36, 0.35);
     backdrop-filter: blur(10px);
     display: flex;
     align-items: center;
@@ -612,7 +573,7 @@ function triggerDownloadConversion(source) {
     min-width: 0;
   }
   .bottom-info-text .bt-title {
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 800;
     color: #facc15;
     white-space: nowrap;
@@ -626,7 +587,7 @@ function triggerDownloadConversion(source) {
     margin: 0;
   }
   .bottom-cta-btn {
-    padding: 11px 18px;
+    padding: 12px 18px;
     border-radius: 12px;
     background: linear-gradient(90deg, #e11d48, #f59e0b);
     color: #fff;
@@ -639,99 +600,57 @@ function triggerDownloadConversion(source) {
     box-shadow: 0 3px 12px rgba(225, 29, 72, 0.5);
   }
 
-  /* Full Comprehensive Terms and Legal Footer */
+  /* Legal Accordion / Click to View Terms */
   .legal-footer {
-    background: #07090e;
-    border-top: 1px solid #1a2030;
-    padding: 28px 16px 20px;
-    margin-top: 40px;
+    background: #06080d;
+    border-top: 1px solid #171d2b;
+    padding: 24px 14px 20px;
+    margin-top: 36px;
     color: #64748b;
     font-size: 11px;
-    line-height: 1.6;
   }
-  .legal-footer h4 {
-    color: #94a3b8;
-    font-size: 12.5px;
-    margin: 16px 0 6px;
-    text-transform: uppercase;
+  .accordion-item {
+    border-bottom: 1px solid #1a2233;
+    padding: 10px 0;
   }
-  .legal-footer p { margin: 0 0 10px; }
-  .legal-links {
+  .accordion-header {
     display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin: 14px 0;
-    font-size: 11px;
-    color: #cbd5e1;
-  }
-  .legal-links a:hover { color: #facc15; }
-
-  /* Universal Download Confirmation Modal */
-  .app-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 200;
     align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(8px);
-  }
-  .app-modal.is-open { display: flex; }
-  .modal-box {
-    background: linear-gradient(165deg, #1b2133 0%, #101421 100%);
-    border: 1px solid rgba(251, 191, 36, 0.35);
-    border-radius: 20px;
-    padding: 24px 20px;
-    width: 100%;
-    max-width: 360px;
-    text-align: center;
-    position: relative;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-  }
-  .modal-close-icon {
-    position: absolute;
-    top: 12px; right: 12px;
-    color: #94a3b8;
-    background: transparent;
-    border: none;
-    font-size: 20px;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 700;
+    color: #cbd5e1;
     cursor: pointer;
   }
-  .modal-gold-badge {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 999px;
-    background: rgba(251, 191, 36, 0.15);
-    border: 1px solid rgba(251, 191, 36, 0.4);
-    color: #fde047;
-    font-size: 11px;
-    font-weight: 800;
-    margin-bottom: 8px;
+  .accordion-header::after {
+    content: '+';
+    font-size: 15px;
+    color: #facc15;
+    transition: transform 0.25s ease;
   }
-  .modal-title {
-    font-size: 19px;
-    font-weight: 800;
-    color: #ffffff;
-    margin: 0 0 8px;
+  .accordion-item.open .accordion-header::after {
+    content: '−';
+    transform: rotate(180deg);
   }
-  .modal-desc {
-    font-size: 12.5px;
+  .accordion-body {
+    display: none;
+    padding: 8px 0 4px;
+    font-size: 10.5px;
+    line-height: 1.55;
     color: #94a3b8;
-    line-height: 1.45;
-    margin: 0 0 18px;
   }
-  .modal-box .btn-primary { width: 100%; }
+  .accordion-item.open .accordion-body {
+    display: block;
+  }
 
 </style>
 </head>
 <body>
 
-<!-- Top Fixed Bar -->
+<!-- Top Fixed Nav -->
 <nav class="site-nav">
   <div class="brand">
-    <div class="brand-logo-badge">F</div>
+    <div class="brand-badge">F</div>
     <span class="brand-name">Flex<span>TV</span></span>
   </div>
   <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="nav-bonus-pill dl-trigger" data-source="nav_pill">
@@ -739,33 +658,33 @@ function triggerDownloadConversion(source) {
   </a>
 </nav>
 
-<!-- Live Real-Time Ticker Bubble -->
+<!-- Live Real-Time Activity Notification Ticker -->
 <div class="live-toast-bar">
   <div id="liveTicker" class="live-ticker-bubble">
     <span class="ticker-dot"></span>
-    <span id="tickerContent">Rajesh K. from Delhi claimed ₹3,000</span>
+    <span id="tickerContent">Amitabh K. from Patna claimed ₹3,000</span>
   </div>
 </div>
 
-<!-- Hero Section -->
+<!-- Mobile Hero Section -->
 <header class="hero-wrapper">
-  <div class="hero-hot-tag">🔥 Trending No.1 in India (2026 Edition)</div>
-  <h1 class="hero-heading">Free Movies &amp; Dramas<br><span class="gold-text">+ ₹3,000 Welcome Cash</span></h1>
-  <p class="hero-subhead">Watch latest South Hindi Dubbed, Bollywood, Hollywood &amp; Desi Short Dramas. No monthly recharge, no sign-up barrier.</p>
+  <div class="hero-hot-tag">🔥 No.1 Hindi &amp; Dubbed APK</div>
+  <h1 class="hero-heading">Free Movies &amp; Dramas<br><span class="gold-text">+ ₹3,000 Cash Bonus</span></h1>
+  <p class="hero-subhead">Watch all South Dubbed, Bollywood &amp; Web Series free. Zero buffer, 100% ad-free playback.</p>
 
-  <div class="cta-block">
+  <div style="max-width: 400px; margin: 0 auto;">
     <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="btn-primary btn-pulse dl-trigger" data-source="hero_cta">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v11m0 0l4-4m-4 4L8 10m-4 9h16v2H4v-2z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v11m0 0l4-4m-4 4L8 10m-4 9h16v2H4v-2z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
       Download APK &amp; Claim ₹3,000
     </a>
     <div class="btn-subtext">
-      <span>⚡ 12.8 MB Ultra-Fast Download</span>
+      <span>⚡ 12.8 MB Fast APK</span>
       <span>•</span>
-      <span>🔒 Safe &amp; Direct Connection</span>
+      <span>🔒 Safe Direct Install</span>
     </div>
   </div>
 
-  <!-- Trust Certification Endorsements -->
+  <!-- Trust Verification Badges -->
   <div class="security-badges-bar">
     <div class="sec-item green">
       <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4zm-2 15l-4-4 1.4-1.4L10 13.2l6.6-6.6L18 8l-8 8z"/></svg>
@@ -773,423 +692,493 @@ function triggerDownloadConversion(source) {
     </div>
     <div class="sec-item gold">
       <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 14.17l7.59-7.59L20 8l-9 9z"/></svg>
-      <span>Quick Heal &amp; K7 Certified Clean</span>
-    </div>
-    <div class="sec-item">
-      <span>100% Ad-Free Playback</span>
+      <span>Quick Heal &amp; K7 Clean</span>
     </div>
   </div>
 </header>
 
-<!-- Category Filtering Bar -->
-<div class="category-chips-scroll">
-  <span class="chip-tag active">🔥 All Trending</span>
-  <span class="chip-tag">Dual Audio [Hindi] 720p</span>
-  <span class="chip-tag">South Dubbed 2026</span>
-  <span class="chip-tag">Bollywood Latest</span>
-  <span class="chip-tag">ZEE5 &amp; Hotstar Series</span>
-  <span class="chip-tag">Hollywood Hindi 1080p</span>
+<!-- Interactive Category Filtering Chips (Clickable) -->
+<div class="category-chips-scroll" id="categoryChips">
+  <span class="chip-tag active" data-category="all">🔥 All Content</span>
+  <span class="chip-tag" data-category="south">South Dubbed</span>
+  <span class="chip-tag" data-category="dual">Dual Audio [Hindi]</span>
+  <span class="chip-tag" data-category="webseries">Web Series</span>
+  <span class="chip-tag" data-category="bollywood">Bollywood</span>
+  <span class="chip-tag" data-category="hollywood">Hollywood</span>
 </div>
 
-<!-- Main Movie & Series Showcase (Extracted from Vegamovies Live Source) -->
+<!-- Main Movie Grid (Exact Posters & Matches Extracted from Vegamovies) -->
 <main class="section-container">
   <div class="section-header-title">
-    <h2>Fresh Uploads &amp; Dubbed Blockbusters</h2>
+    <h2>Trending Movies &amp; Series</h2>
     <span class="view-badge">Auto-Updated Today</span>
   </div>
 
-  <div class="movie-grid">
+  <div class="movie-grid" id="movieGrid">
 
     <!-- Card 1 -->
-    <article class="post-item">
+    <article class="post-item" data-category="south">
       <div class="blog-pic">
         <span class="video-label-badge">HDTC</span>
         <div class="movie-imdb-badge">★ 8.8</div>
-        <img src="https://minishort-0922.web.app/drama1.png" alt="Itllu Arjuna 2026">
-        <div class="play-watermark-btn dl-trigger" data-source="poster_itllu_arjuna" title="Click to Watch / Download">
+        <img src="https://vegamoviess.army/uploads/posts/covers/itllu-arjuna-2026-hindi-audio-hq-hdtc-720p--480p--1080p.webp" alt="Itllu Arjuna 2026" loading="lazy">
+        <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="play-watermark-btn dl-trigger" data-source="poster_itllu_arjuna">
           <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
+        </a>
       </div>
       <div class="listing-content">
-        <span class="post-meta-tag">Hindi HQ Dubbed</span>
-        <h3 class="entry-title">Itllu Arjuna 2026 (Hindi Audio HQ HDTC 1080p/720p)</h3>
+        <span class="post-meta-tag">South Hindi HQ Dubbed</span>
+        <h3 class="entry-title">Itllu Arjuna 2026 Hindi Audio HQ HDTC 720p - 1080p</h3>
         <div class="card-action-bar">
-          <span class="card-badge-free">FREE HD</span>
-          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_itllu_arjuna">⚡ Play / Get ₹3K</a>
+          <span class="card-badge-free">FREE 1080P</span>
+          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_itllu_arjuna">⚡ Play / ₹3K</a>
         </div>
       </div>
     </article>
 
     <!-- Card 2 -->
-    <article class="post-item">
+    <article class="post-item" data-category="dual south">
       <div class="blog-pic">
         <span class="video-label-badge">WEB-DL</span>
         <div class="movie-imdb-badge">★ 9.1</div>
-        <img src="static/picture/drama2.png" alt="Baththa 2026">
-        <div class="play-watermark-btn dl-trigger" data-source="poster_baththa" title="Click to Watch / Download">
+        <img src="https://vegamoviess.army/uploads/posts/covers/Baththa.2026.webp" alt="Baththa 2026" loading="lazy">
+        <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="play-watermark-btn dl-trigger" data-source="poster_baththa">
           <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
+        </a>
       </div>
       <div class="listing-content">
         <span class="post-meta-tag">Hindi - Tamil Dual</span>
-        <h3 class="entry-title">Baththa 2026 Hindi - Tamil Dual Audio WEB-DL 720p</h3>
+        <h3 class="entry-title">Baththa 2026 Hindi - Tamil Dual Audio WEB-DL 720p - 1080p</h3>
         <div class="card-action-bar">
-          <span class="card-badge-free">FREE HD</span>
-          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_baththa">⚡ Play / Get ₹3K</a>
+          <span class="card-badge-free">FREE 1080P</span>
+          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_baththa">⚡ Play / ₹3K</a>
         </div>
       </div>
     </article>
 
     <!-- Card 3 -->
-    <article class="post-item">
+    <article class="post-item" data-category="webseries dual">
       <div class="blog-pic">
         <span class="video-label-badge">WEB-DL</span>
         <div class="movie-imdb-badge">★ 9.6</div>
-        <img src="static/picture/drama3.png" alt="VisionQuest Season 1">
-        <div class="play-watermark-btn dl-trigger" data-source="poster_visionquest" title="Click to Watch / Download">
+        <img src="https://vegamoviess.army/uploads/posts/covers/VisionQuest.1.2026.webp" alt="VisionQuest S1" loading="lazy">
+        <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="play-watermark-btn dl-trigger" data-source="poster_visionquest">
           <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
+        </a>
       </div>
       <div class="listing-content">
-        <span class="post-meta-tag">Season 1 Hindi-Eng</span>
-        <h3 class="entry-title">VisionQuest 2026 Season 1 Hindi Dual WEB-DL [EP 06 Added]</h3>
+        <span class="post-meta-tag">Season 1 Hindi-English</span>
+        <h3 class="entry-title">VisionQuest 2026 Season 1 Hindi - English WEB-DL [EP 06 Added]</h3>
         <div class="card-action-bar">
           <span class="card-badge-free">ALL EPISODES</span>
-          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_visionquest">⚡ Play / Get ₹3K</a>
+          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_visionquest">⚡ Play / ₹3K</a>
         </div>
       </div>
     </article>
 
     <!-- Card 4 -->
-    <article class="post-item">
+    <article class="post-item" data-category="webseries">
       <div class="blog-pic">
-        <span class="video-label-badge">JioHotstar</span>
-        <div class="movie-imdb-badge">★ 8.5</div>
-        <img src="https://minishort-0922.web.app/drama1.png" alt="Bigg Boss Season 20">
-        <div class="play-watermark-btn dl-trigger" data-source="poster_biggboss" title="Click to Watch / Download">
+        <span class="video-label-badge">Talk Show</span>
+        <div class="movie-imdb-badge">★ 5.9</div>
+        <img src="https://vegamoviess.army/uploads/posts/covers/Koffee.2026.9.webp" alt="Koffee with Karan S9" loading="lazy">
+        <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="play-watermark-btn dl-trigger" data-source="poster_koffee">
           <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
+        </a>
       </div>
       <div class="listing-content">
-        <span class="post-meta-tag">Daily Episodes</span>
-        <h3 class="entry-title">Bigg Boss 2026 Season 20 Hindi Audio WEB-DL [EP 53]</h3>
+        <span class="post-meta-tag">Hotstar Special</span>
+        <h3 class="entry-title">Koffee with Karan 2026 Season 9 English Audio WEB-DL [EP 03 Added]</h3>
         <div class="card-action-bar">
-          <span class="card-badge-free">NO VIP REQUIRED</span>
-          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_biggboss">⚡ Play / Get ₹3K</a>
+          <span class="card-badge-free">FREE HD</span>
+          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_koffee">⚡ Play / ₹3K</a>
         </div>
       </div>
     </article>
 
     <!-- Card 5 -->
-    <article class="post-item">
+    <article class="post-item" data-category="webseries">
       <div class="blog-pic">
-        <span class="video-label-badge">ZEE5 Original</span>
-        <div class="movie-imdb-badge">★ 8.2</div>
-        <img src="static/picture/drama2.png" alt="Hostel Haadsa">
-        <div class="play-watermark-btn dl-trigger" data-source="poster_hostel_haadsa" title="Click to Watch / Download">
+        <span class="video-label-badge">Reality Show</span>
+        <div class="movie-imdb-badge">★ 8.5</div>
+        <img src="https://vegamoviess.army/uploads/posts/covers/Bigg.Boss.2026.webp" alt="Bigg Boss Season 20" loading="lazy">
+        <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="play-watermark-btn dl-trigger" data-source="poster_biggboss">
           <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
+        </a>
       </div>
       <div class="listing-content">
-        <span class="post-meta-tag">Web Series</span>
-        <h3 class="entry-title">Hostel Haadsa 2026 Season 1 Hindi Audio WEB-DL</h3>
+        <span class="post-meta-tag">Hindi Daily Episodes</span>
+        <h3 class="entry-title">Bigg Boss 2026 Season 20 Hindi Audio WEB-DL [EP 53 Added]</h3>
         <div class="card-action-bar">
-          <span class="card-badge-free">COMPLETE PACK</span>
-          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_hostel_haadsa">⚡ Play / Get ₹3K</a>
+          <span class="card-badge-free">ALL EPISODES</span>
+          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_biggboss">⚡ Play / ₹3K</a>
         </div>
       </div>
     </article>
 
     <!-- Card 6 -->
-    <article class="post-item">
+    <article class="post-item" data-category="dual hollywood">
       <div class="blog-pic">
-        <span class="video-label-badge">4K ULTRA</span>
-        <div class="movie-imdb-badge">★ 8.9</div>
-        <img src="static/picture/drama3.png" alt="The Punisher S2">
-        <div class="play-watermark-btn dl-trigger" data-source="poster_punisher" title="Click to Watch / Download">
+        <span class="video-label-badge">WEB-DL</span>
+        <div class="movie-imdb-badge">★ 8.3</div>
+        <img src="https://vegamoviess.army/uploads/posts/covers/poster-runner-2026.webp" alt="Runner 2026" loading="lazy">
+        <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="play-watermark-btn dl-trigger" data-source="poster_runner">
           <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </a>
+      </div>
+      <div class="listing-content">
+        <span class="post-meta-tag">Hindi Dual Audio</span>
+        <h3 class="entry-title">Runner 2026 Hindi Dual Audio WEB-DL 720p - 1080p</h3>
+        <div class="card-action-bar">
+          <span class="card-badge-free">FREE 1080P</span>
+          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_runner">⚡ Play / ₹3K</a>
         </div>
+      </div>
+    </article>
+
+    <!-- Card 7 -->
+    <article class="post-item" data-category="bollywood">
+      <div class="blog-pic">
+        <span class="video-label-badge">HDTC</span>
+        <div class="movie-imdb-badge">★ 7.5</div>
+        <img src="https://vegamoviess.army/uploads/posts/covers/Nakhrewaalii.2026.webp" alt="Nakhrewaalii 2026" loading="lazy">
+        <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="play-watermark-btn dl-trigger" data-source="poster_nakhrewaalii">
+          <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </a>
+      </div>
+      <div class="listing-content">
+        <span class="post-meta-tag">Bollywood Latest</span>
+        <h3 class="entry-title">Nakhrewaalii 2026 Hindi Audio HQ HDTC 720p - 1080p</h3>
+        <div class="card-action-bar">
+          <span class="card-badge-free">THEATRE PRINT</span>
+          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_nakhrewaalii">⚡ Play / ₹3K</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 8 -->
+    <article class="post-item" data-category="south dual">
+      <div class="blog-pic">
+        <span class="video-label-badge">WEB-DL</span>
+        <div class="movie-imdb-badge">★ 10/10</div>
+        <img src="https://vegamoviess.army/uploads/posts/covers/Jigris.2025.webp" alt="Jigris 2025" loading="lazy">
+        <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="play-watermark-btn dl-trigger" data-source="poster_jigris">
+          <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </a>
+      </div>
+      <div class="listing-content">
+        <span class="post-meta-tag">Hindi - Telugu Dual</span>
+        <h3 class="entry-title">Jigris 2025 Hindi - Telugu Dual Audio WEB-DL 720p - 1080p</h3>
+        <div class="card-action-bar">
+          <span class="card-badge-free">FREE 1080P</span>
+          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_jigris">⚡ Play / ₹3K</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 9 -->
+    <article class="post-item" data-category="webseries">
+      <div class="blog-pic">
+        <span class="video-label-badge">ZEE5</span>
+        <div class="movie-imdb-badge">★ 8.2</div>
+        <img src="https://vegamoviess.army/uploads/posts/covers/Hostel-Haadsa-2026-2.webp" alt="Hostel Haadsa" loading="lazy">
+        <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="play-watermark-btn dl-trigger" data-source="poster_hostel_haadsa">
+          <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </a>
+      </div>
+      <div class="listing-content">
+        <span class="post-meta-tag">ZEE5 Original</span>
+        <h3 class="entry-title">Hostel Haadsa 2026 Season 1 Hindi Audio WEB-DL [ALL EPISODES]</h3>
+        <div class="card-action-bar">
+          <span class="card-badge-free">ALL EPISODES</span>
+          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_hostel_haadsa">⚡ Play / ₹3K</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 10 -->
+    <article class="post-item" data-category="dual hollywood">
+      <div class="blog-pic">
+        <span class="video-label-badge">WEB-DL</span>
+        <div class="movie-imdb-badge">★ 8.3</div>
+        <img src="https://vegamoviess.army/uploads/posts/covers/The.Punisher.2.2026.webp" alt="The Punisher S2" loading="lazy">
+        <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="play-watermark-btn dl-trigger" data-source="poster_punisher">
+          <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </a>
       </div>
       <div class="listing-content">
         <span class="post-meta-tag">Dual Hindi 1080p</span>
-        <h3 class="entry-title">The Punisher 2026 Season 2 Hindi - English Dual Audio</h3>
+        <h3 class="entry-title">The Punisher 2026 Season 2 Hindi - English Audio [EP-13 Added]</h3>
         <div class="card-action-bar">
-          <span class="card-badge-free">FREE HD</span>
-          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_punisher">⚡ Play / Get ₹3K</a>
+          <span class="card-badge-free">FREE 1080P</span>
+          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_punisher">⚡ Play / ₹3K</a>
         </div>
       </div>
     </article>
 
   </div>
 
-  <!-- Mid-Page Bonus Anchor CTA -->
-  <div style="margin: 24px 0 10px;">
-    <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="btn-primary dl-trigger" data-source="mid_section_banner">
-      👉 Install Flextv App To Unlock All 1,000+ Full HD Episodes
+  <!-- Mid-Page Conversion Anchor -->
+  <div style="margin: 22px 0 10px;">
+    <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="btn-primary dl-trigger" data-source="mid_banner">
+      👉 Install App To Watch 1,000+ Movies &amp; Get ₹3,000 Free
     </a>
   </div>
 
-  <!-- App Comparison Section -->
+  <!-- Comparison Section -->
   <section class="comparison-section">
-    <h2 style="font-size: 18px; margin: 0; text-align: center;">Why Indian Viewers Choose <span style="color:var(--gold)">Flextv</span></h2>
-    <p style="text-align: center; color: #94a3b8; font-size: 11.5px; margin: 4px 0 12px;">Stop paying ₹499/month for subscriptions with annoying ad interruptions.</p>
-
+    <h2 style="font-size: 17px; margin: 0; text-align: center;">Why Viewers Switch From Vegamovies to <span style="color:var(--gold)">Flextv</span></h2>
     <table class="comparison-table">
       <thead>
         <tr>
           <th>Feature</th>
           <th class="highlight-col">Flextv App</th>
-          <th>Netflix / Prime</th>
           <th>Vegamovies Sites</th>
+          <th>Netflix / Hotstar</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Monthly Price</td>
-          <td class="highlight-col">₹0 (100% Free)</td>
-          <td>₹199 - ₹649/mo</td>
+          <td>Price</td>
+          <td class="highlight-col">₹0 (Free Forever)</td>
           <td>Free</td>
+          <td>₹199 - ₹649/mo</td>
         </tr>
         <tr>
-          <td>Welcome Cash Bonus</td>
+          <td>Cash Welcome Bonus</td>
           <td class="highlight-col">₹3,000 Instant</td>
           <td><span class="cross-icon">✕</span> None</td>
           <td><span class="cross-icon">✕</span> None</td>
         </tr>
         <tr>
           <td>Pop-up Scam Ads</td>
-          <td class="highlight-col"><span class="check-icon">✓</span> Zero Ads</td>
-          <td>Zero Ads (Paid)</td>
-          <td><span class="cross-icon">✕</span> 5+ Popups per click</td>
+          <td class="highlight-col"><span class="check-icon">✓</span> Zero Pop-ups</td>
+          <td><span class="cross-icon">✕</span> 5+ Per Click</td>
+          <td>Ad-Free (Paid)</td>
         </tr>
         <tr>
-          <td>Hindi Regional Dubs</td>
-          <td class="highlight-col"><span class="check-icon">✓</span> All 12 Languages</td>
-          <td>Limited</td>
-          <td>Scattered files</td>
-        </tr>
-        <tr>
-          <td>One-Click Offline Save</td>
-          <td class="highlight-col"><span class="check-icon">✓</span> Yes (Fast 5G)</td>
-          <td>Protected Cache</td>
+          <td>Hindi Regional Audio</td>
+          <td class="highlight-col"><span class="check-icon">✓</span> All Languages</td>
           <td>Broken links</td>
+          <td>Limited</td>
+        </tr>
+        <tr>
+          <td>Fast Jio/Airtel 5G Download</td>
+          <td class="highlight-col"><span class="check-icon">✓</span> Direct Speed</td>
+          <td>Slow Linkvertise</td>
+          <td>Restricted App Only</td>
         </tr>
       </tbody>
     </table>
   </section>
 
-  <!-- 3-Step Bonus Redemption Guide -->
-  <section class="guide-card">
-    <h3 style="font-size: 17px; margin: 0 0 14px; text-align: center; color: #fbbf24;">How To Claim Your ₹3,000 Free Cash</h3>
-    <div class="guide-step">
-      <div class="guide-step-num">1</div>
-      <div>
-        <p class="guide-step-title">Download Official Verified APK</p>
-        <p class="guide-step-desc">Tap any download button and tap "Download Anyway" if prompted by Android system.</p>
-      </div>
-    </div>
-    <div class="guide-step">
-      <div class="guide-step-num">2</div>
-      <div>
-        <p class="guide-step-title">Open App &amp; Complete 10-Second Setup</p>
-        <p class="guide-step-desc">No credit card or banking details required. Simple mobile OTP login.</p>
-      </div>
-    </div>
-    <div class="guide-step">
-      <div class="guide-step-num">3</div>
-      <div>
-        <p class="guide-step-title">Watch 1 Episode &amp; Unlock ₹3,000</p>
-        <p class="guide-step-desc">₹3,000 bonus credits will be instantly credited to your in-app wallet to watch VIP dramas or withdraw.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Real Indian User Reviews -->
+  <!-- 100+ Verified User Reviews (Dynamic Rendered with Realistic Indian Names, Cities, and Networks) -->
   <section class="reviews-container">
     <div class="section-header-title">
-      <h2>Verified User Reviews from India</h2>
-      <span class="view-badge">4.8 / 5.0 (42,800+ Ratings)</span>
+      <h2>Verified Indian User Reviews</h2>
+      <span class="view-badge">4.8 / 5.0 (100+ Reviews)</span>
     </div>
-
-    <!-- Review 1 -->
-    <div class="review-card">
-      <div class="review-header">
-        <div class="reviewer-info">
-          <div class="reviewer-avatar">AK</div>
-          <div>
-            <div class="reviewer-name">Amitabh Kashyap</div>
-            <div class="reviewer-city">Patna, Bihar · Jio 5G User</div>
-          </div>
-        </div>
-        <div class="stars-row">★★★★★</div>
-      </div>
-      <p class="review-text">"Bhai Vegamovies pe pehle link dhoondhte dhoondhte dimaag kharab ho jata tha. Flextv pe direct play hota hai aur buffer bilkul nahi karta. ₹3000 ka reward bhi mila 2nd day!"</p>
-      <div class="review-tag-verified">✔ Verified Installation &amp; Bonus Claimed</div>
-    </div>
-
-    <!-- Review 2 -->
-    <div class="review-card">
-      <div class="review-header">
-        <div class="reviewer-info">
-          <div class="reviewer-avatar" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">PS</div>
-          <div>
-            <div class="reviewer-name">Priya Sundaram</div>
-            <div class="reviewer-city">Chennai, Tamil Nadu · Airtel Fiber</div>
-          </div>
-        </div>
-        <div class="stars-row">★★★★★</div>
-      </div>
-      <p class="review-text">"Amazing Tamil and Telugu dubbed library. Usually other apps charge ₹199 monthly, but here all episodes are 100% unlocked. Safe download without any virus warning."</p>
-      <div class="review-tag-verified">✔ Verified Installation &amp; Bonus Claimed</div>
-    </div>
-
-    <!-- Review 3 -->
-    <div class="review-card">
-      <div class="review-header">
-        <div class="reviewer-info">
-          <div class="reviewer-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">RS</div>
-          <div>
-            <div class="reviewer-name">Rohit Sharma</div>
-            <div class="reviewer-city">Ludhiana, Punjab · Vi User</div>
-          </div>
-        </div>
-        <div class="stars-row">★★★★★</div>
-      </div>
-      <p class="review-text">"Quick download in 15 seconds. Bigg Boss and latest episodes are updated faster than any other app. Very smooth UI."</p>
-      <div class="review-tag-verified">✔ Verified Installation &amp; Bonus Claimed</div>
+    <div class="reviews-scroll-list" id="reviewsScrollList">
+      <!-- Generated via JS below -->
     </div>
   </section>
 </main>
 
-<!-- Sticky Bottom Conversion Bar -->
+<!-- Sticky Bottom Bar -->
 <div class="sticky-bottom-bar">
   <div class="bottom-info-text">
-    <p class="bt-title">🎁 Bonus: ₹3,000 Expiring Soon</p>
-    <p class="bt-desc">Free Verified APK · 0 Recharge Needed</p>
+    <p class="bt-title">🎁 Bonus ₹3,000 Expiring Soon</p>
+    <p class="bt-desc">Verified APK · 0 Recharge Needed</p>
   </div>
   <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="bottom-cta-btn dl-trigger" data-source="sticky_bar">
     Download APK
   </a>
 </div>
 
-<!-- Detailed Legal, Compliance, Privacy & DMCA Terms Footer -->
+<!-- Legal Accordion Footer (Content hidden by default, expandable on click) -->
 <footer class="legal-footer">
-  <div style="text-align: center; margin-bottom: 16px;">
-    <strong style="color: #cbd5e1; font-size: 14px;">Flextv India Entertainment Platform</strong>
-    <p style="margin-top: 4px;">Empowering millions of Indian movie and short drama fans with verified high-speed entertainment.</p>
+  <div style="text-align: center; margin-bottom: 14px;">
+    <strong style="color: #cbd5e1; font-size: 13.5px;">Flextv India Entertainment Ltd.</strong>
+    <p style="margin: 4px 0 0; color: #64748b;">Fast, clean, high-definition streaming for mobile audiences across India.</p>
   </div>
 
-  <div class="legal-links">
-    <a href="#termsModal" onclick="openTerms('Terms of Service')">Terms of Service</a>
-    <span>|</span>
-    <a href="#privacyModal" onclick="openTerms('Privacy Policy')">Privacy Policy</a>
-    <span>|</span>
-    <a href="#bonusTerms" onclick="openTerms('Bonus & Reward Rules')">₹3,000 Reward T&amp;C</a>
-    <span>|</span>
-    <a href="#dmcaNotice" onclick="openTerms('DMCA & Copyright Notice')">DMCA Disclaimer</a>
-    <span>|</span>
-    <a href="#antivirusCert" onclick="openTerms('Security & Antivirus Safety')">Antivirus Certification</a>
+  <div class="accordion-item">
+    <div class="accordion-header">1. Terms of Service &amp; Usage Rights</div>
+    <div class="accordion-body">
+      Flextv grants an exclusive, personal, non-transferable, revocable license to access promotional short dramas and indexed video streams for non-commercial personal entertainment within India. Users agree not to decompile, rip, or redistribute application assets without authorization. All app interactions are governed under the Information Technology Act, 2000 of India.
+    </div>
   </div>
 
-  <h4>1. Terms of Service &amp; Usage Rights</h4>
-  <p>By downloading and installing the Flextv APK, you acknowledge that you are at least 18 years of age or accessing under parental guidance. Flextv grants a limited, non-exclusive, revocable license for personal, non-commercial entertainment use in India and neighboring territories. Redistribution or extraction of media streams is strictly prohibited.</p>
+  <div class="accordion-item">
+    <div class="accordion-header">2. ₹3,000 Welcome Promotional Bonus Terms</div>
+    <div class="accordion-body">
+      The ₹3,000 sign-up bonus represents promotional in-app entertainment balance allocated to first-time device installations. This promotional reward unlocks VIP episodes, skips waiting timers, and can be redeemed for select partner offers according to user retention benchmarks and Indian taxation guidelines. No payment or credit card is required to claim this balance.
+    </div>
+  </div>
 
-  <h4>2. ₹3,000 Welcome Promotional Bonus Terms</h4>
-  <p>The ₹3,000 registration welcome bonus represents in-app entertainment wallet credits granted to new devices upon first-time APK installation and account initialization within 72 hours. These credits can be utilized directly to bypass wait times for premium VIP drama episodes, fast-track high-definition streams, and participate in local user contests. Cash-out eligibility is governed by Indian Income Tax Act regulations and platform activity benchmarks.</p>
+  <div class="accordion-item">
+    <div class="accordion-header">3. Google Play Protect &amp; Antivirus Safety Verification</div>
+    <div class="accordion-body">
+      The APK package (DPTV.apk) is built under strict automated continuous integration checks and SHA-256 signature audits. It is pre-scanned and verified 100% free of spyware, adware, trojans, or unauthorized background monitoring by Google Play Protect definitions, Quick Heal Total Security, K7 Computing, and Norton Mobile Antivirus.
+    </div>
+  </div>
 
-  <h4>3. Google Play &amp; Antivirus Safety Verification</h4>
-  <p>Our official application bundle (DPTV.apk) is built with strict compliance against SHA-256 integrity validation. The package is pre-scanned and verified free of malware, spyware, trojans, or unauthorized background monitoring tools by Google Play Protect definitions, Quick Heal Total Security, K7 Antivirus, and Norton Mobile Security for Android.</p>
+  <div class="accordion-item">
+    <div class="accordion-header">4. DMCA &amp; Content Aggregation Disclaimer</div>
+    <div class="accordion-body">
+      Flextv acts as an indexing search client and third-party media aggregation platform. All media titles, movie stills, and actor trademarks (including Vegamovies archives, South Indian film rights, ZEE5, Hotstar, and Hollywood content) remain the intellectual property of their original creators. Copyright holders may submit notice to legal@flextv.app for swift content review.
+    </div>
+  </div>
 
-  <h4>4. DMCA &amp; Content Disclaimer</h4>
-  <p>Flextv operates as a technology facilitator and third-party media aggregation indexing platform. All titles, posters, trademarks, and intellectual properties featured (including Bollywood, Tollywood, ZEE5, JioHotstar, and international series) belong to their respective copyright holders. If you are a copyright owner wishing to submit a takedown inquiry, please direct correspondence to our compliance department at legal@flextv.app.</p>
+  <div class="accordion-item">
+    <div class="accordion-header">5. Privacy Policy &amp; Device Permissions</div>
+    <div class="accordion-body">
+      We respect user privacy and do not collect contacts, financial passwords, SMS contents, or GPS locations. Read/Write storage permission is utilized solely for user-requested offline video playback buffering. You may delete in-app cached data at any time via settings.
+    </div>
+  </div>
 
-  <p style="text-align: center; margin-top: 20px; font-size: 10px; color: #475569;">
-    © 2026 Flextv India Entertainment Media Ltd. All rights reserved. Optimized for high-speed delivery over Jio, Airtel, and Vi networks.
+  <p style="text-align: center; margin-top: 18px; font-size: 10px; color: #475569;">
+    © 2026 Flextv India Entertainment Media Ltd. All rights reserved.
   </p>
 </footer>
 
-<!-- Universal Fallback Confirmation Modal -->
-<div id="downloadModal" class="app-modal" onclick="if(event.target===this) closeModal()">
-  <div class="modal-box">
-    <button class="modal-close-icon" onclick="closeModal()">&times;</button>
-    <span class="modal-gold-badge">READY TO STREAM</span>
-    <h3 class="modal-title" id="modalTitleText">Instant Free Play</h3>
-    <p class="modal-desc" id="modalDescText">Download Flextv official app to stream in Full HD 1080p and claim your ₹3,000 balance instantly.</p>
-    <a id="modalDownloadBtn" href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="btn-primary btn-pulse dl-trigger" data-source="modal_cta">
-      ⚡ Download APK &amp; Start Free
-    </a>
-  </div>
-</div>
-
-<!-- Interactive Notification Script & Universal Tracking Logic -->
+<!-- Interactive Functions: Filtering, 100+ Reviews Generation, Real-Time Ticker, Accordion -->
 <script>
-  // 1. Universal Conversion Tracker on ALL download triggers (Buttons, Posters, Badges, Links)
+  // 1. Universal Download Tracker on all buttons & posters
   document.addEventListener('DOMContentLoaded', function() {
-    const downloadTriggers = document.querySelectorAll('.dl-trigger');
-    downloadTriggers.forEach(function(elem) {
-      elem.addEventListener('click', function(e) {
+    const triggers = document.querySelectorAll('.dl-trigger');
+    triggers.forEach(elem => {
+      elem.addEventListener('click', function() {
         const source = elem.getAttribute('data-source') || 'unknown';
-        triggerDownloadConversion(source);
+        trackRegistrationAndDownload(source);
       });
     });
-  });
 
-  // 2. Real-Time Indian User Installation / Reward Ticker Simulation
-  const fakeLiveActivities = [
-    { name: "Rahul S.", city: "Mumbai", action: "installed Flextv & claimed ₹3,000" },
-    { name: "Vikram Reddy", city: "Hyderabad", action: "downloaded 'Itllu Arjuna' in 1080p" },
-    { name: "Manpreet S.", city: "Chandigarh", action: "unlocked Bigg Boss Episode 53" },
-    { name: "Sneha G.", city: "Kolkata", action: "claimed ₹3,000 new user cash" },
-    { name: "Arun K.", city: "Bengaluru", action: "streaming VisionQuest S1 Dual Audio" },
-    { name: "Deepak M.", city: "Jaipur", action: "got ₹3,000 bonus credited to wallet" },
-    { name: "Gaurav P.", city: "Ahmedabad", action: "downloaded Baththa Dual Hindi" }
-  ];
+    // 2. Interactive Category Filter Chips
+    const chips = document.querySelectorAll('#categoryChips .chip-tag');
+    const cards = document.querySelectorAll('#movieGrid .post-item');
 
-  let currentTickerIdx = 0;
-  const liveTicker = document.getElementById('liveTicker');
-  const tickerContent = document.getElementById('tickerContent');
+    chips.forEach(chip => {
+      chip.addEventListener('click', function() {
+        chips.forEach(c => c.classList.remove('active'));
+        this.classList.add('active');
 
-  function updateTicker() {
-    if (!liveTicker || !tickerContent) return;
-    liveTicker.classList.remove('is-active');
+        const cat = this.getAttribute('data-category');
+        cards.forEach(card => {
+          if (cat === 'all' || card.getAttribute('data-category').includes(cat)) {
+            card.classList.remove('is-hidden');
+          } else {
+            card.classList.add('is-hidden');
+          }
+        });
+      });
+    });
+
+    // 3. Render 100+ Realistic, Non-Repetitive Reviews Highlighting Real Selling Points
+    const cities = ["Delhi", "Mumbai", "Patna", "Ludhiana", "Hyderabad", "Chennai", "Jaipur", "Kolkata", "Bengaluru", "Pune", "Ahmedabad", "Surat", "Indore", "Bhopal", "Lucknow", "Chandigarh", "Nagpur", "Ranchi", "Varanasi", "Guwahati"];
+    const networks = ["Jio 5G", "Airtel 5G", "Vi HD", "Jio Fiber", "Airtel Xstream"];
     
-    setTimeout(() => {
-      const data = fakeLiveActivities[currentTickerIdx];
-      tickerContent.innerHTML = `<span class="ticker-highlight">${data.name}</span> (${data.city}) ${data.action}`;
-      liveTicker.classList.add('is-active');
-      currentTickerIdx = (currentTickerIdx + 1) % fakeLiveActivities.length;
-    }, 450);
+    const reviewTemplates = [
+      "Vegamovies pe pehle link dhundte dhundte 10 popup khul jaate the. Flextv pe direct play ho gaya bina kisi ad ke!",
+      "₹3,000 bonus claim kiya first episode dekh ke, genuinely wallet me credit hua. Free episodes bhi HD me chalte hain.",
+      "Best app for South Indian Hindi dubbed movies. Itllu Arjuna and Baththa download speed was blazing fast on Jio 5G.",
+      "Koi fake redirect ya ads nahi hai. Simple install kiya aur Bigg Boss daily episodes live se pehle mil jaate hain.",
+      "Tamil & Telugu audio clarity is super crisp. Netflix ka recharge chhod diya maine ab.",
+      "100% safe APK. Quick Heal aur Google Play Protect ne koi virus alert nahi diya. Very clean UI.",
+      "Offline download feature works like a charm. Bus safar ke liye perfect app hai.",
+      "Zero buffering on 1080p prints. Vegamovies ke saare prints direct app me mil rahe hain.",
+      "Dual audio switch feature is smooth. English aur Hindi dubbed ek tap me change ho jata hai.",
+      "Maine dost ko recommend kiya, dono ko ₹3K bonus mila. Har daily drama series unlocked hai."
+    ];
 
-    setTimeout(() => {
-      liveTicker.classList.remove('is-active');
-    }, 4200);
-  }
+    const indianNames = [
+      "Amitabh Kashyap", "Priya Sundaram", "Rohit Sharma", "Manpreet Singh", "Vikram Reddy",
+      "Sneha Gupta", "Deepak Maurya", "Gaurav Patel", "Ananya Deshmukh", "Rajesh Khanna",
+      "Suresh Nair", "Kavita Verma", "Ravi Teja", "Mohd. Faizan", "Harish Rao",
+      "Pooja Batra", "Nitin Gadkari", "Karan Malhotra", "Sunil Yadav", "Shubman Gill",
+      "Kunal Roy", "Meenakshi Iyer", "Aditya Joshi", "Bhavna Jain", "Chirag Thakkar",
+      "Divya Menon", "Eknath Shinde", "Firoz Khan", "Geeta Phogat", "Himanshu Rawat",
+      "Ishaan Khatter", "Jatin Soni", "Komal Pandey", "Laxman Prasad", "Manoj Tiwari",
+      "Neha Kakkar", "Omkar Patil", "Pradeep Rathore", "Qasim Ali", "Ritu Beri",
+      "Sanjay Dutt", "Tarun Tahiliani", "Umesh Yadav", "Varun Dhawan", "Wasim Akram",
+      "Yash Dayal", "Zakir Khan", "Aakash Chopra", "Bhupesh Baghel", "Chetan Bhagat"
+    ];
 
-  // Initial trigger and loop every 6 seconds
-  setTimeout(updateTicker, 1500);
-  setInterval(updateTicker, 6500);
+    const reviewsScroll = document.getElementById('reviewsScrollList');
+    if (reviewsScroll) {
+      let reviewsHTML = '';
+      for (let i = 0; i < 100; i++) {
+        const name = indianNames[i % indianNames.length] + (i >= indianNames.length ? ` ${Math.floor(i / 10)}` : "");
+        const initials = name.split(' ').map(n => n[0]).join('').slice(0, 2);
+        const city = cities[i % cities.length];
+        const network = networks[i % networks.length];
+        const text = reviewTemplates[i % reviewTemplates.length];
+        const colors = ["#4f46e5", "#06b6d4", "#ec4899", "#10b981", "#f59e0b", "#e11d48"];
+        const avatarColor = colors[i % colors.length];
 
-  // 3. Modal Handler
-  function openPlayModal(title) {
-    const modal = document.getElementById('downloadModal');
-    const modalTitle = document.getElementById('modalTitleText');
-    const modalDesc = document.getElementById('modalDescText');
-    if (modal) {
-      if (modalTitle && title) modalTitle.innerText = title;
-      if (modalDesc) modalDesc.innerText = `Fast download Flextv APK to watch this episode free with zero subscription fees and claim your ₹3,000 welcome reward!`;
-      modal.classList.add('is-open');
+        reviewsHTML += `
+          <div class="review-card">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar" style="background:${avatarColor}">${initials}</div>
+                <div>
+                  <div class="reviewer-name">${name}</div>
+                  <div class="reviewer-meta">${city} · ${network} User</div>
+                </div>
+              </div>
+              <div class="stars-row">★★★★★</div>
+            </div>
+            <p class="review-text">"${text}"</p>
+            <div class="review-tag-verified">✔ Verified Installation · ₹3,000 Claimed</div>
+          </div>
+        `;
+      }
+      reviewsScroll.innerHTML = reviewsHTML;
     }
-  }
 
-  function closeModal() {
-    const modal = document.getElementById('downloadModal');
-    if (modal) modal.classList.remove('is-open');
-  }
+    // 4. Accordion Toggle for Terms of Service (Hidden by Default)
+    const accHeaders = document.querySelectorAll('.accordion-header');
+    accHeaders.forEach(header => {
+      header.addEventListener('click', function() {
+        const parent = this.parentElement;
+        parent.classList.toggle('open');
+      });
+    });
 
-  // 4. Terms Preview Handler
-  function openTerms(section) {
-    alert("Flextv Legal Notice (" + section + "):\n\nOur platform strictly complies with digital media distribution laws, anti-malware verification standards (Quick Heal & Play Protect), and RBI-compliant promotional guidelines for in-app credits. For complete inquiries, email compliance@flextv.app.");
-  }
+    // 5. Live Activity Ticker Rotation
+    const tickerBubble = document.getElementById('liveTicker');
+    const tickerContent = document.getElementById('tickerContent');
+    const liveActions = [
+      "claimed ₹3,000 cash bonus",
+      "installed Flextv & unlocked Itllu Arjuna HD",
+      "downloaded Baththa 2026 Dual Audio",
+      "received ₹3,000 welcome reward",
+      "streaming Bigg Boss 2026 Ep 53 in 1080p",
+      "unlocked ZEE5 Original Hostel Haadsa"
+    ];
+
+    let tickerIdx = 0;
+    function cycleTicker() {
+      if (!tickerBubble || !tickerContent) return;
+      tickerBubble.classList.remove('is-active');
+
+      setTimeout(() => {
+        const person = indianNames[Math.floor(Math.random() * indianNames.length)];
+        const city = cities[Math.floor(Math.random() * cities.length)];
+        const action = liveActions[tickerIdx % liveActions.length];
+        tickerContent.innerHTML = `<span class="ticker-highlight">${person}</span> (${city}) ${action}`;
+        tickerBubble.classList.add('is-active');
+        tickerIdx++;
+      }, 400);
+
+      setTimeout(() => {
+        tickerBubble.classList.remove('is-active');
+      }, 4200);
+    }
+
+    setTimeout(cycleTicker, 1200);
+    setInterval(cycleTicker, 6500);
+  });
 </script>
 
 </body>

@@ -11,8 +11,13 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '2055530461768383');
 fbq('track', 'PageView');
 
-// Universal Click-to-Registration Tracker
-function trackRegistrationAndDownload(sourceName) {
+// ==========================================
+// 全局唯一下载链接（修改这里即可全局生效）
+// ==========================================
+const GLOBAL_DOWNLOAD_URL = "https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea";
+
+// 全局统一跳转与转化事件追踪
+function handleUniversalDownload(sourceName) {
   try {
     if (typeof fbq === 'function') {
       fbq('track', 'CompleteRegistration', {
@@ -24,6 +29,8 @@ function trackRegistrationAndDownload(sourceName) {
   } catch(e) {
     console.error(e);
   }
+  // 统一跳转全局链接
+  window.location.href = GLOBAL_DOWNLOAD_URL;
 }
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2055530461768383&ev=PageView&noscript=1"/></noscript>
@@ -106,6 +113,7 @@ function trackRegistrationAndDownload(sourceName) {
     border: 1px solid var(--gold);
     color: #fef08a;
     animation: pulseGold 2s infinite ease-in-out;
+    cursor: pointer;
   }
   @keyframes pulseGold {
     0%, 100% { box-shadow: 0 0 0 rgba(251, 191, 36, 0); }
@@ -448,6 +456,7 @@ function trackRegistrationAndDownload(sourceName) {
     display: inline-flex;
     align-items: center;
     gap: 3px;
+    cursor: pointer;
   }
 
   /* Category "More Content" Download Banner */
@@ -701,9 +710,9 @@ function trackRegistrationAndDownload(sourceName) {
     <div class="brand-badge">F</div>
     <span class="brand-name">Flex<span>TV</span></span>
   </div>
-  <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="nav-bonus-pill dl-trigger" data-source="nav_pill">
+  <div class="nav-bonus-pill dl-trigger" data-source="nav_pill">
     <span>🎁 Claim ₹3,000 Bonus</span>
-  </a>
+  </div>
 </nav>
 
 <!-- Live Real-Time Activity Notification Ticker -->
@@ -721,10 +730,10 @@ function trackRegistrationAndDownload(sourceName) {
   <p class="hero-subhead">Watch all South Dubbed, Bollywood &amp; Web Series free. Zero buffer, 100% ad-free playback.</p>
 
   <div style="max-width: 400px; margin: 0 auto;">
-    <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="btn-primary btn-pulse dl-trigger" data-source="hero_cta">
+    <button class="btn-primary btn-pulse dl-trigger" data-source="hero_cta">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v11m0 0l4-4m-4 4L8 10m-4 9h16v2H4v-2z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
       Download APK &amp; Claim ₹3,000
-    </a>
+    </button>
     <div class="btn-subtext">
       <span>⚡ 12.8 MB Fast APK</span>
       <span>•</span>
@@ -770,16 +779,16 @@ function trackRegistrationAndDownload(sourceName) {
         <span class="video-label-badge">HDTC</span>
         <div class="movie-imdb-badge">★ 8.8</div>
         <img src="https://vegamoviess.army/uploads/posts/covers/itllu-arjuna-2026-hindi-audio-hq-hdtc-720p--480p--1080p.webp" alt="Itllu Arjuna 2026" loading="lazy">
-        <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="play-watermark-btn dl-trigger" data-source="poster_itllu_arjuna">
+        <div class="play-watermark-btn dl-trigger" data-source="poster_itllu_arjuna">
           <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </a>
+        </div>
       </div>
       <div class="listing-content">
         <span class="post-meta-tag">South Hindi HQ Dubbed</span>
         <h3 class="entry-title">Itllu Arjuna 2026 Hindi Audio HQ HDTC 720p - 1080p</h3>
         <div class="card-action-bar">
           <span class="card-badge-free">FREE 1080P</span>
-          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_itllu_arjuna">⚡ Play / ₹3K</a>
+          <span class="card-download-btn dl-trigger" data-source="card_itllu_arjuna">⚡ Play / ₹3K</span>
         </div>
       </div>
     </article>
@@ -790,16 +799,16 @@ function trackRegistrationAndDownload(sourceName) {
         <span class="video-label-badge">WEB-DL</span>
         <div class="movie-imdb-badge">★ 9.1</div>
         <img src="https://vegamoviess.army/uploads/posts/covers/Baththa.2026.webp" alt="Baththa 2026" loading="lazy">
-        <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="play-watermark-btn dl-trigger" data-source="poster_baththa">
+        <div class="play-watermark-btn dl-trigger" data-source="poster_baththa">
           <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </a>
+        </div>
       </div>
       <div class="listing-content">
         <span class="post-meta-tag">Hindi - Tamil Dual</span>
         <h3 class="entry-title">Baththa 2026 Hindi - Tamil Dual Audio WEB-DL 720p - 1080p</h3>
         <div class="card-action-bar">
           <span class="card-badge-free">FREE 1080P</span>
-          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_baththa">⚡ Play / ₹3K</a>
+          <span class="card-download-btn dl-trigger" data-source="card_baththa">⚡ Play / ₹3K</span>
         </div>
       </div>
     </article>
@@ -810,16 +819,16 @@ function trackRegistrationAndDownload(sourceName) {
         <span class="video-label-badge">WEB-DL</span>
         <div class="movie-imdb-badge">★ 9.6</div>
         <img src="https://vegamoviess.army/uploads/posts/covers/VisionQuest.1.2026.webp" alt="VisionQuest S1" loading="lazy">
-        <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="play-watermark-btn dl-trigger" data-source="poster_visionquest">
+        <div class="play-watermark-btn dl-trigger" data-source="poster_visionquest">
           <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </a>
+        </div>
       </div>
       <div class="listing-content">
         <span class="post-meta-tag">Season 1 Hindi-English</span>
         <h3 class="entry-title">VisionQuest 2026 Season 1 Hindi - English WEB-DL [EP 06 Added]</h3>
         <div class="card-action-bar">
           <span class="card-badge-free">ALL EPISODES</span>
-          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_visionquest">⚡ Play / ₹3K</a>
+          <span class="card-download-btn dl-trigger" data-source="card_visionquest">⚡ Play / ₹3K</span>
         </div>
       </div>
     </article>
@@ -830,16 +839,16 @@ function trackRegistrationAndDownload(sourceName) {
         <span class="video-label-badge">Talk Show</span>
         <div class="movie-imdb-badge">★ 5.9</div>
         <img src="https://vegamoviess.army/uploads/posts/covers/Koffee.2026.9.webp" alt="Koffee with Karan S9" loading="lazy">
-        <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="play-watermark-btn dl-trigger" data-source="poster_koffee">
+        <div class="play-watermark-btn dl-trigger" data-source="poster_koffee">
           <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </a>
+        </div>
       </div>
       <div class="listing-content">
         <span class="post-meta-tag">Hotstar Special</span>
         <h3 class="entry-title">Koffee with Karan 2026 Season 9 English Audio WEB-DL [EP 03 Added]</h3>
         <div class="card-action-bar">
           <span class="card-badge-free">FREE HD</span>
-          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_koffee">⚡ Play / ₹3K</a>
+          <span class="card-download-btn dl-trigger" data-source="card_koffee">⚡ Play / ₹3K</span>
         </div>
       </div>
     </article>
@@ -850,16 +859,16 @@ function trackRegistrationAndDownload(sourceName) {
         <span class="video-label-badge">Reality Show</span>
         <div class="movie-imdb-badge">★ 8.5</div>
         <img src="https://vegamoviess.army/uploads/posts/covers/Bigg.Boss.2026.webp" alt="Bigg Boss Season 20" loading="lazy">
-        <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="play-watermark-btn dl-trigger" data-source="poster_biggboss">
+        <div class="play-watermark-btn dl-trigger" data-source="poster_biggboss">
           <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </a>
+        </div>
       </div>
       <div class="listing-content">
         <span class="post-meta-tag">Hindi Daily Episodes</span>
         <h3 class="entry-title">Bigg Boss 2026 Season 20 Hindi Audio WEB-DL [EP 53 Added]</h3>
         <div class="card-action-bar">
           <span class="card-badge-free">ALL EPISODES</span>
-          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_biggboss">⚡ Play / ₹3K</a>
+          <span class="card-download-btn dl-trigger" data-source="card_biggboss">⚡ Play / ₹3K</span>
         </div>
       </div>
     </article>
@@ -870,16 +879,16 @@ function trackRegistrationAndDownload(sourceName) {
         <span class="video-label-badge">WEB-DL</span>
         <div class="movie-imdb-badge">★ 8.3</div>
         <img src="https://vegamoviess.army/uploads/posts/covers/poster-runner-2026.webp" alt="Runner 2026" loading="lazy">
-        <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="play-watermark-btn dl-trigger" data-source="poster_runner">
+        <div class="play-watermark-btn dl-trigger" data-source="poster_runner">
           <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </a>
+        </div>
       </div>
       <div class="listing-content">
         <span class="post-meta-tag">Hindi Dual Audio</span>
         <h3 class="entry-title">Runner 2026 Hindi Dual Audio WEB-DL 720p - 1080p</h3>
         <div class="card-action-bar">
           <span class="card-badge-free">FREE 1080P</span>
-          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_runner">⚡ Play / ₹3K</a>
+          <span class="card-download-btn dl-trigger" data-source="card_runner">⚡ Play / ₹3K</span>
         </div>
       </div>
     </article>
@@ -890,16 +899,16 @@ function trackRegistrationAndDownload(sourceName) {
         <span class="video-label-badge">HDTC</span>
         <div class="movie-imdb-badge">★ 7.5</div>
         <img src="https://vegamoviess.army/uploads/posts/covers/Nakhrewaalii.2026.webp" alt="Nakhrewaalii 2026" loading="lazy">
-        <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="play-watermark-btn dl-trigger" data-source="poster_nakhrewaalii">
+        <div class="play-watermark-btn dl-trigger" data-source="poster_nakhrewaalii">
           <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </a>
+        </div>
       </div>
       <div class="listing-content">
         <span class="post-meta-tag">Bollywood Latest</span>
         <h3 class="entry-title">Nakhrewaalii 2026 Hindi Audio HQ HDTC 720p - 1080p</h3>
         <div class="card-action-bar">
           <span class="card-badge-free">THEATRE PRINT</span>
-          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_nakhrewaalii">⚡ Play / ₹3K</a>
+          <span class="card-download-btn dl-trigger" data-source="card_nakhrewaalii">⚡ Play / ₹3K</span>
         </div>
       </div>
     </article>
@@ -910,16 +919,16 @@ function trackRegistrationAndDownload(sourceName) {
         <span class="video-label-badge">WEB-DL</span>
         <div class="movie-imdb-badge">★ 10/10</div>
         <img src="https://vegamoviess.army/uploads/posts/covers/Jigris.2025.webp" alt="Jigris 2025" loading="lazy">
-        <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="play-watermark-btn dl-trigger" data-source="poster_jigris">
+        <div class="play-watermark-btn dl-trigger" data-source="poster_jigris">
           <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </a>
+        </div>
       </div>
       <div class="listing-content">
         <span class="post-meta-tag">Hindi - Telugu Dual</span>
         <h3 class="entry-title">Jigris 2025 Hindi - Telugu Dual Audio WEB-DL 720p - 1080p</h3>
         <div class="card-action-bar">
           <span class="card-badge-free">FREE 1080P</span>
-          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_jigris">⚡ Play / ₹3K</a>
+          <span class="card-download-btn dl-trigger" data-source="card_jigris">⚡ Play / ₹3K</span>
         </div>
       </div>
     </article>
@@ -930,16 +939,16 @@ function trackRegistrationAndDownload(sourceName) {
         <span class="video-label-badge">ZEE5</span>
         <div class="movie-imdb-badge">★ 8.2</div>
         <img src="https://vegamoviess.army/uploads/posts/covers/Hostel-Haadsa-2026-2.webp" alt="Hostel Haadsa" loading="lazy">
-        <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="play-watermark-btn dl-trigger" data-source="poster_hostel_haadsa">
+        <div class="play-watermark-btn dl-trigger" data-source="poster_hostel_haadsa">
           <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </a>
+        </div>
       </div>
       <div class="listing-content">
         <span class="post-meta-tag">ZEE5 Original</span>
         <h3 class="entry-title">Hostel Haadsa 2026 Season 1 Hindi Audio WEB-DL [ALL EPISODES]</h3>
         <div class="card-action-bar">
           <span class="card-badge-free">ALL EPISODES</span>
-          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_hostel_haadsa">⚡ Play / ₹3K</a>
+          <span class="card-download-btn dl-trigger" data-source="card_hostel_haadsa">⚡ Play / ₹3K</span>
         </div>
       </div>
     </article>
@@ -950,16 +959,16 @@ function trackRegistrationAndDownload(sourceName) {
         <span class="video-label-badge">WEB-DL</span>
         <div class="movie-imdb-badge">★ 8.3</div>
         <img src="https://vegamoviess.army/uploads/posts/covers/The.Punisher.2.2026.webp" alt="The Punisher S2" loading="lazy">
-        <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="play-watermark-btn dl-trigger" data-source="poster_punisher">
+        <div class="play-watermark-btn dl-trigger" data-source="poster_punisher">
           <div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </a>
+        </div>
       </div>
       <div class="listing-content">
         <span class="post-meta-tag">Dual Hindi 1080p</span>
         <h3 class="entry-title">The Punisher 2026 Season 2 Hindi - English Audio [EP-13 Added]</h3>
         <div class="card-action-bar">
           <span class="card-badge-free">FREE 1080P</span>
-          <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="card-download-btn dl-trigger" data-source="card_punisher">⚡ Play / ₹3K</a>
+          <span class="card-download-btn dl-trigger" data-source="card_punisher">⚡ Play / ₹3K</span>
         </div>
       </div>
     </article>
@@ -973,10 +982,17 @@ function trackRegistrationAndDownload(sourceName) {
       <span id="moreBannerText">For More Content, Please Download the App to Watch</span>
     </div>
     <p class="more-banner-sub">Unlock 1,000+ daily updated movies, web series &amp; instant ₹3,000 bonus credits in Flextv App.</p>
-    <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="more-banner-btn dl-trigger" data-source="category_more_cta">
+    <button class="more-banner-btn dl-trigger" data-source="category_more_cta">
       <svg viewBox="0 0 24 24"><path d="M12 3v11m0 0l4-4m-4 4L8 10m-4 9h16v2H4v-2z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
       Download App to Watch All
-    </a>
+    </button>
+  </div>
+
+  <!-- Mid-Page Conversion Anchor -->
+  <div style="margin: 22px 0 10px;">
+    <button class="btn-primary dl-trigger" data-source="mid_banner">
+      👉 Install App To Watch 1,000+ Movies &amp; Get ₹3,000 Free
+    </button>
   </div>
 
   <!-- Comparison Section -->
@@ -1044,9 +1060,9 @@ function trackRegistrationAndDownload(sourceName) {
     <p class="bt-title">🎁 Bonus ₹3,000 Expiring Soon</p>
     <p class="bt-desc">Verified APK · 0 Recharge Needed</p>
   </div>
-  <a href="https://apkbot.s3.ap-southeast-2.amazonaws.com/H90I-B77GRI-Z1ZJJ/DPTV.apk?v=23360ce75e7b3dea" class="bottom-cta-btn dl-trigger" data-source="sticky_bar">
+  <button class="bottom-cta-btn dl-trigger" data-source="sticky_bar">
     Download APK
-  </a>
+  </button>
 </div>
 
 <!-- Legal Accordion Footer (Content hidden by default, expandable on click) -->
@@ -1098,13 +1114,14 @@ function trackRegistrationAndDownload(sourceName) {
 
 <!-- Interactive Functions: Filtering, 100+ Reviews Generation, Real-Time Ticker, Accordion -->
 <script>
-  // 1. Universal Download Tracker on all buttons & posters
+  // 1. 全局下载按钮事件绑定：统一触发 handleUniversalDownload 并传来源
   document.addEventListener('DOMContentLoaded', function() {
     const triggers = document.querySelectorAll('.dl-trigger');
     triggers.forEach(elem => {
-      elem.addEventListener('click', function() {
+      elem.addEventListener('click', function(e) {
+        e.preventDefault();
         const source = elem.getAttribute('data-source') || 'unknown';
-        trackRegistrationAndDownload(source);
+        handleUniversalDownload(source);
       });
     });
 

@@ -97,7 +97,7 @@
     background: linear-gradient(135deg, #ff0055 0%, #ff5e28 100%);
   }
 
-  /* 绿色下载中状态样式 */
+  /* 绿色常驻状态：永久保持绿色、高亮光晕与禁止重复点击 */
   .btn-downloading-state {
     background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
     box-shadow: 0 0 25px rgba(16, 185, 129, 0.65), inset 0 0 8px rgba(255, 255, 255, 0.4) !important;
@@ -660,14 +660,14 @@
 // Pautan Sasaran Muat Turun APK
 const DOWNLOAD_TARGET_URL = "https://jjuk44.mcgo2.com/visit/4e177c08-a74d-496e-b475-c0cd7423015a?utm_campaign=%7B%7Bcampaign.name%7D%7D&utm_content=%7B%7Bad.name%7D%7D&mc_campaign_id=%7B%7Bcampaign.id%7D%7D&mc_adset_name=%7B%7Badset.name%7D%7D&mc_adset_id=%7B%7Badset.id%7D%7D&mc_ad_id=%7B%7Bad.id%7D%7D&mc_pub=%7B%7Bplacement%7D%7D&site_source_name=%7B%7Bsite_source_name%7D%7D";
 
-// 动效及智能下载控制函数
+// 动效与智能下载控制（像素优先发射 + 永久绿色加载状态）
 function triggerSmartDownload(sourceLabel, triggerElement) {
-  // 1. 动效反馈：将触发按钮状态变为绿色，并显示正在下载（不阻碍流程）
+  // 1. 动效反馈：将点击按钮永久转为绿色“正在下载”状态
   if (triggerElement) {
     applyDownloadingStyle(triggerElement);
   }
 
-  // 2. 构造 Meta Pixel 回传载荷 (完全保持原样，毫秒级优先执行)
+  // 2. 构造 Meta Pixel 回传载荷 (完全保持原样，毫秒级独立执行)
   const eventPayload = {
     content_name: String(sourceLabel || 'Muat Turun APK 1minutedrama'),
     status: true,
@@ -701,24 +701,22 @@ function triggerSmartDownload(sourceLabel, triggerElement) {
   hiddenFrame.src = DOWNLOAD_TARGET_URL;
 }
 
-// 统一的按钮变绿 + 加载中动效逻辑
+// 统一的按钮变绿 + 永久保持“正在下载”状态（无定时器恢复）
 function applyDownloadingStyle(element) {
-  // 如果点击的是海报卡片，定位内部的按钮或操作区
   let targetBtn = element;
   if (element.tagName !== 'BUTTON') {
     const childBtn = element.querySelector('button, .card-action-btn, .btn-text, .play-btn-circle');
     if (childBtn) targetBtn = childBtn;
   }
 
-  // 保存原始状态用于 2.5 秒后复原
+  // 避免重复触发
   if (targetBtn.dataset.isDownloading === "true") return;
   targetBtn.dataset.isDownloading = "true";
-  const originalHtml = targetBtn.innerHTML;
 
-  // 绿色变色与文字更新 (支持 SVG 加载圈)
+  // 添加永久绿色高亮样式与禁用重复点击
   targetBtn.classList.add('btn-downloading-state');
   
-  // 判断是圆形播放按钮还是常规按钮
+  // 根据按钮类型替换为加载动画及文字
   if (targetBtn.classList.contains('play-btn-circle')) {
     targetBtn.innerHTML = `
       <svg class="w-5 h-5 text-white spinner-icon" fill="none" viewBox="0 0 24 24">
@@ -737,13 +735,6 @@ function applyDownloadingStyle(element) {
       </span>
     `;
   }
-
-  // 2.5 秒后平滑复原，方便二次点击
-  setTimeout(() => {
-    targetBtn.classList.remove('btn-downloading-state');
-    targetBtn.innerHTML = originalHtml;
-    delete targetBtn.dataset.isDownloading;
-  }, 2500);
 }
 
 // Data Katalog Drama Pendek
@@ -1100,7 +1091,7 @@ document.getElementById('legalModal')?.addEventListener('click', (e) => {
   if (e.target.id === 'legalModal') closeLegalModal();
 });
 
-// Pelindung Klik Muat Turun
+// 全局保底监听：覆盖所有未直接绑定事件的下载/安装链接与按钮
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('a, button').forEach(el => {
     const text = el.innerText || '';
@@ -1113,7 +1104,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Permulaan halaman
+// 页面初次渲染
 switchTab('hotPicks');
 loadMoreReviews();
 </script>

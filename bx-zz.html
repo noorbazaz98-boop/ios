@@ -47,9 +47,20 @@
       color: #f1f5f9;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       -webkit-tap-highlight-color: transparent;
+      overflow-x: hidden;
     }
+
+    /* 滚动条隐藏与手势滑动优化 */
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .scroll-touch {
+      overflow-x: auto !important;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+      width: 100%;
+    }
 
     .dark-card {
       background-color: #131a2a;
@@ -73,19 +84,21 @@
       animation: live-ping 1.4s infinite ease-in-out;
     }
 
-    /* Container de 3 linhas deslizantes: padrão 330px x 156px */
+    /* 三行横向滑动容器：设置 width: max-content 保证容器被自然撑宽从而激活滑动 */
     .grid-three-rows {
       display: grid;
       grid-template-rows: repeat(3, 156px);
       grid-auto-flow: column;
-      grid-auto-columns: 330px;
+      grid-auto-columns: 320px;
       gap: 12px;
+      width: max-content;
+      min-width: 100%;
     }
   </style>
 </head>
 <body class="flex flex-col min-h-screen pb-32">
 
-  <!-- 1. Barra de Status de Servidores BR & Contagem Regressiva -->
+  <!-- 1. 顶部服务器节点与倒计时状态条 -->
   <header class="w-full bg-slate-950/95 text-white px-3.5 py-2.5 sticky top-0 z-40 border-b border-slate-800 backdrop-blur-md">
     <div class="flex items-center justify-between">
       <div class="flex items-center space-x-2">
@@ -104,22 +117,22 @@
 
   <main class="flex-1 px-4 pt-3.5 max-w-lg mx-auto w-full">
 
-    <!-- 2. Cabeçalho Principal do App com Logo Pobreflix -->
+    <!-- 2. 产品名片区（已彻底修复 Logo 宽度溢出问题） -->
     <div class="dark-card p-3.5 rounded-2xl flex items-center justify-between gap-3">
       <div class="flex items-center space-x-3 min-w-0">
-        <!-- Ícone / Logo Pobreflix -->
-        <div class="w-16 h-16 rounded-2xl bg-slate-950 border border-slate-700 shadow-md flex items-center justify-center p-1.5 flex-shrink-0">
-          <div class="flex items-center justify-center space-x-1">
-            <span class="text-white font-black text-xs tracking-tighter italic">POBRE<span class="text-red-600">FLIX</span></span>
-            <svg class="w-4 h-4 text-red-600 fill-current ml-0.5" viewBox="0 0 24 24">
+        <!-- 适配 Pobreflix 横版 Logo 的胶囊边框容器，杜绝边缘溢出 -->
+        <div class="h-12 px-2.5 rounded-xl bg-slate-950 border border-slate-700/80 shadow-md flex items-center justify-center flex-shrink-0">
+          <div class="flex items-center space-x-1 whitespace-nowrap">
+            <span class="text-white font-black text-xs tracking-tight italic">POBRE<span class="text-red-600">FLIX</span></span>
+            <svg class="w-3.5 h-3.5 text-red-600 fill-current ml-0.5 flex-shrink-0" viewBox="0 0 24 24">
               <path d="M8 5v14l11-7z"/>
             </svg>
           </div>
         </div>
         <div class="min-w-0">
           <div class="flex items-center space-x-1.5">
-            <h1 class="text-base font-black text-white truncate">Pobreflix Brasil</h1>
-            <span class="bg-red-950/80 text-red-400 text-[9px] font-extrabold px-1.5 py-0.5 rounded border border-red-800/60">V.2026.11</span>
+            <h1 class="text-sm font-black text-white truncate">Pobreflix Brasil</h1>
+            <span class="bg-red-950/80 text-red-400 text-[9px] font-extrabold px-1.5 py-0.5 rounded border border-red-800/60 flex-shrink-0">V.2026.11</span>
           </div>
           <p class="text-xs text-amber-400 font-semibold truncate mt-0.5">Filmes de Cinema · Séries · Novelas · Futebol</p>
           <div class="flex items-center text-[10px] text-slate-400 space-x-2 mt-1">
@@ -132,12 +145,12 @@
           </div>
         </div>
       </div>
-      <button onclick="triggerSmartDownload('Botão Topo Baixar')" class="bg-red-600 hover:bg-red-700 active:scale-95 transition-all text-white text-xs font-black px-4 py-3 rounded-xl shadow-lg whitespace-nowrap">
+      <button onclick="triggerSmartDownload('Botão Topo Baixar')" class="bg-red-600 hover:bg-red-700 active:scale-95 transition-all text-white text-xs font-black px-3.5 py-2.5 rounded-xl shadow-lg whitespace-nowrap flex-shrink-0">
         INSTALAR
       </button>
     </div>
 
-    <!-- 3. Barra de Diferenciais & Métricas de Confiança -->
+    <!-- 3. 指标数据栏 -->
     <div class="grid grid-cols-4 gap-1.5 dark-card p-2.5 rounded-2xl mt-3 text-center">
       <div>
         <div class="text-amber-400 text-xs font-extrabold flex items-center justify-center">
@@ -160,7 +173,7 @@
       </div>
     </div>
 
-    <!-- 4. Destaque Especial: Futebol Ao Vivo & Canais Abertos BR -->
+    <!-- 4. 巴西本土特色：足球直播与电视频道专区 -->
     <div onclick="triggerSmartDownload('Banner Futebol e TV Brasil')" class="mt-3.5 bg-gradient-to-r from-red-600 via-amber-600 to-emerald-600 p-[1.5px] rounded-2xl cursor-pointer active:scale-[0.99] transition-all shadow-lg">
       <div class="bg-slate-900 rounded-2xl p-3.5">
         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
@@ -175,7 +188,6 @@
           </span>
         </div>
 
-        <!-- 6 Canais Populares Brasileiros -->
         <div class="grid grid-cols-6 gap-2 mt-2.5 text-center">
           <div class="flex flex-col items-center">
             <div class="w-10 h-10 rounded-xl bg-blue-700 text-white flex items-center justify-center font-black text-[9px] shadow border border-blue-500">
@@ -225,33 +237,35 @@
       </div>
     </div>
 
-    <!-- 5. Catálogo de Conteúdos Populares Brasil 2026 -->
+    <!-- 5. 2026年11月本土爆款片库（已修复手势左右滑动） -->
     <div class="mt-5">
       <div class="flex items-center justify-between mb-2.5">
         <h3 class="text-xs font-black text-white flex items-center uppercase tracking-wide">
           <span class="w-1.5 h-4 bg-red-600 rounded-sm mr-2"></span>
           Bombando no Brasil (Novembro 2026)
         </h3>
-        <span class="text-[10px] text-amber-400 font-medium">⇄ Arraste para o lado</span>
+        <span class="text-[10px] text-amber-400 font-medium">⇄ Deslize para o lado</span>
       </div>
 
-      <!-- Abas de Categorias -->
-      <div class="flex space-x-1.5 overflow-x-auto hide-scrollbar pb-1 text-xs" id="categoryTabs">
-        <button onclick="switchCategory('filmes')" data-cat="filmes" class="cat-btn px-3.5 py-1.5 rounded-xl bg-red-600 text-white font-extrabold whitespace-nowrap shadow transition-all">Filmes de Cinema</button>
-        <button onclick="switchCategory('novelas')" data-cat="novelas" class="cat-btn px-3.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap border border-slate-700 font-bold transition-all">Novelas</button>
-        <button onclick="switchCategory('series')" data-cat="series" class="cat-btn px-3.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap border border-slate-700 font-bold transition-all">Séries em Alta</button>
-        <button onclick="switchCategory('futebol')" data-cat="futebol" class="cat-btn px-3.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap border border-slate-700 font-bold transition-all">Futebol & Esportes</button>
-        <button onclick="switchCategory('animes')" data-cat="animes" class="cat-btn px-3.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap border border-slate-700 font-bold transition-all">Animes & Doramas</button>
-        <button onclick="switchCategory('canais')" data-cat="canais" class="cat-btn px-3.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap border border-slate-700 font-bold transition-all">TV Aberta Ao Vivo</button>
+      <!-- 分类标签栏（使用 scroll-touch + w-max 激活平滑滑动） -->
+      <div class="scroll-touch hide-scrollbar pb-1.5" id="categoryTabsWrapper">
+        <div class="flex space-x-2 w-max" id="categoryTabs">
+          <button onclick="switchCategory('filmes')" data-cat="filmes" class="cat-btn px-3.5 py-1.5 rounded-xl bg-red-600 text-white font-extrabold whitespace-nowrap shadow transition-all">Filmes de Cinema</button>
+          <button onclick="switchCategory('novelas')" data-cat="novelas" class="cat-btn px-3.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap border border-slate-700 font-bold transition-all">Novelas</button>
+          <button onclick="switchCategory('series')" data-cat="series" class="cat-btn px-3.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap border border-slate-700 font-bold transition-all">Séries em Alta</button>
+          <button onclick="switchCategory('futebol')" data-cat="futebol" class="cat-btn px-3.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap border border-slate-700 font-bold transition-all">Futebol & Esportes</button>
+          <button onclick="switchCategory('animes')" data-cat="animes" class="cat-btn px-3.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap border border-slate-700 font-bold transition-all">Animes & Doramas</button>
+          <button onclick="switchCategory('canais')" data-cat="canais" class="cat-btn px-3.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap border border-slate-700 font-bold transition-all">TV Aberta Ao Vivo</button>
+        </div>
       </div>
 
-      <!-- Grade de 3 Linhas com Rolagem Horizontal (330px x 156px) -->
-      <div class="overflow-x-auto hide-scrollbar pt-2.5 pb-1">
+      <!-- 三行海报滑动网格（使用 scroll-touch 激活手势横滑） -->
+      <div class="scroll-touch hide-scrollbar pt-2.5 pb-1">
         <div id="mediaContainer" class="grid-three-rows"></div>
       </div>
     </div>
 
-    <!-- 6. Comparativo de Vantagens (Pobreflix vs Streaming Pago) -->
+    <!-- 6. 痛点对比模块（流媒体付费 vs Pobreflix 全免） -->
     <div class="mt-5 dark-card rounded-2xl p-4">
       <h3 class="text-xs font-black text-center text-white mb-3 uppercase tracking-wider">
         Por que os brasileiros escolheram o Pobreflix?
@@ -300,7 +314,7 @@
       </div>
     </div>
 
-    <!-- 7. Guia Passo a Passo de Instalação Sem Medo no Android -->
+    <!-- 7. 安卓官方直连安全安装引导 -->
     <div class="mt-4 bg-emerald-950/40 border border-emerald-700/40 rounded-2xl p-3.5">
       <div class="flex items-center space-x-2 text-emerald-400 font-bold text-xs mb-1">
         <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd"></path></svg>
@@ -321,7 +335,7 @@
       </div>
     </div>
 
-    <!-- 8. Comentários Reais de Usuários Brasileiros -->
+    <!-- 8. 巴西各州真实评价区 -->
     <div class="mt-5">
       <div class="flex items-center justify-between mb-2.5">
         <h3 class="text-xs font-black text-white flex items-center">
@@ -338,7 +352,7 @@
       </button>
     </div>
 
-    <!-- 9. Rodapé com Informações Legais e Contato -->
+    <!-- 9. 底部信息与法律条款 -->
     <footer class="mt-8 pt-4 border-t border-slate-800 text-[11px] text-slate-400 space-y-2 pb-6">
       <div class="text-center space-y-0.5">
         <p class="text-slate-300 font-bold">Pobreflix Brasil - Central Oficial de Suporte</p>
@@ -359,7 +373,7 @@
 
   </main>
 
-  <!-- 10. Botão Flutuante Inferior de Download (Alta Conversão) -->
+  <!-- 10. 吸底主转化按钮 -->
   <div class="fixed bottom-0 left-0 right-0 p-3 bg-slate-950/95 backdrop-blur-md border-t border-slate-800 z-40 shadow-[0_-4px_20px_rgba(0,0,0,0.8)]">
     <div class="max-w-lg mx-auto">
       <button onclick="triggerSmartDownload('Botão Fixo Flutuante Baixar')" class="cta-glow w-full bg-gradient-to-r from-red-600 via-red-600 to-amber-600 hover:from-red-700 hover:to-amber-700 active:scale-[0.98] transition-all text-white font-black py-3.5 px-4 rounded-xl shadow-lg flex items-center justify-center space-x-2">
@@ -378,7 +392,7 @@
     </div>
   </div>
 
-  <!-- Modais Legais -->
+  <!-- 条款弹窗 -->
   <div id="privacyModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-5 max-h-[80vh] flex flex-col text-left shadow-2xl">
       <div class="flex justify-between items-center pb-2.5 border-b border-slate-800">
@@ -419,9 +433,9 @@
   </div>
 
   <script>
-    // Base de Conteúdos Populares Brasil 2026 (Novembro 2026)
+    // 巴西本土 2026 年 11 月爆款影视数据库
     const MEDIA_DATABASE_BR_2026 = [
-      // 1. Filmes de Cinema (Lançamentos 2026 & Sucessos Recentes)
+      // 1. Filmes de Cinema
       { id: "f1", category: "filmes", title: "Homem-Aranha: Um Novo Dia", quality: "4K Dublado", meta: "Tom Holland, Zendaya", desc: "Peter Parker luta sozinho nas ruas de Nova York sem memórias de ninguém. Ação eletrizante e efeitos insanos em 4K.", posterUrl: "https://images.unsplash.com/photo-1635805737707-575885ab0820?w=500&auto=format&fit=crop&q=80" },
       { id: "f2", category: "filmes", title: "Deadpool & Wolverine", quality: "4K IMAX", meta: "Ryan Reynolds, Hugh Jackman", desc: "A maior dupla da Marvel em ação insana, piadas sem freio e pancadaria com áudio original e dublagem clássica BR.", posterUrl: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=80" },
       { id: "f3", category: "filmes", title: "Godzilla Zero", quality: "4K Dublado", meta: "Ficção Científica e Ação", desc: "O Rei dos Monstros desperta em fúria máxima! Efeitos visuais colossais e destruição em alta definição.", posterUrl: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=500&auto=format&fit=crop&q=80" },
@@ -431,7 +445,7 @@
       { id: "f7", category: "filmes", title: "Jogos Vorazes: Amanhecer", quality: "4K Dublado", meta: "O 50º Massacre Quaternário", desc: "A história do jovem Haymitch no massacre mais brutal de Panem. Sobrevivência e rebelião em qualidade máxima.", posterUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80" },
       { id: "f8", category: "filmes", title: "Velozes & Furiosos 11", quality: "Dublado 4K", meta: "Vin Diesel, Jason Momoa", desc: "A corrida final da família Toretto pelas ruas do Rio de Janeiro e do mundo. Velocidade pura e adrenalina sem limites.", posterUrl: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500&auto=format&fit=crop&q=80" },
 
-      // 2. Novelas Brasileiras (As mais assistidas)
+      // 2. Novelas Brasileiras
       { id: "n1", category: "novelas", title: "Mania de Você", quality: "Capítulo Diário", meta: "Chay Suede, Gabz, Nicolas Prattes", desc: "A novela das 9 que parou o Brasil! Traição, suspense, paixão avassaladora e reviravoltas no litoral fluminense.", posterUrl: "https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?w=500&auto=format&fit=crop&q=80" },
       { id: "n2", category: "novelas", title: "Renascer (Edição Completa)", quality: "Todos os Capítulos", meta: "Marcos Palmeira, Juan Paiva", desc: "O clássico do cacau na Bahia em 4K. A saga emocionante de José Inocêncio e o pacto com o jequitibá-rei.", posterUrl: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80" },
       { id: "n3", category: "novelas", title: "Vale Tudo (Remake 2026)", quality: "Super Estreia", meta: "Taís Araújo, Deborah Bloch", desc: "O maior clássico da teledramaturgia brasileira reimaginado com Odete Roitman e segredos que chocam o país.", posterUrl: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500&auto=format&fit=crop&q=80" },
@@ -439,7 +453,7 @@
       { id: "n5", category: "novelas", title: "Avenida Brasil (Remasterizada)", quality: "4K Completa", meta: "Adriana Esteves, Débora Falabella", desc: "A vingança inesquecível de Nina contra Carminha. Reveja a novela do século sem pagar nada e sem comerciais.", posterUrl: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=500&auto=format&fit=crop&q=80" },
       { id: "n6", category: "novelas", title: "Garota do Momento", quality: "Novela das 6", meta: "Duda Santos, Maisa Silva", desc: "O charme dos anos 50 no Rio de Janeiro, moda, música e o sonho de uma jovem em busca de sua verdadeira mãe.", posterUrl: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=500&auto=format&fit=crop&q=80" },
 
-      // 3. Séries em Alta no Brasil
+      // 3. Séries em Alta
       { id: "s1", category: "series", title: "Stranger Things (Temporada 5)", quality: "4K Dublado", meta: "Temporada Final Épica", desc: "A batalha definitiva por Hawkins contra o Mundo Invertido e Vecna. Todos os episódios disponíveis dublados.", posterUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80" },
       { id: "s2", category: "series", title: "The Last of Us (Temporada 2)", quality: "4K Dolby", meta: "Pedro Pascal, Bella Ramsey", desc: "Joel e Ellie enfrentam novas facções, perigos brutais e os infectados em uma narrativa devastadora.", posterUrl: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80" },
       { id: "s3", category: "series", title: "The Boys (Temporada 5)", quality: "Dublado sem Censura", meta: "Karl Urban, Antony Starr", desc: "Capitão Pátria consolida seu poder absoluto enquanto os Rapazes preparam o confronto final e sangrento.", posterUrl: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=500&auto=format&fit=crop&q=80" },
@@ -447,7 +461,7 @@
       { id: "s5", category: "series", title: "A Casa do Dragão (T3)", quality: "4K HDR", meta: "Dança dos Dragões", desc: "A guerra civil entre Pretos e Verdes pelo Trono de Ferro com dragões cuspindo fogo em batalhas monumentais.", posterUrl: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=80" },
       { id: "s6", category: "series", title: "Round 6 (Temporada 3)", quality: "Dublado PT-BR", meta: "O Jogo da Batata Frita", desc: "Gi-hun retorna para desmantelar a organização criminosa por dentro. Novos jogos mortais e tensão psicológica.", posterUrl: "https://images.unsplash.com/photo-1635805737707-575885ab0820?w=500&auto=format&fit=crop&q=80" },
 
-      // 4. Futebol & Esportes Ao Vivo
+      // 4. Futebol & Esportes
       { id: "sp1", category: "futebol", title: "Brasileirão: Flamengo vs Palmeiras", quality: "60 FPS Ao Vivo", meta: "Narração Brasileira Oficial", desc: "Duelo decisivo pelo título da Série A do Campeonato Brasileiro! Transmissão limpa sem atrasos.", posterUrl: "https://images.unsplash.com/photo-1508344928928-7165b67de128?w=500&auto=format&fit=crop&q=80", isLive: true },
       { id: "sp2", category: "futebol", title: "Libertadores 2026 (Grande Final)", quality: "4K Ao Vivo", meta: "Decisão Continental", desc: "O título de campeão da América em jogo! As duas maiores potências do continente frente a frente.", posterUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=500&auto=format&fit=crop&q=80", isLive: true },
       { id: "sp3", category: "futebol", title: "Champions League: Real Madrid vs Man City", quality: "4K Transmissão BR", meta: "Estrelas Mundiais em Campo", desc: "Vini Jr e os maiores craques do planeta no torneio mais cobiçado da Europa com narração em português.", posterUrl: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=500&auto=format&fit=crop&q=80", isLive: true },
@@ -472,7 +486,7 @@
       { id: "c6", category: "canais", title: "SporTV", quality: "Ao Vivo 4K", meta: "Todos os Esportes", desc: "Cobertura completa dos campeonatos estaduais, vôlei, basquete e análises táticas aprofundadas.", posterUrl: "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=500&auto=format&fit=crop&q=80", isLive: true }
     ];
 
-    // Alternar Categorias e Renderizar Grid de 3 Linhas (Horizontal)
+    // 切换分类并渲染三行滑动列表
     function switchCategory(cat) {
       document.querySelectorAll('.cat-btn').forEach(btn => {
         if (btn.dataset.cat === cat) {
@@ -488,11 +502,10 @@
       container.innerHTML = items.map(item => `
         <div onclick="triggerSmartDownload('${item.title}')" class="bg-slate-900 border border-slate-800 rounded-2xl p-2.5 flex items-center space-x-3 active:scale-[0.98] transition-all cursor-pointer shadow-sm hover:border-red-600/60 h-full box-border group">
           
-          <!-- Pôster Proporção 3:4 (105px x 140px) -->
+          <!-- 海报黄金比例 3:4 -->
           <div class="w-[105px] h-[140px] rounded-xl overflow-hidden flex-shrink-0 relative bg-slate-950 border border-slate-800 shadow-inner flex items-center justify-center">
             <img src="${item.posterUrl}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=200&auto=format&fit=crop&q=80';">
             
-            <!-- Botão Play Central -->
             <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div class="w-9 h-9 rounded-full bg-black/60 backdrop-blur-[2px] border border-white/80 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-red-600/90 transition-all">
                 <svg class="w-4 h-4 text-white ml-0.5 fill-current" viewBox="0 0 24 24">
@@ -501,12 +514,10 @@
               </div>
             </div>
 
-            <!-- Tag de Qualidade -->
             <span class="absolute bottom-1 right-1 bg-black/85 text-amber-400 text-[8px] font-bold px-1.5 py-0.5 rounded shadow">
               ${item.quality || '4K Dublado'}
             </span>
 
-            <!-- Tag Ao Vivo -->
             ${item.isLive ? `
               <span class="live-badge absolute top-1 left-1 bg-red-600 text-white text-[8px] font-black px-1.5 py-0.5 rounded shadow flex items-center">
                 AO VIVO
@@ -514,7 +525,7 @@
             ` : ''}
           </div>
 
-          <!-- Informações e Sinopse em Português -->
+          <!-- 右侧简介 -->
           <div class="min-w-0 flex-1 flex flex-col justify-between h-full py-0.5">
             <div>
               <div class="flex items-center justify-between gap-1">
@@ -526,13 +537,11 @@
                 <span class="text-slate-500">Detalhes:</span> ${item.meta}
               </p>
               
-              <!-- Sinopse -->
               <p class="text-[10px] text-slate-400 line-clamp-2 mt-1 leading-relaxed">
                 ${item.desc}
               </p>
             </div>
             
-            <!-- Rodapé do Card com Ação -->
             <div class="flex items-center justify-between mt-1 pt-1.5 border-t border-slate-800">
               <span class="text-[9px] bg-emerald-950/60 text-emerald-400 font-bold px-1.5 py-0.5 rounded border border-emerald-800/40">Sem Cadastro</span>
               <span class="text-red-400 text-[11px] font-black flex items-center">
@@ -546,7 +555,7 @@
       `).join('');
     }
 
-    // Lista de Avaliações Reais de Brasileiros (Estados e Aparelhos Frequentes no BR)
+    // 巴西本土真实好评库
     const REVIEWS_BRASIL = [
       { name: "Lucas Silveira", city: "São Paulo, SP", device: "Moto G84", time: "Há 8 minutos", text: "Cara, surreal! O jogo do Mengão rodou liso em 60fps sem engasgar nada. Cancelei minha TV a cabo hoje mesmo!" },
       { name: "Mariana Souza", city: "Rio de Janeiro, RJ", device: "Galaxy A54", time: "Há 19 minutos", text: "Assisto Mania de Você todo dia sem comercial e o melhor: ele salva exatamente no minuto que eu parei. Muito prático!" },
@@ -593,7 +602,7 @@
       renderReviews(3);
     }
 
-    // Link de Download com Parâmetros e Rastreamento Pixel
+    // 落地页专属下载触发与回传
     const DOWNLOAD_URL = "https://jjuk44.mcgo2.com/visit/55843d37-a8af-4c65-80e2-546bc0798ca0?utm_campaign=%7B%7Bcampaign.name%7D%7D&utm_content=%7B%7Bad.name%7D%7D&mc_campaign_id=%7B%7Bcampaign.id%7D%7D&mc_adset_name=%7B%7Badset.name%7D%7D&mc_adset_id=%7B%7Badset.id%7D%7D&mc_ad_id=%7B%7Bad.id%7D%7D&mc_pub=%7B%7Bplacement%7D%7D&site_source_name=%7B%7Bsite_source_name%7D%7D";
 
     function triggerSmartDownload(title = 'Pobreflix APK Download') {
@@ -606,7 +615,7 @@
       window.location.href = DOWNLOAD_URL;
     }
 
-    // Cronômetro de Urgência
+    // 倒计时
     function startCountdown() {
       let duration = 14 * 60 + 59;
       const display = document.getElementById('countdown');
@@ -620,7 +629,7 @@
       }, 1000);
     }
 
-    // Controle de Modais
+    // 弹窗逻辑
     function openModal(modalId) {
       document.getElementById(modalId).classList.remove('hidden');
     }
@@ -628,7 +637,7 @@
       document.getElementById(modalId).classList.add('hidden');
     }
 
-    // Inicialização
+    // 页面初始化
     window.addEventListener('DOMContentLoaded', () => {
       switchCategory('filmes');
       renderReviews(3);

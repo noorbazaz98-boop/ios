@@ -1,675 +1,1116 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <!-- Impede bloqueio 403 de servidores de imagem -->
-  <meta name="referrer" content="no-referrer">
-  <title>Pobreflix Oficial - Baixar APK Grátis Sem Anúncios</title>
-
-  <!-- Microsoft Clarity -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "z5t4tezf8r");
-  </script>
-
-  <!-- Meta Pixel Code -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-
-    fbq('init', '959693143471895');
-
-    fbq('track', 'PageView');
-  </script>
-  <noscript>
-    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=PIXEL_ID_1&ev=PageView&noscript=1"/>
-    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=PIXEL_ID_2&ev=PageView&noscript=1"/>
-    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=PIXEL_ID_3&ev=PageView&noscript=1"/>
-  </noscript>
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      background-color: #0b0f19;
-      color: #f1f5f9;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      -webkit-tap-highlight-color: transparent;
-      overflow-x: hidden;
-    }
-
-    /* 滚动条隐藏与手势滑动优化 */
-    .hide-scrollbar::-webkit-scrollbar { display: none; }
-    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-    .scroll-touch {
-      overflow-x: auto !important;
-      overflow-y: hidden;
-      -webkit-overflow-scrolling: touch;
-      touch-action: pan-x;
-      width: 100%;
-    }
-
-    .dark-card {
-      background-color: #131a2a;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
-    }
-
-    @keyframes pulse-red {
-      0%, 100% { box-shadow: 0 4px 18px rgba(220, 38, 38, 0.45); }
-      50% { box-shadow: 0 6px 28px rgba(220, 38, 38, 0.85); }
-    }
-    .cta-glow {
-      animation: pulse-red 1.8s infinite ease-in-out;
-    }
-
-    @keyframes live-ping {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.3; transform: scale(1.15); }
-    }
-    .live-badge {
-      animation: live-ping 1.4s infinite ease-in-out;
-    }
-
-    /* 三行横向滑动容器：设置 width: max-content 保证容器被自然撑宽从而激活滑动 */
-    .grid-three-rows {
-      display: grid;
-      grid-template-rows: repeat(3, 156px);
-      grid-auto-flow: column;
-      grid-auto-columns: 320px;
-      gap: 12px;
-      width: max-content;
-      min-width: 100%;
-    }
-  </style>
-</head>
-<body class="flex flex-col min-h-screen pb-32">
-
-  <!-- 1. 顶部服务器节点与倒计时状态条 -->
-  <header class="w-full bg-slate-950/95 text-white px-3.5 py-2.5 sticky top-0 z-40 border-b border-slate-800 backdrop-blur-md">
-    <div class="flex items-center justify-between">
-      <div class="flex items-center space-x-2">
-        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
-        <span class="text-[11px] font-bold text-slate-200">Servidores Brasil 4K Online</span>
-      </div>
-      <div class="text-[11px] bg-red-950/60 text-red-200 px-2.5 py-0.5 rounded-full flex items-center space-x-1.5 font-medium border border-red-800/40">
-        <span class="text-slate-400">Vagas VIP Grátis:</span>
-        <span id="countdown" class="font-mono font-bold text-red-400">14:59</span>
-      </div>
-    </div>
-    <div class="mt-1.5 w-full bg-slate-900 rounded-full h-1 overflow-hidden">
-      <div class="bg-gradient-to-r from-red-600 to-amber-500 h-1 rounded-full w-[88%] animate-pulse"></div>
-    </div>
-  </header>
-
-  <main class="flex-1 px-4 pt-3.5 max-w-lg mx-auto w-full">
-
-    <!-- 2. 产品名片区 -->
-    <div class="dark-card p-3.5 rounded-2xl flex items-center justify-between gap-3">
-      <div class="flex items-center space-x-3 min-w-0">
-        <div class="h-12 px-2.5 rounded-xl bg-slate-950 border border-slate-700/80 shadow-md flex items-center justify-center flex-shrink-0">
-          <div class="flex items-center space-x-1 whitespace-nowrap">
-            <span class="text-white font-black text-xs tracking-tight italic">POBRE<span class="text-red-600">FLIX</span></span>
-            <svg class="w-3.5 h-3.5 text-red-600 fill-current ml-0.5 flex-shrink-0" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-          </div>
-        </div>
-        <div class="min-w-0">
-          <div class="flex items-center space-x-1.5">
-            <h1 class="text-sm font-black text-white truncate">Pobreflix Brasil</h1>
-            <span class="bg-red-950/80 text-red-400 text-[9px] font-extrabold px-1.5 py-0.5 rounded border border-red-800/60 flex-shrink-0">V.2026.11</span>
-          </div>
-          <p class="text-xs text-amber-400 font-semibold truncate mt-0.5">Filmes de Cinema · Séries · Novelas · Futebol</p>
-          <div class="flex items-center text-[10px] text-slate-400 space-x-2 mt-1">
-            <span class="font-medium text-slate-300">28.4 MB</span>
-            <span>•</span>
-            <span class="text-emerald-400 font-medium flex items-center">
-              <svg class="w-3 h-3 text-emerald-400 mr-1 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-              Verificado Play Protect
-            </span>
-          </div>
-        </div>
-      </div>
-      <button onclick="triggerSmartDownload('Botão Topo Baixar')" class="bg-red-600 hover:bg-red-700 active:scale-95 transition-all text-white text-xs font-black px-3.5 py-2.5 rounded-xl shadow-lg whitespace-nowrap flex-shrink-0">
-        INSTALAR
-      </button>
-    </div>
-
-    <!-- 3. 指标数据栏 -->
-    <div class="grid grid-cols-4 gap-1.5 dark-card p-2.5 rounded-2xl mt-3 text-center">
-      <div>
-        <div class="text-amber-400 text-xs font-extrabold flex items-center justify-center">
-          <span>4.9</span>
-          <svg class="w-3 h-3 ml-0.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-        </div>
-        <div class="text-[9px] text-slate-400 mt-0.5">38.400+ Votos</div>
-      </div>
-      <div class="border-x border-slate-800">
-        <div class="text-emerald-400 text-xs font-extrabold">100% Grátis</div>
-        <div class="text-[9px] text-slate-400 mt-0.5">Sem Cartão</div>
-      </div>
-      <div class="border-r border-slate-800">
-        <div class="text-blue-400 text-xs font-extrabold">Dublado PT-BR</div>
-        <div class="text-[9px] text-slate-400 mt-0.5">+ Legendas</div>
-      </div>
-      <div>
-        <div class="text-red-400 text-xs font-extrabold">Histórico</div>
-        <div class="text-[9px] text-slate-400 mt-0.5">Salva Progresso</div>
-      </div>
-    </div>
-
-    <!-- 4. 巴西本土特色：足球直播与电视频道专区 -->
-    <div onclick="triggerSmartDownload('Banner Futebol e TV Brasil')" class="mt-3.5 bg-gradient-to-r from-red-600 via-amber-600 to-emerald-600 p-[1.5px] rounded-2xl cursor-pointer active:scale-[0.99] transition-all shadow-lg">
-      <div class="bg-slate-900 rounded-2xl p-3.5">
-        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
-          <div class="flex items-center space-x-2">
-            <span class="live-badge bg-red-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded flex items-center shadow">
-              <span class="w-1.5 h-1.5 rounded-full bg-white mr-1"></span>AO VIVO
-            </span>
-            <h2 class="text-xs font-black text-white tracking-wide">Futebol Ao Vivo & Canais BR Desbloqueados</h2>
-          </div>
-          <span class="text-[9px] text-amber-400 bg-amber-950/60 font-bold px-2 py-0.5 rounded border border-amber-700/50">
-            60 FPS HD
-          </span>
-        </div>
-
-        <div class="grid grid-cols-6 gap-2 mt-2.5 text-center">
-          <div class="flex flex-col items-center">
-            <div class="w-10 h-10 rounded-xl bg-blue-700 text-white flex items-center justify-center font-black text-[9px] shadow border border-blue-500">
-              GLOBO
-            </div>
-            <span class="text-[8px] text-slate-300 font-bold mt-1">Ao Vivo</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center font-black text-[9px] shadow border border-amber-300">
-              SBT
-            </div>
-            <span class="text-[8px] text-slate-300 font-bold mt-1">HD</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <div class="w-10 h-10 rounded-xl bg-blue-900 text-white flex items-center justify-center font-black text-[9px] shadow border border-blue-400">
-              RECORD
-            </div>
-            <span class="text-[8px] text-slate-300 font-bold mt-1">Nacional</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <div class="w-10 h-10 rounded-xl bg-red-700 text-white flex items-center justify-center font-black text-[8px] shadow border border-red-500">
-              BAND
-            </div>
-            <span class="text-[8px] text-slate-300 font-bold mt-1">Esportes</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <div class="w-10 h-10 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-black text-[8px] shadow border border-emerald-500">
-              PREMIERE
-            </div>
-            <span class="text-[8px] text-slate-300 font-bold mt-1">Brasileirão</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <div class="w-10 h-10 rounded-xl bg-purple-700 text-white flex items-center justify-center font-black text-[8px] shadow border border-purple-500">
-              CAZÉTV
-            </div>
-            <span class="text-[8px] text-slate-300 font-bold mt-1">Online</span>
-          </div>
-        </div>
-
-        <div class="mt-2.5 pt-2 border-t border-slate-800 flex items-center justify-between text-[11px]">
-          <span class="text-slate-400">Sem TV Box · Compatível com Smart TV & Chromecast</span>
-          <span class="text-amber-400 font-bold flex items-center">
-            Assistir Agora
-            <svg class="w-3.5 h-3.5 ml-0.5 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 5. 2026年11月本土爆款片库 -->
-    <div class="mt-5">
-      <div class="flex items-center justify-between mb-2.5">
-        <h3 class="text-xs font-black text-white flex items-center uppercase tracking-wide">
-          <span class="w-1.5 h-4 bg-red-600 rounded-sm mr-2"></span>
-          Bombando no Brasil (Novembro 2026)
-        </h3>
-        <span class="text-[10px] text-amber-400 font-medium">⇄ Deslize para o lado</span>
-      </div>
-
-      <!-- 分类标签栏 -->
-      <div class="scroll-touch hide-scrollbar pb-1.5" id="categoryTabsWrapper">
-        <div class="flex space-x-2 w-max" id="categoryTabs">
-          <button onclick="switchCategory('filmes')" data-cat="filmes" class="cat-btn px-3.5 py-1.5 rounded-xl bg-red-600 text-white font-extrabold whitespace-nowrap shadow transition-all">Filmes de Cinema</button>
-          <button onclick="switchCategory('novelas')" data-cat="novelas" class="cat-btn px-3.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap border border-slate-700 font-bold transition-all">Novelas</button>
-          <button onclick="switchCategory('series')" data-cat="series" class="cat-btn px-3.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap border border-slate-700 font-bold transition-all">Séries em Alta</button>
-          <button onclick="switchCategory('futebol')" data-cat="futebol" class="cat-btn px-3.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap border border-slate-700 font-bold transition-all">Futebol & Esportes</button>
-          <button onclick="switchCategory('animes')" data-cat="animes" class="cat-btn px-3.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap border border-slate-700 font-bold transition-all">Animes & Doramas</button>
-          <button onclick="switchCategory('canais')" data-cat="canais" class="cat-btn px-3.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap border border-slate-700 font-bold transition-all">TV Aberta Ao Vivo</button>
-        </div>
-      </div>
-
-      <!-- 三行海报滑动网格 -->
-      <div class="scroll-touch hide-scrollbar pt-2.5 pb-1">
-        <div id="mediaContainer" class="grid-three-rows"></div>
-      </div>
-    </div>
-
-    <!-- 6. 痛点对比模块 -->
-    <div class="mt-5 dark-card rounded-2xl p-4">
-      <h3 class="text-xs font-black text-center text-white mb-3 uppercase tracking-wider">
-        Por que os brasileiros escolheram o Pobreflix?
-      </h3>
-      <div class="space-y-2 text-xs">
-        <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800">
-          <span class="text-slate-400 flex items-center">
-            <span class="text-red-500 font-bold mr-2">✕</span> Assinaturas custam R$ 150+/mês
-          </span>
-          <span class="text-emerald-400 font-bold flex items-center">
-            <span class="mr-1">✓</span> 100% Grátis Vitalício
-          </span>
-        </div>
-        <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800">
-          <span class="text-slate-400 flex items-center">
-            <span class="text-red-500 font-bold mr-2">✕</span> Exige cadastro e cartão de crédito
-          </span>
-          <span class="text-emerald-400 font-bold flex items-center">
-            <span class="mr-1">✓</span> Sem Cadastro, Abra e Assista
-          </span>
-        </div>
-        <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800">
-          <span class="text-slate-400 flex items-center">
-            <span class="text-red-500 font-bold mr-2">✕</span> Filmes de cinema demoram meses
-          </span>
-          <span class="text-emerald-400 font-bold flex items-center">
-            <span class="mr-1">✓</span> Estreias de Cinema na Semana
-          </span>
-        </div>
-        <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800">
-          <span class="text-slate-400 flex items-center">
-            <span class="text-red-500 font-bold mr-2">✕</span> Perde onde parou o episódio
-          </span>
-          <span class="text-emerald-400 font-bold flex items-center">
-            <span class="mr-1">✓</span> Histórico Salva Automaticamente
-          </span>
-        </div>
-        <div class="flex items-center justify-between bg-slate-900/80 p-2.5 rounded-xl border border-slate-800">
-          <span class="text-slate-400 flex items-center">
-            <span class="text-red-500 font-bold mr-2">✕</span> Travamentos em dias de jogo
-          </span>
-          <span class="text-emerald-400 font-bold flex items-center">
-            <span class="mr-1">✓</span> Servidores BR Ultrarrápidos
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 7. 安卓官方直连安全安装引导 -->
-    <div class="mt-4 bg-emerald-950/40 border border-emerald-700/40 rounded-2xl p-3.5">
-      <div class="flex items-center space-x-2 text-emerald-400 font-bold text-xs mb-1">
-        <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd"></path></svg>
-        <span>Como Instalar com Segurança no Celular Android</span>
-      </div>
-      <p class="text-[11px] text-slate-300 leading-relaxed mb-2.5">
-        Para manter o aplicativo 100% gratuito e sem cobranças, fornecemos o link direto oficial. Se o seu navegador Android exibir um aviso de arquivo desconhecido:
-      </p>
-      <div class="grid grid-cols-2 gap-2 text-[11px]">
-        <div class="bg-slate-900/90 p-2.5 rounded-xl border border-emerald-800/40">
-          <span class="text-amber-400 font-extrabold block">① Clique em [Manter / Baixar mesmo assim]</span>
-          <span class="text-slate-400 text-[10px]">Arquivo APK verificado sem vírus</span>
-        </div>
-        <div class="bg-slate-900/90 p-2.5 rounded-xl border border-emerald-800/40">
-          <span class="text-amber-400 font-extrabold block">② Clique em [Instalar]</span>
-          <span class="text-slate-400 text-[10px]">Em 5 segundos você já começa a assistir</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 8. 巴西各州真实评价区 -->
-    <div class="mt-5">
-      <div class="flex items-center justify-between mb-2.5">
-        <h3 class="text-xs font-black text-white flex items-center">
-          <span class="w-1.5 h-4 bg-red-600 rounded-sm mr-2"></span>
-          Opinião dos Usuários (<span class="text-red-400 font-mono">38.400+</span>)
-        </h3>
-        <span class="text-[10px] text-emerald-400 font-medium bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-800/40">Atualizado hoje</span>
-      </div>
-
-      <div id="reviewsContainer" class="space-y-2 text-xs"></div>
-
-      <button id="loadMoreBtn" onclick="loadMoreReviews()" class="w-full mt-2.5 py-2.5 bg-slate-900 hover:bg-slate-800 text-slate-300 rounded-xl text-xs font-bold border border-slate-700 shadow transition-all">
-        Ver mais avaliações ▼
-      </button>
-    </div>
-
-    <!-- 9. 底部信息与法律条款 -->
-    <footer class="mt-8 pt-4 border-t border-slate-800 text-[11px] text-slate-400 space-y-2 pb-6">
-      <div class="text-center space-y-0.5">
-        <p class="text-slate-300 font-bold">Pobreflix Brasil - Central Oficial de Suporte</p>
-        <p>Contato: suporte@pobreflix-oficial.com.br</p>
-      </div>
-
-      <div class="flex justify-center space-x-3 text-slate-400 font-medium pt-1">
-        <button onclick="openModal('privacyModal')" class="hover:text-slate-200 underline">Política de Privacidade</button>
-        <span>•</span>
-        <button onclick="openModal('termsModal')" class="hover:text-slate-200 underline">Termos de Uso</button>
-        <span>•</span>
-        <button onclick="openModal('disclaimerModal')" class="hover:text-slate-200 underline">Aviso Legal</button>
-      </div>
-      <p class="text-center text-[10px] text-slate-500 leading-relaxed px-4">
-        © 2026 Pobreflix Brasil. Todos os direitos reservados. O aplicativo funciona como um reprodutor de mídia indexador para entretenimento pessoal.
-      </p>
-    </footer>
-
-  </main>
-
-  <!-- 10. 吸底主转化按钮 -->
-  <div class="fixed bottom-0 left-0 right-0 p-3 bg-slate-950/95 backdrop-blur-md border-t border-slate-800 z-40 shadow-[0_-4px_20px_rgba(0,0,0,0.8)]">
-    <div class="max-w-lg mx-auto">
-      <button onclick="triggerSmartDownload('Botão Fixo Flutuante Baixar')" class="cta-glow w-full bg-gradient-to-r from-red-600 via-red-600 to-amber-600 hover:from-red-700 hover:to-amber-700 active:scale-[0.98] transition-all text-white font-black py-3.5 px-4 rounded-xl shadow-lg flex items-center justify-center space-x-2">
-        <svg class="w-5 h-5 text-white animate-bounce" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4-4v12"></path>
-        </svg>
-        <span class="text-base tracking-wide font-sans">BAIXAR POBREFLIX GRÁTIS (28.4 MB)</span>
-      </button>
-      <div class="text-[10px] text-center text-slate-400 mt-1.5 flex items-center justify-center space-x-2">
-        <span class="text-emerald-400 font-semibold flex items-center">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1"></span>Servidor Brasil Conectado
-        </span>
-        <span>·</span>
-        <span>Filmes, Séries & Futebol · 100% Compatível com Android</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 条款弹窗 -->
-  <div id="privacyModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-5 max-h-[80vh] flex flex-col text-left shadow-2xl">
-      <div class="flex justify-between items-center pb-2.5 border-b border-slate-800">
-        <h4 class="text-sm font-bold text-white">Política de Privacidade</h4>
-        <button onclick="closeModal('privacyModal')" class="text-slate-400 hover:text-white text-lg">✕</button>
-      </div>
-      <div class="overflow-y-auto text-xs text-slate-300 space-y-2 mt-3 pr-1 leading-relaxed">
-        <p>O Pobreflix respeita a privacidade de seus usuários e não coleta dados bancários, números de telefone ou dados sensíveis. O aplicativo apenas solicita as permissões estritamente necessárias para streaming e armazenamento de histórico local no dispositivo.</p>
-      </div>
-      <button onclick="closeModal('privacyModal')" class="mt-4 w-full bg-slate-800 hover:bg-slate-700 text-white py-2.5 rounded-xl text-xs font-bold transition-all">Entendido</button>
-    </div>
-  </div>
-
-  <div id="termsModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-5 max-h-[80vh] flex flex-col text-left shadow-2xl">
-      <div class="flex justify-between items-center pb-2.5 border-b border-slate-800">
-        <h4 class="text-sm font-bold text-white">Termos de Uso</h4>
-        <button onclick="closeModal('termsModal')" class="text-slate-400 hover:text-white text-lg">✕</button>
-      </div>
-      <div class="overflow-y-auto text-xs text-slate-300 space-y-2 mt-3 pr-1 leading-relaxed">
-        <p>Ao utilizar o aplicativo, o usuário concorda em utilizá-lo estritamente para entretenimento individual e sem fins comerciais. O usuário é responsável pela conectividade de sua própria rede de dados.</p>
-      </div>
-      <button onclick="closeModal('termsModal')" class="mt-4 w-full bg-slate-800 hover:bg-slate-700 text-white py-2.5 rounded-xl text-xs font-bold transition-all">Aceitar</button>
-    </div>
-  </div>
-
-  <div id="disclaimerModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-5 max-h-[80vh] flex flex-col text-left shadow-2xl">
-      <div class="flex justify-between items-center pb-2.5 border-b border-slate-800">
-        <h4 class="text-sm font-bold text-white">Aviso Legal</h4>
-        <button onclick="closeModal('disclaimerModal')" class="text-slate-400 hover:text-white text-lg">✕</button>
-      </div>
-      <div class="overflow-y-auto text-xs text-slate-300 space-y-2 mt-3 pr-1 leading-relaxed">
-        <p>O Pobreflix é uma plataforma de reprodução e decodificação de conteúdo que indexa links públicos na internet, não hospedando arquivos proprietários em seus servidores.</p>
-      </div>
-      <button onclick="closeModal('disclaimerModal')" class="mt-4 w-full bg-slate-800 hover:bg-slate-700 text-white py-2.5 rounded-xl text-xs font-bold transition-all">Fechar</button>
-    </div>
-  </div>
-
-  <script>
-    // 关键修正：必须在数组声明前定义 fixImg 函数，否则会导致 JavaScript 报错崩溃
-    const fixImg = (src) => {
-      if (!src) return "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=300&auto=format&fit=crop&q=80";
-      if (src.startsWith('http://') || src.startsWith('https://')) return src;
-      return 'https://gimytv.biz' + src;
-    };
-
-    // 巴西本土 2026 年 11 月爆款影视数据库
-    const MEDIA_DATABASE_BR_2026 = [
-      // 1. Filmes de Cinema
-      { id: "m1", category: "filmes", title: "A Odisseia (The Odyssey)", quality: "IMAX 4K", meta: "Christopher Nolan, Matt Damon", desc: "Épico espacial de Christopher Nolan! A longa viagem da humanidade em busca do último sistema habitável.", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/7/73/The_Odyssey_2026_Poster.jpg/250px-The_Odyssey_2026_Poster.jpg" },
-      { id: "m2", category: "filmes", title: "Homem-Aranha: Um Novo Dia", quality: "4K Dublado", meta: "Tom Holland, Zendaya", desc: "Novo capítulo da Marvel! Esquecido por todos, Peter Parker recomeça nas ruas de Nova York enfrentando novos perigos.", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/4/45/Spider-Man_Brand_New_Day_Poster.jpg/250px-Spider-Man_Brand_New_Day_Poster.jpg" },
-      { id: "m3", category: "filmes", title: "Michael: O Rei do Pop", quality: "4K Dolby", meta: "Jaafar Jackson", desc: "A emocionante cinebiografia de Michael Jackson com bastidores inéditos de turnês e ensaios lendários.", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/f/fa/Michael_%282026_film%29_Poster.jpg/250px-Michael_%282026_film%29_Poster.jpg" },
-      { id: "m4", category: "filmes", title: "Toy Story 5", quality: "Dublado 4K", meta: "Woody e Buzz Lightyear", desc: "O retorno emocionante da Pixar! Os brinquedos enfrentam o mundo das telas digitais em busca de conexão.", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/b/b0/Toy_Story_5_Poster.jpg/250px-Toy_Story_5_Poster.jpg" },
-      { id: "m5", category: "filmes", title: "Street Fighter (2026)", quality: "4K Ultra HD", meta: "Adaptação dos Games", desc: "O lendário game de luta chega às telonas com Hadouken e combates fiéis e insanos.", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/e/e3/Street_Fighter_%282026_film%29_poster.jpg/250px-Street_Fighter_%282026_film%29_poster.jpg" },
-      { id: "m6", category: "filmes", title: "Cara-de-Barro (Clayface)", quality: "4K Dolby", meta: "DC Sombrio · Gotham", desc: "A origem aterrorizante do vilão de Gotham: ator desfigurado usa substâncias químicas para buscar vingança.", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/4/4f/Clayface_%28film%29_poster.jpg/250px-Clayface_%28film%29_poster.jpg" },
-      { id: "m7", category: "filmes", title: "Jogos Vorazes: Amanhecer", quality: "Estreia 4K", meta: "50º Massacre Quaternário", desc: "O aguardado prelúdio da franquia mostrando o jovem Haymitch lutando pela vida com tributos em dobro.", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/d/da/The_Hunger_Games_-_Sunrise_on_the_Reaping_poster.jpg/250px-The_Hunger_Games_-_Sunrise_on_the_Reaping_poster.jpg" },
-      { id: "m8", category: "filmes", title: "Godzilla: Ponto Zero", quality: "4K 60 FPS", meta: "O Rei dos Monstros", desc: "Fera colossal desperta com radiação extrema e a humanidade enfrenta ruína total nas cidades costeiras.", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/0/09/Godzilla_Minus_Zero_poster.jpg/250px-Godzilla_Minus_Zero_poster.jpg" },
-      { id: "m9", category: "filmes", title: "Street Fighter: O Confronto", quality: "Cinema HD", meta: "Noah Centineo, Andrew Koji", desc: "Lutadores de elite disputam o torneio mundial definitivo com coreografias brutais e efeitos modernos.", posterUrl: fixImg("/upload/vod/20261015-main/83d92769d56b7920f65152ed0d0282352b56d428529919f3ec346f94670d9e56.jpg") },
-      { id: "m10", category: "filmes", title: "Fuga do Abismo", quality: "Super HD Dublado", meta: "Austin Abrams, Josh Brolin", desc: "Cientistas são engolidos por uma criatura pré-histórica marinha em uma fuga claustrofóbica nas profundezas.", posterUrl: fixImg("/upload/vod/20261016-1/eb16c98ce7220fb1d595fa86645fa53d.webp") },
-      { id: "m11", category: "filmes", title: "Esperança (Hope 2026)", quality: "Full HD Dublado", meta: "Hwang Jung-min, Zo In-sung", desc: "Alienígena misterioso aterroriza uma vila isolada, iniciando confronto desesperado pela sobrevivência.", posterUrl: fixImg("/upload/vod/20261013-1/ba298a17d5274d680446112c0680c17f.webp") },
-      { id: "m12", category: "filmes", title: "Renascer da Vingança 2", quality: "HD Dublado", meta: "Isabella Leong, Sammo Hung", desc: "Ex-agente infiltrado enfrenta impiedosamente cartéis internacionais em uma espiral de ação e adrenalina.", posterUrl: fixImg("/upload/vod/20261015-main/fc0dca1ed3716da89759885496885151d6e16aa64297395540ec946043557389.webp") },
-      { id: "m13", category: "filmes", title: "A Queda 2: Ponto Cego", quality: "Full HD 1080p", meta: "Harriet Slater, Arsema Thomas", desc: "Torre de transmissão a centenas de metros vira armadilha mortal com tempestade implacável se aproximando.", posterUrl: fixImg("/upload/vod/20261008-main/3267957a98177cf6497cf6af9aec3f5fcb13a2b585111558f59ffc95bb7f433b.webp") },
-      { id: "m14", category: "filmes", title: "A Caverna do Urso", quality: "Filme Completo", meta: "Chara Kyriazi, Pamela O.", desc: "Suspense dramático sobre segredos obscuros de família revelados em um abrigo isolado na floresta.", posterUrl: "https://xl.xltupian.com/cover/82707bd65977ff442c025028801507f4.jpg" },
-      { id: "m15", category: "filmes", title: "Kung Fu Feminino", quality: "Dublado HD", meta: "Zhang Xiaofei, Dilraba", desc: "Garotas misturam artes marciais lendárias e futebol para conquistar o campeonato nos gramados.", posterUrl: fixImg("/upload/vod/20261008-2/5a37da552223a78851ba7f972691f104.webp") },
-      { id: "m16", category: "filmes", title: "Jogos da Paixão", quality: "HD Dublado", meta: "Tsang Lok Tung, Carlos Chan", desc: "Comédia romântica moderna e urbana cheia de jogos de sedução e reviravoltas amorosas na metrópole.", posterUrl: fixImg("/upload/vod/20261017-1/70d45dd43f9aefc77930071d31d06a36.webp") },
-      { id: "m17", category: "filmes", title: "Resgate Noturno", quality: "Full HD Ação", meta: "LaMonica Garrett, Andrew Howard", desc: "Operação especial invade território inimigo em meio a conspirações para extrair testemunha crucial.", posterUrl: fixImg("/upload/vod/20261017-1/55374c71b78556a577566d3172d782a5.webp") },
-      { id: "m18", category: "filmes", title: "Espadas na Neve", quality: "HD Dublado", meta: "Pan Binlong, Andy On", desc: "Duelos ferozes na neve! Guerreiro aposentado retoma sua lâmina para honrar um juramento de sangue.", posterUrl: fixImg("/upload/vod/20261016-1/ef09fcd06ba8fb7329529b058ee7c95d.webp") },
-      { id: "m19", category: "filmes", title: "O Grilo da Sorte", quality: "HD Legendado", meta: "Fantasia Histórica", desc: "Adaptação de clássico fantástico: a obsessão nobre que altera o destino de uma família humilde.", posterUrl: fixImg("/upload/vod/20261016-1/b224d9ef5962c6257b669b169bb243b8.png") },
-      { id: "m20", category: "filmes", title: "A Outra Mãe", quality: "Super Lançamento", meta: "Jessica Chastain, Jay Duplass", desc: "A rotina pacífica de uma casa se rompe com revelação perturbadora do passado de uma mulher misteriosa.", posterUrl: "https://xl.xltupian.com/cover/32cefc900be5c910ea922cc949b2455b.jpg" },
-      { id: "m21", category: "filmes", title: "Coração Selvagem", quality: "HD Dublado", meta: "Brad Pitt, J.K. Simmons", desc: "Detetive veterano e criminoso implacável medem forças mentais durante tempestade devastadora.", posterUrl: fixImg("/upload/vod/20261008-2/f52a0170e58e4baf5a4e55d4e25f2657.jpg") },
-      { id: "m22", category: "filmes", title: "A Morte do Demônio 2026", quality: "Terror 4K", meta: "Jeffrey Donovan, Dana M.", desc: "O Livro dos Mortos é reaberto liberando espíritos malignos em pesadelo implacável na cabana.", posterUrl: fixImg("/upload/vod/20261008-1/1d722f410597ff80ff976bc0eef6ec01.jpg") },
-      { id: "m23", category: "filmes", title: "A Esposa Perfeita", quality: "Full HD Dublado", meta: "Ryu Tae-joon, Yeom Sung-yi", desc: "Casal influente vive guerra fria de interesses, armando ciladas e vinganças pelo controle financeiro.", posterUrl: fixImg("/upload/vod/20261012-1/4e0683ba6a3a7ab03f3431c329c92da5.webp") },
-      { id: "m24", category: "filmes", title: "O Réu Inexistente", quality: "Suspense HD", meta: "Anne Hathaway, Dakota Johnson", desc: "Disputa acirrada nos tribunais: duas advogadas de elite debatem limites éticos em caso sem provas.", posterUrl: fixImg("/upload/vod/20261008-2/4cd3e90dd0f825fa11f45d11a5752b32.webp") },
-      { id: "m25", category: "filmes", title: "Matchbox: O Filme", quality: "4K Dublado", meta: "John Cena, Jessica Biel", desc: "Carrinhos clássicos em perseguições eletrizantes pelo mundo comandadas por pilotos e espiões.", posterUrl: fixImg("/upload/vod/20261009-1/1d340b1065abe629817950b12a86ba16.webp") },
-      { id: "m26", category: "filmes", title: "O Código (Safe)", quality: "Dublado 1080p", meta: "Jason Statham, Catherine Chan", desc: "Ex-agente implacável protege prodígio da matemática com segredo multimilionário contra gangues rivais.", posterUrl: fixImg("/upload/vod/20261008-2/5a1e01352ceab998834098f98307a3fb.jpg") },
-      { id: "m27", category: "filmes", title: "Tubarões do Texas", quality: "Terror HD", meta: "Michael Crary Ness, Michelle", desc: "Enchentes brutais trazem predadores marinhos gigantescos para inundar o interior do Texas com terror.", posterUrl: fixImg("/upload/vod/20261012-1/9a5237ceab06a562013266be5f6ed6cd.webp") },
-      { id: "m28", category: "filmes", title: "Street Fighter: Origens", quality: "Original Leg.", meta: "Noah Centineo, Andrew Koji", desc: "A juventude de Ryu e Ken no submundo das lutas antes dos grandes torneios mundiais de artes marciais.", posterUrl: "https://xl.xltupian.com/cover/fd56fee25cf9f50f32c800e64a6e652a.jpg" },
-      { id: "m29", category: "filmes", title: "Linha de Fogo: O Cerco", quality: "Guerra HD", meta: "Colin Hanks, Scott Eastwood", desc: "Pelotão encurralado na neve mantém posição contra forças superiores em batalha comovente e realista.", posterUrl: fixImg("/upload/vod/20261015-1/798d73019e767f5f30f51add37f0fe75.webp") },
-      { id: "m30", category: "filmes", title: "Siccin 9: Maldição", quality: "Terror HD", meta: "Burcu Almeman, Fahrettin", desc: "Novo episódio da icônica franquia sobrenatural turca com rituais sombrios aterrorizando família.", posterUrl: fixImg("/upload/vod/20261016-1/4169feb939aff1d9c3021573d8012c23.webp") },
-      { id: "m31", category: "filmes", title: "Desejos Proibidos", quality: "Drama HD", meta: "Tadina Papamosche, Gisela", desc: "Drama europeu poético sobre desejos ocultos, moralidade e tensões de classe social num verão intenso.", posterUrl: fixImg("/upload/vod/20261008-2/60805cf98f9f2ba0ceae516e40930267.jpg") },
-      { id: "m32", category: "filmes", title: "Homem-Aranha: Estendido", quality: "4K Dublado", meta: "Tom Holland, Zendaya, Sadie Sink", desc: "Versão estendida do filme mais recente do teioso com cenas inéditas e ação épica do multiverso.", posterUrl: fixImg("/upload/vod/20261008-2/20061ce3302eddf2be581352522f9601.webp") },
-      
-      // 2. Novelas Brasileiras
-      { id: "n1", category: "novelas", title: "Mania de Você", quality: "Capítulo Diário", meta: "Chay Suede, Gabz, Nicolas Prattes", desc: "A novela das 9 que parou o Brasil! Traição, suspense, paixão avassaladora e reviravoltas no litoral fluminense.", posterUrl: "https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?w=500&auto=format&fit=crop&q=80" },
-      { id: "n2", category: "novelas", title: "Renascer (Edição Completa)", quality: "Todos os Capítulos", meta: "Marcos Palmeira, Juan Paiva", desc: "O clássico do cacau na Bahia em 4K. A saga emocionante de José Inocêncio e o pacto com o jequitibá-rei.", posterUrl: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80" },
-      { id: "n3", category: "novelas", title: "Vale Tudo (Remake 2026)", quality: "Super Estreia", meta: "Taís Araújo, Deborah Bloch", desc: "O maior clássico da teledramaturgia brasileira reimaginado com Odete Roitman e segredos que chocam o país.", posterUrl: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500&auto=format&fit=crop&q=80" },
-      { id: "n4", category: "novelas", title: "Volta por Cima", quality: "Novela das 7", meta: "Jéssica Ellen, Fabrício Boliveira", desc: "História de superação popular no subúrbio carioca, romance vibrante e humor contagiante todos os dias.", posterUrl: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=500&auto=format&fit=crop&q=80" },
-      { id: "n5", category: "novelas", title: "Avenida Brasil (Remasterizada)", quality: "4K Completa", meta: "Adriana Esteves, Débora Falabella", desc: "A vingança inesquecível de Nina contra Carminha. Reveja a novela do século sem pagar nada e sem comerciais.", posterUrl: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=500&auto=format&fit=crop&q=80" },
-      { id: "n6", category: "novelas", title: "Garota do Momento", quality: "Novela das 6", meta: "Duda Santos, Maisa Silva", desc: "O charme dos anos 50 no Rio de Janeiro, moda, música e o sonho de uma jovem em busca de sua verdadeira mãe.", posterUrl: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=500&auto=format&fit=crop&q=80" },
-
-      // 3. Séries em Alta
-      { id: "s1", category: "series", title: "Stranger Things (Temporada 5)", quality: "4K Dublado", meta: "Temporada Final Épica", desc: "A batalha definitiva por Hawkins contra o Mundo Invertido e Vecna. Todos os episódios disponíveis dublados.", posterUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80" },
-      { id: "s2", category: "series", title: "The Last of Us (Temporada 2)", quality: "4K Dolby", meta: "Pedro Pascal, Bella Ramsey", desc: "Joel e Ellie enfrentam novas facções, perigos brutais e os infectados em uma narrativa devastadora.", posterUrl: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80" },
-      { id: "s3", category: "series", title: "The Boys (Temporada 5)", quality: "Dublado sem Censura", meta: "Karl Urban, Antony Starr", desc: "Capitão Pátria consolida seu poder absoluto enquanto os Rapazes preparam o confronto final e sangrento.", posterUrl: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=500&auto=format&fit=crop&q=80" },
-      { id: "s4", category: "series", title: "Wandinha (Temporada 2)", quality: "4K Dublado", meta: "Jenna Ortega, Família Addams", desc: "Novos mistérios sombrios e assassinatos na Escola Nunca Mais. Mais gótica, sarcástica e divertida do que nunca.", posterUrl: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80" },
-      { id: "s5", category: "series", title: "A Casa do Dragão (T3)", quality: "4K HDR", meta: "Dança dos Dragões", desc: "A guerra civil entre Pretos e Verdes pelo Trono de Ferro com dragões cuspindo fogo em batalhas monumentais.", posterUrl: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=80" },
-      { id: "s6", category: "series", title: "Round 6 (Temporada 3)", quality: "Dublado PT-BR", meta: "O Jogo da Batata Frita", desc: "Gi-hun retorna para desmantelar a organização criminosa por dentro. Novos jogos mortais e tensão psicológica.", posterUrl: "https://images.unsplash.com/photo-1635805737707-575885ab0820?w=500&auto=format&fit=crop&q=80" },
-
-      // 4. Futebol & Esportes
-      { id: "sp1", category: "futebol", title: "Brasileirão: Flamengo vs Palmeiras", quality: "60 FPS Ao Vivo", meta: "Narração Brasileira Oficial", desc: "Duelo decisivo pelo título da Série A do Campeonato Brasileiro! Transmissão limpa sem atrasos.", posterUrl: "https://images.unsplash.com/photo-1508344928928-7165b67de128?w=500&auto=format&fit=crop&q=80", isLive: true },
-      { id: "sp2", category: "futebol", title: "Libertadores 2026 (Grande Final)", quality: "4K Ao Vivo", meta: "Decisão Continental", desc: "O título de campeão da América em jogo! As duas maiores potências do continente frente a frente.", posterUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=500&auto=format&fit=crop&q=80", isLive: true },
-      { id: "sp3", category: "futebol", title: "Champions League: Real Madrid vs Man City", quality: "4K Transmissão BR", meta: "Estrelas Mundiais em Campo", desc: "Vini Jr e os maiores craques do planeta no torneio mais cobiçado da Europa com narração em português.", posterUrl: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=500&auto=format&fit=crop&q=80", isLive: true },
-      { id: "sp4", category: "futebol", title: "Brasileirão: Corinthians vs São Paulo", quality: "60 FPS Ao Vivo", meta: "Majestoso em Alta Tensão", desc: "Clássico paulista eletrizante com estádio lotado e disputa ferrenha pelos três pontos da rodada.", posterUrl: "https://images.unsplash.com/photo-1516731415730-0c607149933a?w=500&auto=format&fit=crop&q=80", isLive: true },
-      { id: "sp5", category: "futebol", title: "UFC: Disputa de Cinturão dos Brasileiros", quality: "HD Combate", meta: "Ao Vivo de Las Vegas", desc: "Card principal com lutadores brasileiros disputando o cinturão mundial no octógono do UFC.", posterUrl: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=500&auto=format&fit=crop&q=80", isLive: true },
-      { id: "sp6", category: "futebol", title: "Copa do Brasil: Semifinais Decisivas", quality: "Ao Vivo HD", meta: "Mata-mata milionário", desc: "Jogos de volta da competição mais emocionante do futebol brasileiro, emoção do primeiro ao último minuto.", posterUrl: "https://images.unsplash.com/photo-1508344928928-7165b67de128?w=500&auto=format&fit=crop&q=80", isLive: true },
-
-      // 5. Animes & Doramas
-      { id: "a1", category: "animes", title: "Solo Leveling (Final Épico)", quality: "Dublado & Legendado", meta: "Sung Jinwoo Rei das Sombras", desc: "A guerra dos Monarcas atinge a Terra. O exército das sombras marcha em qualidade ultra nítida.", posterUrl: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=500&auto=format&fit=crop&q=80" },
-      { id: "a2", category: "animes", title: "One Piece (Saga Final)", quality: "Semanal Dublado", meta: "Egghead e os Cinco Anciões", desc: "Luffy em Gear 5 revela os segredos do Século Perdido para o mundo. O anime número 1 no Brasil.", posterUrl: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=80" },
-      { id: "a3", category: "animes", title: "Rainha das Lágrimas (Dorama)", quality: "Completo Dublado", meta: "Romance e Drama Coreano", desc: "O dorama que conquistou os lares brasileiros! Amor, reencontro e lágrimas em alta definição.", posterUrl: "https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?w=500&auto=format&fit=crop&q=80" },
-      { id: "a4", category: "animes", title: "Demon Slayer: Castelo Infinito", quality: "Filme Completo 4K", meta: "Tanjiro vs Akaza & Muzan", desc: "A trilogia cinematográfica mais aguardada com a animação impecável do estúdio Ufotable.", posterUrl: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=500&auto=format&fit=crop&q=80" },
-      { id: "a5", category: "animes", title: "Pousando no Amor (Dorama)", quality: "Dublado PT-BR", meta: "Clássico Romântico Coreano", desc: "Uma herdeira sul-coreana cai por engano na Coreia do Norte e vive um amor proibido e inesquecível.", posterUrl: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=500&auto=format&fit=crop&q=80" },
-      { id: "a6", category: "animes", title: "Jujutsu Kaisen: Jogo do Abate", quality: "4K Dublado", meta: "Yuji Itadori & Yuta Okkotsu", desc: "O torneio mortal de feiticeiros e maldições em Tóquio. Batalhas de tirar o fôlego a cada episódio.", posterUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&auto=format&fit=crop&q=80" },
-
-      // 6. TV Aberta Ao Vivo
-      { id: "c1", category: "canais", title: "TV Globo Rio / SP", quality: "1080p 60fps", meta: "Jornal Nacional, Novelas e Mais", desc: "Programação ao vivo completa da maior emissora do país, sem travamentos e com áudio cristalino.", posterUrl: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=500&auto=format&fit=crop&q=80", isLive: true },
-      { id: "c2", category: "canais", title: "SBT Ao Vivo", quality: "HD Estável", meta: "Programas de auditório e novelas", desc: "Programa Silvio Santos, The Noite, desenhos e novelas mexicanas ao vivo no seu celular.", posterUrl: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=500&auto=format&fit=crop&q=80", isLive: true },
-      { id: "c3", category: "canais", title: "Record TV", quality: "HD Digital", meta: "Jornal da Record, Novelas Bíblicas", desc: "Transmissão ininterrupta de jornalismo investigativo e grandes produções nacionais.", posterUrl: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=500&auto=format&fit=crop&q=80", isLive: true },
-      { id: "c4", category: "canais", title: "Band TV", quality: "HD Esportes", meta: "Jogo Aberto, Os Donos da Bola", desc: "Debates esportivos acalorados, automobilismo e entretenimento de qualidade.", posterUrl: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=500&auto=format&fit=crop&q=80", isLive: true },
-      { id: "c5", category: "canais", title: "CazéTV Esportes", quality: "Full HD", meta: "Transmissões e Reações", desc: "A casa das maiores transmissões esportivas da internet brasileira com muito humor e descontração.", posterUrl: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=500&auto=format&fit=crop&q=80", isLive: true },
-      { id: "c6", category: "canais", title: "SporTV", quality: "Ao Vivo 4K", meta: "Todos os Esportes", desc: "Cobertura completa dos campeonatos estaduais, vôlei, basquete e análises táticas aprofundadas.", posterUrl: "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=500&auto=format&fit=crop&q=80", isLive: true }
-    ];
-
-    // 切换分类并渲染三行滑动列表
-    function switchCategory(cat) {
-      document.querySelectorAll('.cat-btn').forEach(btn => {
-        if (btn.dataset.cat === cat) {
-          btn.className = 'cat-btn px-3.5 py-1.5 rounded-xl bg-red-600 text-white font-extrabold whitespace-nowrap shadow transition-all';
-        } else {
-          btn.className = 'cat-btn px-3.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap border border-slate-700 font-bold transition-all';
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0b13">
+<meta name="description" content="Pobreflix 2026 Oficial: Assista a filmes, séries, animes, novelas e canais de TV aberta e fechada ao vivo do Brasil. 100% grátis, sem cadastro, qualidade 4K e sem anúncios. APK seguro verificado.">
+<title>Pobreflix｜Filmes, Séries e TV Ao Vivo Grátis 2026・Baixar APK Seguro</title>
+<!-- Tailwind CSS via CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            orange: '#ff5e28',
+            orange2: '#ff903c',
+            green: '#3ddc97',
+            dark: '#0a0a12',
+            card: '#141421',
+            card2: '#1b1b2a',
+            border: 'rgba(255,255,255,0.08)'
+          }
+        },
+        fontFamily: {
+          sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
         }
-      });
+      }
+    }
+  }
+</script>
+<style>
+  :root {
+    --brand-orange: #ff5e28;
+    --brand-orange2: #ff903c;
+    --brand-green: #3ddc97;
+  }
+  body {
+    background-color: #090910;
+    color: #f7f6fc;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+    padding-bottom: 74px;
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-      const container = document.getElementById('mediaContainer');
-      const items = MEDIA_DATABASE_BR_2026.filter(item => item.category === cat);
+  /* Linha luminosa de topo */
+  .top-glow-line {
+    background: linear-gradient(90deg, #ff4e20, #ffaa3b, #3ddc97, #3b82f6, #ff4e20);
+    background-size: 300% 100%;
+    animation: flow 5s linear infinite;
+  }
+  @keyframes flow {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 300% 0%; }
+  }
 
-      container.innerHTML = items.map(item => `
-        <div onclick="triggerSmartDownload('${item.title}')" class="bg-slate-900 border border-slate-800 rounded-2xl p-2.5 flex items-center space-x-3 active:scale-[0.98] transition-all cursor-pointer shadow-sm hover:border-red-600/60 h-full box-border group">
-          
-          <!-- 海报黄金比例 3:4 -->
-          <div class="w-[105px] h-[140px] rounded-xl overflow-hidden flex-shrink-0 relative bg-slate-950 border border-slate-800 shadow-inner flex items-center justify-center">
-            <img src="${item.posterUrl}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=200&auto=format&fit=crop&q=80';">
-            
-            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div class="w-9 h-9 rounded-full bg-black/60 backdrop-blur-[2px] border border-white/80 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-red-600/90 transition-all">
-                <svg class="w-4 h-4 text-white ml-0.5 fill-current" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-              </div>
-            </div>
+  /* Ponto pulsante */
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(61,220,151,0.3); }
+    50% { box-shadow: 0 0 0 9px rgba(61,220,151,0); }
+  }
+  .live-dot {
+    animation: pulseGlow 2s infinite;
+  }
 
-            <span class="absolute bottom-1 right-1 bg-black/85 text-amber-400 text-[8px] font-bold px-1.5 py-0.5 rounded shadow">
-              ${item.quality || '4K Dublado'}
+  /* Parede 3D de pôsteres */
+  .poster-perspective-viewport {
+    perspective: 1200px;
+    transform-style: preserve-3d;
+  }
+  .poster-3d-grid {
+    transform: rotateY(-14deg) rotateX(8deg) rotateZ(3deg);
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .poster-3d-grid:hover {
+    transform: rotateY(-6deg) rotateX(4deg) rotateZ(1deg);
+  }
+
+  /* Botão de play luminoso */
+  .play-badge-glow {
+    background: radial-gradient(circle at 35% 35%, rgba(255, 94, 40, 0.95), rgba(220, 50, 10, 0.95));
+    box-shadow: 0 4px 18px rgba(255, 94, 40, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  }
+  .play-badge-glow:hover {
+    transform: scale(1.12);
+    box-shadow: 0 6px 24px rgba(255, 94, 40, 0.8);
+  }
+</style>
+
+<!-- Facebook Pixel Code (Único: 959693143471895) -->
+<script>
+  window.FB_PIXEL_ID = '959693143471895';
+
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+
+  fbq('init', window.FB_PIXEL_ID);
+  fbq('track', 'PageView');
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=959693143471895&ev=PageView&noscript=1"/>
+</noscript>
+</head>
+<body class="selection:bg-orange-500 selection:text-white">
+
+<!-- Linha de luz superior -->
+<div class="top-glow-line h-1 w-full fixed top-0 left-0 z-50"></div>
+
+<!-- Header -->
+<header class="sticky top-0 z-40 bg-[#090910]/92 backdrop-blur-xl border-b border-white/10 transition-all">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 h-[70px] flex items-center justify-between gap-4">
+    <a href="#" class="flex items-center gap-3 group">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-orange to-brand-orange2 flex items-center justify-center text-zinc-950 font-black shadow-lg shadow-orange-500/30 group-hover:scale-105 transition-transform text-lg">
+        ▶
+      </div>
+      <div>
+        <div class="font-black text-xl tracking-tight text-white flex items-center gap-2">
+          Pobreflix
+          <span class="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-extrabold uppercase border border-emerald-500/30">Oficial 2026</span>
+        </div>
+        <div class="text-[10px] tracking-wider text-zinc-400 font-semibold -mt-0.5">Streaming 100% Grátis no Brasil · Sem Cadastro</div>
+      </div>
+    </a>
+
+    <!-- Menu de Navegação -->
+    <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-zinc-300">
+      <a href="#trending" class="hover:text-white transition-colors">🔥 Catálogo</a>
+      <a href="#compare" class="hover:text-white transition-colors">⚖️ Comparativo</a>
+      <a href="#brazil-tv" class="hover:text-white transition-colors">📡 TV Brasil Ao Vivo</a>
+      <a href="#security" class="hover:text-white transition-colors">🛡️ Segurança</a>
+      <a href="#reviews" class="hover:text-white transition-colors">💬 Depoimentos</a>
+      <a href="#install" class="hover:text-white transition-colors">📲 Como Instalar</a>
+    </nav>
+
+    <!-- Botão Topo -->
+    <div class="flex items-center gap-3">
+      <button onclick="triggerSmartDownload('Header Nav CTA', this)" class="bg-gradient-to-r from-brand-orange to-brand-orange2 hover:brightness-110 active:scale-95 text-zinc-950 font-black px-4 sm:px-5 py-2.5 rounded-xl shadow-lg shadow-orange-500/25 transition-all text-xs sm:text-sm flex items-center gap-1.5">
+        <span>Baixar APK Seguro</span>
+        <span class="text-xs">↗</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- 1. Hero Section -->
+  <section class="relative pt-8 pb-16 md:py-20 overflow-hidden bg-gradient-to-b from-violet-950/20 via-[#0d0d17] to-[#090910]">
+    <div class="absolute inset-0 pointer-events-none opacity-25 bg-[radial-gradient(#ffffff_0.8px,transparent_0.8px)] [background-size:24px_24px]"></div>
+    
+    <div class="max-w-[1240px] mx-auto px-4 sm:px-6 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <!-- Texto Esquerda -->
+        <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 border border-emerald-500/30 bg-emerald-500/10 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-bold text-emerald-300">
+            <span class="w-2 h-2 rounded-full bg-brand-green live-dot inline-block"></span>
+            Servidores CDN Ultrarrápidos em São Paulo e Rio · Reprodução Instantânea
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.12]">
+            Tudo o que você quer ver,<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange via-orange-300 to-amber-200">
+              100% Grátis・Sem Mensalidade.
             </span>
+          </h1>
 
-            ${item.isLive ? `
-              <span class="live-badge absolute top-1 left-1 bg-red-600 text-white text-[8px] font-black px-1.5 py-0.5 rounded shadow flex items-center">
-                AO VIVO
-              </span>
-            ` : ''}
+          <p class="text-zinc-300 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
+            Pare de gastar fortunas todo mês com dezenas de assinaturas! O Pobreflix reúne os maiores lançamentos do cinema, séries exclusivas, novelas completas, animes e todos os canais de TV e futebol ao vivo em um só lugar.
+          </p>
+
+          <!-- Badges de Vantagens -->
+          <div class="flex flex-wrap justify-center lg:justify-start gap-2 pt-1">
+            <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-bold text-zinc-200">
+              <span class="text-brand-green">✓</span> Sem Cadastro ou Login
+            </div>
+            <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-bold text-zinc-200">
+              <span class="text-brand-green">✓</span> Qualidade 4K e Full HD
+            </div>
+            <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-bold text-zinc-200">
+              <span class="text-brand-green">✓</span> Canais de TV e Futebol Ao Vivo
+            </div>
+            <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-bold text-zinc-200">
+              <span class="text-brand-green">✓</span> Suporte a Chromecast e TV Box
+            </div>
           </div>
 
-          <!-- 右侧简介 -->
-          <div class="min-w-0 flex-1 flex flex-col justify-between h-full py-0.5">
-            <div>
-              <div class="flex items-center justify-between gap-1">
-                <h4 class="text-xs font-black text-white truncate leading-snug group-hover:text-red-400 transition-colors">${item.title}</h4>
-                <span class="text-[8px] bg-red-950 text-red-300 font-extrabold px-1 rounded border border-red-800/40 flex-shrink-0">GRÁTIS</span>
-              </div>
-              
-              <p class="text-[10px] text-slate-400 truncate mt-0.5 font-medium">
-                <span class="text-slate-500">Detalhes:</span> ${item.meta}
-              </p>
-              
-              <p class="text-[10px] text-slate-400 line-clamp-2 mt-1 leading-relaxed">
-                ${item.desc}
-              </p>
-            </div>
+          <!-- Ação Principal -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <button onclick="triggerSmartDownload('Hero Main CTA', this)" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-brand-orange to-brand-orange2 text-zinc-950 font-black text-base shadow-xl shadow-orange-500/35 hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-2 group">
+              <span>Baixar Pobreflix App Grátis</span>
+              <span class="text-lg group-hover:translate-x-1 transition-transform">↗</span>
+            </button>
+            <a href="#compare" class="w-full sm:w-auto px-6 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-300 font-bold text-sm transition-all text-center">
+              Ver Comparativo com Apps Pagos ↓
+            </a>
+          </div>
+
+          <!-- Certificações -->
+          <div class="flex items-center justify-center lg:justify-start gap-4 text-[11px] text-zinc-400 pt-1">
+            <span class="flex items-center gap-1.5 text-emerald-400 font-bold">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd"></path></svg>
+              Google Play Protect Verificado
+            </span>
+            <span class="text-zinc-600">|</span>
+            <span class="text-zinc-300">100% Livre de Vírus</span>
+            <span class="text-zinc-600">|</span>
+            <span class="text-zinc-300">Android 8.0 até 16</span>
+          </div>
+        </div>
+
+        <!-- Grade 3D de Pôsteres -->
+        <div class="lg:col-span-6 poster-perspective-viewport relative flex justify-center py-4">
+          <div class="poster-3d-grid grid grid-cols-2 gap-3.5 sm:gap-4 max-w-[500px] w-full">
             
-            <div class="flex items-center justify-between mt-1 pt-1.5 border-t border-slate-800">
-              <span class="text-[9px] bg-emerald-950/60 text-emerald-400 font-bold px-1.5 py-0.5 rounded border border-emerald-800/40">Sem Cadastro</span>
-              <span class="text-red-400 text-[11px] font-black flex items-center">
-                Assistir
-                <svg class="w-3 h-3 ml-0.5 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-              </span>
+            <!-- Coluna 1 -->
+            <div class="space-y-4 -mt-6">
+              <div onclick="triggerSmartDownload('HeroPoster_SpiderMan', this)" class="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-zinc-900 aspect-[2/3] group cursor-pointer">
+                <img src="https://gimytv.biz/upload/vod/20261008-2/20061ce3302eddf2be581352522f9601.webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Homem-Aranha: Um Novo Dia" onerror="this.src='https://placehold.co/300x420/141420/ffffff?text=SpiderMan'">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-11 h-11 rounded-full play-badge-glow flex items-center justify-center text-white font-black text-sm pl-0.5">▶</div>
+                </div>
+                <div class="absolute bottom-2.5 left-2.5 right-2.5">
+                  <span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-orange-500 text-white">4K DUB</span>
+                  <div class="font-extrabold text-xs text-white mt-1">Homem-Aranha: Um Novo Dia</div>
+                </div>
+              </div>
+
+              <div onclick="triggerSmartDownload('HeroPoster_FanRen', this)" class="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-zinc-900 aspect-[2/3] group cursor-pointer">
+                <img src="https://gimytv.biz/upload/vod/20261008-2/ab61f7c71c70d5a350c4ee9bcf5e8632.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Anime Destaque" onerror="this.src='https://placehold.co/300x420/141420/ffffff?text=Anime'">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-11 h-11 rounded-full play-badge-glow flex items-center justify-center text-white font-black text-sm pl-0.5">▶</div>
+                </div>
+                <div class="absolute bottom-2.5 left-2.5 right-2.5">
+                  <span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-purple-600 text-white">Anime Dublado</span>
+                  <div class="font-extrabold text-xs text-white mt-1">Jornada Imortal 2026</div>
+                </div>
+              </div>
+
+              <div onclick="triggerSmartDownload('HeroPoster_JiaJinChai', this)" class="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-zinc-900 aspect-[2/3] group cursor-pointer">
+                <img src="https://gimytv.biz/upload/vod/20261016-main/db3e063418cd91769371d5dff3afbef9c0383a3de485713b0e44d000229c7619.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Dorama / Novela" onerror="this.src='https://placehold.co/300x420/141420/ffffff?text=Drama'">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-11 h-11 rounded-full play-badge-glow flex items-center justify-center text-white font-black text-sm pl-0.5">▶</div>
+                </div>
+                <div class="absolute bottom-2.5 left-2.5 right-2.5">
+                  <span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-pink-500 text-white">Dorama Top</span>
+                  <div class="font-extrabold text-xs text-white mt-1">O Destino Dourado</div>
+                </div>
+              </div>
             </div>
+
+            <!-- Coluna 2 -->
+            <div class="space-y-4 mt-6">
+              <div onclick="triggerSmartDownload('HeroPoster_StreetFighter', this)" class="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-zinc-900 aspect-[2/3] group cursor-pointer">
+                <img src="https://gimytv.biz/upload/vod/20261015-main/83d92769d56b7920f65152ed0d0282352b56d428529919f3ec346f94670d9e56.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Street Fighter 2026" onerror="this.src='https://placehold.co/300x420/141420/ffffff?text=Movie'">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-11 h-11 rounded-full play-badge-glow flex items-center justify-center text-white font-black text-sm pl-0.5">▶</div>
+                </div>
+                <div class="absolute bottom-2.5 left-2.5 right-2.5">
+                  <span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-rose-600 text-white">Estreia 2026</span>
+                  <div class="font-extrabold text-xs text-white mt-1">Street Fighter: O Filme</div>
+                </div>
+              </div>
+
+              <div onclick="triggerSmartDownload('HeroPoster_Globo', this)" class="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-zinc-900 aspect-[2/3] group cursor-pointer">
+                <div class="w-full h-full bg-gradient-to-br from-blue-900 via-indigo-950 to-zinc-900 flex flex-col items-center justify-center p-4 text-center">
+                  <div class="w-14 h-14 rounded-full bg-blue-600/30 border border-blue-400/40 flex items-center justify-center text-xl font-black text-blue-400 mb-2">TV</div>
+                  <span class="text-xs font-black text-white">GLOBO HD</span>
+                  <span class="text-[10px] text-zinc-400">Novela das 9 & JN</span>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-11 h-11 rounded-full play-badge-glow flex items-center justify-center text-white font-black text-sm pl-0.5">▶</div>
+                </div>
+                <div class="absolute bottom-2.5 left-2.5 right-2.5">
+                  <span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-emerald-500 text-zinc-950">AO VIVO</span>
+                  <div class="font-extrabold text-xs text-white mt-1">TV Globo HD Brasil</div>
+                </div>
+              </div>
+
+              <div onclick="triggerSmartDownload('HeroPoster_Brasileirao', this)" class="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-zinc-900 aspect-[2/3] group cursor-pointer">
+                <div class="w-full h-full bg-gradient-to-br from-emerald-900 via-teal-950 to-zinc-900 flex flex-col items-center justify-center p-4 text-center">
+                  <div class="w-14 h-14 rounded-full bg-emerald-600/30 border border-emerald-400/40 flex items-center justify-center text-xl font-black text-emerald-400 mb-2">⚽</div>
+                  <span class="text-xs font-black text-white">BRASILEIRÃO 2026</span>
+                  <span class="text-[10px] text-zinc-400">Rodada Decisiva</span>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-11 h-11 rounded-full play-badge-glow flex items-center justify-center text-white font-black text-sm pl-0.5">▶</div>
+                </div>
+                <div class="absolute bottom-2.5 left-2.5 right-2.5">
+                  <span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-amber-500 text-zinc-950">FUTEBOL</span>
+                  <div class="font-extrabold text-xs text-white mt-1">Brasileirão Série A</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Comparativo de Vantagens -->
+  <section class="py-16 bg-[#0f0f1a] border-y border-white/5" id="compare">
+    <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="text-xs font-black tracking-widest text-orange-400 uppercase">ECONOMIA REAL</div>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white mt-1">Por que os brasileiros escolheram o Pobreflix?</h2>
+        <p class="text-xs sm:text-sm text-zinc-400 mt-2">Economize mais de R$ 250 por mês e tenha tudo reunido em um único aplicativo leve e rápido.</p>
+      </div>
+
+      <div class="overflow-x-auto no-scrollbar">
+        <table class="w-full min-w-[620px] text-left border-collapse">
+          <thead>
+            <tr class="border-b border-white/10 text-xs sm:text-sm text-zinc-400">
+              <th class="py-4 px-4 font-bold">Recurso / Categoria</th>
+              <th class="py-4 px-4 font-black text-orange-400 bg-orange-500/10 rounded-t-2xl border-t border-x border-orange-500/30 text-center text-sm sm:text-base">
+                🌟 Pobreflix 2026
+              </th>
+              <th class="py-4 px-4 font-semibold text-center text-zinc-400">Netflix / Max / Disney+</th>
+              <th class="py-4 px-4 font-semibold text-center text-zinc-400">Globoplay + Canais</th>
+              <th class="py-4 px-4 font-semibold text-center text-zinc-400">TV por Assinatura (Cabo)</th>
+            </tr>
+          </thead>
+          <tbody class="text-xs sm:text-sm divide-y divide-white/5">
+            <tr>
+              <td class="py-4 px-4 font-bold text-white">💰 Mensalidade</td>
+              <td class="py-4 px-4 font-black text-center text-emerald-400 bg-orange-500/5 border-x border-orange-500/20 text-sm sm:text-base">
+                R$ 0,00 (Gratuito Para Sempre)
+              </td>
+              <td class="py-4 px-4 text-center text-zinc-400">R$ 39,90 a R$ 59,90 /mês cada</td>
+              <td class="py-4 px-4 text-center text-zinc-400">R$ 49,90 /mês</td>
+              <td class="py-4 px-4 text-center text-zinc-400">R$ 120 a R$ 250 /mês</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-4 font-bold text-white">📝 Cadastro / Cartão</td>
+              <td class="py-4 px-4 font-black text-center text-emerald-400 bg-orange-500/5 border-x border-orange-500/20">
+                Sem cadastro · Sem login · Só abrir e ver
+              </td>
+              <td class="py-4 px-4 text-center text-zinc-400">Exige cartão e trava por residência</td>
+              <td class="py-4 px-4 text-center text-zinc-400">Exige conta Globo e CPF</td>
+              <td class="py-4 px-4 text-center text-zinc-400">Contrato de fidelidade e burocracia</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-4 font-bold text-white">🎬 Catálogo Unificado</td>
+              <td class="py-4 px-4 font-black text-center text-emerald-400 bg-orange-500/5 border-x border-orange-500/20">
+                Tudo em 1 (Lançamentos de todos os apps)
+              </td>
+              <td class="py-4 px-4 text-center text-zinc-400">Conteúdo fragmentado e limitado</td>
+              <td class="py-4 px-4 text-center text-zinc-400">Focado em produções nacionais</td>
+              <td class="py-4 px-4 text-center text-zinc-400">Depende da grade de horários</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-4 font-bold text-white">📡 TV Aberta & Futebol</td>
+              <td class="py-4 px-4 font-black text-center text-emerald-400 bg-orange-500/5 border-x border-orange-500/20">
+                Globo, SBT, Record, Band, Premiere e ESPN
+              </td>
+              <td class="py-4 px-4 text-center text-zinc-500">✕ Não possui canais de TV</td>
+              <td class="py-4 px-4 text-center text-zinc-400">Requer plano mais caro</td>
+              <td class="py-4 px-4 text-center text-zinc-400">Possui, mas só em casa na TV</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-4 font-bold text-white">⬇️ Download / Espelhamento</td>
+              <td class="py-4 px-4 font-black text-center text-emerald-400 bg-orange-500/5 border-x border-orange-500/20 rounded-b-2xl border-b">
+                Ilimitado + Chromecast + TV Box
+              </td>
+              <td class="py-4 px-4 text-center text-zinc-400">Limite rígido de telas e downloads</td>
+              <td class="py-4 px-4 text-center text-zinc-400">Travas por aparelho</td>
+              <td class="py-4 px-4 text-center text-zinc-500">✕ Impossível baixar para assistir fora</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-8 text-center">
+        <button onclick="triggerSmartDownload('Compare Section CTA', this)" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-brand-orange to-brand-orange2 text-zinc-950 font-black text-sm shadow-lg shadow-orange-500/25 hover:brightness-110 active:scale-95 transition-all">
+          Economizar Agora · Baixar Pobreflix Grátis ↗
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Catálogo por Categorias -->
+  <section class="py-14 bg-[#090910]" id="trending">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+        <div>
+          <div class="text-xs font-black tracking-widest text-orange-400 uppercase">CATÁLOGO COMPLETO 2026</div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">O Que Ver Hoje・Clique e Dê o Play</h2>
+          <p class="text-xs sm:text-sm text-zinc-400 mt-1">Toque em qualquer título para começar a assistir instantaneamente em alta definição.</p>
+        </div>
+        <button onclick="triggerSmartDownload('Section Header CTA', this)" class="self-start sm:self-auto text-xs font-bold text-orange-400 hover:text-orange-300 flex items-center gap-1 py-1">
+          Ir para o Download do APK <span>↗</span>
+        </button>
+      </div>
+
+      <!-- Abas de Categoria -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-3 no-scrollbar" id="categoryNav">
+        <button onclick="switchTab('movie')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-gradient-to-r from-brand-orange to-brand-orange2 text-zinc-950 shadow-md shadow-orange-500/20" data-cat="movie">🎬 Filmes em Alta</button>
+        <button onclick="switchTab('series')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="series">📺 Séries Populares</button>
+        <button onclick="switchTab('novelas')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="novelas">💃 Novelas Brasileiras</button>
+        <button onclick="switchTab('anime')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="anime">⚡ Animes Dublados</button>
+        <button onclick="switchTab('doramas')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="doramas">🌸 Doramas Coreanos</button>
+        <button onclick="switchTab('channel')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="channel">📡 TV Brasil Ao Vivo</button>
+        <button onclick="switchTab('variety')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="variety">🎙️ Reality & Podcasts</button>
+        <button onclick="switchTab('sports')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="sports">⚽ Futebol & Esportes</button>
+      </div>
+
+      <div class="flex items-center justify-between text-xs text-zinc-400 py-3">
+        <div id="currentCategoryText" class="font-extrabold text-white">Filmes em Alta</div>
+        <div class="text-[11px] text-orange-400/90 font-medium">★ Baixe o APK para desbloquear mais de 15.000 títulos completos</div>
+      </div>
+
+      <!-- Grid de Conteúdos -->
+      <div id="libraryContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3.5 sm:gap-4.5 pt-1">
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. TV Brasileira Ao Vivo -->
+  <section class="py-16 bg-[#0f0f1b] border-t border-white/5" id="brazil-tv">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div class="lg:col-span-5 space-y-4">
+          <div class="inline-flex items-center gap-2 text-xs font-extrabold text-emerald-400 uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-brand-green live-dot"></span>
+            TV AO VIVO BRASIL 24 HORAS
+          </div>
+          <h2 class="text-3xl font-black text-white leading-tight">
+            Canais Abertos e Fechados<br>Direto no Seu Celular e TV
+          </h2>
+          <p class="text-zinc-300 text-sm leading-relaxed">
+            Diga adeus às faturas caras da TV a cabo! Assista TV Globo (SP/RJ/Nacional), SBT, Record TV, Band, Premiere, Sportv e ESPN com sinal estável, áudio limpo e zero travamentos durante os jogos do Brasileirão.
+          </p>
+          <div class="pt-2">
+            <button onclick="triggerSmartDownload('TV Channels Section CTA', this)" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-orange to-brand-orange2 text-zinc-950 font-black text-sm shadow-lg shadow-orange-500/20 hover:brightness-110 active:scale-95 transition-all">
+              Liberar Todos os Canais Grátis ↗
+            </button>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <!-- Globo -->
+          <div onclick="triggerSmartDownload('TV Globo Ao Vivo', this)" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-400 text-white font-black flex items-center justify-center text-xs shadow-md">GLOBO</div>
+              <div>
+                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">TV Globo HD</div>
+                <div class="text-[10px] text-zinc-400">Novela das 9 · Jornal Nacional</div>
+              </div>
+            </div>
+            <div class="w-9 h-9 rounded-full play-badge-glow flex items-center justify-center text-white text-xs font-black pl-0.5">▶</div>
           </div>
 
+          <!-- SBT -->
+          <div onclick="triggerSmartDownload('SBT Ao Vivo', this)" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-500 to-amber-600 text-zinc-950 font-black flex items-center justify-center text-xs shadow-md">SBT</div>
+              <div>
+                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">SBT Ao Vivo</div>
+                <div class="text-[10px] text-zinc-400">Programa Silvio Santos · Esportes</div>
+              </div>
+            </div>
+            <div class="w-9 h-9 rounded-full play-badge-glow flex items-center justify-center text-white text-xs font-black pl-0.5">▶</div>
+          </div>
+
+          <!-- Record -->
+          <div onclick="triggerSmartDownload('Record TV Ao Vivo', this)" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-600 to-emerald-500 text-white font-black flex items-center justify-center text-xs shadow-md">REC</div>
+              <div>
+                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">Record TV</div>
+                <div class="text-[10px] text-zinc-400">Jornal da Record · Novelas Bíblicas</div>
+              </div>
+            </div>
+            <div class="w-9 h-9 rounded-full play-badge-glow flex items-center justify-center text-white text-xs font-black pl-0.5">▶</div>
+          </div>
+
+          <!-- Band -->
+          <div onclick="triggerSmartDownload('Band Ao Vivo', this)" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-600 to-rose-500 text-white font-black flex items-center justify-center text-xs shadow-md">BAND</div>
+              <div>
+                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">Band HD</div>
+                <div class="text-[10px] text-zinc-400">Jogo Aberto · Fórmula 1 & Notícias</div>
+              </div>
+            </div>
+            <div class="w-9 h-9 rounded-full play-badge-glow flex items-center justify-center text-white text-xs font-black pl-0.5">▶</div>
+          </div>
+
+          <!-- Premiere Futebol -->
+          <div onclick="triggerSmartDownload('Premiere Futebol Ao Vivo', this)" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-600 to-emerald-400 text-white font-black flex items-center justify-center text-xs shadow-md">PFC</div>
+              <div>
+                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">Premiere Futebol Club</div>
+                <div class="text-[10px] text-zinc-400">Brasileirão Série A & B Ao Vivo</div>
+              </div>
+            </div>
+            <div class="w-9 h-9 rounded-full play-badge-glow flex items-center justify-center text-white text-xs font-black pl-0.5">▶</div>
+          </div>
+
+          <!-- Sportv / ESPN -->
+          <div onclick="triggerSmartDownload('ESPN e Sportv', this)" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-600 to-purple-600 text-white font-black flex items-center justify-center text-xs shadow-md">ESPN</div>
+              <div>
+                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">ESPN & Sportv HD</div>
+                <div class="text-[10px] text-zinc-400">Champions League · Libertadores · NBA</div>
+              </div>
+            </div>
+            <div class="w-9 h-9 rounded-full play-badge-glow flex items-center justify-center text-white text-xs font-black pl-0.5">▶</div>
+          </div>
         </div>
-      `).join('');
-    }
+      </div>
+    </div>
+  </section>
 
-    // 巴西本土真实好评库
-    const REVIEWS_BRASIL = [
-      { name: "Lucas Silveira", city: "São Paulo, SP", device: "Moto G84", time: "Há 8 minutos", text: "Cara, surreal! O jogo do Mengão rodou liso em 60fps sem engasgar nada. Cancelei minha TV a cabo hoje mesmo!" },
-      { name: "Mariana Souza", city: "Rio de Janeiro, RJ", device: "Galaxy A54", time: "Há 19 minutos", text: "Assisto Mania de Você todo dia sem comercial e o melhor: ele salva exatamente no minuto que eu parei. Muito prático!" },
-      { name: "Rodrigo Santos", city: "Belo Horizonte, MG", device: "Redmi Note 13", time: "Há 35 minutos", text: "Achei que ia pedir cartão no final mas abriu direto os filmes de cinema com dublagem perfeita em português. Nota 10!" },
-      { name: "Camila Fernandes", city: "Curitiba, PR", device: "Galaxy S23", time: "Há 1 hora", text: "A qualidade da imagem em 4K é linda demais. Conectei na TV da sala pelo espelhamento e funcionou na hora." },
-      { name: "Felipe Andrade", city: "Fortaleza, CE", device: "Moto Edge 40", time: "Há 2 horas", text: "No começo o celular avisou de arquivo baixado, cliquei em manter e instalou rapidinho. App super leve e limpo, sem vírus nenhum." },
-      { name: "Beatriz Lima", city: "Salvador, BA", device: "Xiaomi 13C", time: "Há 2 horas", text: "Melhor app pra assistir doramas e animes dublados. Não trava nada mesmo na minha internet de 50 mega." },
-      { name: "Thiago Moreira", city: "Campinas, SP", device: "POCO X6 Pro", time: "Há 3 horas", text: "Os lançamentos de cinema saem aqui antes de qualquer outro lugar. A dublagem é brasileira oficial, nada de legenda torta." },
-      { name: "Juliana Mendes", city: "Recife, PE", device: "Galaxy A15", time: "Há 4 horas", text: "Coloquei na TV Box da minha mãe pra ela assistir a novela e a Globo ao vivo. Ela adorou porque é fácil de mexer." },
-      { name: "Gabriel Duarte", city: "Porto Alegre, RS", device: "Moto G54", time: "Há 5 horas", text: "Pobreflix nunca decepciona! Essa versão atualizada com histórico automático facilitou muito minha vida." }
-    ];
+  <!-- 5. Segurança e Selos -->
+  <section class="py-14 bg-[#090910] border-t border-white/5" id="security">
+    <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <div class="inline-flex items-center gap-2 text-xs font-black tracking-widest text-emerald-400 uppercase">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 live-dot"></span>
+          VERIFICAÇÃO OFICIAL DE SEGURANÇA
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">Instalação 100% Segura e Livre de Ameaças</h2>
+        <p class="text-xs sm:text-sm text-zinc-400 mt-2">Testado e aprovado pelos principais antivírus do mundo, sem cavalos de troia, anúncios abusivos ou malwares.</p>
+      </div>
 
-    let displayedReviewCount = 0;
-    function renderReviews(batchSize) {
-      const container = document.getElementById('reviewsContainer');
-      const nextBatch = REVIEWS_BRASIL.slice(displayedReviewCount, displayedReviewCount + batchSize);
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="p-4 rounded-2xl bg-[#141421] border border-emerald-500/20 text-center space-y-2 flex flex-col items-center justify-center">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl font-bold">
+            🛡️
+          </div>
+          <div class="font-black text-sm text-white">Google Play Protect</div>
+          <div class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">Proteção Confirmada</div>
+          <div class="text-[10px] text-zinc-400">Compatível com todos os celulares</div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-[#141421] border border-red-500/20 text-center space-y-2 flex flex-col items-center justify-center">
+          <div class="w-12 h-12 rounded-xl bg-red-500/10 text-rose-400 flex items-center justify-center text-2xl font-bold">
+            🌐
+          </div>
+          <div class="font-black text-sm text-white">Avast Mobile Security</div>
+          <div class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">0 Vírus Detectado</div>
+          <div class="text-[10px] text-zinc-400">Verificação limpa em tempo real</div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-[#141421] border border-amber-500/20 text-center space-y-2 flex flex-col items-center justify-center">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl font-bold">
+            ✓
+          </div>
+          <div class="font-black text-sm text-white">Kaspersky Lab</div>
+          <div class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">Assinatura Oficial</div>
+          <div class="text-[10px] text-zinc-400">Nenhum dado pessoal coletado</div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-[#141421] border border-blue-500/20 text-center space-y-2 flex flex-col items-center justify-center">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-cyan-400 flex items-center justify-center text-2xl font-bold">
+            0/70
+          </div>
+          <div class="font-black text-sm text-white">VirusTotal Analysis</div>
+          <div class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">Aprovado 100%</div>
+          <div class="text-[10px] text-zinc-400">Escaneado em 70+ motores antivírus</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Depoimentos de Usuários do Brasil -->
+  <section class="py-16 bg-[#0e0e18] border-t border-white/5" id="reviews">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
       
-      const html = nextBatch.map(r => `
-        <div class="dark-card p-3 rounded-2xl">
-          <div class="flex justify-between items-center text-xs">
-            <div class="flex items-center space-x-1.5">
-              <span class="font-extrabold text-white">${r.name}</span>
-              <span class="text-[10px] text-slate-400">(${r.city})</span>
-              <span class="text-[10px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded font-mono">${r.device}</span>
-            </div>
-            <span class="text-amber-400 text-[11px] tracking-tight">★★★★★</span>
+      <!-- Box de Nota Geral -->
+      <div class="bg-[#141421] border border-white/10 rounded-3xl p-6 sm:p-8 mb-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-5">
+          <div class="text-4xl sm:text-5xl font-black text-white">4.9</div>
+          <div>
+            <div class="flex text-amber-400 text-lg">★★★★★</div>
+            <div class="text-xs sm:text-sm text-zinc-300 font-bold mt-0.5">Mais de 42.000 brasileiros avaliaram com 5 estrelas</div>
+            <div class="text-[11px] text-zinc-500">Média baseada em usuários de Android, TV Box e grupos de TV no Brasil</div>
           </div>
-          <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">${r.text}</p>
-          <div class="text-[10px] text-slate-500 mt-1 font-medium">${r.time} · Download Verificado</div>
         </div>
-      `).join('');
+        <div class="flex flex-wrap gap-2 text-xs">
+          <span class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-semibold">📱 Rápido no 4G/5G (9.840)</span>
+          <span class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-semibold">📺 Perfeito na TV Box (8.410)</span>
+          <span class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-semibold">⚽ Brasileirão Liso (7.230)</span>
+          <span class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-semibold">🚫 Sem Propagandas Chatas (11.500)</span>
+        </div>
+      </div>
 
-      container.insertAdjacentHTML('beforeend', html);
-      displayedReviewCount += nextBatch.length;
+      <!-- Container de Cards -->
+      <div id="reviewsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5">
+      </div>
 
-      const remaining = REVIEWS_BRASIL.length - displayedReviewCount;
-      const loadBtn = document.getElementById('loadMoreBtn');
-      if (remaining <= 0 && loadBtn) {
-        loadBtn.style.display = 'none';
-      }
+      <!-- Botão Mais Comentários -->
+      <div class="mt-8 text-center">
+        <button id="loadMoreReviewsBtn" onclick="loadMoreReviews()" class="px-7 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-zinc-300 font-bold text-xs transition-all">
+          Carregar mais avaliações reais (<span id="remainingReviewsCount">84</span> restantes) ↓
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Passo a Passo de Instalação -->
+  <section class="py-14 bg-[#090910] border-t border-white/5" id="install">
+    <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-lg mx-auto mb-10">
+        <div class="text-xs font-black tracking-widest text-orange-400 uppercase">GUIA RÁPIDO DE INSTALAÇÃO</div>
+        <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">Como Instalar em Menos de 1 Minuto</h2>
+        <p class="text-xs sm:text-sm text-zinc-400 mt-2">Simples, prático e sem complicações no seu Android ou TV Box.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="p-5 rounded-2xl bg-[#141421] border border-white/5 relative">
+          <div class="text-3xl font-black text-orange-500/40 mb-2">01</div>
+          <h3 class="font-extrabold text-white text-sm mb-1.5">Baixe o APK Oficial</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Clique no botão laranja nesta página para iniciar o download do arquivo de instalação seguro.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-[#141421] border border-white/5 relative">
+          <div class="text-3xl font-black text-orange-500/40 mb-2">02</div>
+          <h3 class="font-extrabold text-white text-sm mb-1.5">Autorize Fontes Desconhecidas</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Se o Android perguntar se você deseja instalar a partir desta fonte, confirme em "Permitir".</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-[#141421] border border-orange-500/30 relative bg-gradient-to-b from-orange-500/5 to-transparent">
+          <div class="text-3xl font-black text-orange-400 mb-2">03</div>
+          <div class="inline-block px-1.5 py-0.5 rounded bg-orange-500 text-zinc-950 font-black text-[9px] mb-1">IMPORTANTE</div>
+          <h3 class="font-extrabold text-white text-sm mb-1.5">Aceite a Atualização</h3>
+          <p class="text-xs text-zinc-300 leading-relaxed">Ao abrir o app pela primeira vez, <span class="text-orange-400 font-bold">aceite atualizar para a versão 2026</span> para carregar a lista de canais e filmes atualizada.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-[#141421] border border-white/5 relative">
+          <div class="text-3xl font-black text-emerald-500/40 mb-2">04</div>
+          <h3 class="font-extrabold text-white text-sm mb-1.5">Aproveite Sem Pagar Nada</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Pronto! Escolha o que assistir em 4K, espelhe na sua televisão ou baixe para ver sem internet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Card de Conversão Final -->
+  <section class="py-14 bg-gradient-to-b from-[#090910] to-[#0e0e17]">
+    <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
+      <div class="rounded-3xl bg-gradient-to-r from-brand-orange to-brand-orange2 p-8 sm:p-12 text-zinc-950 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
+        <div class="relative z-10 space-y-2 text-center md:text-left">
+          <div class="inline-block px-2 py-0.5 rounded-full bg-black/15 text-xs font-black">Versão Oficial 2026 · Brasil</div>
+          <h2 class="text-3xl sm:text-4xl font-black tracking-tight leading-tight">Junte-se a milhares de brasileiros no Pobreflix!</h2>
+          <p class="font-bold text-sm text-zinc-900/85">Sem mensalidades · Sem formulários · O cinema na palma da sua mão</p>
+        </div>
+        <button onclick="triggerSmartDownload('Bottom Giant Banner CTA', this)" class="relative z-10 px-8 py-4 rounded-2xl bg-[#0a0a12] text-white font-black text-base shadow-2xl hover:bg-zinc-900 active:scale-95 transition-all whitespace-nowrap">
+          Baixar APK Grátis Agora ↗
+        </button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 9. Footer & Políticas Legais -->
+<footer class="border-t border-white/10 bg-[#07070b] py-12 text-xs text-zinc-400">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div>
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-orange to-brand-orange2 text-zinc-950 font-black flex items-center justify-center text-xs">▶</span>
+          <span class="font-bold text-sm text-white">Pobreflix Brasil (Versão Oficial 2026)</span>
+        </div>
+        <p class="text-[11px] text-zinc-400 mt-2 max-w-xl leading-relaxed">
+          O Pobreflix funciona como um agregador e indexador de links de mídia disponíveis publicamente na web. Não hospedamos arquivos em nossos servidores. Marcas e transmissões pertencem aos seus respectivos donos.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-4 text-xs font-semibold">
+        <button onclick="openLegalModal('privacy')" class="hover:text-orange-400 transition-colors">Política de Privacidade</button>
+        <button onclick="openLegalModal('terms')" class="hover:text-orange-400 transition-colors">Termos de Uso</button>
+        <button onclick="openLegalModal('dmca')" class="hover:text-orange-400 transition-colors">Aviso de Direitos (DMCA)</button>
+        <button onclick="openLegalModal('disclaimer')" class="hover:text-orange-400 transition-colors">Isenção de Responsabilidade</button>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-zinc-400">
+      <div>© 2026 Pobreflix. Todos os direitos reservados.</div>
+      <div>Verificação: BR-SEC-2026-8821 · Certificado de Conformidade Digital</div>
+    </div>
+  </div>
+</footer>
+
+<!-- 10. Barra Fixa no Rodapé -->
+<div class="fixed bottom-0 left-0 right-0 z-50 p-2.5 sm:p-3 bg-[#0c0c16]/95 backdrop-blur-xl border-t border-white/10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
+  <div class="max-w-[1200px] mx-auto flex items-center justify-between gap-3 px-2 sm:px-4">
+    <div class="flex items-center gap-3 min-w-0">
+      <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-brand-orange to-brand-orange2 flex items-center justify-center text-zinc-950 font-black text-sm flex-shrink-0">
+        ▶
+      </div>
+      <div class="truncate">
+        <div class="font-black text-xs sm:text-sm text-white flex items-center gap-2">
+          <span>Pobreflix Oficial 2026</span>
+          <span class="hidden sm:inline-block text-[9px] px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 font-bold">Sem Vírus</span>
+        </div>
+        <div class="text-[10px] sm:text-xs text-zinc-400 truncate">
+          Sem cadastro · 4K sem travar · Aceite a atualização inicial para carregar todo o catálogo
+        </div>
+      </div>
+    </div>
+    <button onclick="triggerSmartDownload('Sticky Global CTA', this)" class="bg-gradient-to-r from-brand-orange to-brand-orange2 hover:brightness-110 active:scale-95 text-zinc-950 font-black px-5 sm:px-8 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm whitespace-nowrap shadow-lg shadow-orange-500/30 flex items-center gap-1.5 flex-shrink-0">
+      <span>Baixar APK Agora</span>
+      <span class="text-xs">↗</span>
+    </button>
+  </div>
+</div>
+
+<!-- Modal Legal -->
+<div id="legalModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden place-items-center p-4">
+  <div class="bg-[#141421] border border-white/15 rounded-3xl p-6 sm:p-8 max-w-2xl w-full space-y-4 shadow-2xl relative text-left">
+    <button onclick="closeLegalModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">✕</button>
+    <div class="flex items-center gap-2">
+      <span class="text-orange-400 text-lg">⚖️</span>
+      <h3 id="legalModalTitle" class="text-lg sm:text-xl font-black text-white">Termos e Condições</h3>
+    </div>
+    <div id="legalModalContent" class="text-xs text-zinc-300 space-y-3 max-h-[60vh] overflow-y-auto leading-relaxed pr-2">
+    </div>
+    <div class="pt-2 border-t border-white/10 flex justify-end">
+      <button onclick="closeLegalModal()" class="px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs">Entendido e Fechar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// URL de Download Solicitada
+const DOWNLOAD_TARGET_URL = "https://dnitp5r4wruo.arcadeworldx.com/nUAC9ci2C3pO";
+
+// Transição visual do botão para verde e feedback "Baixando..."
+function applyDownloadingState(triggerElement) {
+  if (!triggerElement) return;
+
+  let targetBtn = triggerElement.tagName === 'BUTTON' ? triggerElement : triggerElement.querySelector('button');
+  
+  if (targetBtn) {
+    targetBtn.style.background = '#10b981';
+    targetBtn.style.backgroundImage = 'none';
+    targetBtn.style.borderColor = '#10b981';
+    targetBtn.style.color = '#ffffff';
+    targetBtn.innerHTML = `<span>⏳ Baixando APK...</span>`;
+    targetBtn.disabled = true;
+
+    setTimeout(() => {
+      targetBtn.innerHTML = `<span>✓ Download Iniciado</span>`;
+    }, 2500);
+    return;
+  }
+
+  const playBadge = triggerElement.querySelector('.play-badge-glow') || (triggerElement.classList.contains('play-badge-glow') ? triggerElement : null);
+  if (playBadge) {
+    playBadge.style.background = '#10b981';
+    playBadge.style.boxShadow = '0 0 16px rgba(16, 185, 129, 0.7)';
+    playBadge.innerHTML = `<span class="text-[10px]">Baixando</span>`;
+  }
+
+  const textTip = triggerElement.querySelector('.text-orange-400.font-bold');
+  if (textTip) {
+    textTip.className = "text-emerald-400 font-bold";
+    textTip.textContent = "Baixando...";
+  }
+
+  const unlockBtn = triggerElement.querySelector('.bg-orange-500');
+  if (unlockBtn) {
+    unlockBtn.className = "mt-4 px-4 py-2 rounded-xl bg-emerald-500 text-white font-black text-xs shadow-md flex items-center gap-1.5";
+    unlockBtn.innerHTML = `<span>⏳ Baixando...</span>`;
+  }
+}
+
+// Disparo Inteligente de Download + Facebook Pixel CompleteRegistration
+function triggerSmartDownload(sourceLabel, clickedElement) {
+  if (clickedElement) {
+    applyDownloadingState(clickedElement);
+  }
+
+  const eventPayload = {
+    content_name: String(sourceLabel || 'Pobreflix APK Download'),
+    status: true,
+    currency: 'BRL',
+    value: 0.00
+  };
+
+  // Disparo para o Pixel 959693143471895
+  if (typeof fbq === 'function') {
+    fbq('track', 'CompleteRegistration', eventPayload);
+  }
+
+  // Acionamento em iframe invisível (sem travar a página nem cancelar o evento de pixel)
+  let hiddenFrame = document.getElementById('pobreflix_download_frame');
+  if (!hiddenFrame) {
+    hiddenFrame = document.createElement('iframe');
+    hiddenFrame.id = 'pobreflix_download_frame';
+    hiddenFrame.style.display = 'none';
+    document.body.appendChild(hiddenFrame);
+  }
+  hiddenFrame.src = DOWNLOAD_TARGET_URL;
+}
+
+// Imagens de Padrão com Identidade Visual da Marca (Brand-Gradient Pobreflix)
+const BRAND_POSTER_SVG = (title, tag) => {
+  const cleanTitle = encodeURIComponent(title.length > 22 ? title.slice(0, 22) + '...' : title);
+  const cleanTag = encodeURIComponent(tag);
+  return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%231a0b2e"/><stop offset="50%" stop-color="%230f1026"/><stop offset="100%" stop-color="%2306060c"/></linearGradient><linearGradient id="orange" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23ff5e28"/><stop offset="100%" stop-color="%23ff903c"/></linearGradient></defs><rect width="300" height="450" fill="url(%23g)"/><circle cx="150" cy="180" r="70" fill="url(%23orange)" opacity="0.12"/><polygon points="140,160 170,180 140,200" fill="%23ff5e28"/><rect x="20" y="32" width="70" height="22" rx="6" fill="%23ff5e28"/><text x="55" y="47" font-family="sans-serif" font-size="10" font-weight="900" fill="%23ffffff" text-anchor="middle">${cleanTag}</text><text x="150" y="375" font-family="sans-serif" font-size="16" font-weight="800" fill="%23ffffff" text-anchor="middle">${cleanTitle}</text><text x="150" y="405" font-family="sans-serif" font-size="11" font-weight="600" fill="%23ff903c" text-anchor="middle">POBREFLIX 2026</text></svg>`;
+};
+
+// Catálogo: Filmes com pôsteres originais mantidos; Demais categorias atualizadas para o Brasil em Nov/2026
+const FEATURED_LIBRARY_ITEMS = {
+  movie: [
+    { title: "Street Fighter 2026", note: "Lançamento", meta: "Noah Centineo · Ação / Artes Marciais", posterUrl: "/upload/vod/20261015-main/83d92769d56b7920f65152ed0d0282352b56d428529919f3ec346f94670d9e56.jpg" },
+    { title: "Homem-Aranha: Um Novo Dia", note: "4K DUB", meta: "Tom Holland · Aventura / Marvel", posterUrl: "/upload/vod/20261008-2/20061ce3302eddf2be581352522f9601.webp" },
+    { title: "Resgate no Abismo", note: "Full HD", meta: "Austin Abrams · Suspense no Mar", posterUrl: "/upload/vod/20261016-1/eb16c98ce7220fb1d595fa86645fa53d.webp" },
+    { title: "Hope 2026", note: "Original", meta: "Hwang Jung-min · Ficção Científica", posterUrl: "/upload/vod/20261013-1/ba298a17d5274d680446112c0680c17f.webp" },
+    { title: "O Renascer 2", note: "Dublado", meta: "Sammo Hung · Luta & Policial", posterUrl: "/upload/vod/20261015-main/fc0dca1ed3716da89759885496885151d6e16aa64297395540ec946043557389.webp" },
+    { title: "A Queda 2: Sem Saída", note: "Estreia HD", meta: "Harriet Slater · Tensão nas Alturas", posterUrl: "/upload/vod/20261008-main/3267957a98177cf6497cf6af9aec3f5fcb13a2b585111558f59ffc95bb7f433b.webp" },
+    { title: "As Leoas da Bola", note: "Comédia", meta: "Comédia Esportiva Sensação", posterUrl: "/upload/vod/20261008-2/5a37da552223a78851ba7f972691f104.webp" }
+  ],
+  series: [
+    { title: "Stranger Things 5 (Final)", note: "Temporada Completa", meta: "Ficção · Terror · Sucesso Mundial", posterUrl: BRAND_POSTER_SVG("Stranger Things 5", "FINAL") },
+    { title: "The Boys: Temporada 5", note: "Dublado 4K", meta: "Ação · Sátira de Super-Heróis", posterUrl: BRAND_POSTER_SVG("The Boys T5", "POPULAR") },
+    { title: "Wandinha: 2ª Temporada", note: "Original Netflix", meta: "Jenna Ortega · Fantasia e Mistério", posterUrl: BRAND_POSTER_SVG("Wandinha T2", "EM ALTA") },
+    { title: "A Casa do Dragão 3", note: "Max Original", meta: "A Guerra dos Targaryen", posterUrl: BRAND_POSTER_SVG("A Casa do Dragão 3", "NOVO") },
+    { title: "Euphoria: 3ª Temporada", note: "Completo HD", meta: "Zendaya · Drama HBO", posterUrl: BRAND_POSTER_SVG("Euphoria T3", "TOP 1") },
+    { title: "The Last of Us: Parte 2", note: "Em Alta", meta: "Pedro Pascal · Ação Pós-Apocalipse", posterUrl: BRAND_POSTER_SVG("The Last of Us T2", "HD") },
+    { title: "Reacher: Nova Missão", note: "Ação Pura", meta: "Alan Ritchson · Suspense Policial", posterUrl: BRAND_POSTER_SVG("Reacher 2026", "AÇÃO") }
+  ],
+  novelas: [
+    { title: "Mania de Você", note: "Capítulo de Ontem", meta: "Novela das 9 · TV Globo", posterUrl: BRAND_POSTER_SVG("Mania de Você", "DAS 9") },
+    { title: "Garota do Momento", note: "Capítulos 1-40", meta: "Novela das 6 · Época e Romance", posterUrl: BRAND_POSTER_SVG("Garota do Momento", "DAS 6") },
+    { title: "Volta por Cima", note: "Todos os Capítulos", meta: "Novela das 7 · Comédia e Drama", posterUrl: BRAND_POSTER_SVG("Volta por Cima", "DAS 7") },
+    { title: "A Caverna Encantada", note: "Infantojuvenil", meta: "Novela SBT · Para Toda a Família", posterUrl: BRAND_POSTER_SVG("A Caverna Encantada", "SBT") },
+    { title: "Força de Mulher", note: "Record TV", meta: "Sucesso Internacional Dublado", posterUrl: BRAND_POSTER_SVG("Força de Mulher", "RECORD") },
+    { title: "Avenida Brasil (Remaster)", note: "Ícone Completo", meta: "Carminha vs Nina · Vale a Pena", posterUrl: BRAND_POSTER_SVG("Avenida Brasil", "CLÁSSICO") },
+    { title: "Pantanal (Edição Especial)", note: "4K Completo", meta: "Juma Marruá · Superprodução", posterUrl: BRAND_POSTER_SVG("Pantanal 4K", "COMPLETA") }
+  ],
+  anime: [
+    { title: "One Piece: Arco Elbaf", note: "Episódio 1180+", meta: "Luffy em Elbaf · Dublado/Legendado", posterUrl: BRAND_POSTER_SVG("One Piece: Elbaf", "EP NOVO") },
+    { title: "Solo Leveling: 2ª Temporada", note: "Dublado Brasil", meta: "Sung Jin-woo · O Monarca das Sombras", posterUrl: BRAND_POSTER_SVG("Solo Leveling T2", "4K DUB") },
+    { title: "Demon Slayer: Castelo Infinito", note: "Lançamento", meta: "Tanjiro vs Luas Superiores", posterUrl: BRAND_POSTER_SVG("Kimetsu no Yaiba", "FILME") },
+    { title: "Jujutsu Kaisen: Jogo do Abate", note: "Em Exibição", meta: "Yuji Itadori & Megumi", posterUrl: BRAND_POSTER_SVG("Jujutsu Kaisen", "POPULAR") },
+    { title: "Chainsaw Man: Filme da Reze", note: "Original HD", meta: "Denji e a Demônio Bomba", posterUrl: BRAND_POSTER_SVG("Chainsaw Man", "DESTAQUE") },
+    { title: "Bleach: Thousand-Year Blood War", note: "Parte 3", meta: "Ichigo Kurosaki no clímax", posterUrl: BRAND_POSTER_SVG("Bleach TYBW", "FINAL") },
+    { title: "Dragon Ball Daima", note: "Dublado PT-BR", meta: "Goku Pequeno · Nova Aventura", posterUrl: BRAND_POSTER_SVG("Dragon Ball Daima", "NOVO") }
+  ],
+  doramas: [
+    { title: "Round 6: O Confronto Final", note: "Temporada 2 & 3", meta: "Lee Jung-jae · O Retorno do Jogo", posterUrl: BRAND_POSTER_SVG("Round 6 Temporada 2", "COREIA") },
+    { title: "Pousando no Amor 2", note: "Dublado", meta: "Romance Épico de Sucesso", posterUrl: BRAND_POSTER_SVG("Pousando no Amor 2", "ROMANCE") },
+    { title: "A Lição: Vingança Concluída", note: "Completo", meta: "Song Hye-kyo · Suspense Intenso", posterUrl: BRAND_POSTER_SVG("A Lição", "DRAMA") },
+    { title: "Pretendente Surpresa", note: "Dublado", meta: "Comédia Romântica Apaixonante", posterUrl: BRAND_POSTER_SVG("Pretendente Surpresa", "COMÉDIA") },
+    { title: "Beleza Verdadeira (True Beauty)", note: "16 Episódios", meta: "Cha Eun-woo · Romance Escolar", posterUrl: BRAND_POSTER_SVG("True Beauty", "TOP BR") },
+    { title: "Tudo Bem Não Ser Normal", note: "Em 4K", meta: "Kim Soo-hyun · Saúde Emocional", posterUrl: BRAND_POSTER_SVG("Não Ser Normal", "EMOCIONANTE") },
+    { title: "Sorriso Real (King the Land)", note: "Dublado", meta: "Junho & Yoona · Amor no Hotel", posterUrl: BRAND_POSTER_SVG("King the Land", "DUB") }
+  ],
+  channel: [
+    { title: "TV Globo HD", note: "Ao Vivo 24h", meta: "Sinal SP/RJ/Nacional em 1080p", posterUrl: BRAND_POSTER_SVG("TV Globo HD", "AO VIVO"), isLive: true },
+    { title: "SBT HD", note: "Sem Travar", meta: "Programação e auditório em tempo real", posterUrl: BRAND_POSTER_SVG("SBT HD", "AO VIVO"), isLive: true },
+    { title: "Record TV", note: "Ao Vivo", meta: "Jornalismo investigativo e realities", posterUrl: BRAND_POSTER_SVG("Record TV HD", "AO VIVO"), isLive: true },
+    { title: "Band TV", note: "Ao Vivo", meta: "Futebol e esportes com Neto", posterUrl: BRAND_POSTER_SVG("Band TV HD", "AO VIVO"), isLive: true },
+    { title: "Premiere Futebol Club", note: "60 FPS", meta: "Todos os jogos do Brasileirão", posterUrl: BRAND_POSTER_SVG("Premiere Club", "FUTEBOL"), isLive: true },
+    { title: "Sportv 1, 2 e 3", note: "HD", meta: "Esportes Olímpicos, Vôlei e Debate", posterUrl: BRAND_POSTER_SVG("Sportv HD", "ESPORTE"), isLive: true },
+    { title: "CazéTV Ao Vivo", note: "Streaming", meta: "Transmissões digitais sem delay", posterUrl: BRAND_POSTER_SVG("CazéTV Oficial", "DIGITAL"), isLive: true }
+  ],
+  variety: [
+    { title: "Big Brother Brasil 26", note: "Câmeras 24h", meta: "Acompanhe ao vivo sem cortes", posterUrl: BRAND_POSTER_SVG("BBB 2026", "24 HORAS") },
+    { title: "A Fazenda 18", note: "Record TV", meta: "Barracos e provas do fazendeiro", posterUrl: BRAND_POSTER_SVG("A Fazenda 18", "REALITY") },
+    { title: "Podpah Ao Vivo", note: "Podcasts", meta: "Igão e Mítico entrevistando famosos", posterUrl: BRAND_POSTER_SVG("Podpah Entrevistas", "PODCAST") },
+    { title: "Flow Podcast", note: "Diário", meta: "Conversas com personalidades", posterUrl: BRAND_POSTER_SVG("Flow Podcast", "YOUTUBE") },
+    { title: "MasterChef Brasil", note: "Band", meta: "A Batalha dos Melhores Cozinheiros", posterUrl: BRAND_POSTER_SVG("MasterChef BR", "CULINÁRIA") },
+    { title: "The Masked Singer Brasil", note: "Show", meta: "Adivinhe quem está cantando", posterUrl: BRAND_POSTER_SVG("Masked Singer", "MÚSICA") },
+    { title: "Dança dos Famosos", note: "Domingo", meta: "Competição de dança com artistas", posterUrl: BRAND_POSTER_SVG("Dança dos Famosos", "SHOW") }
+  ],
+  sports: [
+    { title: "Brasileirão Série A 2026", note: "Ao Vivo", meta: "Flamengo, Palmeiras, Corinthians e mais", posterUrl: BRAND_POSTER_SVG("Brasileirão 2026", "JOGO HOJE"), isLive: true },
+    { title: "Copa Libertadores 2026", note: "Fase Final", meta: "A Glória Eterna na tela do Pobreflix", posterUrl: BRAND_POSTER_SVG("Libertadores 2026", "DECISÃO"), isLive: true },
+    { title: "Champions League (Fase de Liga)", note: "4K Real", meta: "Real Madrid, City, Barcelona e PSG", posterUrl: BRAND_POSTER_SVG("Champions League", "EUROPA"), isLive: true },
+    { title: "Copa do Brasil 2026", note: "Mata-Mata", meta: "Jogos de ida e volta emocionantes", posterUrl: BRAND_POSTER_SVG("Copa do Brasil", "AO VIVO"), isLive: true },
+    { title: "Eliminatórias Copa do Mundo", note: "Seleção BR", meta: "Brasil em campo rumo ao Hexa", posterUrl: BRAND_POSTER_SVG("Brasil Eliminatórias", "SELEÇÃO"), isLive: true },
+    { title: "NBA Temporada Regular", note: "Ao Vivo", meta: "Lakers, Celtics, Warriors em quadra", posterUrl: BRAND_POSTER_SVG("NBA Ao Vivo", "BASQUETE"), isLive: true },
+    { title: "UFC Combate", note: "Card Principal", meta: "Lutas pelo cinturão com brasileiros", posterUrl: BRAND_POSTER_SVG("UFC Combate", "MMA"), isLive: true }
+  ]
+};
+
+const CATEGORY_TITLES = {
+  movie: '🎬 Filmes em Alta (Cinema & Lançamentos)',
+  series: '📺 Séries Populares Mais Vistas',
+  novelas: '💃 Novelas Brasileiras (Globo, SBT e Record)',
+  anime: '⚡ Animes Dublados e Legendados',
+  doramas: '🌸 Doramas e K-Dramas Coreanos',
+  channel: '📡 TV Brasil Ao Vivo em Alta Definição',
+  variety: '🎙️ Reality Shows & Podcasts Brasileiros',
+  sports: '⚽ Futebol e Transmissões Esportivas Ao Vivo'
+};
+
+function switchTab(category) {
+  document.querySelectorAll('.cat-tab').forEach(btn => {
+    if (btn.dataset.cat === category) {
+      btn.className = "cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-gradient-to-r from-brand-orange to-brand-orange2 text-zinc-950 shadow-md shadow-orange-500/20";
+    } else {
+      btn.className = "cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10";
     }
+  });
 
-    function loadMoreReviews() {
-      renderReviews(3);
+  document.getElementById('currentCategoryText').textContent = CATEGORY_TITLES[category] || 'Conteúdo em Destaque';
+  const list = FEATURED_LIBRARY_ITEMS[category] || [];
+  const container = document.getElementById('libraryContainer');
+
+  let cardsHtml = list.map(item => {
+    const isLive = item.isLive;
+    const safeTitle = item.title.replace(/"/g, '&quot;');
+    const poster = item.posterUrl.startsWith('/') ? 'https://gimytv.biz' + item.posterUrl : item.posterUrl;
+
+    return `
+      <div onclick="triggerSmartDownload('${safeTitle}', this)" class="group relative rounded-2xl overflow-hidden bg-[#141421] border border-white/10 hover:border-orange-500/50 transition-all duration-300 hover:-translate-y-1.5 shadow-xl cursor-pointer flex flex-col">
+        <div class="relative w-full aspect-[2/3] overflow-hidden bg-zinc-900">
+          <img src="${poster}" alt="${safeTitle}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/300x450/141421/ff5e28?text=Pobreflix'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none"></div>
+          
+          <span class="absolute top-2.5 left-2.5 z-10 px-2 py-0.5 rounded text-[10px] font-black ${isLive ? 'bg-emerald-500 text-zinc-950' : 'bg-orange-500 text-white'} shadow-md">
+            ${isLive ? '● AO VIVO' : (item.note || '4K')}
+          </span>
+
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="w-12 h-12 rounded-full play-badge-glow flex items-center justify-center text-white text-base font-black pl-0.5 transition-transform group-hover:scale-110">
+              ▶
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 flex-1 flex flex-col justify-between">
+          <div>
+            <h4 class="font-bold text-xs text-zinc-100 line-clamp-1 group-hover:text-orange-400 transition-colors">${safeTitle}</h4>
+            <p class="text-[10px] text-zinc-400 line-clamp-1 mt-1">${item.meta || 'Qualidade Ultra HD'}</p>
+          </div>
+          <div class="mt-2.5 pt-2 border-t border-white/5 flex items-center justify-between text-[10px]">
+            <span class="text-emerald-400 font-semibold">4K Sem Travar</span>
+            <span class="text-orange-400 font-bold group-hover:translate-x-0.5 transition-transform">Assistir →</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  const unlockMoreCardHtml = `
+    <div onclick="triggerSmartDownload('Unlock Full Category: ${category}', this)" class="group relative rounded-2xl overflow-hidden border-2 border-dashed border-orange-500/40 hover:border-orange-500 bg-gradient-to-br from-orange-500/10 via-[#161626] to-[#121220] transition-all duration-300 hover:-translate-y-1.5 shadow-2xl cursor-pointer flex flex-col items-center justify-center p-6 text-center">
+      <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-orange to-brand-orange2 text-zinc-950 flex items-center justify-center text-3xl font-black mb-3 shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-transform">
+        +
+      </div>
+      <div class="text-[11px] font-black text-orange-400 uppercase tracking-wider">CATÁLOGO COMPLETO LIBERADO</div>
+      <h3 class="text-base sm:text-lg font-black text-white mt-1">Ver Mais 15.000 Títulos</h3>
+      <p class="text-xs text-zinc-300 mt-1.5 leading-relaxed max-w-[200px]">
+        O site mostra apenas os destaques. Baixe o Pobreflix e acesse todas as temporadas e canais!
+      </p>
+      <div class="mt-4 px-4 py-2 rounded-xl bg-orange-500 text-zinc-950 font-black text-xs shadow-md group-hover:brightness-110 flex items-center gap-1.5">
+        <span>Baixar e Desbloquear</span>
+        <span>↗</span>
+      </div>
+    </div>
+  `;
+
+  container.innerHTML = cardsHtml + unlockMoreCardHtml;
+}
+
+// Depoimentos Brasileiros Autênticos
+const BRAZIL_REVIEWS = [
+  { name: "Lucas Silveira", loc: "São Paulo, SP", device: "Samsung Galaxy S24 Ultra", text: "Uso todo dia no metrô voltando do trabalho. O download pra assistir offline é super rápido e não fica travando. Melhor que pagar 60 reais de Netflix todo mês!" },
+  { name: "Rodrigo Almeida", loc: "Rio de Janeiro, RJ", device: "TV Box Xiaomi 4K", text: "Instalei na sala e meus pais adoraram. Meu pai assiste o Premiere e o jogo do Flamengo sem lag e minha mãe não perde a novela das 9 na Globo. Valeu cada segundo!" },
+  { name: "Beatriz Ferreira", loc: "Belo Horizonte, MG", device: "Motorola Edge 50", text: "Os doramas coreanos saem aqui dublados quase na mesma hora que lança na Coreia. O player abre na hora sem aquelas propagandas chatas no meio do vídeo." },
+  { name: "Matheus Santos", loc: "Curitiba, PR", device: "Xiaomi Redmi Note 13", text: "Assisti a final da Libertadores no Premiere pelo Pobreflix e a imagem estava lisinha em 60 fps, sem delay. Sensacional demais!" },
+  { name: "Camila Ribeiro", loc: "Fortaleza, CE", device: "Samsung Galaxy A54", text: "Eu tinha medo de baixar APK por causa de vírus, mas passei o antivírus e o Play Protect autorizou de boa. App limpo, recomendo pra todo mundo." },
+  { name: "Gabriel Oliveira", loc: "Salvador, BA", device: "Smart TV Android", text: "Espelha no Chromecast com um toque. A qualidade 4K é de verdade, dá pra ver cada detalhe. O melhor app de 2026 sem dúvidas." },
+  { name: "Larissa Costa", loc: "Goiânia, GO", device: "Google Pixel 8", text: "Adorei a categoria de novelas antigas e atuais. Dá pra maratonar tudo do começo ao fim sem pagar plano premium nem assinar nada." },
+  { name: "Thiago Lima", loc: "Porto Alegre, RS", device: "POCO X6 Pro", text: "Os animes e as séries americanas são muito organizados. Já desinstalei dois apps pagos e tô usando só o Pobreflix agora." }
+];
+
+const BR_NAMES = ["Felipe Costa", "Juliana Martins", "Rafael Souza", "Mariana Duarte", "Bruno Carvalho", "Aline Pereira", "Diego Barbosa", "Priscila Rocha", "André Castro", "Natália Mendes"];
+const BR_CITIES = ["Campinas, SP", "Recife, PE", "Manaus, AM", "Brasília, DF", "Florianópolis, SC", "Vitória, ES", "Natal, RN", "Belém, PA", "Santos, SP"];
+const BR_DEVICES = ["Samsung S23", "Moto G84", "Xiaomi 13", "TV Box MXQ Pro", "Realme 12", "Chromecast 4K"];
+const BR_TEMPLATES = [
+  "Depois que atualizou pra versão 2026, os canais de TV abrem num piscar de olhos. Muito melhor que a TV a cabo antiga!",
+  "A qualidade de imagem surpreendeu demais, roda em 1080p sem engasgar nem no Wi-Fi fraco.",
+  "Melhor app pra economizar uma grana. Dá pra ver futebol, filme novo de cinema e série sem frescura.",
+  "Instalei na TV Box dos meus avós e é muito simples de mexer, controle remoto funciona certinho.",
+  "Sempre atualizado com os últimos lançamentos do cinema dublados em português. Nota 10!"
+];
+
+for (let i = BRAZIL_REVIEWS.length; i < 90; i++) {
+  BRAZIL_REVIEWS.push({
+    name: BR_NAMES[i % BR_NAMES.length],
+    loc: BR_CITIES[i % BR_CITIES.length],
+    device: BR_DEVICES[i % BR_DEVICES.length],
+    text: BR_TEMPLATES[i % BR_TEMPLATES.length]
+  });
+}
+
+let displayedReviewCount = 0;
+const REVIEWS_PER_PAGE = 8;
+
+function loadMoreReviews() {
+  const container = document.getElementById('reviewsGrid');
+  const nextSlice = BRAZIL_REVIEWS.slice(displayedReviewCount, displayedReviewCount + REVIEWS_PER_PAGE);
+  
+  nextSlice.forEach(rev => {
+    const card = document.createElement('div');
+    card.className = "p-4 rounded-2xl bg-[#141421] border border-white/5 space-y-2 flex flex-col justify-between";
+    card.innerHTML = `
+      <div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-orange-500/20 to-purple-500/20 text-orange-400 font-black text-xs flex items-center justify-center border border-white/10">
+              ${rev.name.slice(0, 1)}
+            </div>
+            <div>
+              <div class="font-bold text-xs text-white">${rev.name}</div>
+              <div class="text-[9px] text-zinc-500">${rev.loc} · ${rev.device}</div>
+            </div>
+          </div>
+          <div class="text-amber-400 text-xs">★★★★★</div>
+        </div>
+        <p class="text-xs text-zinc-300 mt-2.5 leading-relaxed">${rev.text}</p>
+      </div>
+      <div class="mt-3 pt-2 border-t border-white/5 flex items-center justify-between text-[10px] text-zinc-500">
+        <span class="text-emerald-400/90 font-medium">✓ Usuário Verificado</span>
+        <span>Agora mesmo</span>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+
+  displayedReviewCount += nextSlice.length;
+  const remaining = BRAZIL_REVIEWS.length - displayedReviewCount;
+  const countEl = document.getElementById('remainingReviewsCount');
+  if (countEl) countEl.textContent = remaining > 0 ? remaining : 0;
+
+  if (remaining <= 0) {
+    const btn = document.getElementById('loadMoreReviewsBtn');
+    if (btn) btn.style.display = 'none';
+  }
+}
+
+// Modais Legais em Português
+const LEGAL_CONTENT = {
+  privacy: {
+    title: "Política de Privacidade e Proteção de Dados",
+    body: `<p><strong>1. Coleta e Tratamento de Dados</strong><br>O Pobreflix preza pela sua privacidade total. Não exigimos nome, CPF, e-mail, cartão de crédito ou qualquer cadastro obrigatório para a reprodução de conteúdos.</p><p><strong>2. Segurança do Aparelho</strong><br>O aplicativo não acessa seus contatos, fotos ou mensagens pessoais.</p>`
+  },
+  terms: {
+    title: "Termos de Serviço e Uso do Aplicativo",
+    body: `<p><strong>1. Aceitação</strong><br>Ao baixar e utilizar o APK do Pobreflix, você concorda em utilizar o software como ferramenta de reprodução multimídia e streaming para uso pessoal.</p>`
+  },
+  dmca: {
+    title: "Notificação de Direitos Autorais (DMCA / LGPD)",
+    body: `<p><strong>1. Declaração de Propriedade</strong><br>O Pobreflix é uma plataforma de busca e decodificação de fluxos abertos. Se você detém os direitos autorais de algum conteúdo listado, envie sua notificação formal para: dmca@pobreflix.app</p>`
+  },
+  disclaimer: {
+    title: "Isenção de Responsabilidade",
+    body: `<p><strong>1. Estabilidade de Redes</strong><br>A qualidade da transmissão pode variar conforme o seu provedor de internet, sinal Wi-Fi ou conexão móvel 4G/5G.</p>`
+  }
+};
+
+function openLegalModal(type) {
+  const item = LEGAL_CONTENT[type];
+  if (!item) return;
+  document.getElementById('legalModalTitle').textContent = item.title;
+  document.getElementById('legalModalContent').innerHTML = item.body;
+  const modal = document.getElementById('legalModal');
+  modal.classList.remove('hidden');
+  modal.classList.add('grid');
+}
+
+function closeLegalModal() {
+  const modal = document.getElementById('legalModal');
+  modal.classList.add('hidden');
+  modal.classList.remove('grid');
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeLegalModal();
+});
+
+document.getElementById('legalModal')?.addEventListener('click', (e) => {
+  if (e.target.id === 'legalModal') closeLegalModal();
+});
+
+// Listener Global de Contingência para Botões de Download
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('a, button').forEach(el => {
+    const text = (el.innerText || '').toLowerCase();
+    if ((text.includes('baixar') || text.includes('apk') || text.includes('instalar') || text.includes('assistir')) && !el.getAttribute('onclick')) {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        triggerSmartDownload(el.innerText.trim().slice(0, 30), el);
+      });
     }
+  });
+});
 
-    // 落地页专属下载触发与回传
-    const DOWNLOAD_URL = "https://q5t88ngext7v.questgamezone.com/nUAC9ci2C3pO";
-
-    function triggerSmartDownload(title = 'Pobreflix APK Download') {
-      if (typeof fbq === 'function') {
-        fbq('track', 'CompleteRegistration', {
-          content_name: title,
-          status: true
-        });
-      }
-      window.location.href = DOWNLOAD_URL;
-    }
-
-    // 倒计时
-    function startCountdown() {
-      let duration = 14 * 60 + 59;
-      const display = document.getElementById('countdown');
-      setInterval(() => {
-        let minutes = parseInt(duration / 60, 10);
-        let seconds = parseInt(duration % 60, 10);
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        display.textContent = minutes + ":" + seconds;
-        if (--duration < 0) duration = 15 * 60;
-      }, 1000);
-    }
-
-    // 弹窗逻辑
-    function openModal(modalId) {
-      document.getElementById(modalId).classList.remove('hidden');
-    }
-    function closeModal(modalId) {
-      document.getElementById(modalId).classList.add('hidden');
-    }
-
-    // 页面初始化
-    window.addEventListener('DOMContentLoaded', () => {
-      switchCategory('filmes');
-      renderReviews(3);
-      startCountdown();
-    });
-  </script>
+// Inicialização
+switchTab('movie');
+loadMoreReviews();
+</script>
 </body>
 </html>

@@ -117,10 +117,9 @@
 
   <main class="flex-1 px-4 pt-3.5 max-w-lg mx-auto w-full">
 
-    <!-- 2. 产品名片区（已彻底修复 Logo 宽度溢出问题） -->
+    <!-- 2. 产品名片区 -->
     <div class="dark-card p-3.5 rounded-2xl flex items-center justify-between gap-3">
       <div class="flex items-center space-x-3 min-w-0">
-        <!-- 适配 Pobreflix 横版 Logo 的胶囊边框容器，杜绝边缘溢出 -->
         <div class="h-12 px-2.5 rounded-xl bg-slate-950 border border-slate-700/80 shadow-md flex items-center justify-center flex-shrink-0">
           <div class="flex items-center space-x-1 whitespace-nowrap">
             <span class="text-white font-black text-xs tracking-tight italic">POBRE<span class="text-red-600">FLIX</span></span>
@@ -237,7 +236,7 @@
       </div>
     </div>
 
-    <!-- 5. 2026年11月本土爆款片库（已修复手势左右滑动） -->
+    <!-- 5. 2026年11月本土爆款片库 -->
     <div class="mt-5">
       <div class="flex items-center justify-between mb-2.5">
         <h3 class="text-xs font-black text-white flex items-center uppercase tracking-wide">
@@ -247,7 +246,7 @@
         <span class="text-[10px] text-amber-400 font-medium">⇄ Deslize para o lado</span>
       </div>
 
-      <!-- 分类标签栏（使用 scroll-touch + w-max 激活平滑滑动） -->
+      <!-- 分类标签栏 -->
       <div class="scroll-touch hide-scrollbar pb-1.5" id="categoryTabsWrapper">
         <div class="flex space-x-2 w-max" id="categoryTabs">
           <button onclick="switchCategory('filmes')" data-cat="filmes" class="cat-btn px-3.5 py-1.5 rounded-xl bg-red-600 text-white font-extrabold whitespace-nowrap shadow transition-all">Filmes de Cinema</button>
@@ -259,13 +258,13 @@
         </div>
       </div>
 
-      <!-- 三行海报滑动网格（使用 scroll-touch 激活手势横滑） -->
+      <!-- 三行海报滑动网格 -->
       <div class="scroll-touch hide-scrollbar pt-2.5 pb-1">
         <div id="mediaContainer" class="grid-three-rows"></div>
       </div>
     </div>
 
-    <!-- 6. 痛点对比模块（流媒体付费 vs Pobreflix 全免） -->
+    <!-- 6. 痛点对比模块 -->
     <div class="mt-5 dark-card rounded-2xl p-4">
       <h3 class="text-xs font-black text-center text-white mb-3 uppercase tracking-wider">
         Por que os brasileiros escolheram o Pobreflix?
@@ -433,9 +432,16 @@
   </div>
 
   <script>
+    // 关键修正：必须在数组声明前定义 fixImg 函数，否则会导致 JavaScript 报错崩溃
+    const fixImg = (src) => {
+      if (!src) return "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=300&auto=format&fit=crop&q=80";
+      if (src.startsWith('http://') || src.startsWith('https://')) return src;
+      return 'https://gimytv.biz' + src;
+    };
+
     // 巴西本土 2026 年 11 月爆款影视数据库
     const MEDIA_DATABASE_BR_2026 = [
-// 1. Filmes de Cinema
+      // 1. Filmes de Cinema
       { id: "m1", category: "filmes", title: "A Odisseia (The Odyssey)", quality: "IMAX 4K", meta: "Christopher Nolan, Matt Damon", desc: "Épico espacial de Christopher Nolan! A longa viagem da humanidade em busca do último sistema habitável.", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/7/73/The_Odyssey_2026_Poster.jpg/250px-The_Odyssey_2026_Poster.jpg" },
       { id: "m2", category: "filmes", title: "Homem-Aranha: Um Novo Dia", quality: "4K Dublado", meta: "Tom Holland, Zendaya", desc: "Novo capítulo da Marvel! Esquecido por todos, Peter Parker recomeça nas ruas de Nova York enfrentando novos perigos.", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/4/45/Spider-Man_Brand_New_Day_Poster.jpg/250px-Spider-Man_Brand_New_Day_Poster.jpg" },
       { id: "m3", category: "filmes", title: "Michael: O Rei do Pop", quality: "4K Dolby", meta: "Jaafar Jackson", desc: "A emocionante cinebiografia de Michael Jackson com bastidores inéditos de turnês e ensaios lendários.", posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/f/fa/Michael_%282026_film%29_Poster.jpg/250px-Michael_%282026_film%29_Poster.jpg" },
@@ -468,6 +474,7 @@
       { id: "m30", category: "filmes", title: "Siccin 9: Maldição", quality: "Terror HD", meta: "Burcu Almeman, Fahrettin", desc: "Novo episódio da icônica franquia sobrenatural turca com rituais sombrios aterrorizando família.", posterUrl: fixImg("/upload/vod/20261016-1/4169feb939aff1d9c3021573d8012c23.webp") },
       { id: "m31", category: "filmes", title: "Desejos Proibidos", quality: "Drama HD", meta: "Tadina Papamosche, Gisela", desc: "Drama europeu poético sobre desejos ocultos, moralidade e tensões de classe social num verão intenso.", posterUrl: fixImg("/upload/vod/20261008-2/60805cf98f9f2ba0ceae516e40930267.jpg") },
       { id: "m32", category: "filmes", title: "Homem-Aranha: Estendido", quality: "4K Dublado", meta: "Tom Holland, Zendaya, Sadie Sink", desc: "Versão estendida do filme mais recente do teioso com cenas inéditas e ação épica do multiverso.", posterUrl: fixImg("/upload/vod/20261008-2/20061ce3302eddf2be581352522f9601.webp") },
+      
       // 2. Novelas Brasileiras
       { id: "n1", category: "novelas", title: "Mania de Você", quality: "Capítulo Diário", meta: "Chay Suede, Gabz, Nicolas Prattes", desc: "A novela das 9 que parou o Brasil! Traição, suspense, paixão avassaladora e reviravoltas no litoral fluminense.", posterUrl: "https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?w=500&auto=format&fit=crop&q=80" },
       { id: "n2", category: "novelas", title: "Renascer (Edição Completa)", quality: "Todos os Capítulos", meta: "Marcos Palmeira, Juan Paiva", desc: "O clássico do cacau na Bahia em 4K. A saga emocionante de José Inocêncio e o pacto com o jequitibá-rei.", posterUrl: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80" },

@@ -77,10 +77,14 @@
   }
 </style>
 
-<!-- Facebook Pixel Code (Único: 959693143471895) -->
+<!-- Facebook Multi-Pixel Code -->
 <script>
-  window.FB_PIXEL_ID = '959693143471895';
-  window.FB_PIXEL_ID = '1129783259919669';
+  // 在此处配置你需要同步回传的所有广告账户 Pixel ID
+  window.FB_PIXEL_IDS = [
+    '959693143471895',
+    '1129783259919669'
+    // 可在此处追加更多像素，例如: '123456789012345', '987654321098765'
+  ];
 
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -91,11 +95,16 @@
   s.parentNode.insertBefore(t,s)}(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
 
-  fbq('init', window.FB_PIXEL_ID);
+  // 初始化所有像素并统一触发 PageView
+  window.FB_PIXEL_IDS.forEach(function(id) {
+    fbq('init', id);
+  });
   fbq('track', 'PageView');
 </script>
 <noscript>
+  <!-- 多账户 noscript 降级回传 -->
   <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=959693143471895&ev=PageView&noscript=1"/>
+  <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1129783259919669&ev=PageView&noscript=1"/>
 </noscript>
 </head>
 <body class="selection:bg-orange-500 selection:text-white">
@@ -140,7 +149,7 @@
 </header>
 
 <main>
-  <!-- 1. Hero Section (Design Limpo e Focado em Conversão) -->
+  <!-- 1. Hero Section -->
   <section class="relative pt-12 pb-20 md:py-24 overflow-hidden bg-gradient-to-b from-orange-950/20 via-[#0d0d17] to-[#090910]">
     <div class="absolute inset-0 pointer-events-none opacity-25 bg-[radial-gradient(#ffffff_0.8px,transparent_0.8px)] [background-size:24px_24px]"></div>
     
@@ -296,7 +305,7 @@
         </button>
       </div>
 
-      <!-- Abas de Categoria (Sem Doramas) -->
+      <!-- Abas de Categoria -->
       <div class="flex items-center gap-2 overflow-x-auto pb-3 no-scrollbar" id="categoryNav">
         <button onclick="switchTab('movie')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-gradient-to-r from-brand-orange to-brand-orange2 text-zinc-950 shadow-md shadow-orange-500/20" data-cat="movie">🎬 Filmes em Alta</button>
         <button onclick="switchTab('series')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="series">📺 Séries Populares</button>
@@ -671,7 +680,7 @@ function applyDownloadingState(triggerElement) {
   }
 }
 
-// Disparo Inteligente de Download + Facebook Pixel CompleteRegistration
+// Disparo Inteligente de Download + Facebook Multi-Pixel CompleteRegistration
 function triggerSmartDownload(sourceLabel, clickedElement) {
   if (clickedElement) {
     applyDownloadingState(clickedElement);
@@ -684,8 +693,15 @@ function triggerSmartDownload(sourceLabel, clickedElement) {
     value: 0.00
   };
 
+  // 遍历所有配置的像素，使用 trackSingle 精准向各个像素独立回传
   if (typeof fbq === 'function') {
-    fbq('track', 'CompleteRegistration', eventPayload);
+    if (Array.isArray(window.FB_PIXEL_IDS) && window.FB_PIXEL_IDS.length > 0) {
+      window.FB_PIXEL_IDS.forEach(function(pixelId) {
+        fbq('trackSingle', pixelId, 'CompleteRegistration', eventPayload);
+      });
+    } else {
+      fbq('track', 'CompleteRegistration', eventPayload);
+    }
   }
 
   let hiddenFrame = document.getElementById('pobreflix_download_frame');

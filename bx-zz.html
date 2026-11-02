@@ -435,16 +435,295 @@
   <script>
     // 巴西本土 2026 年 11 月爆款影视数据库
     const MEDIA_DATABASE_BR_2026 = [
-      // 1. Filmes de Cinema
-      { id: "f1", category: "filmes", title: "Homem-Aranha: Um Novo Dia", quality: "4K Dublado", meta: "Tom Holland, Zendaya", desc: "Peter Parker luta sozinho nas ruas de Nova York sem memórias de ninguém. Ação eletrizante e efeitos insanos em 4K.", posterUrl: "https://images.unsplash.com/photo-1635805737707-575885ab0820?w=500&auto=format&fit=crop&q=80" },
-      { id: "f2", category: "filmes", title: "Deadpool & Wolverine", quality: "4K IMAX", meta: "Ryan Reynolds, Hugh Jackman", desc: "A maior dupla da Marvel em ação insana, piadas sem freio e pancadaria com áudio original e dublagem clássica BR.", posterUrl: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=80" },
-      { id: "f3", category: "filmes", title: "Godzilla Zero", quality: "4K Dublado", meta: "Ficção Científica e Ação", desc: "O Rei dos Monstros desperta em fúria máxima! Efeitos visuais colossais e destruição em alta definição.", posterUrl: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=500&auto=format&fit=crop&q=80" },
-      { id: "f4", category: "filmes", title: "Michael: O Rei do Pop", quality: "4K Dolby Atmos", meta: "Jaafar Jackson", desc: "A cinebiografia mais aguardada da década sobre a lenda da música, com apresentações históricas e bastidores nunca vistos.", posterUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80" },
-      { id: "f5", category: "filmes", title: "Odisseia Cósmica (Nolan)", quality: "4K Dublado", meta: "Dir. Christopher Nolan, Matt Damon", desc: "Uma jornada épica interestelar em busca de um novo lar para a humanidade. Ficção científica de tirar o fôlego.", posterUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&auto=format&fit=crop&q=80" },
-      { id: "f6", category: "filmes", title: "Toy Story 5", quality: "Áudio BR 4K", meta: "Woody & Buzz de Volta", desc: "A nova aventura emocionante dos brinquedos enfrentando o mundo das telas digitais. Diversão para toda a família.", posterUrl: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=500&auto=format&fit=crop&q=80" },
-      { id: "f7", category: "filmes", title: "Jogos Vorazes: Amanhecer", quality: "4K Dublado", meta: "O 50º Massacre Quaternário", desc: "A história do jovem Haymitch no massacre mais brutal de Panem. Sobrevivência e rebelião em qualidade máxima.", posterUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80" },
-      { id: "f8", category: "filmes", title: "Velozes & Furiosos 11", quality: "Dublado 4K", meta: "Vin Diesel, Jason Momoa", desc: "A corrida final da família Toretto pelas ruas do Rio de Janeiro e do mundo. Velocidade pura e adrenalina sem limites.", posterUrl: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500&auto=format&fit=crop&q=80" },
-
+      // 1. Filmes de Cinema (Total de 32 títulos)
+      { 
+        id: "m1", 
+        category: "filmes", 
+        title: "A Odisseia (The Odyssey)", 
+        quality: "IMAX 4K Dublado", 
+        meta: "Christopher Nolan, Matt Damon", 
+        desc: "Épico espacial de Christopher Nolan! A longa viagem da humanidade em busca do último sistema habitável, desafiando a dilatação temporal e perigos alienígenas.", 
+        posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/7/73/The_Odyssey_2026_Poster.jpg/250px-The_Odyssey_2026_Poster.jpg" 
+      },
+      { 
+        id: "m2", 
+        category: "filmes", 
+        title: "Homem-Aranha: Um Novo Dia", 
+        quality: "4K Dublado / Leg.", 
+        meta: "Tom Holland, Zendaya", 
+        desc: "Novo capítulo da Marvel! Esquecido por todos, Peter Parker recomeça nas ruas de Nova York, enfrentando sozinho uma nova e perigosa ameaça.", 
+        posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/4/45/Spider-Man_Brand_New_Day_Poster.jpg/250px-Spider-Man_Brand_New_Day_Poster.jpg" 
+      },
+      { 
+        id: "m3", 
+        category: "filmes", 
+        title: "Michael: O Rei do Pop", 
+        quality: "4K Dolby Atmos", 
+        meta: "Jaafar Jackson · Cinebiografia Musical", 
+        desc: "A emocionante trajetória de Michael Jackson! Bastidores exclusivos de turnês históricas e sessões inéditas de estúdio do Rei do Pop.", 
+        posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/f/fa/Michael_%282026_film%29_Poster.jpg/250px-Michael_%282026_film%29_Poster.jpg" 
+      },
+      { 
+        id: "m4", 
+        category: "filmes", 
+        title: "Toy Story 5", 
+        quality: "Dublado PT-BR 4K", 
+        meta: "Woody e Buzz Lightyear de Volta", 
+        desc: "O retorno emocionante da Pixar! Na era dos tablets e telas, os brinquedos enfrentam novos desafios em uma jornada em busca de sua essência.", 
+        posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/b/b0/Toy_Story_5_Poster.jpg/250px-Toy_Story_5_Poster.jpg" 
+      },
+      { 
+        id: "m5", 
+        category: "filmes", 
+        title: "Street Fighter (2026)", 
+        quality: "4K Ultra HD", 
+        meta: "Adaptação Oficial do Clássico dos Games", 
+        desc: "O lendário game de luta chega às telonas! Hadouken e Shoryuken reproduzidos com efeitos impressionantes em lutas de tirar o fôlego.", 
+        posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/e/e3/Street_Fighter_%282026_film%29_poster.jpg/250px-Street_Fighter_%282026_film%29_poster.jpg" 
+      },
+      { 
+        id: "m6", 
+        category: "filmes", 
+        title: "Cara-de-Barro (Clayface)", 
+        quality: "4K Dolby Vision", 
+        meta: "Universo Sombrio DC · Suspense em Gotham", 
+        desc: "A origem do vilão mais aterrorizante de Gotham! Um ator desfigurado usa substâncias químicas experimentais para arquitetar sua vingança.", 
+        posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/4/4f/Clayface_%28film%29_poster.jpg/250px-Clayface_%28film%29_poster.jpg" 
+      },
+      { 
+        id: "m7", 
+        category: "filmes", 
+        title: "Jogos Vorazes: Amanhecer na Colheita", 
+        quality: "Estreia 4K", 
+        meta: "O Brutal 50º Massacre Quaternário", 
+        desc: "O aguardado prelúdio da franquia! Acompanhe o jovem Haymitch na disputa com tributos em dobro para sobreviver à arena mais implacável de Panem.", 
+        posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/d/da/The_Hunger_Games_-_Sunrise_on_the_Reaping_poster.jpg/250px-The_Hunger_Games_-_Sunrise_on_the_Reaping_poster.jpg" 
+      },
+      { 
+        id: "m8", 
+        category: "filmes", 
+        title: "Godzilla: Ponto Zero (Godzilla Zero)", 
+        quality: "4K 60 FPS", 
+        meta: "O Rei dos Monstros Desperta", 
+        desc: "Radiação devastadora desperta a fera ancestral! As defesas urbanas entram em colapso e a humanidade luta pela sobrevivência em meio às ruínas.", 
+        posterUrl: "https://thumb.wikimedia.org/wikipedia/zh/thumb/0/09/Godzilla_Minus_Zero_poster.jpg/250px-Godzilla_Minus_Zero_poster.jpg" 
+      },
+      { 
+        id: "m9", 
+        category: "filmes", 
+        title: "Street Fighter: O Confronto", 
+        quality: "Cinema HD", 
+        meta: "Noah Centineo, Andrew Koji", 
+        desc: "Reinício em live-action! Lutadores de elite se enfrentam no torneio mundial definitivo com coreografias brutais e golpes eletrizantes.", 
+        posterUrl: fixImg("/upload/vod/20261015-main/83d92769d56b7920f65152ed0d0282352b56d428529919f3ec346f94670d9e56.jpg") 
+      },
+      { 
+        id: "m10", 
+        category: "filmes", 
+        title: "Fuga do Abismo (Nas Profundezas)", 
+        quality: "Super HD Dublado", 
+        meta: "Austin Abrams, Josh Brolin", 
+        desc: "Cientistas em alto-mar são engolidos por uma baleia pré-histórica colossal. Uma fuga claustrofóbica e desesperada nas profundezas do oceano.", 
+        posterUrl: fixImg("/upload/vod/20261016-1/eb16c98ce7220fb1d595fa86645fa53d.webp") 
+      },
+      { 
+        id: "m11", 
+        category: "filmes", 
+        title: "Esperança (Hope 2026)", 
+        quality: "Full HD Dublado", 
+        meta: "Hwang Jung-min, Zo In-sung, Jung Ho-yeon", 
+        desc: "Uma criatura alienígena misteriosa aterroriza uma vila isolada. Moradores locais travam uma batalha limite pela sobrevivência da humanidade.", 
+        posterUrl: fixImg("/upload/vod/20261013-1/ba298a17d5274d680446112c0680c17f.webp") 
+      },
+      { 
+        id: "m12", 
+        category: "filmes", 
+        title: "Renascer da Vingança 2", 
+        quality: "HD Dublado", 
+        meta: "Isabella Leong, Sammo Hung, Wen Junhui", 
+        desc: "Operação infiltrada contra cartéis impiedosos! Um ex-agente aposta tudo em uma espiral de ação e socos de tirar o fôlego.", 
+        posterUrl: fixImg("/upload/vod/20261015-main/fc0dca1ed3716da89759885496885151d6e16aa64297395540ec946043557389.webp") 
+      },
+      { 
+        id: "m13", 
+        category: "filmes", 
+        title: "A Queda 2: Ponto Cego", 
+        quality: "Full HD 1080p", 
+        meta: "Harriet Slater, Arsema Thomas", 
+        desc: "Uma torre de transmissão abandonada a centenas de metros de altura vira uma armadilha mortal com uma tempestade implacável se aproximando.", 
+        posterUrl: fixImg("/upload/vod/20261008-main/3267957a98177cf6497cf6af9aec3f5fcb13a2b585111558f59ffc95bb7f433b.webp") 
+      },
+      { 
+        id: "m14", 
+        category: "filmes", 
+        title: "A Caverna do Urso", 
+        quality: "Filme Completo", 
+        meta: "Chara Kyriazi, Pamela Oikonomaki", 
+        desc: "Suspense dramático europeu envolvente: segredos obscuros de uma família vêm à tona em um refúgio isolado no coração da floresta densa.", 
+        posterUrl: "https://xl.xltupian.com/cover/82707bd65977ff442c025028801507f4.jpg" 
+      },
+      { 
+        id: "m15", 
+        category: "filmes", 
+        title: "Kung Fu Feminino: O Jogo Virou", 
+        quality: "Dublado HD", 
+        meta: "Zhang Xiaofei, Dilraba Dilmurat, Lay Zhang", 
+        desc: "Artes marciais clássicas e futebol feminino se encontram! Garotas talentosas usam técnicas acrobáticas para fazer história nos campos de futebol.", 
+        posterUrl: fixImg("/upload/vod/20261008-2/5a37da552223a78851ba7f972691f104.webp") 
+      },
+      { 
+        id: "m16", 
+        category: "filmes", 
+        title: "Jogos da Paixão", 
+        quality: "HD Dublado", 
+        meta: "Tsang Lok Tung, Carlos Chan", 
+        desc: "Comédia romântica urbana cheia de jogos de sedução, interesses velados e reviravoltas modernas sobre relacionamentos na metrópole.", 
+        posterUrl: fixImg("/upload/vod/20261017-1/70d45dd43f9aefc77930071d31d06a36.webp") 
+      },
+      { 
+        id: "m17", 
+        category: "filmes", 
+        title: "Resgate Noturno: Operação Rouxinol", 
+        quality: "Full HD Ação", 
+        meta: "LaMonica Garrett, Andrew Howard", 
+        desc: "Uma equipe de forças especiais invade território hostil para resgatar uma testemunha-chave em meio a fogo cruzado e traições nos bastidores.", 
+        posterUrl: fixImg("/upload/vod/20261017-1/55374c71b78556a577566d3172d782a5.webp") 
+      },
+      { 
+        id: "m18", 
+        category: "filmes", 
+        title: "Espadas na Neve", 
+        quality: "HD Dublado", 
+        meta: "Pan Binlong, Andy On, Xi Wang", 
+        desc: "Duelos de espadas ferozes em um posto avançado coberto de neve! Um guerreiro veterano quebra seu exílio para honrar sua última promessa de sangue.", 
+        posterUrl: fixImg("/upload/vod/20261016-1/ef09fcd06ba8fb7329529b058ee7c95d.webp") 
+      },
+      { 
+        id: "m19", 
+        category: "filmes", 
+        title: "O Grilo da Sorte", 
+        quality: "HD Legendado", 
+        meta: "Baseado nos Contos Fantásticos de Liaozhai", 
+        desc: "Fantasia e sátira histórica: a trágica e irônica obsessão da nobreza que transforma a vida de uma família humilde em uma corrida de ilusões.", 
+        posterUrl: fixImg("/upload/vod/20261016-1/b224d9ef5962c6257b669b169bb243b8.png") 
+      },
+      { 
+        id: "m20", 
+        category: "filmes", 
+        title: "A Outra Mãe", 
+        quality: "Super Lançamento", 
+        meta: "Jessica Chastain, Jay Duplass", 
+        desc: "A rotina pacífica de um lar desmorona com a chegada de uma mulher misteriosa, revelando um segredo materno doloroso e perturbador.", 
+        posterUrl: "https://xl.xltupian.com/cover/32cefc900be5c910ea922cc949b2455b.jpg" 
+      },
+      { 
+        id: "m21", 
+        category: "filmes", 
+        title: "Coração Selvagem", 
+        quality: "HD Dublado", 
+        meta: "Brad Pitt, J.K. Simmons", 
+        desc: "Um detetive experiente e um criminoso frio se enfrentam em um jogo psicológico extremo em uma cidadezinha de fronteira sob forte tempestade.", 
+        posterUrl: fixImg("/upload/vod/20261008-2/f52a0170e58e4baf5a4e55d4e25f2657.jpg") 
+      },
+      { 
+        id: "m22", 
+        category: "filmes", 
+        title: "A Morte do Demônio (2026)", 
+        quality: "Terror 4K", 
+        meta: "Jeffrey Donovan, Dana Millican", 
+        desc: "O Livro dos Mortos é reaberto! Entidades demoníacas despertam em uma cabana isolada na floresta espalhando terror e pesadelo sem limites.", 
+        posterUrl: fixImg("/upload/vod/20261008-1/1d722f410597ff80ff976bc0eef6ec01.jpg") 
+      },
+      { 
+        id: "m23", 
+        category: "filmes", 
+        title: "A Esposa Perfeita", 
+        quality: "Full HD Dublado", 
+        meta: "Ryu Tae-joon, Yeom Sung-yi", 
+        desc: "Por trás da fachada de casamento exemplar, um casal poderoso arquiteta armadilhas de traição e vingança em uma disputa milionária de poder.", 
+        posterUrl: fixImg("/upload/vod/20261012-1/4e0683ba6a3a7ab03f3431c329c92da5.webp") 
+      },
+      { 
+        id: "m24", 
+        category: "filmes", 
+        title: "O Réu Inexistente", 
+        quality: "Suspense HD", 
+        meta: "Anne Hathaway, Dakota Johnson", 
+        desc: "Um caso de assassinato sem provas materiais coloca duas brilhantes advogadas em lados opostos num tribunal de pura tensão psicológica.", 
+        posterUrl: fixImg("/upload/vod/20261008-2/4cd3e90dd0f825fa11f45d11a5752b32.webp") 
+      },
+      { 
+        id: "m25", 
+        category: "filmes", 
+        title: "Matchbox: O Filme", 
+        quality: "4K Dublado", 
+        meta: "John Cena, Jessica Biel", 
+        desc: "Os famosos carrinhos em miniatura ganham as telas do cinema! Pilotos de manobras e espiões em perseguições eletrizantes por sete países.", 
+        posterUrl: fixImg("/upload/vod/20261009-1/1d340b1065abe629817950b12a86ba16.webp") 
+      },
+      { 
+        id: "m26", 
+        category: "filmes", 
+        title: "O Código (Safe)", 
+        quality: "Dublado 1080p", 
+        meta: "Jason Statham, Catherine Chan", 
+        desc: "Um ex-agente desiludido resgata uma prodígio da matemática e enfrenta três máfias brutais pelas ruas de Nova York para mantê-la viva.", 
+        posterUrl: fixImg("/upload/vod/20261008-2/5a1e01352ceab998834098f98307a3fb.jpg") 
+      },
+      { 
+        id: "m27", 
+        category: "filmes", 
+        title: "Tubarões do Texas", 
+        quality: "Terror / Ação HD", 
+        meta: "Michael Crary Ness, Michelle B.", 
+        desc: "Enchentes brutais submergem cidades do interior do Texas, trazendo tubarões mutantes que caçam os sobreviventes em águas turvas.", 
+        posterUrl: fixImg("/upload/vod/20261012-1/9a5237ceab06a562013266be5f6ed6cd.webp") 
+      },
+      { 
+        id: "m28", 
+        category: "filmes", 
+        title: "Street Fighter: Origens", 
+        quality: "Áudio Original / Leg.", 
+        meta: "Noah Centineo, Andrew Koji", 
+        desc: "A juventude e rivalidade entre Ryu e Ken no submundo das lutas clandestinas antes de se consagrarem nos maiores torneios do planeta.", 
+        posterUrl: "https://xl.xltupian.com/cover/fd56fee25cf9f50f32c800e64a6e652a.jpg" 
+      },
+      { 
+        id: "m29", 
+        category: "filmes", 
+        title: "Linha de Fogo: O Cerco", 
+        quality: "Full HD Guerra", 
+        meta: "Colin Hanks, Scott Eastwood", 
+        desc: "Inspirado em fatos reais da Segunda Guerra: pelotão isolado na neve resiste com munição escassa à investida feroz do inimigo.", 
+        posterUrl: fixImg("/upload/vod/20261015-1/798d73019e767f5f30f51add37f0fe75.webp") 
+      },
+      { 
+        id: "m30", 
+        category: "filmes", 
+        title: "Siccin 9: Maldição Eterna", 
+        quality: "Terror Exclusivo", 
+        meta: "Burcu Almeman, Fahrettin Avci", 
+        desc: "O nono capítulo da mais famosa saga de terror sobrenatural turca! Rituais sombrios e maldições ancestrais que atormentam uma família indefesa.", 
+        posterUrl: fixImg("/upload/vod/20261016-1/4169feb939aff1d9c3021573d8012c23.webp") 
+      },
+      { 
+        id: "m31", 
+        category: "filmes", 
+        title: "Desejos Proibidos", 
+        quality: "Drama HD", 
+        meta: "Tadina Papamosche, Gisela Dali", 
+        desc: "Drama autoral europeu de fotografia poética que aborda confrontos sociais intensos, dilemas morais e paixões perigosas entre classes rivais.", 
+        posterUrl: fixImg("/upload/vod/20261008-2/60805cf98f9f2ba0ceae516e40930267.jpg") 
+      },
+      { 
+        id: "m32", 
+        category: "filmes", 
+        title: "Homem-Aranha: Um Novo Dia (Versão Estendida)", 
+        quality: "Atualizado HD Dublado", 
+        meta: "Tom Holland, Zendaya, Sadie Sink", 
+        desc: "Versão completa e estendida do novo capítulo do Homem-Aranha no multiverso da Marvel, com cenas extras inéditas de combate e emoção.", 
+        posterUrl: fixImg("/upload/vod/20261008-2/20061ce3302eddf2be581352522f9601.webp") 
+      }
       // 2. Novelas Brasileiras
       { id: "n1", category: "novelas", title: "Mania de Você", quality: "Capítulo Diário", meta: "Chay Suede, Gabz, Nicolas Prattes", desc: "A novela das 9 que parou o Brasil! Traição, suspense, paixão avassaladora e reviravoltas no litoral fluminense.", posterUrl: "https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?w=500&auto=format&fit=crop&q=80" },
       { id: "n2", category: "novelas", title: "Renascer (Edição Completa)", quality: "Todos os Capítulos", meta: "Marcos Palmeira, Juan Paiva", desc: "O clássico do cacau na Bahia em 4K. A saga emocionante de José Inocêncio e o pacto com o jequitibá-rei.", posterUrl: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80" },

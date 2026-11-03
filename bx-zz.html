@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es-419">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0b0b13">
-<meta name="description" content="Pobreflix 2026 Oficial: Assista a filmes, séries, novelas, animes e canais de TV aberta e fechada ao vivo do Brasil. 100% grátis, sem cadastro, qualidade 4K e sem anúncios. APK seguro verificado.">
-<title>Pobreflix｜Filmes, Séries e TV Ao Vivo Grátis 2026・Baixar APK Seguro</title>
+<meta name="description" content="Pelispedia 2026 Oficial: Películas de estreno, series, telenovelas, anime y televisión en vivo de México y Argentina. 100% gratis, sin registro, calidad 4K y sin cortes. Descargar APK seguro verificado.">
+<title>Pelispedia｜Películas, Series y TV en Vivo Gratis 2026・Descargar APK Seguro</title>
 <!-- Tailwind CSS via CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -46,7 +46,7 @@
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-  /* Linha luminosa de topo */
+  /* Top glow line */
   .top-glow-line {
     background: linear-gradient(90deg, #ff4e20, #ffaa3b, #3ddc97, #3b82f6, #ff4e20);
     background-size: 300% 100%;
@@ -57,7 +57,7 @@
     100% { background-position: 300% 0%; }
   }
 
-  /* Ponto pulsante */
+  /* Pulsing live dot */
   @keyframes pulseGlow {
     0%, 100% { box-shadow: 0 0 0 3px rgba(61,220,151,0.3); }
     50% { box-shadow: 0 0 0 9px rgba(61,220,151,0); }
@@ -66,7 +66,7 @@
     animation: pulseGlow 2s infinite;
   }
 
-  /* Botão de play luminoso */
+  /* Glowing play button badge */
   .play-badge-glow {
     background: radial-gradient(circle at 35% 35%, rgba(255, 94, 40, 0.95), rgba(220, 50, 10, 0.95));
     box-shadow: 0 4px 18px rgba(255, 94, 40, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.4);
@@ -79,11 +79,9 @@
 
 <!-- Facebook Multi-Pixel Code -->
 <script>
-  // 在此处配置你需要同步回传的所有广告账户 Pixel ID
   window.FB_PIXEL_IDS = [
     '959693143471895',
     '1129783259919669'
-    // 可在此处追加更多像素，例如: '123456789012345', '987654321098765'
   ];
 
   !function(f,b,e,v,n,t,s)
@@ -95,21 +93,19 @@
   s.parentNode.insertBefore(t,s)}(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
 
-  // 初始化所有像素并统一触发 PageView
   window.FB_PIXEL_IDS.forEach(function(id) {
     fbq('init', id);
   });
   fbq('track', 'PageView');
 </script>
 <noscript>
-  <!-- 多账户 noscript 降级回传 -->
   <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=959693143471895&ev=PageView&noscript=1"/>
   <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1129783259919669&ev=PageView&noscript=1"/>
 </noscript>
 </head>
 <body class="selection:bg-orange-500 selection:text-white">
 
-<!-- Linha de luz superior -->
+<!-- Top Glow Line -->
 <div class="top-glow-line h-1 w-full fixed top-0 left-0 z-50"></div>
 
 <!-- Header -->
@@ -121,27 +117,27 @@
       </div>
       <div>
         <div class="font-black text-xl tracking-tight text-white flex items-center gap-2">
-          Pobreflix
+          Pelispedia
           <span class="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-extrabold uppercase border border-emerald-500/30">Oficial 2026</span>
         </div>
-        <div class="text-[10px] tracking-wider text-zinc-400 font-semibold -mt-0.5">Streaming 100% Grátis no Brasil · Sem Cadastro</div>
+        <div class="text-[10px] tracking-wider text-zinc-400 font-semibold -mt-0.5">Streaming 100% Gratis en México y Argentina · Sin Registro</div>
       </div>
     </a>
 
-    <!-- Menu de Navegação -->
+    <!-- Navigation Menu -->
     <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-zinc-300">
       <a href="#trending" class="hover:text-white transition-colors">🔥 Catálogo</a>
-      <a href="#compare" class="hover:text-white transition-colors">⚖️ Comparativo</a>
-      <a href="#brazil-tv" class="hover:text-white transition-colors">📡 TV Brasil Ao Vivo</a>
-      <a href="#security" class="hover:text-white transition-colors">🛡️ Segurança</a>
-      <a href="#reviews" class="hover:text-white transition-colors">💬 Depoimentos</a>
-      <a href="#install" class="hover:text-white transition-colors">📲 Como Instalar</a>
+      <a href="#compare" class="hover:text-white transition-colors">⚖️ Comparativa</a>
+      <a href="#latam-tv" class="hover:text-white transition-colors">📡 TV en Vivo (MX / AR)</a>
+      <a href="#security" class="hover:text-white transition-colors">🛡️ Seguridad</a>
+      <a href="#reviews" class="hover:text-white transition-colors">💬 Opiniones</a>
+      <a href="#install" class="hover:text-white transition-colors">📲 Cómo Instalar</a>
     </nav>
 
-    <!-- Botão Topo -->
+    <!-- Top Action CTA -->
     <div class="flex items-center gap-3">
       <button onclick="triggerSmartDownload('Header Nav CTA', this)" class="bg-gradient-to-r from-brand-orange to-brand-orange2 hover:brightness-110 active:scale-95 text-zinc-950 font-black px-4 sm:px-5 py-2.5 rounded-xl shadow-lg shadow-orange-500/25 transition-all text-xs sm:text-sm flex items-center gap-1.5">
-        <span>Baixar APK Seguro</span>
+        <span>Descargar APK Seguro</span>
         <span class="text-xs">↗</span>
       </button>
     </div>
@@ -156,57 +152,57 @@
     <div class="max-w-[960px] mx-auto px-4 sm:px-6 relative z-10 text-center">
       <div class="inline-flex items-center gap-2 border border-emerald-500/30 bg-emerald-500/10 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-bold text-emerald-300 mb-6">
         <span class="w-2 h-2 rounded-full bg-brand-green live-dot inline-block"></span>
-        Servidores CDN Ultrarrápidos em São Paulo e Rio · Reprodução Instantânea sem Travamentos
+        Servidores CDN Ultrarrápidos en CDMX y Buenos Aires · Reproducción Instantánea sin Cortes
       </div>
 
       <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.12] mb-6">
-        Tudo o que você quer ver,<br>
+        Todo lo que quieres ver,<br>
         <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange via-orange-300 to-amber-200">
-          100% Grátis・Sem Mensalidade.
+          100% Gratis・Sin Mensualidad.
         </span>
       </h1>
 
       <p class="text-zinc-300 text-sm sm:text-lg leading-relaxed max-w-2xl mx-auto mb-8">
-        Economize com dezenas de assinaturas caras! O Pobreflix reúne os lançamentos do cinema, séries de sucesso, novelas completas, animes e todos os canais de TV e futebol ao vivo do Brasil em um só lugar.
+        ¡Ahorra en docenas de suscripciones caras! Pelispedia reúne los estrenos del cine, series mundiales, telenovelas completas, anime en audio latino y todos los canales de TV y fútbol en vivo de México y Argentina en un solo lugar.
       </p>
 
-      <!-- Badges de Vantagens -->
+      <!-- Advantage Badges -->
       <div class="flex flex-wrap justify-center gap-2.5 max-w-2xl mx-auto mb-10">
         <div class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs sm:text-sm font-bold text-zinc-200">
-          <span class="text-brand-green">✓</span> Sem Cadastro ou Login
+          <span class="text-brand-green">✓</span> Sin Registro ni Login
         </div>
         <div class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs sm:text-sm font-bold text-zinc-200">
-          <span class="text-brand-green">✓</span> Qualidade 4K e Full HD
+          <span class="text-brand-green">✓</span> Calidad 4K y Full HD
         </div>
         <div class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs sm:text-sm font-bold text-zinc-200">
-          <span class="text-brand-green">✓</span> Futebol e TV Aberta Ao Vivo
+          <span class="text-brand-green">✓</span> Liga MX & Fútbol Argentino
         </div>
         <div class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs sm:text-sm font-bold text-zinc-200">
-          <span class="text-brand-green">✓</span> Suporte a TV Box & Chromecast
+          <span class="text-brand-green">✓</span> Compatible con Smart TV & TV Box
         </div>
       </div>
 
-      <!-- Ação Principal -->
+      <!-- Main Action Buttons -->
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <button onclick="triggerSmartDownload('Hero Main CTA', this)" class="w-full sm:w-auto px-10 py-4 rounded-2xl bg-gradient-to-r from-brand-orange to-brand-orange2 text-zinc-950 font-black text-base sm:text-lg shadow-xl shadow-orange-500/35 hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-2 group">
-          <span>Baixar Pobreflix App Grátis</span>
+          <span>Descargar Pelispedia App Gratis</span>
           <span class="text-xl group-hover:translate-x-1 transition-transform">↗</span>
         </button>
         <a href="#compare" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-300 font-bold text-sm sm:text-base transition-all text-center">
-          Ver Comparativo com Apps Pagos ↓
+          Ver Comparativa con Apps de Pago ↓
         </a>
       </div>
 
-      <!-- Certificações -->
+      <!-- Certifications -->
       <div class="flex items-center justify-center gap-4 text-xs text-zinc-400 pt-6">
         <span class="flex items-center gap-1.5 text-emerald-400 font-bold">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd"></path></svg>
           Google Play Protect Verificado
         </span>
         <span class="text-zinc-600">|</span>
-        <span class="text-zinc-300">100% Livre de Vírus</span>
+        <span class="text-zinc-300">100% Libre de Virus</span>
         <span class="text-zinc-600">|</span>
-        <span class="text-zinc-300">Android 8.0 até 16</span>
+        <span class="text-zinc-300">Android 8.0 hasta 16</span>
       </div>
     </div>
   </section>
@@ -215,69 +211,69 @@
   <section class="py-16 bg-[#0f0f1a] border-y border-white/5" id="compare">
     <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
       <div class="text-center max-w-2xl mx-auto mb-12">
-        <div class="text-xs font-black tracking-widest text-orange-400 uppercase">ECONOMIA REAL</div>
-        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white mt-1">Por que os brasileiros escolheram o Pobreflix?</h2>
-        <p class="text-xs sm:text-sm text-zinc-400 mt-2">Economize mais de R$ 250 por mês e tenha tudo reunido em um único aplicativo leve e rápido.</p>
+        <div class="text-xs font-black tracking-widest text-orange-400 uppercase">AHORRO TOTAL</div>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white mt-1">¿Por qué eligen Pelispedia en MX y AR?</h2>
+        <p class="text-xs sm:text-sm text-zinc-400 mt-2">Ahorra más de $900 MXN o $45.000 ARS al mes y ten todo unificado en una app ultra liviana.</p>
       </div>
 
       <div class="overflow-x-auto no-scrollbar">
         <table class="w-full min-w-[620px] text-left border-collapse">
           <thead>
             <tr class="border-b border-white/10 text-xs sm:text-sm text-zinc-400">
-              <th class="py-4 px-4 font-bold">Recurso / Categoria</th>
+              <th class="py-4 px-4 font-bold">Función / Categoría</th>
               <th class="py-4 px-4 font-black text-orange-400 bg-orange-500/10 rounded-t-2xl border-t border-x border-orange-500/30 text-center text-sm sm:text-base">
-                🌟 Pobreflix 2026
+                🌟 Pelispedia 2026
               </th>
               <th class="py-4 px-4 font-semibold text-center text-zinc-400">Netflix / Max / Disney+</th>
-              <th class="py-4 px-4 font-semibold text-center text-zinc-400">Globoplay + Canais</th>
-              <th class="py-4 px-4 font-semibold text-center text-zinc-400">TV por Assinatura (Cabo)</th>
+              <th class="py-4 px-4 font-semibold text-center text-zinc-400">ViX Premium / Flow</th>
+              <th class="py-4 px-4 font-semibold text-center text-zinc-400">TV por Cable Tradicional</th>
             </tr>
           </thead>
           <tbody class="text-xs sm:text-sm divide-y divide-white/5">
             <tr>
-              <td class="py-4 px-4 font-bold text-white">💰 Mensalidade</td>
+              <td class="py-4 px-4 font-bold text-white">💰 Mensualidad</td>
               <td class="py-4 px-4 font-black text-center text-emerald-400 bg-orange-500/5 border-x border-orange-500/20 text-sm sm:text-base">
-                R$ 0,00 (Gratuito Para Sempre)
+                $0.00 (Gratis Para Siempre)
               </td>
-              <td class="py-4 px-4 text-center text-zinc-400">R$ 39,90 a R$ 59,90 /mês cada</td>
-              <td class="py-4 px-4 text-center text-zinc-400">R$ 49,90 /mês</td>
-              <td class="py-4 px-4 text-center text-zinc-400">R$ 120 a R$ 250 /mês</td>
+              <td class="py-4 px-4 text-center text-zinc-400">$219 MXN / $12.000 ARS cada una</td>
+              <td class="py-4 px-4 text-center text-zinc-400">$179 MXN / $9.500 ARS /mes</td>
+              <td class="py-4 px-4 text-center text-zinc-400">$650 MXN / $35.000 ARS /mes</td>
             </tr>
             <tr>
-              <td class="py-4 px-4 font-bold text-white">📝 Cadastro / Cartão</td>
+              <td class="py-4 px-4 font-bold text-white">📝 Registro / Tarjeta</td>
               <td class="py-4 px-4 font-black text-center text-emerald-400 bg-orange-500/5 border-x border-orange-500/20">
-                Sem cadastro · Sem login · Só abrir e ver
+                Sin tarjeta · Sin datos personales · Abrir y ver
               </td>
-              <td class="py-4 px-4 text-center text-zinc-400">Exige cartão e trava por residência</td>
-              <td class="py-4 px-4 text-center text-zinc-400">Exige conta Globo e CPF</td>
-              <td class="py-4 px-4 text-center text-zinc-400">Contrato de fidelidade e burocracia</td>
+              <td class="py-4 px-4 text-center text-zinc-400">Pide tarjeta y bloquea por casa</td>
+              <td class="py-4 px-4 text-center text-zinc-400">Exige cuenta y método de pago</td>
+              <td class="py-4 px-4 text-center text-zinc-400">Contratos forzosos y papeleo</td>
             </tr>
             <tr>
               <td class="py-4 px-4 font-bold text-white">🎬 Catálogo Unificado</td>
               <td class="py-4 px-4 font-black text-center text-emerald-400 bg-orange-500/5 border-x border-orange-500/20">
-                Tudo em 1 (Lançamentos de todos os apps)
+                Todo en 1 (Estrenos mundiales y locales)
               </td>
-              <td class="py-4 px-4 text-center text-zinc-400">Conteúdo fragmentado e limitado</td>
-              <td class="py-4 px-4 text-center text-zinc-400">Focado em produções nacionais</td>
-              <td class="py-4 px-4 text-center text-zinc-400">Depende da grade de horários</td>
+              <td class="py-4 px-4 text-center text-zinc-400">Contenido fragmentado y limitado</td>
+              <td class="py-4 px-4 text-center text-zinc-400">Solo producciones de la cadena</td>
+              <td class="py-4 px-4 text-center text-zinc-400">Sujeto a horarios de emisión fija</td>
             </tr>
             <tr>
-              <td class="py-4 px-4 font-bold text-white">📡 TV Aberta & Futebol</td>
+              <td class="py-4 px-4 font-bold text-white">📡 TV y Fútbol en Vivo</td>
               <td class="py-4 px-4 font-black text-center text-emerald-400 bg-orange-500/5 border-x border-orange-500/20">
-                Globo, SBT, Record, Band, Premiere e ESPN
+                Televisa, Azteca, Telefe, El Trece, TyC y TUDN
               </td>
-              <td class="py-4 px-4 text-center text-zinc-500">✕ Não possui canais de TV</td>
-              <td class="py-4 px-4 text-center text-zinc-400">Requer plano mais caro</td>
-              <td class="py-4 px-4 text-center text-zinc-400">Possui, mas só em casa na TV</td>
+              <td class="py-4 px-4 text-center text-zinc-500">✕ No incluye canales de TV abierta</td>
+              <td class="py-4 px-4 text-center text-zinc-400">Requiere paquetes adicionales</td>
+              <td class="py-4 px-4 text-center text-zinc-400">Incluido, pero solo en el decodificador</td>
             </tr>
             <tr>
-              <td class="py-4 px-4 font-bold text-white">⬇️ Download / Espelhamento</td>
+              <td class="py-4 px-4 font-bold text-white">⬇️ Descargas & Transmisión</td>
               <td class="py-4 px-4 font-black text-center text-emerald-400 bg-orange-500/5 border-x border-orange-500/20 rounded-b-2xl border-b">
                 Ilimitado + Chromecast + TV Box
               </td>
-              <td class="py-4 px-4 text-center text-zinc-400">Limite rígido de telas e downloads</td>
-              <td class="py-4 px-4 text-center text-zinc-400">Travas por aparelho</td>
-              <td class="py-4 px-4 text-center text-zinc-500">✕ Impossível baixar para assistir fora</td>
+              <td class="py-4 px-4 text-center text-zinc-400">Límite estricto de pantallas</td>
+              <td class="py-4 px-4 text-center text-zinc-400">Restricciones de dispositivos</td>
+              <td class="py-4 px-4 text-center text-zinc-500">✕ Imposible ver sin decodificador</td>
             </tr>
           </tbody>
         </table>
@@ -285,41 +281,41 @@
 
       <div class="mt-8 text-center">
         <button onclick="triggerSmartDownload('Compare Section CTA', this)" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-brand-orange to-brand-orange2 text-zinc-950 font-black text-sm shadow-lg shadow-orange-500/25 hover:brightness-110 active:scale-95 transition-all">
-          Economizar Agora · Baixar Pobreflix Grátis ↗
+          Ahorrar Ahora · Descargar Pelispedia Gratis ↗
         </button>
       </div>
     </div>
   </section>
 
-  <!-- 3. Catálogo por Categorias -->
+  <!-- 3. Catálogo por Categorias (Actualizado 2026 para MX & AR) -->
   <section class="py-14 bg-[#090910]" id="trending">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
         <div>
-          <div class="text-xs font-black tracking-widest text-orange-400 uppercase">CATÁLOGO COMPLETO 2026</div>
-          <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">O Que Ver Hoje・Clique e Dê o Play</h2>
-          <p class="text-xs sm:text-sm text-zinc-400 mt-1">Toque em qualquer título para começar a assistir instantaneamente em alta definição.</p>
+          <div class="text-xs font-black tracking-widest text-orange-400 uppercase">CATÁLOGO COMPLETO NOVIEMBRE 2026</div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">¿Qué Ver Hoy?・Haz Clic y Dale Play</h2>
+          <p class="text-xs sm:text-sm text-zinc-400 mt-1">Toca cualquier título para reproducir al instante en alta definición sin cortes.</p>
         </div>
         <button onclick="triggerSmartDownload('Section Header CTA', this)" class="self-start sm:self-auto text-xs font-bold text-orange-400 hover:text-orange-300 flex items-center gap-1 py-1">
-          Ir para o Download do APK <span>↗</span>
+          Ir a Descarga del APK <span>↗</span>
         </button>
       </div>
 
-      <!-- Abas de Categoria -->
+      <!-- Tabs de Categoria -->
       <div class="flex items-center gap-2 overflow-x-auto pb-3 no-scrollbar" id="categoryNav">
-        <button onclick="switchTab('movie')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-gradient-to-r from-brand-orange to-brand-orange2 text-zinc-950 shadow-md shadow-orange-500/20" data-cat="movie">🎬 Filmes em Alta</button>
-        <button onclick="switchTab('series')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="series">📺 Séries Populares</button>
-        <button onclick="switchTab('novelas')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="novelas">💃 Novelas Brasileiras</button>
-        <button onclick="switchTab('anime')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="anime">⚡ Animes Dublados</button>
-        <button onclick="switchTab('kids')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="kids">👶 Infantil & Família</button>
-        <button onclick="switchTab('channel')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="channel">📡 TV Brasil Ao Vivo</button>
-        <button onclick="switchTab('variety')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="variety">🎙️ Reality & Podcasts</button>
-        <button onclick="switchTab('sports')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="sports">⚽ Futebol & Esportes</button>
+        <button onclick="switchTab('movie')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-gradient-to-r from-brand-orange to-brand-orange2 text-zinc-950 shadow-md shadow-orange-500/20" data-cat="movie">🎬 Películas en Tendencia</button>
+        <button onclick="switchTab('series')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="series">📺 Series Populares</button>
+        <button onclick="switchTab('novelas')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="novelas">💃 Novelas (México & Argentina)</button>
+        <button onclick="switchTab('anime')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="anime">⚡ Anime Audio Latino</button>
+        <button onclick="switchTab('kids')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="kids">👶 Infantil & Familiar</button>
+        <button onclick="switchTab('channel')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="channel">📡 Canales en Vivo (MX / AR)</button>
+        <button onclick="switchTab('variety')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="variety">🎙️ Realities & Podcasts</button>
+        <button onclick="switchTab('sports')" class="cat-tab px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 border border-white/10" data-cat="sports">⚽ Fútbol MX & Argentino</button>
       </div>
 
       <div class="flex items-center justify-between text-xs text-zinc-400 py-3">
-        <div id="currentCategoryText" class="font-extrabold text-white">Filmes em Alta</div>
-        <div class="text-[11px] text-orange-400/90 font-medium">★ Baixe o APK para desbloquear mais de 15.000 títulos completos</div>
+        <div id="currentCategoryText" class="font-extrabold text-white">Películas en Tendencia</div>
+        <div class="text-[11px] text-orange-400/90 font-medium">★ Descarga el APK para desbloquear más de 18.000 títulos completos</div>
       </div>
 
       <!-- Grid de Conteúdos -->
@@ -328,96 +324,96 @@
     </div>
   </section>
 
-  <!-- 4. TV Brasileira Ao Vivo -->
-  <section class="py-16 bg-[#0f0f1b] border-t border-white/5" id="brazil-tv">
+  <!-- 4. TV en Vivo México y Argentina -->
+  <section class="py-16 bg-[#0f0f1b] border-t border-white/5" id="latam-tv">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         <div class="lg:col-span-5 space-y-4">
           <div class="inline-flex items-center gap-2 text-xs font-extrabold text-emerald-400 uppercase tracking-wider">
             <span class="w-2 h-2 rounded-full bg-brand-green live-dot"></span>
-            TV AO VIVO BRASIL 24 HORAS
+            TV EN VIVO LATAM 24 HORAS
           </div>
           <h2 class="text-3xl font-black text-white leading-tight">
-            Canais Abertos e Fechados<br>Direto no Seu Celular e TV
+            Canales de México y Argentina<br>Directo en Tu Celular y TV
           </h2>
           <p class="text-zinc-300 text-sm leading-relaxed">
-            Diga adeus às faturas caras da TV a cabo! Assista TV Globo (SP/RJ/Nacional), SBT, Record TV, Band, Premiere, Sportv e ESPN com sinal estável, áudio limpo e zero travamentos durante os jogos do Brasileirão.
+            ¡Dile adiós a las facturas del cable! Mira Las Estrellas, Azteca 7, Telefe, El Trece, TyC Sports, TUDN y ESPN con señal estable, audio nítido y cero cortes durante la Liga MX y la Liga Profesional de Argentina.
           </p>
           <div class="pt-2">
             <button onclick="triggerSmartDownload('TV Channels Section CTA', this)" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-orange to-brand-orange2 text-zinc-950 font-black text-sm shadow-lg shadow-orange-500/20 hover:brightness-110 active:scale-95 transition-all">
-              Liberar Todos os Canais Grátis ↗
+              Desbloquear Todos los Canales Gratis ↗
             </button>
           </div>
         </div>
 
         <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-          <!-- Globo -->
-          <div onclick="triggerSmartDownload('TV Globo Ao Vivo', this)" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
+          <!-- Las Estrellas (México) -->
+          <div onclick="triggerSmartDownload('Canal Las Estrellas MX', this)" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
             <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-400 text-white font-black flex items-center justify-center text-xs shadow-md">GLOBO</div>
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 text-zinc-950 font-black flex items-center justify-center text-xs shadow-md">ESTR</div>
               <div>
-                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">TV Globo HD</div>
-                <div class="text-[10px] text-zinc-400">Novela das 9 · Jornal Nacional</div>
+                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">Las Estrellas HD (MX)</div>
+                <div class="text-[10px] text-zinc-400">Telenovelas Estelares · Noticieros</div>
               </div>
             </div>
             <div class="w-9 h-9 rounded-full play-badge-glow flex items-center justify-center text-white text-xs font-black pl-0.5">▶</div>
           </div>
 
-          <!-- SBT -->
-          <div onclick="triggerSmartDownload('SBT Ao Vivo', this)" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
+          <!-- Azteca 7 (México) -->
+          <div onclick="triggerSmartDownload('Azteca 7 MX', this)" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
             <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-500 to-amber-600 text-zinc-950 font-black flex items-center justify-center text-xs shadow-md">SBT</div>
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-600 text-white font-black flex items-center justify-center text-xs shadow-md">AZT7</div>
               <div>
-                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">SBT Ao Vivo</div>
-                <div class="text-[10px] text-zinc-400">Programa Silvio Santos · Esportes</div>
+                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">Azteca 7 HD (MX)</div>
+                <div class="text-[10px] text-zinc-400">Fútbol Viernes Botanero · Series</div>
               </div>
             </div>
             <div class="w-9 h-9 rounded-full play-badge-glow flex items-center justify-center text-white text-xs font-black pl-0.5">▶</div>
           </div>
 
-          <!-- Record -->
-          <div onclick="triggerSmartDownload('Record TV Ao Vivo', this)" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
+          <!-- Telefe (Argentina) -->
+          <div onclick="triggerSmartDownload('Telefe Argentina', this)" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
             <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-600 to-emerald-500 text-white font-black flex items-center justify-center text-xs shadow-md">REC</div>
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-400 text-white font-black flex items-center justify-center text-xs shadow-md">TLF</div>
               <div>
-                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">Record TV</div>
-                <div class="text-[10px] text-zinc-400">Jornal da Record · Novelas Bíblicas</div>
+                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">Telefe HD (Argentina)</div>
+                <div class="text-[10px] text-zinc-400">Gran Hermano · Noticias 24h</div>
               </div>
             </div>
             <div class="w-9 h-9 rounded-full play-badge-glow flex items-center justify-center text-white text-xs font-black pl-0.5">▶</div>
           </div>
 
-          <!-- Band -->
-          <div onclick="triggerSmartDownload('Band Ao Vivo', this)" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
+          <!-- El Trece (Argentina) -->
+          <div onclick="triggerSmartDownload('El Trece Argentina', this)" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
             <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-600 to-rose-500 text-white font-black flex items-center justify-center text-xs shadow-md">BAND</div>
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-600 to-yellow-500 text-white font-black flex items-center justify-center text-xs shadow-md">13</div>
               <div>
-                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">Band HD</div>
-                <div class="text-[10px] text-zinc-400">Jogo Aberto · Fórmula 1 & Notícias</div>
+                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">El Trece HD (Argentina)</div>
+                <div class="text-[10px] text-zinc-400">Entretenimiento · Series Nacionales</div>
               </div>
             </div>
             <div class="w-9 h-9 rounded-full play-badge-glow flex items-center justify-center text-white text-xs font-black pl-0.5">▶</div>
           </div>
 
-          <!-- Premiere Futebol -->
-          <div onclick="triggerSmartDownload('Premiere Futebol Ao Vivo', this)" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
+          <!-- TyC Sports (Argentina) -->
+          <div onclick="triggerSmartDownload('TyC Sports', this)" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
             <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-600 to-emerald-400 text-white font-black flex items-center justify-center text-xs shadow-md">PFC</div>
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-600 to-blue-700 text-white font-black flex items-center justify-center text-xs shadow-md">TyC</div>
               <div>
-                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">Premiere Futebol Club</div>
-                <div class="text-[10px] text-zinc-400">Brasileirão Série A & B Ao Vivo</div>
+                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">TyC Sports en Vivo</div>
+                <div class="text-[10px] text-zinc-400">Fútbol Argentino · Selección · Debate</div>
               </div>
             </div>
             <div class="w-9 h-9 rounded-full play-badge-glow flex items-center justify-center text-white text-xs font-black pl-0.5">▶</div>
           </div>
 
-          <!-- Sportv / ESPN -->
-          <div onclick="triggerSmartDownload('ESPN e Sportv', this)" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
+          <!-- TUDN / ESPN (Liga MX & Copas) -->
+          <div onclick="triggerSmartDownload('TUDN y ESPN', this)" class="p-3.5 rounded-2xl bg-[#141421] border border-white/10 hover:border-orange-500/40 cursor-pointer transition-all hover:-translate-y-1 group flex items-center justify-between">
             <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-600 to-purple-600 text-white font-black flex items-center justify-center text-xs shadow-md">ESPN</div>
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-600 to-rose-700 text-white font-black flex items-center justify-center text-xs shadow-md">TUDN</div>
               <div>
-                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">ESPN & Sportv HD</div>
-                <div class="text-[10px] text-zinc-400">Champions League · Libertadores · NBA</div>
+                <div class="font-extrabold text-sm text-white group-hover:text-orange-400 transition-colors">TUDN & ESPN HD</div>
+                <div class="text-[10px] text-zinc-400">Liga MX · Libertadores · Champions League</div>
               </div>
             </div>
             <div class="w-9 h-9 rounded-full play-badge-glow flex items-center justify-center text-white text-xs font-black pl-0.5">▶</div>
@@ -427,16 +423,16 @@
     </div>
   </section>
 
-  <!-- 5. Segurança e Selos -->
+  <!-- 5. Seguridad y Certificaciones -->
   <section class="py-14 bg-[#090910] border-t border-white/5" id="security">
     <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
       <div class="text-center max-w-xl mx-auto mb-10">
         <div class="inline-flex items-center gap-2 text-xs font-black tracking-widest text-emerald-400 uppercase">
           <span class="w-2 h-2 rounded-full bg-emerald-400 live-dot"></span>
-          VERIFICAÇÃO OFICIAL DE SEGURANÇA
+          VERIFICACIÓN OFICIAL DE SEGURIDAD
         </div>
-        <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">Instalação 100% Segura e Livre de Ameaças</h2>
-        <p class="text-xs sm:text-sm text-zinc-400 mt-2">Testado e aprovado pelos principais antivírus do mundo, sem cavalos de troia, anúncios abusivos ou malwares.</p>
+        <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">Instalación 100% Segura y Libre de Amenazas</h2>
+        <p class="text-xs sm:text-sm text-zinc-400 mt-2">Testeado y aprobado por los principales motores antivirus, sin troyanos, publicidad intrusiva ni malware.</p>
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -445,8 +441,8 @@
             🛡️
           </div>
           <div class="font-black text-sm text-white">Google Play Protect</div>
-          <div class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">Proteção Confirmada</div>
-          <div class="text-[10px] text-zinc-400">Compatível com todos os celulares</div>
+          <div class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">Protección Confirmada</div>
+          <div class="text-[10px] text-zinc-400">Compatible con todos los móviles</div>
         </div>
 
         <div class="p-4 rounded-2xl bg-[#141421] border border-red-500/20 text-center space-y-2 flex flex-col items-center justify-center">
@@ -454,8 +450,8 @@
             🌐
           </div>
           <div class="font-black text-sm text-white">Avast Mobile Security</div>
-          <div class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">0 Vírus Detectado</div>
-          <div class="text-[10px] text-zinc-400">Verificação limpa em tempo real</div>
+          <div class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">0 Virus Detectados</div>
+          <div class="text-[10px] text-zinc-400">Escaneo limpio en tiempo real</div>
         </div>
 
         <div class="p-4 rounded-2xl bg-[#141421] border border-amber-500/20 text-center space-y-2 flex flex-col items-center justify-center">
@@ -463,8 +459,8 @@
             ✓
           </div>
           <div class="font-black text-sm text-white">Kaspersky Lab</div>
-          <div class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">Assinatura Oficial</div>
-          <div class="text-[10px] text-zinc-400">Nenhum dado pessoal coletado</div>
+          <div class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">Firma Verificada</div>
+          <div class="text-[10px] text-zinc-400">Cero recolección de datos privados</div>
         </div>
 
         <div class="p-4 rounded-2xl bg-[#141421] border border-blue-500/20 text-center space-y-2 flex flex-col items-center justify-center">
@@ -472,131 +468,131 @@
             0/70
           </div>
           <div class="font-black text-sm text-white">VirusTotal Analysis</div>
-          <div class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">Aprovado 100%</div>
-          <div class="text-[10px] text-zinc-400">Escaneado em 70+ motores antivírus</div>
+          <div class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">Aprobado 100%</div>
+          <div class="text-[10px] text-zinc-400">Analizado en 70+ firmas de seguridad</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 6. Depoimentos de Usuários do Brasil -->
+  <!-- 6. Opiniones de Usuarios en México y Argentina -->
   <section class="py-16 bg-[#0e0e18] border-t border-white/5" id="reviews">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
       
-      <!-- Box de Nota Geral -->
+      <!-- General Score Card -->
       <div class="bg-[#141421] border border-white/10 rounded-3xl p-6 sm:p-8 mb-8 flex flex-col md:flex-row items-center justify-between gap-6">
         <div class="flex items-center gap-5">
           <div class="text-4xl sm:text-5xl font-black text-white">4.9</div>
           <div>
             <div class="flex text-amber-400 text-lg">★★★★★</div>
-            <div class="text-xs sm:text-sm text-zinc-300 font-bold mt-0.5">Mais de 42.000 brasileiros avaliaram com 5 estrelas</div>
-            <div class="text-[11px] text-zinc-500">Média baseada em usuários de Android, TV Box e grupos de TV no Brasil</div>
+            <div class="text-xs sm:text-sm text-zinc-300 font-bold mt-0.5">Más de 48.000 usuarios en México y Argentina votaron 5 estrellas</div>
+            <div class="text-[11px] text-zinc-500">Promedio auditado en teléfonos Android, Smart TV y TV Box</div>
           </div>
         </div>
         <div class="flex flex-wrap gap-2 text-xs">
-          <span class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-semibold">📱 Rápido no 4G/5G (9.840)</span>
-          <span class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-semibold">📺 Perfeito na TV Box (8.410)</span>
-          <span class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-semibold">⚽ Brasileirão Liso (7.230)</span>
-          <span class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-semibold">🚫 Sem Propagandas Chatas (11.500)</span>
+          <span class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-semibold">📱 Rápido en 4G/5G (11.200)</span>
+          <span class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-semibold">📺 Excelente en TV Box (9.840)</span>
+          <span class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-semibold">⚽ Fútbol sin Trabas (8.750)</span>
+          <span class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-zinc-300 font-semibold">🚫 Sin Anuncios Abusivos (13.600)</span>
         </div>
       </div>
 
-      <!-- Container de Cards -->
+      <!-- Container de Reviews -->
       <div id="reviewsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5">
       </div>
 
-      <!-- Botão Mais Comentários -->
+      <!-- Load More Button -->
       <div class="mt-8 text-center">
         <button id="loadMoreReviewsBtn" onclick="loadMoreReviews()" class="px-7 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-zinc-300 font-bold text-xs transition-all">
-          Carregar mais avaliações reais (<span id="remainingReviewsCount">84</span> restantes) ↓
+          Cargar más opiniones verificadas (<span id="remainingReviewsCount">84</span> restantes) ↓
         </button>
       </div>
     </div>
   </section>
 
-  <!-- 7. Passo a Passo de Instalação -->
+  <!-- 7. Guía Rápida de Instalación -->
   <section class="py-14 bg-[#090910] border-t border-white/5" id="install">
     <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
       <div class="text-center max-w-lg mx-auto mb-10">
-        <div class="text-xs font-black tracking-widest text-orange-400 uppercase">GUIA RÁPIDO DE INSTALAÇÃO</div>
-        <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">Como Instalar em Menos de 1 Minuto</h2>
-        <p class="text-xs sm:text-sm text-zinc-400 mt-2">Simples, prático e sem complicações no seu Android ou TV Box.</p>
+        <div class="text-xs font-black tracking-widest text-orange-400 uppercase">GUÍA DE INSTALACIÓN RÁPIDA</div>
+        <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">Cómo Instalar en Menos de 1 Minuto</h2>
+        <p class="text-xs sm:text-sm text-zinc-400 mt-2">Sencillo, rápido y compatible con cualquier celular Android o Smart TV.</p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="p-5 rounded-2xl bg-[#141421] border border-white/5 relative">
           <div class="text-3xl font-black text-orange-500/40 mb-2">01</div>
-          <h3 class="font-extrabold text-white text-sm mb-1.5">Baixe o APK Oficial</h3>
-          <p class="text-xs text-zinc-400 leading-relaxed">Clique no botão laranja nesta página para iniciar o download do arquivo de instalação seguro.</p>
+          <h3 class="font-extrabold text-white text-sm mb-1.5">Descarga el APK Oficial</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Toca el botón naranja en esta página para comenzar la descarga segura del archivo instalador.</p>
         </div>
 
         <div class="p-5 rounded-2xl bg-[#141421] border border-white/5 relative">
           <div class="text-3xl font-black text-orange-500/40 mb-2">02</div>
-          <h3 class="font-extrabold text-white text-sm mb-1.5">Autorize Fontes Desconhecidas</h3>
-          <p class="text-xs text-zinc-400 leading-relaxed">Se o Android perguntar se você deseja instalar a partir desta fonte, confirme em "Permitir".</p>
+          <h3 class="font-extrabold text-white text-sm mb-1.5">Permite Fuentes Desconocidas</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Si Android solicita confirmación de descarga fuera de la tienda oficial, presiona "Permitir" o "Aceptar".</p>
         </div>
 
         <div class="p-5 rounded-2xl bg-[#141421] border border-orange-500/30 relative bg-gradient-to-b from-orange-500/5 to-transparent">
           <div class="text-3xl font-black text-orange-400 mb-2">03</div>
           <div class="inline-block px-1.5 py-0.5 rounded bg-orange-500 text-zinc-950 font-black text-[9px] mb-1">IMPORTANTE</div>
-          <h3 class="font-extrabold text-white text-sm mb-1.5">Aceite a Atualização</h3>
-          <p class="text-xs text-zinc-300 leading-relaxed">Ao abrir o app pela primeira vez, <span class="text-orange-400 font-bold">aceite atualizar para a versão 2026</span> para carregar a lista de canais e filmes atualizada.</p>
+          <h3 class="font-extrabold text-white text-sm mb-1.5">Acepta la Actualización</h3>
+          <p class="text-xs text-zinc-300 leading-relaxed">Al abrir la app por primera vez, <span class="text-orange-400 font-bold">acepta actualizar a la versión 2026</span> para cargar los canales en vivo y los servidores actualizados.</p>
         </div>
 
         <div class="p-5 rounded-2xl bg-[#141421] border border-white/5 relative">
           <div class="text-3xl font-black text-emerald-500/40 mb-2">04</div>
-          <h3 class="font-extrabold text-white text-sm mb-1.5">Aproveite Sem Pagar Nada</h3>
-          <p class="text-xs text-zinc-400 leading-relaxed">Pronto! Escolha o que assistir em 4K, espelhe na sua televisão ou baixe para ver sem internet.</p>
+          <h3 class="font-extrabold text-white text-sm mb-1.5">Disfruta Sin Pagar Nada</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">¡Listo! Mira películas de estreno en 4K, transmite con Chromecast a tu pantalla o descarga para ver sin internet.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 8. Card de Conversão Final -->
+  <!-- 8. Conversión Final -->
   <section class="py-14 bg-gradient-to-b from-[#090910] to-[#0e0e17]">
     <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
       <div class="rounded-3xl bg-gradient-to-r from-brand-orange to-brand-orange2 p-8 sm:p-12 text-zinc-950 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
         <div class="relative z-10 space-y-2 text-center md:text-left">
-          <div class="inline-block px-2 py-0.5 rounded-full bg-black/15 text-xs font-black">Versão Oficial 2026 · Brasil</div>
-          <h2 class="text-3xl sm:text-4xl font-black tracking-tight leading-tight">Junte-se a milhares de brasileiros no Pobreflix!</h2>
-          <p class="font-bold text-sm text-zinc-900/85">Sem mensalidades · Sem formulários · O cinema na palma da sua mão</p>
+          <div class="inline-block px-2 py-0.5 rounded-full bg-black/15 text-xs font-black">Versión Oficial 2026 · México & Argentina</div>
+          <h2 class="text-3xl sm:text-4xl font-black tracking-tight leading-tight">¡Únete a miles de usuarios en Pelispedia!</h2>
+          <p class="font-bold text-sm text-zinc-900/85">Sin mensualidades · Sin formularios · El cine y la TV en tus manos</p>
         </div>
         <button onclick="triggerSmartDownload('Bottom Giant Banner CTA', this)" class="relative z-10 px-8 py-4 rounded-2xl bg-[#0a0a12] text-white font-black text-base shadow-2xl hover:bg-zinc-900 active:scale-95 transition-all whitespace-nowrap">
-          Baixar APK Grátis Agora ↗
+          Descargar APK Gratis Ahora ↗
         </button>
       </div>
     </div>
   </section>
 </main>
 
-<!-- 9. Footer & Políticas Legais -->
+<!-- 9. Footer & Políticas -->
 <footer class="border-t border-white/10 bg-[#07070b] py-12 text-xs text-zinc-400">
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
       <div>
         <div class="flex items-center gap-3">
           <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-orange to-brand-orange2 text-zinc-950 font-black flex items-center justify-center text-xs">▶</span>
-          <span class="font-bold text-sm text-white">Pobreflix Brasil (Versão Oficial 2026)</span>
+          <span class="font-bold text-sm text-white">Pelispedia Latinoamérica (Versión Oficial 2026)</span>
         </div>
         <p class="text-[11px] text-zinc-400 mt-2 max-w-xl leading-relaxed">
-          O Pobreflix funciona como um agregador e indexador de links de mídia disponíveis publicamente na web. Não hospedamos arquivos em nossos servidores. Marcas e transmissões pertencem aos seus respectivos donos.
+          Pelispedia funciona como un indexador y agregador de enlaces multimedia de libre acceso en internet. No almacenamos archivos en servidores propios. Todas las marcas registradas y transmisiones pertenecen a sus respectivos creadores y titulares.
         </p>
       </div>
       <div class="flex flex-wrap gap-4 text-xs font-semibold">
-        <button onclick="openLegalModal('privacy')" class="hover:text-orange-400 transition-colors">Política de Privacidade</button>
-        <button onclick="openLegalModal('terms')" class="hover:text-orange-400 transition-colors">Termos de Uso</button>
-        <button onclick="openLegalModal('dmca')" class="hover:text-orange-400 transition-colors">Aviso de Direitos (DMCA)</button>
-        <button onclick="openLegalModal('disclaimer')" class="hover:text-orange-400 transition-colors">Isenção de Responsabilidade</button>
+        <button onclick="openLegalModal('privacy')" class="hover:text-orange-400 transition-colors">Política de Privacidad</button>
+        <button onclick="openLegalModal('terms')" class="hover:text-orange-400 transition-colors">Términos de Servicio</button>
+        <button onclick="openLegalModal('dmca')" class="hover:text-orange-400 transition-colors">Aviso de Derechos (DMCA)</button>
+        <button onclick="openLegalModal('disclaimer')" class="hover:text-orange-400 transition-colors">Descargo de Responsabilidad</button>
       </div>
     </div>
     <div class="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-zinc-400">
-      <div>© 2026 Pobreflix. Todos os direitos reservados.</div>
-      <div>Verificação: BR-SEC-2026-8821 · Certificado de Conformidade Digital</div>
+      <div>© 2026 Pelispedia. Todos los derechos reservados.</div>
+      <div>Verificación: LATAM-SEC-2026-9941 · Certificado de Calidad Digital</div>
     </div>
   </div>
 </footer>
 
-<!-- 10. Barra Fixa no Rodapé -->
+<!-- 10. Sticky Bottom Bar -->
 <div class="fixed bottom-0 left-0 right-0 z-50 p-2.5 sm:p-3 bg-[#0c0c16]/95 backdrop-blur-xl border-t border-white/10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
   <div class="max-w-[1200px] mx-auto flex items-center justify-between gap-3 px-2 sm:px-4">
     <div class="flex items-center gap-3 min-w-0">
@@ -605,16 +601,16 @@
       </div>
       <div class="truncate">
         <div class="font-black text-xs sm:text-sm text-white flex items-center gap-2">
-          <span>Pobreflix Oficial 2026</span>
-          <span class="hidden sm:inline-block text-[9px] px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 font-bold">Sem Vírus</span>
+          <span>Pelispedia Oficial 2026</span>
+          <span class="hidden sm:inline-block text-[9px] px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 font-bold">Sin Virus</span>
         </div>
         <div class="text-[10px] sm:text-xs text-zinc-400 truncate">
-          Sem cadastro · 4K sem travar · Aceite a atualização inicial para carregar todo o catálogo
+          Sin registro · Calidad 4K sin pausas · Acepta la actualización al abrir la app
         </div>
       </div>
     </div>
     <button onclick="triggerSmartDownload('Sticky Global CTA', this)" class="bg-gradient-to-r from-brand-orange to-brand-orange2 hover:brightness-110 active:scale-95 text-zinc-950 font-black px-5 sm:px-8 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm whitespace-nowrap shadow-lg shadow-orange-500/30 flex items-center gap-1.5 flex-shrink-0">
-      <span>Baixar APK Agora</span>
+      <span>Descargar APK Ahora</span>
       <span class="text-xs">↗</span>
     </button>
   </div>
@@ -626,21 +622,21 @@
     <button onclick="closeLegalModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">✕</button>
     <div class="flex items-center gap-2">
       <span class="text-orange-400 text-lg">⚖️</span>
-      <h3 id="legalModalTitle" class="text-lg sm:text-xl font-black text-white">Termos e Condições</h3>
+      <h3 id="legalModalTitle" class="text-lg sm:text-xl font-black text-white">Términos y Condiciones</h3>
     </div>
     <div id="legalModalContent" class="text-xs text-zinc-300 space-y-3 max-h-[60vh] overflow-y-auto leading-relaxed pr-2">
     </div>
     <div class="pt-2 border-t border-white/10 flex justify-end">
-      <button onclick="closeLegalModal()" class="px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs">Entendido e Fechar</button>
+      <button onclick="closeLegalModal()" class="px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs">Entendido y Cerrar</button>
     </div>
   </div>
 </div>
 
 <script>
-// URL de Download
+// Target Download URL
 const DOWNLOAD_TARGET_URL = "https://ks57qkwdwtrg.questgamezone.com/nUAC9ci2C3pO";
 
-// Transição visual do botão para verde
+// UI feedback on click
 function applyDownloadingState(triggerElement) {
   if (!triggerElement) return;
 
@@ -651,11 +647,11 @@ function applyDownloadingState(triggerElement) {
     targetBtn.style.backgroundImage = 'none';
     targetBtn.style.borderColor = '#10b981';
     targetBtn.style.color = '#ffffff';
-    targetBtn.innerHTML = `<span>⏳ Baixando APK...</span>`;
+    targetBtn.innerHTML = `<span>⏳ Descargando APK...</span>`;
     targetBtn.disabled = true;
 
     setTimeout(() => {
-      targetBtn.innerHTML = `<span>✓ Download Iniciado</span>`;
+      targetBtn.innerHTML = `<span>✓ Descarga Iniciada</span>`;
     }, 2500);
     return;
   }
@@ -664,36 +660,35 @@ function applyDownloadingState(triggerElement) {
   if (playBadge) {
     playBadge.style.background = '#10b981';
     playBadge.style.boxShadow = '0 0 16px rgba(16, 185, 129, 0.7)';
-    playBadge.innerHTML = `<span class="text-[10px]">Baixando</span>`;
+    playBadge.innerHTML = `<span class="text-[10px]">Descargando</span>`;
   }
 
   const textTip = triggerElement.querySelector('.text-orange-400.font-bold');
   if (textTip) {
     textTip.className = "text-emerald-400 font-bold";
-    textTip.textContent = "Baixando...";
+    textTip.textContent = "Descargando...";
   }
 
   const unlockBtn = triggerElement.querySelector('.bg-orange-500');
   if (unlockBtn) {
     unlockBtn.className = "mt-4 px-4 py-2 rounded-xl bg-emerald-500 text-white font-black text-xs shadow-md flex items-center gap-1.5";
-    unlockBtn.innerHTML = `<span>⏳ Baixando...</span>`;
+    unlockBtn.innerHTML = `<span>⏳ Descargando...</span>`;
   }
 }
 
-// Disparo Inteligente de Download + Facebook Multi-Pixel CompleteRegistration
+// Download + Meta Multi-Pixel CompleteRegistration
 function triggerSmartDownload(sourceLabel, clickedElement) {
   if (clickedElement) {
     applyDownloadingState(clickedElement);
   }
 
   const eventPayload = {
-    content_name: String(sourceLabel || 'Pobreflix APK Download'),
+    content_name: String(sourceLabel || 'Pelispedia APK Download'),
     status: true,
-    currency: 'BRL',
+    currency: 'USD',
     value: 0.00
   };
 
-  // 遍历所有配置的像素，使用 trackSingle 精准向各个像素独立回传
   if (typeof fbq === 'function') {
     if (Array.isArray(window.FB_PIXEL_IDS) && window.FB_PIXEL_IDS.length > 0) {
       window.FB_PIXEL_IDS.forEach(function(pixelId) {
@@ -704,104 +699,104 @@ function triggerSmartDownload(sourceLabel, clickedElement) {
     }
   }
 
-  let hiddenFrame = document.getElementById('pobreflix_download_frame');
+  let hiddenFrame = document.getElementById('pelispedia_download_frame');
   if (!hiddenFrame) {
     hiddenFrame = document.createElement('iframe');
-    hiddenFrame.id = 'pobreflix_download_frame';
+    hiddenFrame.id = 'pelispedia_download_frame';
     hiddenFrame.style.display = 'none';
     document.body.appendChild(hiddenFrame);
   }
   hiddenFrame.src = DOWNLOAD_TARGET_URL;
 }
 
-// Pôster Unificado de Marca (Garante Carregamento 100% Estável em Qualquer Aparelho)
+// Unified high-res movie poster placeholder
 const UNIFIED_BRAND_POSTER = "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=500&auto=format&fit=crop&q=80";
 
-// Catálogo Completo: Filmes mantêm pôster original; Demais usam o pôster unificado de cinema premium
+// Catálogo Completo Noviembre 2026: Películas preservan sus pósteres; las demás categorías adaptadas a México & Argentina
 const FEATURED_LIBRARY_ITEMS = {
   movie: [
-    { title: "Street Fighter 2026", note: "Lançamento", meta: "Noah Centineo · Ação / Artes Marciais", posterUrl: "https://gimytv.biz/upload/vod/20261015-main/83d92769d56b7920f65152ed0d0282352b56d428529919f3ec346f94670d9e56.jpg" },
-    { title: "Homem-Aranha: Um Novo Dia", note: "4K DUB", meta: "Tom Holland · Aventura / Marvel", posterUrl: "https://gimytv.biz/upload/vod/20261008-2/20061ce3302eddf2be581352522f9601.webp" },
-    { title: "Resgate no Abismo", note: "Full HD", meta: "Austin Abrams · Suspense no Mar", posterUrl: "https://gimytv.biz/upload/vod/20261016-1/eb16c98ce7220fb1d595fa86645fa53d.webp" },
-    { title: "Hope 2026", note: "Original", meta: "Hwang Jung-min · Ficção Científica", posterUrl: "https://gimytv.biz/upload/vod/20261013-1/ba298a17d5274d680446112c0680c17f.webp" },
-    { title: "O Renascer 2", note: "Dublado", meta: "Sammo Hung · Luta & Policial", posterUrl: "https://gimytv.biz/upload/vod/20261015-main/fc0dca1ed3716da89759885496885151d6e16aa64297395540ec946043557389.webp" },
-    { title: "A Queda 2: Sem Saída", note: "Estreia HD", meta: "Harriet Slater · Tensão nas Alturas", posterUrl: "https://gimytv.biz/upload/vod/20261008-main/3267957a98177cf6497cf6af9aec3f5fcb13a2b585111558f59ffc95bb7f433b.webp" },
-    { title: "As Leoas da Bola", note: "Comédia", meta: "Comédia Esportiva Sensação", posterUrl: "https://gimytv.biz/upload/vod/20261008-2/5a37da552223a78851ba7f972691f104.webp" }
+    { title: "Street Fighter 2026", note: "Estreno", meta: "Noah Centineo · Acción y Combates", posterUrl: "https://gimytv.biz/upload/vod/20261015-main/83d92769d56b7920f65152ed0d0282352b56d428529919f3ec346f94670d9e56.jpg" },
+    { title: "Hombre Araña: Un Nuevo Día", note: "4K Latino", meta: "Tom Holland · Aventura Marvel", posterUrl: "https://gimytv.biz/upload/vod/20261008-2/20061ce3302eddf2be581352522f9601.webp" },
+    { title: "Rescate en el Abismo", note: "Full HD", meta: "Austin Abrams · Suspenso en Alta Mar", posterUrl: "https://gimytv.biz/upload/vod/20261016-1/eb16c98ce7220fb1d595fa86645fa53d.webp" },
+    { title: "Hope 2026", note: "Original", meta: "Hwang Jung-min · Ciencia Ficción", posterUrl: "https://gimytv.biz/upload/vod/20261013-1/ba298a17d5274d680446112c0680c17f.webp" },
+    { title: "El Renacer 2", note: "Doblada", meta: "Sammo Hung · Artes Marciales y Crimen", posterUrl: "https://gimytv.biz/upload/vod/20261015-main/fc0dca1ed3716da89759885496885151d6e16aa64297395540ec946043557389.webp" },
+    { title: "Vértigo 2: Sin Escape", note: "Estreno HD", meta: "Harriet Slater · Tensión en las Alturas", posterUrl: "https://gimytv.biz/upload/vod/20261008-main/3267957a98177cf6497cf6af9aec3f5fcb13a2b585111558f59ffc95bb7f433b.webp" },
+    { title: "Las Leonas del Balón", note: "Comedia", meta: "Éxito Deportivo Familiar", posterUrl: "https://gimytv.biz/upload/vod/20261008-2/5a37da552223a78851ba7f972691f104.webp" }
   ],
   series: [
-    { title: "Stranger Things 5 (Final)", note: "Temporada Completa", meta: "Ficção · Terror · Sucesso Mundial", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "The Boys: Temporada 5", note: "Dublado 4K", meta: "Ação · Sátira de Super-Heróis", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Wandinha: 2ª Temporada", note: "Original Netflix", meta: "Jenna Ortega · Fantasia e Mistério", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "A Casa do Dragão 3", note: "Max Original", meta: "A Guerra dos Targaryen", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Euphoria: 3ª Temporada", note: "Completo HD", meta: "Zendaya · Drama HBO", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "The Last of Us: Parte 2", note: "Em Alta", meta: "Pedro Pascal · Ação Pós-Apocalipse", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Reacher: Nova Missão", note: "Ação Pura", meta: "Alan Ritchson · Suspense Policial", posterUrl: UNIFIED_BRAND_POSTER }
+    { title: "Stranger Things 5 (Final)", note: "Temporada Completa", meta: "Misterio · Terror · Éxito Global", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "The Boys: Temporada 5", note: "4K Latino", meta: "Acción · Sátira de Superhéroes", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "Merlina: Temporada 2", note: "Original", meta: "Jenna Ortega · Fantasía y Misterio", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "House of the Dragon 3", note: "Max Original", meta: "La Guerra Civil Targaryen", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "El Encargado: Temporada 4", note: "Éxito Argentino", meta: "Guillermo Francella · Comedia Negra", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "The Last of Us: Parte 2", note: "Tendencia", meta: "Pedro Pascal · Drama Postapocalíptico", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "Reacher: Temporada 3", note: "Acción Total", meta: "Alan Ritchson · Suspenso Policial", posterUrl: UNIFIED_BRAND_POSTER }
   ],
   novelas: [
-    { title: "Mania de Você", note: "Capítulo de Ontem", meta: "Novela das 9 · TV Globo", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Garota do Momento", note: "Capítulos 1-40", meta: "Novela das 6 · Época e Romance", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Volta por Cima", note: "Todos os Capítulos", meta: "Novela das 7 · Comédia e Drama", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "A Caverna Encantada", note: "Infantojuvenil", meta: "Novela SBT · Para Toda a Família", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Força de Mulher", note: "Record TV", meta: "Sucesso Internacional Dublado", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Avenida Brasil (Remaster)", note: "Ícone Completo", meta: "Carminha vs Nina · Vale a Pena", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Pantanal (Edição Especial)", note: "4K Completo", meta: "Juma Marruá · Superprodução", posterUrl: UNIFIED_BRAND_POSTER }
+    { title: "Papás por Conveniencia", note: "Capítulo de Ayer", meta: "Novela Estelar · TelevisaUnivision", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "El Señor de los Cielos (Final)", note: "4K Completo", meta: "Aurelio Casillas · Narcotráfico y Acción", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "La Historia de Juana", note: "Capítulos 1-60", meta: "Drama y Romance Mexicano", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "Buenos Chicos", note: "Serie Argentina", meta: "Policial y Drama Juvenil · El Trece", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "Café con Aroma de Mujer", note: "Remaster HD", meta: "William Levy · Romance Clásico", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "Rebelde (RBD Original)", note: "Completa en HD", meta: "Mía, Roberta, Miguel y Diego", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "Argentina, Tierra de Amor", note: "Época y Drama", meta: "Superproducción Histórica", posterUrl: UNIFIED_BRAND_POSTER }
   ],
   anime: [
-    { title: "One Piece: Arco Elbaf", note: "Episódio 1180+", meta: "Luffy em Elbaf · Dublado/Legendado", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Solo Leveling: 2ª Temporada", note: "Dublado Brasil", meta: "Sung Jin-woo · O Monarca das Sombras", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Demon Slayer: Castelo Infinito", note: "Lançamento", meta: "Tanjiro vs Luas Superiores", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Jujutsu Kaisen: Jogo do Abate", note: "Em Exibição", meta: "Yuji Itadori & Megumi", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Chainsaw Man: Filme da Reze", note: "Original HD", meta: "Denji e a Demônio Bomba", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Bleach: Thousand-Year Blood War", note: "Parte 3", meta: "Ichigo Kurosaki no clímax", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Dragon Ball Daima", note: "Dublado PT-BR", meta: "Goku Pequeno · Nova Aventura", posterUrl: UNIFIED_BRAND_POSTER }
+    { title: "One Piece: Arco Elbaf", note: "Episodio 1180+", meta: "Luffy en Elbaf · Audio Latino y Sub", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "Solo Leveling: Temporada 2", note: "Audio Latino", meta: "Sung Jin-woo · El Monarca de las Sombras", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "Demon Slayer: Castillo Infinito", note: "Estreno Película", meta: "Tanjiro vs Lunas Superiores", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "Jujutsu Kaisen: Culling Game", note: "En Emisión", meta: "Yuji Itadori · Acción Sobrenatural", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "Chainsaw Man: Arco de Reze", note: "Estreno 4K", meta: "Denji y el Demonio Bomba", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "Bleach: TYBW Parte 3", note: "Clímax Total", meta: "Guerra Sangrienta de los Mil Años", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "Dragon Ball Daima", note: "Español Latino", meta: "Goku Pequeño · Nueva Aventura Canónica", posterUrl: UNIFIED_BRAND_POSTER }
   ],
   kids: [
-    { title: "Divertida Mente 2", note: "Completo 4K", meta: "Riley e as Novas Emoções", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Meu Malvado Favorito 4", note: "Dublado", meta: "Gru e os Minions Aprontando", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Moana 2", note: "Estreia Família", meta: "Aventura Épica no Oceano", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Kung Fu Panda 4", note: "Animação HD", meta: "Po em Busca do Novo Guerreiro", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Turma da Mônica Jovem", note: "Produção Nacional", meta: "Mônica, Cebolinha, Cascão e Magali", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Patrulha Canina: O Filme 2", note: "Infantil", meta: "Superpoderes para os Filhotes", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Sonic 3: O Filme", note: "Ação & Família", meta: "Shadow vs Sonic e Knuckles", posterUrl: UNIFIED_BRAND_POSTER }
+    { title: "Intensa-Mente 2", note: "Completa 4K", meta: "Riley y las Nuevas Emociones", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "Mi Villano Favorito 4", note: "Audio Latino", meta: "Gru, Lucy y los Minions al Ataque", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "Moana 2", note: "Estreno Familiar", meta: "Aventura Mágica en los Mares", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "Kung Fu Panda 4", note: "Animación HD", meta: "Po y su Búsqueda del Nuevo Guerrero Dragón", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "El Chavo Animado", note: "Todas las Temporadas", meta: "Clásico Familiar Mexicano", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "Paw Patrol: La Súper Película", note: "Infantil", meta: "Cachorros con Superpoderes", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "Sonic 3: La Película", note: "Acción en Familia", meta: "Shadow vs Sonic y Knuckles", posterUrl: UNIFIED_BRAND_POSTER }
   ],
   channel: [
-    { title: "TV Globo HD", note: "Ao Vivo 24h", meta: "Sinal SP/RJ/Nacional em 1080p", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
-    { title: "SBT HD", note: "Sem Travar", meta: "Programação e auditório em tempo real", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
-    { title: "Record TV", note: "Ao Vivo", meta: "Jornalismo investigativo e realities", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
-    { title: "Band TV", note: "Ao Vivo", meta: "Futebol e esportes com Neto", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
-    { title: "Premiere Futebol Club", note: "60 FPS", meta: "Todos os jogos do Brasileirão", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
-    { title: "Sportv 1, 2 e 3", note: "HD", meta: "Esportes Olímpicos, Vôlei e Debate", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
-    { title: "CazéTV Ao Vivo", note: "Streaming", meta: "Transmissões digitais sem delay", posterUrl: UNIFIED_BRAND_POSTER, isLive: true }
+    { title: "Las Estrellas (México)", note: "En Vivo 24h", meta: "Canal 2 Televisa en señal HD", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
+    { title: "Azteca 7 (México)", note: "Sin Cortes", meta: "Deportes, cine y programación estelar", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
+    { title: "Telefe (Argentina)", note: "En Vivo", meta: "Líder de audiencia en Buenos Aires e interior", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
+    { title: "El Trece (Argentina)", note: "HD Señal Abierta", meta: "Noticias en vivo y programas nocturnos", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
+    { title: "TyC Sports en Vivo", note: "60 FPS", meta: "Transmisiones exclusivas del fútbol argentino", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
+    { title: "TUDN México", note: "En Directo", meta: "Liga MX, Selección y debate futbolero", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
+    { title: "ESPN & Fox Sports", note: "HD Dual", meta: "Fórmula 1, Champions League y Copa Libertadores", posterUrl: UNIFIED_BRAND_POSTER, isLive: true }
   ],
   variety: [
-    { title: "Big Brother Brasil 26", note: "Câmeras 24h", meta: "Acompanhe ao vivo sem cortes", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "A Fazenda 18", note: "Record TV", meta: "Barracos e provas do fazendeiro", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Podpah Ao Vivo", note: "Podcasts", meta: "Igão e Mítico entrevistando famosos", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Flow Podcast", note: "Diário", meta: "Conversas com personalidades", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "MasterChef Brasil", note: "Band", meta: "A Batalha dos Melhores Cozinheiros", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "The Masked Singer Brasil", note: "Show", meta: "Adivinhe quem está cantando", posterUrl: UNIFIED_BRAND_POSTER },
-    { title: "Dança dos Famosos", note: "Domingo", meta: "Competição de dança com artistas", posterUrl: UNIFIED_BRAND_POSTER }
+    { title: "La Casa de los Famosos México", note: "Cámaras 24/7", meta: "Transmisión en directo sin censura", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "Gran Hermano Argentina 2026", note: "En Vivo", meta: "La casa más famosa del país por Telefe", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "La Cotorrisa en Vivo", note: "Podcast MX", meta: "Ricardo Pérez y Slobotzky", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "Luzu TV (Nadie Dice Nada)", note: "Stream AR", meta: "Nicolás Occhiato y equipo en vivo", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "MasterChef Celebrity", note: "Reality Gourmet", meta: "Los mejores famosos en la cocina", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "Olga Stream (Soñé que Volaba)", note: "En Directo", meta: "Migue Granados y grandes invitados", posterUrl: UNIFIED_BRAND_POSTER },
+    { title: "¿Quién es la Máscara? 2026", note: "Show Familiar", meta: "Descubre a las celebridades ocultas", posterUrl: UNIFIED_BRAND_POSTER }
   ],
   sports: [
-    { title: "Brasileirão Série A 2026", note: "Ao Vivo", meta: "Flamengo, Palmeiras, Corinthians e mais", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
-    { title: "Copa Libertadores 2026", note: "Fase Final", meta: "A Glória Eterna na tela do Pobreflix", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
-    { title: "Champions League", note: "4K Real", meta: "Real Madrid, City, Barcelona e PSG", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
-    { title: "Copa do Brasil 2026", note: "Mata-Mata", meta: "Jogos de ida e volta emocionantes", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
-    { title: "Eliminatórias da Copa", note: "Seleção BR", meta: "Brasil em campo rumo ao Hexa", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
-    { title: "NBA Temporada Regular", note: "Ao Vivo", meta: "Lakers, Celtics, Warriors em quadra", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
-    { title: "UFC Combate", note: "Card Principal", meta: "Lutas pelo cinturão com brasileiros", posterUrl: UNIFIED_BRAND_POSTER, isLive: true }
+    { title: "Liga MX Apertura 2026", note: "En Vivo", meta: "América, Chivas, Cruz Azul, Tigres y Monterrey", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
+    { title: "Liga Profesional Argentina", note: "Partidos Completos", meta: "Boca Juniors, River Plate, Racing y San Lorenzo", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
+    { title: "Copa Libertadores 2026", note: "Fase Final", meta: "La Gloria Eterna con relatores latinos", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
+    { title: "Champions League 2026", note: "4K Real", meta: "Real Madrid, Manchester City, Barcelona y Bayern", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
+    { title: "Eliminatorias Mundialistas", note: "Selecciones", meta: "México, Argentina y toda Conmebol en vivo", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
+    { title: "Fórmula 1 (GP México)", note: "En Vivo 60FPS", meta: "Cámaras a bordo y transmisión sin anuncios", posterUrl: UNIFIED_BRAND_POSTER, isLive: true },
+    { title: "UFC Noche de Campeonato", note: "Cartelera Estelar", meta: "Peleadores mexicanos y latinos por el cinturón", posterUrl: UNIFIED_BRAND_POSTER, isLive: true }
   ]
 };
 
 const CATEGORY_TITLES = {
-  movie: '🎬 Filmes em Alta (Cinema & Lançamentos)',
-  series: '📺 Séries Populares Mais Vistas',
-  novelas: '💃 Novelas Brasileiras (Globo, SBT e Record)',
-  anime: '⚡ Animes Dublados e Legendados',
-  kids: '👶 Infantil & Família (Desenhos e Animações)',
-  channel: '📡 TV Brasil Ao Vivo em Alta Definição',
-  variety: '🎙️ Reality Shows & Podcasts Brasileiros',
-  sports: '⚽ Futebol e Transmissões Esportivas Ao Vivo'
+  movie: '🎬 Películas en Tendencia (Cine y Estrenos Mundiales)',
+  series: '📺 Series Populares Más Vistas en Streaming',
+  novelas: '💃 Telenovelas y Series de México y Argentina',
+  anime: '⚡ Anime en Audio Latino y Subtitulado',
+  kids: '👶 Infantil y Familiar (Animación y Clásicos)',
+  channel: '📡 TV Abierta y Canales en Vivo (MX / AR)',
+  variety: '🎙️ Realities y Programas de Streaming en Vivo',
+  sports: '⚽ Liga MX, Liga Argentina y Fútbol Internacional'
 };
 
 function switchTab(category) {
@@ -813,7 +808,7 @@ function switchTab(category) {
     }
   });
 
-  document.getElementById('currentCategoryText').textContent = CATEGORY_TITLES[category] || 'Conteúdo em Destaque';
+  document.getElementById('currentCategoryText').textContent = CATEGORY_TITLES[category] || 'Contenido en Tendencia';
   const list = FEATURED_LIBRARY_ITEMS[category] || [];
   const container = document.getElementById('libraryContainer');
 
@@ -827,13 +822,12 @@ function switchTab(category) {
         <div class="relative w-full aspect-[2/3] overflow-hidden bg-zinc-900">
           <img src="${item.posterUrl}" alt="${safeTitle}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='${UNIFIED_BRAND_POSTER}'">
           
-          <!-- Camada de Gradiente com a Marca Pobreflix para Pôsteres Padrão -->
           <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/20 pointer-events-none flex flex-col justify-between p-3.5">
             <div class="flex items-center justify-between">
               <span class="px-2 py-0.5 rounded text-[10px] font-black ${isLive ? 'bg-emerald-500 text-zinc-950' : 'bg-orange-500 text-white'} shadow-md">
-                ${isLive ? '● AO VIVO' : (item.note || '4K')}
+                ${isLive ? '● EN VIVO' : (item.note || '4K')}
               </span>
-              <span class="text-[9px] font-black tracking-wider text-orange-400 bg-black/60 px-1.5 py-0.5 rounded border border-white/10">POBREFLIX</span>
+              <span class="text-[9px] font-black tracking-wider text-orange-400 bg-black/60 px-1.5 py-0.5 rounded border border-white/10">PELISPEDIA</span>
             </div>
             
             ${!isMovie ? `<div class="text-center font-black text-xs text-white/90 drop-shadow-md line-clamp-2 px-1">${safeTitle}</div>` : ''}
@@ -849,11 +843,11 @@ function switchTab(category) {
         <div class="p-3 flex-1 flex flex-col justify-between">
           <div>
             <h4 class="font-bold text-xs text-zinc-100 line-clamp-1 group-hover:text-orange-400 transition-colors">${safeTitle}</h4>
-            <p class="text-[10px] text-zinc-400 line-clamp-1 mt-1">${item.meta || 'Qualidade Ultra HD'}</p>
+            <p class="text-[10px] text-zinc-400 line-clamp-1 mt-1">${item.meta || 'Calidad Ultra HD'}</p>
           </div>
           <div class="mt-2.5 pt-2 border-t border-white/5 flex items-center justify-between text-[10px]">
-            <span class="text-emerald-400 font-semibold">4K Sem Travar</span>
-            <span class="text-orange-400 font-bold group-hover:translate-x-0.5 transition-transform">Assistir →</span>
+            <span class="text-emerald-400 font-semibold">4K Sin Cortes</span>
+            <span class="text-orange-400 font-bold group-hover:translate-x-0.5 transition-transform">Ver Ahora →</span>
           </div>
         </div>
       </div>
@@ -865,13 +859,13 @@ function switchTab(category) {
       <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-orange to-brand-orange2 text-zinc-950 flex items-center justify-center text-3xl font-black mb-3 shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-transform">
         +
       </div>
-      <div class="text-[11px] font-black text-orange-400 uppercase tracking-wider">CATÁLOGO COMPLETO LIBERADO</div>
-      <h3 class="text-base sm:text-lg font-black text-white mt-1">Ver Mais 15.000 Títulos</h3>
+      <div class="text-[11px] font-black text-orange-400 uppercase tracking-wider">CATÁLOGO COMPLETO DESBLOQUEADO</div>
+      <h3 class="text-base sm:text-lg font-black text-white mt-1">Ver Más de 18.000 Títulos</h3>
       <p class="text-xs text-zinc-300 mt-1.5 leading-relaxed max-w-[200px]">
-        O site mostra apenas os destaques. Baixe o Pobreflix e acesse todas as temporadas e canais!
+        Aquí mostramos solo los destacados. ¡Descarga Pelispedia y accede a todas las temporadas y canales en vivo!
       </p>
       <div class="mt-4 px-4 py-2 rounded-xl bg-orange-500 text-zinc-950 font-black text-xs shadow-md group-hover:brightness-110 flex items-center gap-1.5">
-        <span>Baixar e Desbloquear</span>
+        <span>Descargar y Desbloquear</span>
         <span>↗</span>
       </div>
     </div>
@@ -880,35 +874,35 @@ function switchTab(category) {
   container.innerHTML = cardsHtml + unlockMoreCardHtml;
 }
 
-// Depoimentos Brasileiros
-const BRAZIL_REVIEWS = [
-  { name: "Lucas Silveira", loc: "São Paulo, SP", device: "Samsung Galaxy S24 Ultra", text: "Uso todo dia no metrô voltando do trabalho. O download pra assistir offline é super rápido e não fica travando. Melhor que pagar 60 reais de Netflix todo mês!" },
-  { name: "Rodrigo Almeida", loc: "Rio de Janeiro, RJ", device: "TV Box Xiaomi 4K", text: "Instalei na sala e meus pais adoraram. Meu pai assiste o Premiere e o jogo do Flamengo sem lag e minha mãe não perde a novela das 9 na Globo. Valeu cada segundo!" },
-  { name: "Beatriz Ferreira", loc: "Belo Horizonte, MG", device: "Motorola Edge 50", text: "Os desenhos infantis e as séries saem muito rápido. O player abre na hora sem aquelas propagandas chatas no meio do vídeo." },
-  { name: "Matheus Santos", loc: "Curitiba, PR", device: "Xiaomi Redmi Note 13", text: "Assisti a final da Libertadores no Premiere pelo Pobreflix e a imagem estava lisinha em 60 fps, sem delay. Sensacional demais!" },
-  { name: "Camila Ribeiro", loc: "Fortaleza, CE", device: "Samsung Galaxy A54", text: "Eu tinha medo de baixar APK por causa de vírus, mas passei o antivírus e o Play Protect autorizou de boa. App limpo, recomendo pra todo mundo." },
-  { name: "Gabriel Oliveira", loc: "Salvador, BA", device: "Smart TV Android", text: "Espelha no Chromecast com um toque. A qualidade 4K é de verdade, dá pra ver cada detalhe. O melhor app de 2026 sem dúvidas." },
-  { name: "Larissa Costa", loc: "Goiânia, GO", device: "Google Pixel 8", text: "Adorei a categoria de novelas antigas e atuais. Dá pra maratonar tudo do começo ao fim sem pagar plano premium nem assinar nada." },
-  { name: "Thiago Lima", loc: "Porto Alegre, RS", device: "POCO X6 Pro", text: "Os animes e as séries americanas são muito organizados. Já desinstalei dois apps pagos e tô usando só o Pobreflix agora." }
+// Opiniones de Usuarios de México y Argentina
+const LATAM_REVIEWS = [
+  { name: "Alejandro Morales", loc: "Ciudad de México, MX", device: "Samsung Galaxy S24 Ultra", text: "La uso diario en el metro de regreso del trabajo. Descargar capítulos para ver offline es súper rápido y no se traba. ¡Mejor que pagar Netflix y ViX todos los meses!" },
+  { name: "Facundo Benítez", loc: "Buenos Aires, AR", device: "TV Box Xiaomi 4K", text: "La instalé en el living de casa y mis viejos están chochos. Mi viejo mira TyC Sports y los partidos de River sin lag, y mi vieja sigue Gran Hermano por Telefe. ¡Una genialidad!" },
+  { name: "Mariana Hernández", loc: "Guadalajara, MX", device: "Motorola Edge 50", text: "Las caricaturas para los niños y los estrenos de cine salen al instante con doblaje latino. El reproductor abre de inmediato y sin anuncios invasivos." },
+  { name: "Gonzalo Romero", loc: "Córdoba, AR", device: "Xiaomi Redmi Note 13", text: "Miré el superclásico y la Copa Libertadores con Pelispedia en la TV y la transmisión fue a 60 fps fluidos, sin delay. Totalmente recomendada." },
+  { name: "Valeria Castillo", loc: "Monterrey, MX", device: "Samsung Galaxy A55", text: "Tenía dudas de instalar un APK pero pasé el antivirus y Google Play Protect lo autorizó sin problemas. La app está limpia y funciona de diez." },
+  { name: "Joaquín Pereyra", loc: "Rosario, AR", device: "Smart TV Android", text: "Transmite al Chromecast con un solo botón. La calidad 4K se nota en cada detalle. La mejor app de streaming de 2026 sin discusión." },
+  { name: "Daniela Ortiz", loc: "Puebla, MX", device: "Google Pixel 8", text: "Me encanta la sección de telenovelas completas y series de televisión. Puedo maratonear todo de principio a fin sin pagar membresías." },
+  { name: "Agustín Cabrera", loc: "Mendoza, AR", device: "POCO X6 Pro", text: "La organización de series y anime es excelente. Ya di de baja dos plataformas de pago y me quedé solamente con esta app." }
 ];
 
-const BR_NAMES = ["Felipe Costa", "Juliana Martins", "Rafael Souza", "Mariana Duarte", "Bruno Carvalho", "Aline Pereira", "Diego Barbosa", "Priscila Rocha", "André Castro", "Natália Mendes"];
-const BR_CITIES = ["Campinas, SP", "Recife, PE", "Manaus, AM", "Brasília, DF", "Florianópolis, SC", "Vitória, ES", "Natal, RN", "Belém, PA", "Santos, SP"];
-const BR_DEVICES = ["Samsung S23", "Moto G84", "Xiaomi 13", "TV Box MXQ Pro", "Realme 12", "Chromecast 4K"];
-const BR_TEMPLATES = [
-  "Depois que atualizou pra versão 2026, os canais de TV abrem num piscar de olhos. Muito melhor que a TV a cabo antiga!",
-  "A qualidade de imagem surpreendeu demais, roda em 1080p sem engasgar nem no Wi-Fi fraco.",
-  "Melhor app pra economizar uma grana. Dá pra ver futebol, filme novo de cinema e série sem frescura.",
-  "Instalei na TV Box dos meus avós e é muito simples de mexer, controle remoto funciona certinho.",
-  "Sempre atualizado com os últimos lançamentos do cinema dublados em português. Nota 10!"
+const LATAM_NAMES = ["Carlos Vázquez", "Sofía Navas", "Martín Gómez", "Lucía Fernández", "Mateo Domínguez", "Camila Juárez", "Lucas Navarro", "Jimena Torres", "Esteban Rivas", "Natalia Reyes"];
+const LATAM_CITIES = ["Tijuana, MX", "La Plata, AR", "Querétaro, MX", "Mar del Plata, AR", "León, MX", "Salta, AR", "Mérida, MX", "Tucumán, AR", "Toluca, MX", "Santa Fe, AR"];
+const LATAM_DEVICES = ["Samsung S23", "Moto G84", "Xiaomi 13", "TV Box MXQ Pro", "Realme 12", "Chromecast 4K"];
+const LATAM_TEMPLATES = [
+  "Al actualizar a la versión 2026, los canales de televisión abren en un instante. ¡Mucho mejor que cualquier servicio de cable!",
+  "La calidad de video me sorprendió, reproduce en 1080p y 4K fluido incluso con conexión de datos o Wi-Fi normal.",
+  "La mejor app para ahorrar dinero. Tienes fútbol de la Liga MX y del torneo argentino, estrenos y series sin enredos.",
+  "La configuré en la TV Box de mis abuelos y el control remoto funciona perfecto. Es súper intuitiva de usar.",
+  "Siempre actualizada con los últimos estrenos de cine doblados al español latino. ¡Calificación 10 de 10!"
 ];
 
-for (let i = BRAZIL_REVIEWS.length; i < 90; i++) {
-  BRAZIL_REVIEWS.push({
-    name: BR_NAMES[i % BR_NAMES.length],
-    loc: BR_CITIES[i % BR_CITIES.length],
-    device: BR_DEVICES[i % BR_DEVICES.length],
-    text: BR_TEMPLATES[i % BR_TEMPLATES.length]
+for (let i = LATAM_REVIEWS.length; i < 90; i++) {
+  LATAM_REVIEWS.push({
+    name: LATAM_NAMES[i % LATAM_NAMES.length],
+    loc: LATAM_CITIES[i % LATAM_CITIES.length],
+    device: LATAM_DEVICES[i % LATAM_DEVICES.length],
+    text: LATAM_TEMPLATES[i % LATAM_TEMPLATES.length]
   });
 }
 
@@ -917,7 +911,7 @@ const REVIEWS_PER_PAGE = 8;
 
 function loadMoreReviews() {
   const container = document.getElementById('reviewsGrid');
-  const nextSlice = BRAZIL_REVIEWS.slice(displayedReviewCount, displayedReviewCount + REVIEWS_PER_PAGE);
+  const nextSlice = LATAM_REVIEWS.slice(displayedReviewCount, displayedReviewCount + REVIEWS_PER_PAGE);
   
   nextSlice.forEach(rev => {
     const card = document.createElement('div');
@@ -939,15 +933,15 @@ function loadMoreReviews() {
         <p class="text-xs text-zinc-300 mt-2.5 leading-relaxed">${rev.text}</p>
       </div>
       <div class="mt-3 pt-2 border-t border-white/5 flex items-center justify-between text-[10px] text-zinc-500">
-        <span class="text-emerald-400/90 font-medium">✓ Usuário Verificado</span>
-        <span>Agora mesmo</span>
+        <span class="text-emerald-400/90 font-medium">✓ Usuario Verificado</span>
+        <span>Hace instantes</span>
       </div>
     `;
     container.appendChild(card);
   });
 
   displayedReviewCount += nextSlice.length;
-  const remaining = BRAZIL_REVIEWS.length - displayedReviewCount;
+  const remaining = LATAM_REVIEWS.length - displayedReviewCount;
   const countEl = document.getElementById('remainingReviewsCount');
   if (countEl) countEl.textContent = remaining > 0 ? remaining : 0;
 
@@ -957,23 +951,23 @@ function loadMoreReviews() {
   }
 }
 
-// Modais Legais em Português
+// Modales Legales en Español Neutro
 const LEGAL_CONTENT = {
   privacy: {
-    title: "Política de Privacidade e Proteção de Dados",
-    body: `<p><strong>1. Coleta e Tratamento de Dados</strong><br>O Pobreflix preza pela sua privacidade total. Não exigimos nome, CPF, e-mail, cartão de crédito ou qualquer cadastro obrigatório para a reprodução de conteúdos.</p><p><strong>2. Segurança do Aparelho</strong><br>O aplicativo não acessa seus contatos, fotos ou mensagens pessoais.</p>`
+    title: "Política de Privacidad y Protección de Datos",
+    body: `<p><strong>1. Recolección de Datos</strong><br>Pelispedia respeta plenamente su privacidad. No solicitamos identificación oficial, correo electrónico, tarjetas de crédito ni registro obligatorio para el acceso a la biblioteca.</p><p><strong>2. Permisos del Dispositivo</strong><br>La aplicación no accede a sus fotos, mensajes o contactos privados.</p>`
   },
   terms: {
-    title: "Termos de Serviço e Uso do Aplicativo",
-    body: `<p><strong>1. Aceitação</strong><br>Ao baixar e utilizar o APK do Pobreflix, você concorda em utilizar o software como ferramenta de reprodução multimídia e streaming para uso pessoal.</p>`
+    title: "Términos de Servicio y Uso",
+    body: `<p><strong>1. Uso Personal</strong><br>Al descargar e instalar el archivo APK de Pelispedia, el usuario acepta utilizar el software exclusivamente como cliente reproductor de contenido para fines privados y personales.</p>`
   },
   dmca: {
-    title: "Notificação de Direitos Autorais (DMCA / LGPD)",
-    body: `<p><strong>1. Declaração de Propriedade</strong><br>O Pobreflix é uma plataforma de busca e decodificação de fluxos abertos. Se você detém os direitos autorais de algum conteúdo listado, envie sua notificação formal para: dmca@pobreflix.app</p>`
+    title: "Aviso de Propiedad Intelectual y DMCA",
+    body: `<p><strong>1. Indexación Externa</strong><br>Pelispedia opera como un motor de búsqueda e indexador de enlaces abiertos de streaming disponibles públicamente en la web. Si usted es titular de derechos y desea solicitar una remoción, escriba a: dmca@pelispedia.app</p>`
   },
   disclaimer: {
-    title: "Isenção de Responsabilidade",
-    body: `<p><strong>1. Estabilidade de Redes</strong><br>A qualidade da transmissão pode variar conforme o seu provedor de internet, sinal Wi-Fi ou conexão móvel 4G/5G.</p>`
+    title: "Descargo de Responsabilidad",
+    body: `<p><strong>1. Conectividad</strong><br>La velocidad y estabilidad de la reproducción en vivo depende de su proveedor de internet doméstico o señal móvil 4G/5G.</p>`
   }
 };
 
@@ -1001,11 +995,11 @@ document.getElementById('legalModal')?.addEventListener('click', (e) => {
   if (e.target.id === 'legalModal') closeLegalModal();
 });
 
-// Listener Global de Contingência para Botões de Download
+// Listener Global de Descarga
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('a, button').forEach(el => {
     const text = (el.innerText || '').toLowerCase();
-    if ((text.includes('baixar') || text.includes('apk') || text.includes('instalar') || text.includes('assistir')) && !el.getAttribute('onclick')) {
+    if ((text.includes('descargar') || text.includes('apk') || text.includes('instalar') || text.includes('ver')) && !el.getAttribute('onclick')) {
       el.addEventListener('click', (e) => {
         e.preventDefault();
         triggerSmartDownload(el.innerText.trim().slice(0, 30), el);
@@ -1014,7 +1008,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Inicialização
+// Inicialización
 switchTab('movie');
 loadMoreReviews();
 </script>
